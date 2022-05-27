@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+
+*{
+  
+    margin: 0;
+    padding: 0;
+    font-family: 'Itim', cursive;
+    /* overflow-x:hidden; */
+    
+    
+}
+  .footer {
+    background-color: #bcacf0;
+    padding: 70px 0;
+    position: relative;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+    /* Height of the footer*/ 
+    height: 150px;
+    overflow-x:hidden;
+  }
+  
+.footer-container {
+    max-width: 1170px;
+    margin: auto;
+    
+  }
+  
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .footer ul {
+    list-style: none;
+  }
+  
+
+  .footer-col {
+    width: 25%;
+    padding: 0 15px;
+  }
+  
+  .footer-col h4 {
+    font-size: 18px;
+    color: black;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+    font-weight: 500;
+    position: relative;
+  }
+  
+  .footer-col h4::before {
+   
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    background-color: rgba(181, 233, 255, 0.75);
+    height: 1.5px;
+    box-sizing: border-box;
+    width: 50px;
+  }
+  
+  .footer-col ul li:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  
+  .footer-col ul li a {
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300;
+    color: black;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  
+  .footer-col ul li a:hover {
+    color: #18646a;
+    padding-left: 10px;
+  }
