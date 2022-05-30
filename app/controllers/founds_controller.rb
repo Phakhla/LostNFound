@@ -65,6 +65,6 @@ class FoundsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def found_params
-      params.require(:found).permit(:name, :types, :date, :time, :location, :detail)
+      params.require(:found).permit(:name, :types, :date, :time, :location, :detail, images: [])
     end
 end

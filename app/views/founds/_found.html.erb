@@ -29,4 +29,13 @@
     <%= found.detail %>
   </p>
 
+  <p> 
+    <strong>Images:</strong>
+    <% if found.images.attached? %>
+      <% found.images.each do |pic| %>
+        <%= image_tag(pic, style:"width:150px; height:150px") %>
+      <% end %> 
+    <% end %>
+  </p>
+
 </div>

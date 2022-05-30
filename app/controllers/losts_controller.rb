@@ -65,6 +65,6 @@ class LostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lost_params
-      params.require(:lost).permit(:name, :types, :date, :time, :location, :detail, :reward)
+      params.require(:lost).permit(:name, :types, :date, :time, :location, :detail, :reward, images: [])
     end
 end
