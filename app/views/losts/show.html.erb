@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @lost %>
+
+<div>
+  <%= link_to "Edit this lost", edit_lost_path(@lost) %> |
+  <%= link_to "Back to losts", losts_path %>
+
+  <%= button_to "Destroy this lost", @lost, method: :delete %>
+</div>

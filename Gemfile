@@ -70,4 +70,26 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+
+
+
+# Use Amazon S3
+gem "aws-sdk-s3", require: false
+
+gem "mini_magick", "~> 4.11"
+
+gem "chunky_png", "~> 1.4"
+
+gem "prawn", "~> 2.4"
+
+gem "prawn-table", "~> 0.2.2"
+
+# PDF generation plugin
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
+
 gem "rqrcode", "~> 2.1"
+
+gem "open-uri", "~> 0.2.0"
