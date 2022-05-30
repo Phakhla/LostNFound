@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Losts</h1>
+
+<div id="losts">
+  <% @losts.each do |lost| %>
+    <%= render lost %>
+    <p>
+      <%= link_to "Show this lost", lost %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New lost", new_lost_path %>

@@ -1,8 +1,8 @@
-class CreatePosts < ActiveRecord::Migration[7.0]
+class CreateFounds < ActiveRecord::Migration[7.0]
   def change
-    create_table :posts do |t|
+    create_table :founds do |t|
       t.string :name
-      t.string :type
+      t.string :types
       t.date :date
       t.time :time
       t.string :location
