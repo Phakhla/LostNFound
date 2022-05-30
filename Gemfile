@@ -27,9 +27,6 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-# Devise
-gem 'devise'
-
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -49,7 +46,7 @@ gem "bootsnap", require: false
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
+# gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -73,23 +70,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-# Use Amazon S3
-gem "aws-sdk-s3", require: false
-
-gem "mini_magick", "~> 4.11"
-
-gem "chunky_png", "~> 1.4"
-
-gem "prawn", "~> 2.4"
-
-gem "prawn-table", "~> 0.2.2"
-
-# PDF generation plugin
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
-
-
-gem "rqrcode", "~> 2.1"
-
-gem "open-uri", "~> 0.2.0"
