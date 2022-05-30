@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag "navbar" %>
+<html>
+
+<head>
+<!--เพื่อตรวจสอบและแสดงโค้ดส่วนนี้เมื่อ Sign in แล้วเท่านั้น -->
+<% if user_signed_in? %>
+    <nav>
+    <h1><a href="http://127.0.0.1:3000">LOST ITEM</a></h1>
+        <div class="nav-links" id="navLinks">
+            <ul>
+          
+            <!-- ลิงค์ไปหน้า Sign out  -->
+            <li><%= link_to "Sign Out", destroy_user_session_path, class: "nav-link" %></li>
+            <li><%= link_to "Edit", edit_user_registration_path, class: "nav-link" %></li>
+           
+            
+            </ul>
+        </div>
+    </nav>
+<!-- แสดงโค้ดส่วนนี้หากยังไม่ได้ Sign in-->
+<% else %>
+    <nav>
+    <h1><a href="http://127.0.0.1:3000">LOST ITEM</a></h1>
+    <div class="nav-links" id="navLinks">
+    <ul>
+       
+ 
+        <li><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
+    
+        <li><%= link_to "Sign In", new_user_session_path, class: "nav-link" %> </li>
+       
+                
+    </ul>
+    </div>
+    </nav>
+<% end %>
+
+</head>
+<body>
+</body>
+
+</html>

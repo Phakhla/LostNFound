@@ -73,7 +73,7 @@ end
 
 
 
-
+gem 'devise'
 # Use Amazon S3
 gem "aws-sdk-s3", require: false
 
