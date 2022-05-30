@@ -1903,3 +1903,708 @@ Processing by Devise::SessionsController#new as HTML
 Completed 200 OK in 11ms (Views: 9.8ms | ActiveRecord: 0.0ms | Allocations: 4273)
 
 
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:07:51 +0700
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 8 pending migrations:
+
+20220527091748_add_username_to_users.rb
+20220527094310_add_name_to_users.rb
+20220527094406_add_lastname_to_users.rb
+20220527094436_add_tel_to_users.rb
+20220530030654_remove_username_from_users.rb
+20220530030809_add_usrename_to_users.rb
+20220530040522_create_losts.rb
+20220530040530_create_founds.rb
+
+
+):
+  
+activerecord (7.0.3) lib/active_record/migration.rb:627:in `check_pending!'
+activerecord (7.0.3) lib/active_record/migration.rb:592:in `block (2 levels) in call'
+activesupport (7.0.3) lib/active_support/file_update_checker.rb:83:in `execute'
+activerecord (7.0.3) lib/active_record/migration.rb:597:in `block in call'
+activerecord (7.0.3) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.3) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.3) lib/active_support/tagged_logging.rb:114:in `block in tagged'
+activesupport (7.0.3) lib/active_support/tagged_logging.rb:38:in `tagged'
+activesupport (7.0.3) lib/active_support/tagged_logging.rb:114:in `tagged'
+railties (7.0.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/server_timing.rb:20:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1083836004426114555)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUsernameToUsers (20220527091748)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.4ms)[0m  [1m[35mALTER TABLE "users" ADD "username" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220527091748"]]
+  [1m[36mTRANSACTION (5.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddNameToUsers (20220527094310)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "name" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220527094310"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddLastnameToUsers (20220527094406)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "lastname" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220527094406"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddTelToUsers (20220527094436)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "tel" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220527094436"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RemoveUsernameFromUsers (20220530030654)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.0ms)[0m  [1m[35mALTER TABLE "users" DROP COLUMN "username"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220530030654"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUsrenameToUsers (20220530030809)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "username" character varying[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220530030809"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLosts (20220530040522)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.0ms)[0m  [1m[35mCREATE TABLE "losts" ("id" bigserial primary key, "name" character varying, "types" character varying, "date" date, "time" time, "location" character varying, "detail" character varying, "reward" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220530040522"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFounds (20220530040530)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "founds" ("id" bigserial primary key, "name" character varying, "types" character varying, "date" date, "time" time, "location" character varying, "detail" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220530040530"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1083836004426114555)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:08:18 +0700
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 270.3ms | Allocations: 39299)
+  Rendered home/index.html.erb within layouts/application (Duration: 285.2ms | Allocations: 44565)
+  Rendered layout layouts/application.html.erb (Duration: 285.9ms | Allocations: 44660)
+Completed 500 Internal Server Error in 302ms (ActiveRecord: 0.0ms | Allocations: 46849)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `posts_path' for #<ActionView::Base:0x0000000000d7c8>
+
+'.freeze;@output_buffer.append=( link_to "Post", posts_path );@output_buffer.safe_append='
+                                                 ^^^^^^^^^^
+Did you mean?  losts_path
+               lost_path):
+    2: 
+    3: 
+    4: <br>
+    5: <%= link_to "Post", posts_path %>
+    6: <br><br>
+    7: <%= render 'layouts/footer' %>
+  
+app/views/home/index.html.erb:5
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:08:37 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 5.6ms | Allocations: 5722)
+  Rendered layouts/_footer.html.erb (Duration: 5.4ms | Allocations: 793)
+  Rendered home/index.html.erb within layouts/application (Duration: 13.8ms | Allocations: 6983)
+  Rendered layout layouts/application.html.erb (Duration: 53.6ms | Allocations: 20575)
+Completed 200 OK in 58ms (Views: 56.0ms | ActiveRecord: 0.0ms | Allocations: 21491)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:08:51 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 2.1ms | Allocations: 1642)
+  Rendered layouts/_footer.html.erb (Duration: 2.7ms | Allocations: 785)
+  Rendered home/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 2938)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 5284)
+Completed 200 OK in 15ms (Views: 13.6ms | ActiveRecord: 0.0ms | Allocations: 6152)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:08:52 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  [1m[36mFound Load (9.6ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:6
+  Rendered founds/index.html.erb within layouts/application (Duration: 15.0ms | Allocations: 1454)
+  Rendered layout layouts/application.html.erb (Duration: 24.6ms | Allocations: 4001)
+Completed 200 OK in 32ms (Views: 16.6ms | ActiveRecord: 9.6ms | Allocations: 5393)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:08:53 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  [1m[36mLost Load (4.2ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:6
+  Rendered losts/index.html.erb within layouts/application (Duration: 7.2ms | Allocations: 1318)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | Allocations: 3864)
+Completed 200 OK in 16ms (Views: 8.6ms | ActiveRecord: 4.2ms | Allocations: 5203)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:08:55 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  [1m[36mFound Load (0.4ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:6
+  Rendered founds/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 819)
+  Rendered layout layouts/application.html.erb (Duration: 9.2ms | Allocations: 3151)
+Completed 200 OK in 11ms (Views: 9.4ms | ActiveRecord: 0.4ms | Allocations: 3465)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:09:01 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 5.6ms | Allocations: 1626)
+  Rendered layouts/_footer.html.erb (Duration: 1.4ms | Allocations: 785)
+  Rendered home/index.html.erb within layouts/application (Duration: 13.2ms | Allocations: 2922)
+  Rendered layout layouts/application.html.erb (Duration: 23.2ms | Allocations: 5268)
+Completed 200 OK in 29ms (Views: 26.6ms | ActiveRecord: 0.0ms | Allocations: 6133)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:09:11 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 3.3ms | Allocations: 1116)
+  Rendered layouts/_footer.html.erb (Duration: 1.1ms | Allocations: 619)
+  Rendered home/index.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1937)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 4031)
+Completed 200 OK in 13ms (Views: 12.0ms | ActiveRecord: 0.0ms | Allocations: 4321)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:09:15 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 6.0ms | Allocations: 1607)
+  Rendered layouts/_footer.html.erb (Duration: 1.3ms | Allocations: 785)
+  Rendered home/index.html.erb within layouts/application (Duration: 10.8ms | Allocations: 2903)
+  Rendered layout layouts/application.html.erb (Duration: 15.0ms | Allocations: 5249)
+Completed 200 OK in 19ms (Views: 17.4ms | ActiveRecord: 0.0ms | Allocations: 6097)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:09:17 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  [1m[36mFound Load (0.2ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:6
+  Rendered founds/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1231)
+  Rendered layout layouts/application.html.erb (Duration: 8.3ms | Allocations: 3763)
+Completed 200 OK in 11ms (Views: 9.7ms | ActiveRecord: 0.2ms | Allocations: 4466)
+
+
+Started GET "/founds/new" for 127.0.0.1 at 2022-05-30 11:09:18 +0700
+Processing by FoundsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/new.html.erb within layouts/application
+  Rendered founds/_form.html.erb (Duration: 12.3ms | Allocations: 4895)
+  Rendered founds/new.html.erb within layouts/application (Duration: 13.5ms | Allocations: 5255)
+  Rendered layout layouts/application.html.erb (Duration: 17.9ms | Allocations: 7705)
+Completed 200 OK in 29ms (Views: 19.1ms | ActiveRecord: 2.9ms | Allocations: 13548)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:09:21 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  [1m[36mLost Load (0.3ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:6
+  Rendered losts/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1257)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 3789)
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.3ms | Allocations: 4521)
+
+
+Started GET "/losts/new" for 127.0.0.1 at 2022-05-30 11:09:22 +0700
+Processing by LostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/new.html.erb within layouts/application
+  Rendered losts/_form.html.erb (Duration: 3.1ms | Allocations: 2988)
+  Rendered losts/new.html.erb within layouts/application (Duration: 4.3ms | Allocations: 3310)
+  Rendered layout layouts/application.html.erb (Duration: 7.8ms | Allocations: 5656)
+Completed 200 OK in 15ms (Views: 8.4ms | ActiveRecord: 1.7ms | Allocations: 8749)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:10:47 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 1.6ms | Allocations: 1134)
+  Rendered layouts/_footer.html.erb (Duration: 1.0ms | Allocations: 622)
+  Rendered home/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1958)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | Allocations: 4054)
+Completed 200 OK in 8ms (Views: 7.9ms | ActiveRecord: 0.0ms | Allocations: 4329)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:11:24 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 5.0ms | Allocations: 1744)
+  Rendered layouts/_footer.html.erb (Duration: 1.9ms | Allocations: 787)
+  Rendered home/index.html.erb within layouts/application (Duration: 11.2ms | Allocations: 3036)
+  Rendered layout layouts/application.html.erb (Duration: 21.1ms | Allocations: 5387)
+Completed 200 OK in 24ms (Views: 23.5ms | ActiveRecord: 0.0ms | Allocations: 6235)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:11:26 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  [1m[36mLost Load (0.3ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:6
+  Rendered losts/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1230)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | Allocations: 3762)
+Completed 200 OK in 11ms (Views: 9.5ms | ActiveRecord: 0.3ms | Allocations: 4465)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:11:29 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  [1m[36mFound Load (0.2ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:6
+  Rendered founds/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1240)
+  Rendered layout layouts/application.html.erb (Duration: 7.5ms | Allocations: 3778)
+Completed 200 OK in 11ms (Views: 9.7ms | ActiveRecord: 0.2ms | Allocations: 4497)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:11:32 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  [1m[36mLost Load (0.2ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:6
+  Rendered losts/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 791)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 3123)
+Completed 200 OK in 9ms (Views: 7.0ms | ActiveRecord: 0.2ms | Allocations: 3433)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:11:33 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  [1m[36mFound Load (0.2ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:6
+  Rendered founds/index.html.erb within layouts/application (Duration: 1.7ms | Allocations: 814)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | Allocations: 3146)
+Completed 200 OK in 7ms (Views: 5.5ms | ActiveRecord: 0.2ms | Allocations: 3433)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:11:35 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 3.2ms | Allocations: 1169)
+  Rendered layouts/_footer.html.erb (Duration: 1.7ms | Allocations: 620)
+  Rendered home/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 1995)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 4089)
+Completed 200 OK in 14ms (Views: 12.0ms | ActiveRecord: 0.0ms | Allocations: 4364)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:11:49 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  [1m[36mLost Load (0.2ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:6
+  Rendered losts/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 797)
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | Allocations: 3129)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.2ms | Allocations: 3414)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:12:15 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 4.0ms | Allocations: 1700)
+  [1m[36mLost Load (0.5ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:8
+  Rendered losts/index.html.erb within layouts/application (Duration: 9.0ms | Allocations: 2816)
+  Rendered layout layouts/application.html.erb (Duration: 19.3ms | Allocations: 5192)
+Completed 200 OK in 24ms (Views: 21.1ms | ActiveRecord: 0.5ms | Allocations: 6084)
+
+
+Started GET "/losts/new" for 127.0.0.1 at 2022-05-30 11:12:16 +0700
+Processing by LostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/new.html.erb within layouts/application
+  Rendered losts/_form.html.erb (Duration: 2.4ms | Allocations: 2745)
+  Rendered losts/new.html.erb within layouts/application (Duration: 3.2ms | Allocations: 3053)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 5385)
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.0ms | Allocations: 5756)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:12:17 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 2.0ms | Allocations: 1164)
+  [1m[36mLost Load (0.5ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:8
+  Rendered losts/index.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1860)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 3985)
+Completed 200 OK in 11ms (Views: 9.5ms | ActiveRecord: 0.5ms | Allocations: 4272)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:12:18 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 3.8ms | Allocations: 1436)
+  Rendered layouts/_footer.html.erb (Duration: 3.1ms | Allocations: 788)
+  Rendered home/index.html.erb within layouts/application (Duration: 9.9ms | Allocations: 2690)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | Allocations: 4845)
+Completed 200 OK in 15ms (Views: 14.8ms | ActiveRecord: 0.0ms | Allocations: 5497)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:12:19 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 1.9ms | Allocations: 1155)
+  [1m[36mLost Load (0.2ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:8
+  Rendered losts/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1925)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 4050)
+Completed 200 OK in 12ms (Views: 9.2ms | ActiveRecord: 0.2ms | Allocations: 4359)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:12:20 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 2.6ms | Allocations: 1441)
+  [1m[36mFound Load (0.2ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:8
+  Rendered founds/index.html.erb within layouts/application (Duration: 6.4ms | Allocations: 2505)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | Allocations: 4690)
+Completed 200 OK in 16ms (Views: 13.6ms | ActiveRecord: 0.2ms | Allocations: 5370)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-05-30 11:12:20 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 26.1ms | Allocations: 745)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 81.4ms | Allocations: 3453)
+  Rendered layout layouts/application.html.erb (Duration: 87.1ms | Allocations: 5975)
+Completed 200 OK in 106ms (Views: 89.0ms | ActiveRecord: 1.8ms | Allocations: 12795)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:12:23 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 2.6ms | Allocations: 1227)
+  [1m[36mLost Load (0.2ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:8
+  Rendered losts/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1994)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | Allocations: 4133)
+Completed 200 OK in 12ms (Views: 10.3ms | ActiveRecord: 0.2ms | Allocations: 4459)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:12:23 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 5.1ms | Allocations: 1164)
+  Rendered layouts/_footer.html.erb (Duration: 1.1ms | Allocations: 624)
+  Rendered home/index.html.erb within layouts/application (Duration: 7.1ms | Allocations: 1990)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | Allocations: 4084)
+Completed 200 OK in 13ms (Views: 12.5ms | ActiveRecord: 0.0ms | Allocations: 4359)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:12:24 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 3.7ms | Allocations: 1181)
+  [1m[36mLost Load (0.2ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:8
+  Rendered losts/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1877)
+  Rendered layout layouts/application.html.erb (Duration: 10.0ms | Allocations: 4005)
+Completed 200 OK in 11ms (Views: 10.5ms | ActiveRecord: 0.2ms | Allocations: 4290)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:12:25 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 6.0ms | Allocations: 1174)
+  [1m[36mFound Load (0.8ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:8
+  Rendered founds/index.html.erb within layouts/application (Duration: 9.3ms | Allocations: 1868)
+  Rendered layout layouts/application.html.erb (Duration: 12.6ms | Allocations: 3996)
+Completed 200 OK in 14ms (Views: 12.4ms | ActiveRecord: 0.8ms | Allocations: 4284)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:12:26 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 2.4ms | Allocations: 1155)
+  [1m[36mLost Load (0.2ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:8
+  Rendered losts/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1851)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 3982)
+Completed 200 OK in 13ms (Views: 11.2ms | ActiveRecord: 0.2ms | Allocations: 4267)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:12:26 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 5.5ms | Allocations: 1161)
+  Rendered layouts/_footer.html.erb (Duration: 2.4ms | Allocations: 621)
+  Rendered home/index.html.erb within layouts/application (Duration: 9.6ms | Allocations: 1984)
+  Rendered layout layouts/application.html.erb (Duration: 14.9ms | Allocations: 4078)
+Completed 200 OK in 18ms (Views: 16.5ms | ActiveRecord: 0.0ms | Allocations: 4351)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:12:27 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 1.7ms | Allocations: 1164)
+  [1m[36mLost Load (0.3ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:8
+  Rendered losts/index.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1860)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 3985)
+Completed 200 OK in 10ms (Views: 8.8ms | ActiveRecord: 0.3ms | Allocations: 4270)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:12:28 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 6.3ms | Allocations: 1161)
+  [1m[36mFound Load (0.3ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:8
+  Rendered founds/index.html.erb within layouts/application (Duration: 9.6ms | Allocations: 1855)
+  Rendered layout layouts/application.html.erb (Duration: 13.0ms | Allocations: 3980)
+Completed 200 OK in 14ms (Views: 13.3ms | ActiveRecord: 0.3ms | Allocations: 4265)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:12:46 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 4.1ms | Allocations: 1722)
+  [1m[36mFound Load (0.5ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 4.2ms | Allocations: 786)
+  Rendered founds/index.html.erb within layouts/application (Duration: 18.3ms | Allocations: 3764)
+  Rendered layout layouts/application.html.erb (Duration: 25.2ms | Allocations: 6109)
+Completed 200 OK in 33ms (Views: 29.4ms | ActiveRecord: 0.5ms | Allocations: 6984)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:12:56 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 2.2ms | Allocations: 1704)
+  [1m[36mFound Load (0.3ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 2.1ms | Allocations: 785)
+  Rendered founds/index.html.erb within layouts/application (Duration: 9.4ms | Allocations: 3745)
+  Rendered layout layouts/application.html.erb (Duration: 17.0ms | Allocations: 6090)
+Completed 200 OK in 23ms (Views: 20.5ms | ActiveRecord: 0.3ms | Allocations: 6989)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:12:57 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 3.0ms | Allocations: 1152)
+  [1m[36mFound Load (0.5ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 1.0ms | Allocations: 619)
+  Rendered founds/index.html.erb within layouts/application (Duration: 9.4ms | Allocations: 2528)
+  Rendered layout layouts/application.html.erb (Duration: 13.8ms | Allocations: 4622)
+Completed 200 OK in 17ms (Views: 14.6ms | ActiveRecord: 0.5ms | Allocations: 4928)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:12:57 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 2.1ms | Allocations: 1179)
+  [1m[36mFound Load (0.5ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 1.0ms | Allocations: 619)
+  Rendered founds/index.html.erb within layouts/application (Duration: 5.9ms | Allocations: 2555)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | Allocations: 4649)
+Completed 200 OK in 11ms (Views: 9.5ms | ActiveRecord: 0.5ms | Allocations: 4931)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:13:00 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 2.5ms | Allocations: 1716)
+  [1m[36mFound Load (1.4ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 3.3ms | Allocations: 785)
+  Rendered founds/index.html.erb within layouts/application (Duration: 16.1ms | Allocations: 3757)
+  Rendered layout layouts/application.html.erb (Duration: 23.3ms | Allocations: 6102)
+Completed 200 OK in 32ms (Views: 27.6ms | ActiveRecord: 1.4ms | Allocations: 6977)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:13:00 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 3.3ms | Allocations: 1155)
+  [1m[36mFound Load (0.2ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 0.8ms | Allocations: 619)
+  Rendered founds/index.html.erb within layouts/application (Duration: 6.4ms | Allocations: 2531)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | Allocations: 4625)
+Completed 200 OK in 15ms (Views: 13.7ms | ActiveRecord: 0.2ms | Allocations: 4931)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:13:06 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 3.2ms | Allocations: 1725)
+  [1m[36mFound Load (1.2ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 5.6ms | Allocations: 785)
+  Rendered founds/index.html.erb within layouts/application (Duration: 18.7ms | Allocations: 3765)
+  Rendered layout layouts/application.html.erb (Duration: 26.8ms | Allocations: 6110)
+Completed 200 OK in 30ms (Views: 28.0ms | ActiveRecord: 1.2ms | Allocations: 6985)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:13:07 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 10.4ms | Allocations: 1448)
+  [1m[36mLost Load (0.3ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 1.9ms | Allocations: 625)
+  Rendered losts/index.html.erb within layouts/application (Duration: 15.4ms | Allocations: 3217)
+  Rendered layout layouts/application.html.erb (Duration: 18.9ms | Allocations: 5384)
+Completed 200 OK in 22ms (Views: 21.0ms | ActiveRecord: 0.3ms | Allocations: 6087)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:13:10 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 5.1ms | Allocations: 1708)
+  [1m[36mLost Load (0.7ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 2.7ms | Allocations: 786)
+  Rendered losts/index.html.erb within layouts/application (Duration: 14.9ms | Allocations: 3752)
+  Rendered layout layouts/application.html.erb (Duration: 19.3ms | Allocations: 6108)
+Completed 200 OK in 25ms (Views: 21.4ms | ActiveRecord: 0.7ms | Allocations: 7024)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:13:11 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 1.9ms | Allocations: 1160)
+  [1m[36mLost Load (0.3ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 1.0ms | Allocations: 622)
+  Rendered losts/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 2541)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 4635)
+Completed 200 OK in 13ms (Views: 10.6ms | ActiveRecord: 0.3ms | Allocations: 4941)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-30 11:13:16 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 5.4ms | Allocations: 1447)
+  Rendered layouts/_footer.html.erb (Duration: 2.0ms | Allocations: 620)
+  Rendered home/index.html.erb within layouts/application (Duration: 8.7ms | Allocations: 2463)
+  Rendered layout layouts/application.html.erb (Duration: 12.1ms | Allocations: 4620)
+Completed 200 OK in 14ms (Views: 13.5ms | ActiveRecord: 0.0ms | Allocations: 5272)
+
+
+Started GET "/losts" for 127.0.0.1 at 2022-05-30 11:13:18 +0700
+Processing by LostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering losts/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 2.6ms | Allocations: 1159)
+  [1m[36mLost Load (0.2ms)[0m  [1m[34mSELECT "losts".* FROM "losts"[0m
+  ↳ app/views/losts/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 1.1ms | Allocations: 619)
+  Rendered losts/index.html.erb within layouts/application (Duration: 5.4ms | Allocations: 2611)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 4712)
+Completed 200 OK in 12ms (Views: 10.1ms | ActiveRecord: 0.2ms | Allocations: 5021)
+
+
+Started GET "/founds" for 127.0.0.1 at 2022-05-30 11:13:19 +0700
+Processing by FoundsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering founds/index.html.erb within layouts/application
+  Rendered layouts/_navbar.html.erb (Duration: 1.9ms | Allocations: 1433)
+  [1m[36mFound Load (0.2ms)[0m  [1m[34mSELECT "founds".* FROM "founds"[0m
+  ↳ app/views/founds/index.html.erb:8
+  Rendered layouts/_footer.html.erb (Duration: 1.1ms | Allocations: 622)
+  Rendered founds/index.html.erb within layouts/application (Duration: 5.2ms | Allocations: 3201)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 5357)
+Completed 200 OK in 11ms (Views: 9.9ms | ActiveRecord: 0.2ms | Allocations: 6054)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-05-30 11:13:20 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 558)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 4.0ms | Allocations: 2248)
+  Rendered layout layouts/application.html.erb (Duration: 7.5ms | Allocations: 4753)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.0ms | Allocations: 5887)
+
+
