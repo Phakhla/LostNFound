@@ -8,7 +8,8 @@
     <h1><a href="http://127.0.0.1:3000">LOST ITEM</a></h1>
         <div class="nav-links" id="navLinks">
             <ul>
-          
+            <li><%= link_to "Found", founds_path, class: "nav-link" %></li>
+            <li><%= link_to "Lost", losts_path, class: "nav-link" %></li>
             <!-- ลิงค์ไปหน้า Sign out  -->
             <li><%= link_to "Sign Out", destroy_user_session_path, class: "nav-link" %></li>
             <li><%= link_to "Edit", edit_user_registration_path, class: "nav-link" %></li>
@@ -24,7 +25,8 @@
     <div class="nav-links" id="navLinks">
     <ul>
        
- 
+        <li><%= link_to "Found", founds_path, class: "nav-link" %></li>
+        <li><%= link_to "Lost", losts_path, class: "nav-link" %></li>
         <li><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
     
         <li><%= link_to "Sign In", new_user_session_path, class: "nav-link" %> </li>
