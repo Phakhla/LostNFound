@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @found %>
+
+<div>
+  <%= link_to "Edit this found", edit_found_path(@found) %> |
+  <%= link_to "Back to founds", founds_path %>
+
+  <%= button_to "Destroy this found", @found, method: :delete %>
+</div>

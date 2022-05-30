@@ -1,0 +1,52 @@
+<%= form_with(model: lost) do |form| %>
+  <% if lost.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(lost.errors.count, "error") %> prohibited this lost from being saved:</h2>
+
+      <ul>
+        <% lost.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :types, style: "display: block" %>
+    <%= form.text_field :types %>
+  </div>
+
+  <div>
+    <%= form.label :date, style: "display: block" %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div>
+    <%= form.label :time, style: "display: block" %>
+    <%= form.time_field :time %>
+  </div>
+
+  <div>
+    <%= form.label :location, style: "display: block" %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div>
+    <%= form.label :detail, style: "display: block" %>
+    <%= form.text_field :detail %>
+  </div>
+
+  <div>
+    <%= form.label :reward, style: "display: block" %>
+    <%= form.text_field :reward %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
