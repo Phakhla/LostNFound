@@ -11,7 +11,15 @@ class PostsController < ApplicationController
 
   def edit; end
 
-  def create; end
+  def create
+    @post = current_user.posts.build(post_params)
+
+    if @post.save
+      redirect_to root_url
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   def update; end
 
@@ -25,8 +33,8 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
-      :name, :category, :type, :status, :date, :time,
-      :location, :detail, :reward, :user_id, images: []
+      :name, :category, :types, :status, :date, :time,
+      :location, :detail, :reward, images: []
     )
   end
 end

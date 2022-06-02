@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   enum status: { no_found: 0, found: 1 }
 
   belongs_to :user
-  has_many_attached :images
+  has_many_attached :images, dependent: :destroy
 
   validates :name, presence: true
   validates :images,

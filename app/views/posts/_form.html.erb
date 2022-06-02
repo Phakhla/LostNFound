@@ -1,0 +1,13 @@
+<%= simple_form_for post || Post.new do |f| %>
+  <%= f.input :name %>
+  <%= f.input :category, collection: Post.categories.map{|c| [c[0], c[0]]}, include_blank: false %>
+  <%= f.input :types, collection: Post.types.map{|t| [t[0], t[0]]}, include_blank: false %>
+  <%= f.input :status, as: :hidden, input_html: { value: 'no_found' } %>
+  <%= f.input :date, as: :date, html5: true %>
+  <%= f.input :time, as: :time, html5: true %>
+  <%= f.input :location %>
+  <%= f.input :detail %>
+  <%= f.label :images %>
+  <%= f.file_field :images, multiple: true, class: "form-control" %>
+  <%= f.button :submit %>
+<% end %>
