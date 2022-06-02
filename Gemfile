@@ -95,6 +95,9 @@ group :development do
 
   # Static analysis tool which checks Ruby on Rails applications for security vulnerabilities
   gem 'brakeman', require: false
+
+  #Preview email in the default browser instead of sending it.
+  gem "letter_opener"
 end
 
 group :test do
