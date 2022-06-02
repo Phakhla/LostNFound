@@ -5,35 +5,53 @@
 <!--เพื่อตรวจสอบและแสดงโค้ดส่วนนี้เมื่อ Sign in แล้วเท่านั้น -->
 <% if user_signed_in? %>
     <nav>
-    <h1><a href="http://127.0.0.1:3000">LOST ITEM</a></h1>
-        <div class="nav-links" id="navLinks">
-            <ul>
-            <li><%= link_to "Found", founds_path, class: "nav-link" %></li>
-            <li><%= link_to "Lost", losts_path, class: "nav-link" %></li>
-            <!-- ลิงค์ไปหน้า Sign out  -->
-            <li><%= link_to "Sign Out", destroy_user_session_path, class: "nav-link" %></li>
-            <li><%= link_to "Edit", edit_user_registration_path, class: "nav-link" %></li>
-           
-            
-            </ul>
+      <button class="fa-solid fa-bars btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"></button>
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+        <div class="container aria-item-center">
+          <div class="offcanvas-header justify-content-center">
+            <h2 class="offcanvas-title square" id="offcanvasWithBackdropLabel"></h2>
+          </div>
         </div>
+        <div class="container aria-item-center">
+          <div class="offcanvas-header justify-content-center">
+            <h5><%= current_user.username %></h5>
+          </div>
+        </div>
+        <div class="offcanvas-body">
+          <ul>
+            <li><a href="<%= root_path() %>" class="nav-link"><i class="fa-solid fa-house-chimney"></i> Home </a></li>
+            <li><a href="<%= losts_path() %>" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i></i> หาของหาย </a></li>
+            <li><a href="<%= founds_path() %>" class="nav-link"><i class="fa-solid fa-check"></i> เจอของหาย </a></li>
+            <li><a href="<%= edit_user_registration_path() %>" class="nav-link"><i class="fa-solid fa-user"></i> My Profile </a></li>
+            <li><a href="" class="nav-link"><i class="fa-solid fa-square-arrow-up-right"></i> My Post </a></li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %><i class="fa-solid fa-right-from-bracket"></i> Logout <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 <!-- แสดงโค้ดส่วนนี้หากยังไม่ได้ Sign in-->
 <% else %>
     <nav>
-    <h1><a href="http://127.0.0.1:3000">LOST ITEM</a></h1>
-    <div class="nav-links" id="navLinks">
-    <ul>
-       
-        <li><%= link_to "Found", founds_path, class: "nav-link" %></li>
-        <li><%= link_to "Lost", losts_path, class: "nav-link" %></li>
-        <li><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
-    
-        <li><%= link_to "Sign In", new_user_session_path, class: "nav-link" %> </li>
-       
-                
-    </ul>
-    </div>
+      <button class="fa-solid fa-bars btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"></button>
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+        <div class="offcanvas-header justify-content-center">
+          <h5 class="offcanvas-title square" id="offcanvasWithBackdropLabel"></h5>
+        </div>
+        <div class="offcanvas-body">
+          <ul>
+            <li><a href="<%= root_path() %>" class="nav-link"><i class="fa-solid fa-house-chimney"></i> Home </a></li>
+            <li><a href="<%= losts_path() %>" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> หาของหาย </a></li>
+            <li><a href="<%= founds_path() %>" class="nav-link"><i class="fa-solid fa-check"></i> เจอของหาย </a></li>
+            <li>
+              <%= link_to new_user_session_path, class: 'nav-link' do %><i class="fa-solid fa-right-to-bracket"></i> Login <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 <% end %>
 

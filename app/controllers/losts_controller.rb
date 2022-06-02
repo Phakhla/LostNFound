@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class LostsController < ApplicationController
-  before_action :set_lost, only: %i[ show edit update destroy ]
+  before_action :set_lost, only: %i[show edit update destroy]
 
   # GET /losts or /losts.json
   def index
@@ -7,8 +9,7 @@ class LostsController < ApplicationController
   end
 
   # GET /losts/1 or /losts/1.json
-  def show
-  end
+  def show; end
 
   # GET /losts/new
   def new
@@ -16,8 +17,7 @@ class LostsController < ApplicationController
   end
 
   # GET /losts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /losts or /losts.json
   def create
@@ -25,7 +25,7 @@ class LostsController < ApplicationController
 
     respond_to do |format|
       if @lost.save
-        format.html { redirect_to lost_url(@lost), notice: "Lost was successfully created." }
+        format.html { redirect_to lost_url(@lost), notice: 'Lost was successfully created.' }
         format.json { render :show, status: :created, location: @lost }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class LostsController < ApplicationController
   def update
     respond_to do |format|
       if @lost.update(lost_params)
-        format.html { redirect_to lost_url(@lost), notice: "Lost was successfully updated." }
+        format.html { redirect_to lost_url(@lost), notice: 'Lost was successfully updated.' }
         format.json { render :show, status: :ok, location: @lost }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class LostsController < ApplicationController
     @lost.destroy
 
     respond_to do |format|
-      format.html { redirect_to losts_url, notice: "Lost was successfully destroyed." }
+      format.html { redirect_to losts_url, notice: 'Lost was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lost
-      @lost = Lost.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def lost_params
-      params.require(:lost).permit(:name, :types, :date, :time, :location, :detail, :reward, images: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lost
+    @lost = Lost.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def lost_params
+    params.require(:lost).permit(:name, :types, :date, :time, :location, :detail, :reward, images: [])
+  end
 end

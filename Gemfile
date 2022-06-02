@@ -43,12 +43,15 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
 gem 'devise'
+
+# import Bootstrap
+gem 'bootstrap'
 
 # Use Amazon S3
 gem "aws-sdk-s3", require: false

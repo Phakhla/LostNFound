@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class FoundsController < ApplicationController
-  before_action :set_found, only: %i[ show edit update destroy ]
+  before_action :set_found, only: %i[show edit update destroy]
 
   # GET /founds or /founds.json
   def index
@@ -7,8 +9,7 @@ class FoundsController < ApplicationController
   end
 
   # GET /founds/1 or /founds/1.json
-  def show
-  end
+  def show; end
 
   # GET /founds/new
   def new
@@ -16,8 +17,7 @@ class FoundsController < ApplicationController
   end
 
   # GET /founds/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /founds or /founds.json
   def create
@@ -25,7 +25,7 @@ class FoundsController < ApplicationController
 
     respond_to do |format|
       if @found.save
-        format.html { redirect_to found_url(@found), notice: "Found was successfully created." }
+        format.html { redirect_to found_url(@found), notice: 'Found was successfully created.' }
         format.json { render :show, status: :created, location: @found }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class FoundsController < ApplicationController
   def update
     respond_to do |format|
       if @found.update(found_params)
-        format.html { redirect_to found_url(@found), notice: "Found was successfully updated." }
+        format.html { redirect_to found_url(@found), notice: 'Found was successfully updated.' }
         format.json { render :show, status: :ok, location: @found }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class FoundsController < ApplicationController
     @found.destroy
 
     respond_to do |format|
-      format.html { redirect_to founds_url, notice: "Found was successfully destroyed." }
+      format.html { redirect_to founds_url, notice: 'Found was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_found
-      @found = Found.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def found_params
-      params.require(:found).permit(:name, :types, :date, :time, :location, :detail, images: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_found
+    @found = Found.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def found_params
+    params.require(:found).permit(:name, :types, :date, :time, :location, :detail, images: [])
+  end
 end
