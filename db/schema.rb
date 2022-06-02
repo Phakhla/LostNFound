@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_01_084457) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_02_042947) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,34 +42,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_01_084457) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "founds", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.string "name"
-    t.string "types"
-    t.date "date"
-    t.time "time"
-    t.string "location"
-    t.string "detail"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "losts", force: :cascade do |t|
-    t.string "name"
-    t.string "types"
+    t.integer "category"
+    t.integer "types"
+    t.integer "status"
     t.date "date"
     t.time "time"
     t.string "location"
     t.string "detail"
     t.string "reward"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.string "name"
-    t.datetime "lost_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,4 +77,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_01_084457) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "posts", "users"
 end

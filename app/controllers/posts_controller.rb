@@ -24,6 +24,9 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:name, :lost_date)
+    params.require(:post).permit(
+      :name, :category, :type, :status, :date, :time,
+      :location, :detail, :reward, :user_id, images: []
+    )
   end
 end

@@ -5,9 +5,5 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :losts
-
-  resources :founds
-
   resources :posts
 end

@@ -72,6 +72,10 @@ gem "rqrcode", "~> 2.1"
 
 gem "open-uri", "~> 0.2.0"
 
+gem 'active_storage_validations'
+
+gem 'simple_form'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
