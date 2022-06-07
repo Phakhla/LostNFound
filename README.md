@@ -1,24 +1,33 @@
-# README
+# Introduction
+TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Prerequisites
+- Ruby 3.1.2
+- PostgreSQL 9.3.x or later
 
-Things you may want to cover:
+### Getting Started
+1. Install bundler
+```
+gem install bundler
+```
 
-* Ruby version
+2. Install dependencies
+```
+bundle install
+```
 
-* System dependencies
+3. Set ENV vars
+```
+cp config/application.yml.example config/application.yml
+```
+Check this file, and change your ENV values
 
-* Configuration
+4. Create database and update schema
+```
+rails db:prepare
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+5. Start server
+```
+rails server
+```
