@@ -24,3 +24,82 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
+
+<div class = "listposts">
+
+  <h1>Found</h1>
+  <div class="scroll">
+
+      <% @founds.each do |found| %>
+      <div class = "box">
+
+      <div id = "imm">
+
+          <% if found.images.attached? %>
+            <% found.images.each do |pic| %>
+              <%= image_tag(pic, style:"width: 150px; height: 150px; object-fit: cover; ") %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div id = "namee">
+          <strong>Name:</strong>
+          <%= found.name %>
+        </div>
+        <div id = "datee">
+          <strong>Date:</strong>
+          <%= found.date %>
+        </div>
+        <div id = "locc">
+          <strong>Location:</strong>
+          <%= found.location %>
+        </div>
+
+        <div id = "linkk">
+          <%= link_to "View Post >", found,style:"color: black; text-decoration: none;" %>
+        </div>
+      </div>
+      <% end %>
+
+  </div>
+
+  <br><br>
+
+  <h1>Lost</h1>
+  <div class="scroll">
+
+      <% @losts.each do |lost| %>
+      <div class = "box">
+       <div id = "imm">
+
+          <% if lost.images.attached? %>
+            <% lost.images.each do |pic| %>
+              <%= image_tag(pic, style:"width:150px; height:150px; object-fit: cover; ") %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div id = "namee">
+          <strong>Name:</strong>
+          <%= lost.name %>
+        </div>
+        <div id = "datee">
+          <strong>Date:</strong>
+          <%= lost.date %>
+        </div>
+        <div id = "locc">
+          <strong>Location:</strong>
+          <%= lost.location %>
+        </div>
+
+        <div id = "linkk">
+          <%= link_to "View Post >", lost, style:"color: black; text-decoration: none;"%>
+        </div>
+      </div>
+      <% end %>
+
+  </div>
+
+
+</div>
