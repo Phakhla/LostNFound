@@ -4,6 +4,8 @@ TODO: Give a short introduction of your project. Let this section explain the ob
 ### Prerequisites
 - Ruby 3.1.2
 - PostgreSQL 9.3.x or later
+- Node.js
+- Yarn
 
 ### Getting Started
 1. Install bundler
@@ -14,6 +16,7 @@ gem install bundler
 2. Install dependencies
 ```
 bundle install
+yarn install
 ```
 
 3. Set ENV vars
@@ -27,7 +30,8 @@ Check this file, and change your ENV values
 rails db:prepare
 ```
 
-5. Start server
+5. Development
 ```
-rails server
+gem install foreman
+./bin/dev
 ```

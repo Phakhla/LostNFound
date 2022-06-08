@@ -1,59 +1,45 @@
-<%= stylesheet_link_tag "navbar" %>
-<html>
-
-<head>
-<!--เพื่อตรวจสอบและแสดงโค้ดส่วนนี้เมื่อ Sign in แล้วเท่านั้น -->
 <% if user_signed_in? %>
-    <nav>
-      <button class="fa-solid fa-bars btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"></button>
-
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
-        <div class="container aria-item-center">
-          <div class="offcanvas-header justify-content-center">
-            <h2 class="offcanvas-title square" id="offcanvasWithBackdropLabel"></h2>
-          </div>
-        </div>
-        <div class="container aria-item-center">
-          <div class="offcanvas-header justify-content-center">
-            <h5><%= current_user.username %></h5>
-          </div>
-        </div>
-        <div class="offcanvas-body">
-          <ul>
-            <li><a href="<%= root_path() %>" class="nav-link"><i class="fa-solid fa-house-chimney"></i> Home </a></li>
-            <li><a href="<%= new_post_path() %>" class="nav-link"><i class="fa-solid fa-envelopes-bulk"></i> Create post </a></li>
-            <li><a href="<%= edit_user_registration_path() %>" class="nav-link"><i class="fa-solid fa-user"></i> My Profile </a></li>
-            <li><a href="" class="nav-link"><i class="fa-solid fa-square-arrow-up-right"></i> My Post </a></li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %><i class="fa-solid fa-right-from-bracket"></i> Logout <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-<!-- แสดงโค้ดส่วนนี้หากยังไม่ได้ Sign in-->
-<% else %>
-    <nav>
-      <button class="fa-solid fa-bars btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"></button>
-
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+  <nav>
+    <button class="fa-solid fa-bars btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"></button>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+      <div class="container aria-item-center">
         <div class="offcanvas-header justify-content-center">
-          <h5 class="offcanvas-title square" id="offcanvasWithBackdropLabel"></h5>
-        </div>
-        <div class="offcanvas-body">
-          <ul>
-            <li><a href="<%= root_path() %>" class="nav-link"><i class="fa-solid fa-house-chimney"></i> Home </a></li>
-            <li>
-              <%= link_to new_user_session_path, class: 'nav-link' do %><i class="fa-solid fa-right-to-bracket"></i> Login <% end %>
-            </li>
-          </ul>
+          <h2 class="offcanvas-title square" id="offcanvasWithBackdropLabel"></h2>
         </div>
       </div>
-    </nav>
+      <div class="container aria-item-center">
+        <div class="offcanvas-header justify-content-center">
+          <h5><%= current_user.username %></h5>
+        </div>
+      </div>
+      <div class="offcanvas-body">
+        <ul>
+          <li><a href="<%= root_path() %>" class="nav-link"><i class="fa-solid fa-house-chimney"></i> Home </a></li>
+          <li><a href="<%= new_post_path() %>" class="nav-link"><i class="fa-solid fa-envelopes-bulk"></i> Create post </a></li>
+          <li><a href="<%= edit_user_registration_path() %>" class="nav-link"><i class="fa-solid fa-user"></i> My Profile </a></li>
+          <li><a href="" class="nav-link"><i class="fa-solid fa-square-arrow-up-right"></i> My Post </a></li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %><i class="fa-solid fa-right-from-bracket"></i> Logout <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<% else %>
+  <nav>
+    <button class="fa-solid fa-bars btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"></button>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+      <div class="offcanvas-header justify-content-center">
+        <h5 class="offcanvas-title square" id="offcanvasWithBackdropLabel"></h5>
+      </div>
+      <div class="offcanvas-body">
+        <ul>
+          <li><a href="<%= root_path() %>" class="nav-link"><i class="fa-solid fa-house-chimney"></i> Home </a></li>
+          <li>
+            <%= link_to new_user_session_path, class: 'nav-link' do %><i class="fa-solid fa-right-to-bracket"></i> Login <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 <% end %>
-
-</head>
-<body>
-</body>
-
-</html>
