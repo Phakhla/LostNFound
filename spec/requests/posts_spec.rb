@@ -74,4 +74,15 @@ RSpec.describe 'Posts', type: :request do
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
+
+  describe 'GET /post/id' do
+    it 'get post from id' do
+      get post_path(my_post.id)
+
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include(my_post.name)
+      expect(response.body).to include(my_post.category)
+      expect(response.body).to include(my_post.status)
+    end
+  end
 end

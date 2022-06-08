@@ -9,6 +9,8 @@ class Post < ApplicationRecord
   has_many_attached :images, dependent: :destroy
 
   validates :name, presence: true
+  validates :date, presence: true
+  validates :time, presence: true
   validates :images,
             attached: true,
             content_type: { in: %w[image/jpeg image/png], message: 'must be jpeg or png.' },
