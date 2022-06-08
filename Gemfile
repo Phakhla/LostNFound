@@ -50,6 +50,9 @@ gem "image_processing", "~> 1.2"
 
 gem 'devise'
 
+# rails admin
+gem 'rails_admin', '~> 3.0'
+
 # import Bootstrap
 gem 'bootstrap'
 
@@ -78,6 +81,8 @@ gem 'simple_form'
 
 # Set environment variables
 gem 'figaro'
+# A Scope & Engine based, clean, powerful, customizable and sophisticated paginator
+gem 'kaminari'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -118,3 +123,4 @@ group :test do
   gem 'factory_bot_rails'
   gem 'simplecov', require: false
 end
+gem "sassc-rails"

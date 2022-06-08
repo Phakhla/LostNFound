@@ -1,0 +1,14 @@
+<%= link_to root_path do %>
+  <i class="fa-solid fa-arrow-left"></i> Back
+<% end %>
+<h1>ผลลัพธ์การค้นหา</h1>
+<div class="container">
+<hr>
+<%= render 'posts/result_search' %>
+<hr>
+</div>
+<div class="container">
+  <%= render 'posts/card_result' %>
+</div>
+
+

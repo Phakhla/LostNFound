@@ -17,4 +17,6 @@ class Post < ApplicationRecord
             size: { less_than_or_equal_to: 5.megabytes, message: 'oversize limited (5MB)' },
             limit: { max: 4, message: 'over limited(4 files)' },
             allow_blank: true
+
+  paginates_per 4
 end

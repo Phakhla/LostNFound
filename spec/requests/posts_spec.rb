@@ -19,6 +19,15 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
+  describe 'GET /posts/search' do
+    it 'gets result page' do
+      get search_posts_path
+
+      expect(response.body).to include('<h1>ผลลัพธ์การค้นหา</h1>')
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe 'POST /posts' do
     it 'Create POST with no attachments' do
       post = {

@@ -3,7 +3,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
-  def index; end
+  def index
+    @posts = Post.all
+  end
 
   def show
     @post = Post.find(params[:id])
@@ -27,6 +29,10 @@ class PostsController < ApplicationController
   def update; end
 
   def destroy; end
+
+  def search
+    @posts = Post.page params[:page]
+  end
 
   private
 
