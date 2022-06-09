@@ -12,6 +12,16 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
-    "build:css": "sass ./app/assets/scss/main.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "build:css": "sass ./app/assets/scss/main.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "lint": "eslint app",
+    "scss:lint": "stylelint 'app/assets/scss/**/*.scss'"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "stylelint": "^14.9.0",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-standard-scss": "^4.0.0"
   }
 }

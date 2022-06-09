@@ -1,7 +1,8 @@
-import "@hotwired/turbo-rails"
-import "bootstrap"
+import '@hotwired/turbo-rails';
+import 'bootstrap';
 
-import "@fortawesome/fontawesome-free/js/all"
-FontAwesome.config.mutateApproach = 'sync';
+import '@fortawesome/fontawesome-free/js/all';
 
 import './controllers';
+
+FontAwesome.config.mutateApproach = 'sync';
