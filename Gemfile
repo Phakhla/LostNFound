@@ -74,6 +74,7 @@ gem 'simple_form'
 
 # Set environment variables
 gem 'figaro'
+
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator
 gem 'kaminari'
 
