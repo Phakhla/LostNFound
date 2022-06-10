@@ -27,7 +27,7 @@ steps:
   displayName: 'create and migrate db'
 
 - script: |
-    yarn install
+    yarn --ignore-platform
     echo $(MASTER_KEY) > config/master.key
     bundle exec rake assets:precompile
   displayName: 'compile assets'
