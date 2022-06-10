@@ -116,4 +116,5 @@ group :test do
 
   gem 'factory_bot_rails'
   gem 'simplecov', require: false
+  gem 'rspec_junit_formatter', '~> 0.4.1'
 end
