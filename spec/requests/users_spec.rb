@@ -85,4 +85,28 @@ RSpec.describe 'Users', type: :request do
       expect(user[:password]).to eq('12345678')
     end
   end
+
+  describe 'Edit' do
+    it 'get edit user profile page' do
+      sign_in user
+      get edit_user_registration_path
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'edit data' do
+      user = {
+        avatar: 'pic.jpg',
+        email: 'test@test.com',
+        password: 'password',
+        firstname: 'first',
+        lastname: 'last',
+        tel: '0999999999',
+        fblink: 'link',
+        address: 'address'
+      }
+      patch user_registration_path, params: { user: }
+      expect(response).to redirect_to(user_session_path)
+    end
+  end
 end

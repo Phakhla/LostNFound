@@ -5,8 +5,12 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up,
-                                      keys: %i[username firstname lastname tel email password password_confirmation])
+                                      keys: %i[username firstname lastname tel email password password_confirmation
+                                               address fblink])
     devise_parameter_sanitizer.permit(:sign_in, keys: %i[email password])
+    devise_parameter_sanitizer.permit(:account_update,
+                                      keys: %i[username firstname lastname tel email password password_confirmation
+                                               address fblink avatar])
   end
 
   def after_sign_in_path_for(_resource)

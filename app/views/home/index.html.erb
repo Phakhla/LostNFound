@@ -33,13 +33,8 @@
       <% @founds.each do |found| %>
       <div class = "box">
 
-      <div id = "imm">
-
-          <% if found.images.attached? %>
-            <% found.images.each do |pic| %>
-              <%= image_tag(pic, style:"width: 150px; height: 150px; object-fit: cover; ") %>
-            <% end %>
-          <% end %>
+        <div id = "imm">
+          <%= image_tag(found.images.first, style:"width: 150px; height: 150px; object-fit: cover;") if found.images.attached? %>
         </div>
 
         <div id = "namee">
@@ -70,13 +65,8 @@
 
       <% @losts.each do |lost| %>
       <div class = "box">
-       <div id = "imm">
-
-          <% if lost.images.attached? %>
-            <% lost.images.each do |pic| %>
-              <%= image_tag(pic, style:"width:150px; height:150px; object-fit: cover; ") %>
-            <% end %>
-          <% end %>
+        <div id = "imm">
+          <%= image_tag(lost.images.first, style:"width: 150px; height: 150px; object-fit: cover;") if lost.images.attached? %>
         </div>
 
         <div id = "namee">
