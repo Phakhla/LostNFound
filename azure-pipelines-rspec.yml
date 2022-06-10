@@ -21,7 +21,7 @@ steps:
   displayName: 'bundle install'
 
 - script: |
-    cp $(Agent.HomeDirectory)/lostitem_database.yml config/database.yml 
+    cp $(Agent.HomeDirectory)/lostitem_database.yml config/database.yml
     RAILS_ENV=${RAILS_ENV} bundle exec rake db:create
     RAILS_ENV=${RAILS_ENV} bundle exec rake db:migrate
   displayName: 'create and migrate db'
@@ -31,7 +31,20 @@ steps:
     echo $(MASTER_KEY) > config/master.key
     bundle exec rake assets:precompile
   displayName: 'compile assets'
-  
-- script: RAILS_ENV=test; bundle exec rspec
+
+- script: RAILS_ENV=test; bundle exec rspec --no-drb -r rspec_junit_formatter --format RspecJunitFormatter -o TEST-rspec.xml;
   displayName: 'run exec rspec for test'
   failOnStderr: false
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFiles: '$(System.DefaultWorkingDirectory)/TEST-rspec.xml'
+    testRunTitle: 'Ruby tests'
+
+- task: PublishCodeCoverageResults@1
+  condition: succeededOrFailed()
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
