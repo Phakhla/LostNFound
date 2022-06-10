@@ -18,6 +18,9 @@ steps:
     bundle install --retry=3 --jobs=4
   displayName: 'Bundle install'
 
+- script: yarn install
+  displayName: 'Run yarn install'
+
 - script: yarn lint
   displayName: 'Run yarn lint'
 
