@@ -32,19 +32,6 @@ steps:
     bundle exec rake assets:precompile
   displayName: 'compile assets'
   
-- script: RAILS_ENV=test; bundle exec rspec --no-drb -r rspec_junit_formatter --format RspecJunitFormatter -o TEST-rspec.xml;
+- script: RAILS_ENV=test; bundle exec rspec
   displayName: 'run exec rspec for test'
   failOnStderr: false
-
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
-  inputs:
-    testResultsFiles: '$(System.DefaultWorkingDirectory)/TEST-rspec.xml'
-    testRunTitle: 'Ruby tests'
-    
-- task: PublishCodeCoverageResults@1
-  condition: succeededOrFailed()
-  inputs:
-    codeCoverageTool: Cobertura
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
