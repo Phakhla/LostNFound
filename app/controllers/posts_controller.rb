@@ -32,7 +32,15 @@ class PostsController < ApplicationController
   def destroy; end
 
   def search
-    @posts = Post.page params[:page]
+    @posts = Post.page(params[:page]).per(4)
+  end
+
+  def lost
+    @posts = Post.lost_item.page(params[:page]).per(6)
+  end
+
+  def found
+    @posts = Post.found_item.page(params[:page]).per(6)
   end
 
   private

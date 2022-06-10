@@ -28,6 +28,24 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
+  describe 'GET /posts/lost' do
+    it 'gets lost page' do
+      get lost_posts_path
+
+      expect(response.body).to include('<h3>รายการประกาศตามหาของหาย</h3>')
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe 'GET /posts/found' do
+    it 'gets found page' do
+      get found_posts_path
+
+      expect(response.body).to include('<h3>รายการประกาศตามหาเจ้าของ</h3>')
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe 'POST /posts' do
     it 'Create POST with no attachments' do
       post = {

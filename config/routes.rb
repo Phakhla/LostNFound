@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :comments
     collection do
       get :search
+      get :lost
+      get :found
     end
   end
 end
