@@ -1,0 +1,6 @@
+<%= simple_form_for [@post, @post.comments.build] do |f| %>
+  <div class="form-control">
+    <%= f.text_area :content %> <br />
+    <%= f.button :submit %>
+  </div>
+<% end %>
