@@ -13,19 +13,17 @@ RSpec.describe 'Homes', type: :request do
 
   describe 'listposts' do
     it 'show list lost and found' do
-      found = create(:post, category:'found_item')
-      lost = create(:post, category:'lost_item')
+      found = create(:post, category: 'found_item')
+      lost = create(:post, category: 'lost_item')
 
       get root_path
-      expect(response.body).to include("#{found.name}")
-      expect(response.body).to include("#{found.date}")
-      expect(response.body).to include("#{found.location}")
+      expect(response.body).to include(found.name.to_s)
+      expect(response.body).to include(found.date.to_s)
+      expect(response.body).to include(found.location.to_s)
 
-      expect(response.body).to include("#{lost.name}")
-      expect(response.body).to include("#{lost.date}")
-      expect(response.body).to include("#{lost.location}")
-     
+      expect(response.body).to include(lost.name.to_s)
+      expect(response.body).to include(lost.date.to_s)
+      expect(response.body).to include(lost.location.to_s)
     end
   end
-
 end
