@@ -3,7 +3,13 @@
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4">
-              <img src="..." class="card-img" alt="...">
+              <% if post.images.attached? %>
+                <% post.images.each do |img| %>
+                <%= image_tag(img, style:"width:150px; height:150px") %>
+              <% end %>
+              <% else %>
+                <img alt="image" class="" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" style = "width: 100px; height: 300px; object-fit: cover;">
+              <% end %>
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -13,7 +19,7 @@
                 <p class="card-text">สถานที่ที่เจอ:<%= post.location %></p>
                 <p class="card-text">	&bull; <%= post.status %></p><br>
                 <p class="card-text">โพสต์เมื่อวันที่:<%= post.time %></p>
-                <%= button_to "ดูรายละเอียด", found_posts_path, :id => "open-contacts-dialog-btn",
+                <%= button_to "ดูรายละเอียด", post, :id => "open-contacts-dialog-btn",
                 :class => "inbox-sf-add-btn tip", :method => :get %>
               </div>
             </div>
