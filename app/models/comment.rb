@@ -13,6 +13,6 @@ class Comment < ApplicationRecord
   private
 
   def notify_new_comment
-    CommentNotification.with(comment: self).deliver_later(user)
+    CommentNotification.with(comment: self).deliver_later(post.user)
   end
 end

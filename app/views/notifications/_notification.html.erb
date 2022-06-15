@@ -1,0 +1,4 @@
+<% noti = notification.to_notification %>
+<li id="<%= dom_id(notification) %>">
+  <%= link_to noti.message, noti.url, class: 'dropdown-item' %>
+</li>

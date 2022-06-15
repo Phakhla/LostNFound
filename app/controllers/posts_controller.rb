@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :load_post, only: %i[show edit update destroy]
+  before_action :load_comments, only: %i[show]
+  before_action :load_user, only: %i[show]
+  before_action :mark_all_comments_as_read, only: %i[show]
 
   def index
     @posts = Post.all
   end
 
-  def show
-    @post = Post.find(params[:id])
-    @user = @post.user
-    @comments = @post.comments.order(created_at: :desc)
-  end
+  def show; end
 
   def new; end
 
@@ -45,8 +44,23 @@ class PostsController < ApplicationController
 
   private
 
-  def set_post
+  def load_post
     @post = Post.find(params[:id])
+  end
+
+  def load_comments
+    @comments = @post.comments.order(created_at: :desc)
+  end
+
+  def load_user
+    @user = @post.user
+  end
+
+  def mark_all_comments_as_read
+    return if @user != current_user
+
+    notification_ids = @comments.map { |c| c.notifications_as_comment.ids }.flatten
+    Notification.where(id: notification_ids).mark_as_read!
   end
 
   def post_params

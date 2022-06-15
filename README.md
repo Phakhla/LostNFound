@@ -4,6 +4,7 @@ TODO: Give a short introduction of your project. Let this section explain the ob
 ### Prerequisites
 - Ruby 3.1.2
 - PostgreSQL 9.3.x or later
+- Redis
 - Node.js
 - Yarn
 

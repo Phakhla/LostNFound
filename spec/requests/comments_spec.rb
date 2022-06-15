@@ -19,5 +19,11 @@ RSpec.describe 'Comments', type: :request do
 
       expect(comment.content).to eq('test')
     end
+
+    it 'add comment notification' do
+      post post_comments_path(my_post), params: { comment: { content: 'test' } }
+
+      expect(my_post.user.notifications.unread.count).to be > 0
+    end
   end
 end

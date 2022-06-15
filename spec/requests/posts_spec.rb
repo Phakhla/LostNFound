@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   let(:user) { create(:user) }
-  let(:my_post) { create(:post) }
+  let(:my_post) { create(:post, user:) }
 
   before do
     sign_in user
@@ -110,6 +110,14 @@ RSpec.describe 'Posts', type: :request do
       expect(response.body).to include(my_post.name)
       expect(response.body).to include(my_post.category)
       expect(response.body).to include(my_post.status)
+    end
+
+    it 'mark all comments as read' do
+      create(:comment, post: my_post)
+
+      get post_path(my_post)
+
+      expect(user.notifications.unread.count).to eq(0)
     end
   end
 end
