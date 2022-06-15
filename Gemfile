@@ -72,6 +72,9 @@ gem 'active_storage_validations'
 
 gem 'simple_form'
 
+# For search & sorting
+gem 'ransack'
+
 # Set environment variables
 gem 'figaro'
 
