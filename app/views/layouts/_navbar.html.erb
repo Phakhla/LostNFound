@@ -6,44 +6,39 @@
 
     <div class="nav">
       <% if user_signed_in? %>
+        <%= link_to root_path, class: 'nav-link' do %> Home <% end %>
+        <i class="fas fa-grip-lines-vertical mt-3"></i>
+        <%= link_to posts_path(), class: 'nav-link' do %> รายการตามหาของ <% end %>
+        <i class="fas fa-grip-lines-vertical mt-3"></i>
+        <%= link_to posts_path(), class: 'nav-link' do %> รายการตามหาเจ้าของ <% end %>
+        <i class="fas fa-grip-lines-vertical mt-3"></i>
+        <%= link_to new_post_path(), class: 'nav-link' do %> สร้างโพสต์ประกาศ <% end %>
+        <i class="fas fa-grip-lines-vertical mt-3"></i>
 
-          <%= link_to root_path, class: 'nav-link' do %> Home <% end %>
-          <i class="fas fa-grip-lines-vertical mt-3"></i>
-          <%= link_to posts_path(), class: 'nav-link' do %> รายการตามหาของ <% end %>
-          <i class="fas fa-grip-lines-vertical mt-3"></i>
-          <%= link_to posts_path(), class: 'nav-link' do %> รายการตามหาเจ้าของ <% end %>
-          <i class="fas fa-grip-lines-vertical mt-3"></i>
-          <%= link_to new_post_path(), class: 'nav-link' do %> สร้างโพสต์ประกาศ <% end %>
-          <i class="fas fa-grip-lines-vertical mt-3"></i>
+        <div class="dropdown nav-link">
+          <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle"></i></i> <%= current_user.email %>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="#"> โพสต์ของฉัน </a></li>
+            <li><%= link_to edit_user_registration_path(), class: 'dropdown-item' do %> โปรไฟล์ <% end %></li>
+            <li><%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %> Sign out <% end %></li>
+          </ul>
+        </div>
 
-          <div class="dropdown nav-link">
-            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-user-circle"></i></i> <%= current_user.email %>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item" href="#"> โพสต์ของฉัน </a></li>
-              <li><%= link_to edit_user_registration_path(), class: 'dropdown-item' do %> โปรไฟล์ <% end %></li>
-              <li><%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %> Sign out <% end %></li>
-            </ul>
-          </div>
-
-          <%= link_to root_path, class: 'nav-link' do %><i class="fas fa-bell"></i><% end %>
-
-
+        <%= render 'layouts/notification' %>
       <% else %>
-
-          <%= link_to root_path, class: 'nav-link' do %> Home <% end %>
-          <i class="fas fa-grip-lines-vertical mt-3"></i>
-          <%= link_to posts_path(), class: 'nav-link' do %> ประกาศตามหาของ <% end %>
-          <i class="fas fa-grip-lines-vertical mt-3"></i>
-          <%= link_to posts_path(), class: 'nav-link' do %> ประกาศตามหาเจ้าของ <% end %>
-          <i class="fas fa-grip-lines-vertical mt-3"></i>
-          <%= link_to new_post_path(), class: 'nav-link' do %> สร้างโพสต์ประกาศ <% end %>
-          <i class="fas fa-grip-lines-vertical mt-3"></i>
-          <%= link_to new_user_session_path, class: 'nav-link' do %> Sign in <% end %>
-          <i class="fas fa-grip-lines-vertical mt-3"></i>
-          <%= link_to new_user_registration_path, class: 'nav-link' do %> Sign up <% end %>
-
+        <%= link_to root_path, class: 'nav-link' do %> Home <% end %>
+        <i class="fas fa-grip-lines-vertical mt-3"></i>
+        <%= link_to posts_path(), class: 'nav-link' do %> ประกาศตามหาของ <% end %>
+        <i class="fas fa-grip-lines-vertical mt-3"></i>
+        <%= link_to posts_path(), class: 'nav-link' do %> ประกาศตามหาเจ้าของ <% end %>
+        <i class="fas fa-grip-lines-vertical mt-3"></i>
+        <%= link_to new_post_path(), class: 'nav-link' do %> สร้างโพสต์ประกาศ <% end %>
+        <i class="fas fa-grip-lines-vertical mt-3"></i>
+        <%= link_to new_user_session_path, class: 'nav-link' do %> Sign in <% end %>
+        <i class="fas fa-grip-lines-vertical mt-3"></i>
+        <%= link_to new_user_registration_path, class: 'nav-link' do %> Sign up <% end %>
       <% end %>
     </div>
   </nav>

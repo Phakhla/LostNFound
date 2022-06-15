@@ -1,0 +1,13 @@
+<div class="dropdown">
+  <button id="dropdownNotification" type="button" class="btn btn-default"
+    data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fas fa-bell"></i>
+    <span class="badge bg-danger"><%= current_user.notifications.unread.count %></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownNotification">
+    <% current_user.notifications.each do |noti| %>
+      <% notification = noti.to_notification %>
+      <li><%= link_to notification.message, notification.url, class: 'dropdown-item' %></li>
+    <% end %>
+  </ul>
+</div>

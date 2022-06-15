@@ -21,4 +21,10 @@ FactoryBot.define do
     detail { 'detailname' }
     association :user
   end
+
+  factory :comment do
+    content { 'comment message' }
+    association :user
+    association :post
+  end
 end
