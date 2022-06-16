@@ -5,8 +5,13 @@
   </head>
   <body>
     <h1>New comment</h1>
+
+    <p><%= @comment.user.email %> ได้แสดงความคิดเห็นต่อโพสต์ของคุณ</p>
     <p>
-      <%= @notification.to_notification.message %>
+      <%= @comment.content %>
     </p>
+    <p>เวลา <%= @comment.created_at.strftime('%d/%m/%Y %H.%M') %></p>
+
+    <%= link_to 'ไปยังโพส', post_url(@comment.post) %>
   </body>
 </html>

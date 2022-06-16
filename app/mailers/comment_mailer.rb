@@ -2,7 +2,7 @@
 
 class CommentMailer < ApplicationMailer
   def comment_notification
-    @notification = params[:record]
+    @comment = params[:comment]
     @recipient = params[:recipient]
 
     mail(to: @recipient.email, subject: 'New comment')

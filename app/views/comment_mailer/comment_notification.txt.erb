@@ -1,4 +1,11 @@
 New comment
 ===========
 
-<%= @notification.to_notification.message %>
+<%= @comment.user.email %> ได้แสดงความคิดเห็นต่อโพสต์ของคุณ
+
+ข้อความ:
+<%= @comment.content %>
+
+เวลา: <%= @comment.created_at.strftime('%d/%m/%Y %H.%M') %>
+
+ไปยังโพส <<%= post_url(@comment.post) %>>
