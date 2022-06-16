@@ -1,0 +1,22 @@
+<h1>search</h1>
+
+<div data-controller="search-posts" data-action="google-maps-callback@window->search-posts#initializeMap">
+  <%= simple_form_for :search, method: :get, url: places_path do |f| %>
+    <h1>สถานที่ <%= button_tag '+', type: 'button', data: { action: "click->search-posts#setContentMap" } %></h1>
+
+    <div style="display: none;" data-search-posts-target="mapDisplay">
+      <div class="form-inputs">
+        <%= f.input :search, input_html: { name: '', data: { search_posts_target: "field", action: "keydown->search-posts#preventSubmit" } } %>
+        <span data-search-posts-target="address"></span>
+        <%= hidden_field_tag 'search[latitude]', '', data: { search_posts_target: "latitude" } %>
+        <%= hidden_field_tag 'search[longitude]', '', data: { search_posts_target: "longitude" } %>
+      </div>
+
+      <%= content_tag :div, nil, data: { search_posts_target: "map" }, class: 'map' %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, 'Search' %>
+    </div>
+  <% end %>
+</div>

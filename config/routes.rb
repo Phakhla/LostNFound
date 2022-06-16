@@ -15,4 +15,10 @@ Rails.application.routes.draw do
       get :found
     end
   end
+
+  resources :places do
+    collection do
+      get :search
+    end
+  end
 end

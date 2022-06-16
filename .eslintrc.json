@@ -12,8 +12,10 @@
   },
   "ignorePatterns": ["app/assets/builds/*"],
   "globals": {
-    "FontAwesome": "writable"
+    "FontAwesome": "writable",
+    "google": "writable"
   },
   "rules": {
+    "class-methods-use-this": "off"
   }
 }

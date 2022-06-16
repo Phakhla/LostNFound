@@ -5,7 +5,9 @@ SimpleCov.start 'rails' do
     'app/mailers/application_mailer.rb',
     'app/jobs/application_job.rb',
     'app/channels/application_cable/connection.rb',
-    'app/channels/application_cable/channel.rb'
+    'app/channels/application_cable/channel.rb',
+    'app/controllers/places_controller.rb',
+    'app/models/place.rb'
   ]
 end
 

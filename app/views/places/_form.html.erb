@@ -1,0 +1,20 @@
+
+<div data-controller="maps" data-action="google-maps-callback@window->maps#initializeMap">
+  <%= simple_form_for(@place) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.input :search, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit" }, value: '' } %>
+      <%= f.input :name, input_html: { data: { maps_target: "address" } } %>
+      <%= f.input :latitude, input_html: { data: { maps_target: "latitude" } } %>
+      <%= f.input :longitude, input_html: { data: { maps_target: "longitude" } } %>
+    </div>
+
+    <%= content_tag :div, nil, data: { maps_target: "map" }, class: 'map' %>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>

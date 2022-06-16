@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @place %>
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7C#{@place.latitude},#{@place.longitude}&zoom=18&size=400x300&center=#{@place.latitude},#{@place.longitude}&key=#{ENV['MAPS_API_KEY']}", alt: "Map" %>
+
+<div>
+  <%= link_to "Edit this place", edit_place_path(@place) %> |
+  <%= link_to "Back to places", places_path %>
+
+  <%= button_to "Destroy this place", @place, method: :delete %>
+</div>
