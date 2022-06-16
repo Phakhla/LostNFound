@@ -2,6 +2,7 @@
 
 class CommentNotification < Noticed::Base
   deliver_by :database
+  deliver_by :email, mailer: 'CommentMailer'
 
   param :comment
 
