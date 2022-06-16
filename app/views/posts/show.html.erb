@@ -76,3 +76,10 @@
     </div>
   </div>
 </div>
+<div class="container text-center">
+  <hr>
+  <p>Share this post</p>
+  <%= link_to "https://www.facebook.com/sharer/sharer.php?u="+request.original_url, :target => :popup  do %>
+  <i class="fa-brands fa-facebook" style="font-size: 35px;"></i>
+  <% end %>
+</div>
