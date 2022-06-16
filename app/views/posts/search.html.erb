@@ -1,14 +1,20 @@
+
 <%= link_to root_path do %>
   <i class="fa-solid fa-arrow-left"></i> Back
 <% end %>
-<h1>ผลลัพธ์การค้นหา</h1>
 <div class="container">
 <hr>
-  <%= render 'posts/result_search' %>
+  <%= render 'posts/search_form' %>
 <hr>
 </div>
+<h1>ผลลัพธ์การค้นหา</h1>
 <div class="container">
-  <%= render 'posts/card_result' %>
+  <% if @q.result.empty? %>
+    <h2>No Posts were found.</h2>
+  <% else %>
+    <%= render 'posts/card_result' %>
+  <% end %>
+
 </div>
 
 

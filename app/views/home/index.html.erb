@@ -1,3 +1,6 @@
+
+<%= render 'posts/search_form' %>
+
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="margin:40px; padding:20px; border:20px">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"/>
@@ -34,7 +37,11 @@
       <div class = "box">
 
         <div id = "imm">
+        <% if found.images.attached? %>  
           <%= image_tag(found.images.first, style:"width: 150px; height: 150px; object-fit: cover;") if found.images.attached? %>
+        <% else %>
+        <img alt="image" class="" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" style = "width: 150px; height: 150px; object-fit: cover;">
+        <% end %>
         </div>
 
         <div id = "namee">
@@ -66,7 +73,11 @@
       <% @losts.each do |lost| %>
       <div class = "box">
         <div id = "imm">
+        <% if lost.images.attached? %>
           <%= image_tag(lost.images.first, style:"width: 150px; height: 150px; object-fit: cover;") if lost.images.attached? %>
+        <% else %>
+        <img alt="image" class="" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" style = "width: 150px; height: 150px; object-fit: cover;">
+        <% end %>
         </div>
 
         <div id = "namee">
@@ -89,6 +100,5 @@
       <% end %>
 
   </div>
-
 
 </div>

@@ -31,7 +31,10 @@ class PostsController < ApplicationController
   def destroy; end
 
   def search
-    @posts = Post.page(params[:page]).per(4)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result
+
+    @posts = @posts.page(params[:page]).per(4)
   end
 
   def lost

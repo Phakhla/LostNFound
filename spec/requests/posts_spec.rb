@@ -120,4 +120,20 @@ RSpec.describe 'Posts', type: :request do
       expect(user.notifications.unread.count).to eq(0)
     end
   end
+
+  describe 'Advance Search Modal' do
+    it 'return result page' do
+      q = {
+        category_eq_any: ['0'],
+        name_cont: 'test',
+        types_eq: '1',
+        date_gteq: '2022-06-15',
+        date_lteq: '2022-06-24'
+      }
+      get search_posts_path(q)
+      expect(response).to have_http_status(:ok)
+      expect(q[:name_cont]).to eq('test')
+      expect(response.body).to include(my_post.name)
+    end
+  end
 end
