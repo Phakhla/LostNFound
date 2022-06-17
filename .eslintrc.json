@@ -10,12 +10,16 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "ignorePatterns": ["app/assets/builds/*"],
+  "ignorePatterns": [
+    "app/assets/builds/*",
+    "app/javascript/controllers/index.js"
+  ],
   "globals": {
     "FontAwesome": "writable",
     "google": "writable"
   },
   "rules": {
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "import/prefer-default-export": "off"
   }
 }

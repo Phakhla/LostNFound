@@ -19,6 +19,14 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
+  describe 'GET /post/my_post' do
+    it 'gets find_item and no_found.' do
+      get my_post_posts_path, params: { render: 'find_item', status: 'no_found' }
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe 'GET /posts/search' do
     it 'gets result page' do
       get search_posts_path

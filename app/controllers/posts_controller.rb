@@ -6,6 +6,8 @@ class PostsController < ApplicationController
   before_action :load_comments, only: %i[show]
   before_action :load_user, only: %i[show]
   before_action :mark_all_comments_as_read, only: %i[show]
+  before_action :set_status, only: [:my_post]
+  before_action :set_tab, only: [:my_post]
 
   def index
     @posts = Post.all
@@ -51,6 +53,8 @@ class PostsController < ApplicationController
     @posts = @posts.found_item.page(params[:page]).per(6)
   end
 
+  def my_post; end
+
   private
 
   def load_post
@@ -76,6 +80,23 @@ class PostsController < ApplicationController
 
     notification_ids = @comments.map { |c| c.notifications_as_comment.ids }.flatten
     Notification.where(id: notification_ids).mark_as_read!
+  end
+
+  def set_tab
+    @render = params[:render] || 'find_item'
+
+    @posts =
+      if @render == 'find_item'
+        current_user.posts.lost_item.page(params[:page])
+      else
+        current_user.posts.found_item.page(params[:page])
+      end
+
+    @posts = @posts.where(status: @status) if @status.present?
+  end
+
+  def set_status
+    @status = params[:status]
   end
 
   def post_params

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get :search
       get :lost
       get :found
+      get :my_post
     end
   end
 

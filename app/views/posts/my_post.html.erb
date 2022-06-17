@@ -1,0 +1,32 @@
+<div style="margin:30px; padding:20px; border:20px">
+  <ul class="nav nav-tabs">
+    <li class="nav-item active">
+      <%= link_to my_post_posts_path, class: "nav-link #{ MypostsHelper.active_tab(@render, 'find_item') }" do %>
+        ประกาศตามหาของ
+      <% end %>
+    </li>
+    <li class="nav-item active">
+      <%= link_to my_post_posts_path(render: 'find_owner'), class: "nav-link #{ MypostsHelper.active_tab(@render, 'find_ower') }" do %>
+        ประกาศตามหาเจ้าของ
+      <% end %>
+    </li>
+  </ul>
+
+  <div class="my-3 p-3 rounded shadow-sm">
+
+    <%= form_with(url: my_post_posts_path, method: :get, data: { controller: 'my-posts' }, id: 'filter-status') do |f| %>
+
+      <%= hidden_field_tag 'render', @render %>
+      <%= render 'filter', f: f, status: @status %>
+
+    <% end %>
+
+    <div class="row">
+
+      <%= hidden_field_tag 'render', @render %>
+      <%= render 'item', posts: @posts %>
+
+    </div>
+
+  </div>
+</div>

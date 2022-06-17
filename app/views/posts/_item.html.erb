@@ -1,0 +1,33 @@
+
+<div class="scroll">
+  <% posts.each do |post| %>
+    <div class = "box mb-5">
+      <div id = "imm">
+        <% if post.images.attached? %>
+          <% post.images.each do |pic| %>
+            <%= image_tag(pic, style:"width: 150px; height: 150px; object-fit: cover; ") %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div id = "namee">
+        <strong>Name:</strong>
+        <%= post.name %>
+      </div>
+
+      <div id = "datee">
+        <strong>Date:</strong>
+        <%= post.date %>
+      </div>
+
+      <div id = "locc">
+        <strong>Location:</strong>
+        <%= post.location %>
+      </div>
+
+      <div id = "linkk">
+        <%= link_to "View Post >", post,style:"color: black; text-decoration: none;" %>
+      </div>
+    </div>
+  <% end %>
+</div>
