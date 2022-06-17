@@ -1,0 +1,65 @@
+<%
+  if post_type == 'lost'
+    link_posts = lost_posts_path
+    header = 'ประกาศหาของหาย'
+    date_label = 'วันที่หาย'
+    location_label = 'สถานที่หาย'
+  else
+    link_posts = found_posts_path
+    header = 'ประกาศตามหาเจ้าของ'
+    date_label = 'วันที่เจอ'
+    location_label = 'สถานที่เจอ'
+  end
+%>
+
+<div class="row g-5">
+  <div class="col-md-5 col-lg-4 order-md-last">
+    <p class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-primary"></span>
+      <span><%= link_to 'ดูรายการทั้งหมด >>', link_posts %></span>
+    </p>
+  </div>
+
+  <div class="col-md-7 col-lg-8">
+    <h4 class="mb-3"><%= header %></h4>
+  </div>
+</div>
+
+<hr>
+
+<div class="scrolling-wrapper d-flex flex-nowrap">
+  <% posts.each do |post| %>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
+      <div class="col-sm-6">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4 ">
+
+              <% if post.images.attached? %>
+                <% post.images.each do |img| %>
+                  <%= image_tag(img, class: "img-thumbnail" , width: "150px" , hight: "150px") %>
+                <% end %>
+              <% else %>
+                <img alt="image" class="img-thumnail" width="150 px" hight="150px"   src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
+              <% end %>
+
+            </div>
+
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><%= post.name %></h5>
+                <hr>
+                <p class="card-text"><%= date_label %>:<%= post.date %></p>
+                <p class="card-text"><%= location_label %>:<%= post.location %></p>
+                <p class="card-text">	&bull; <%= post.status %></p><br>
+                <p class="card-text">โพสต์เมื่อวันที่:<%= post.created_at %></p>
+                <%= button_to "ดูรายละเอียด", post, :id => "open-contacts-dialog-btn",
+                :class => "inbox-sf-add-btn tip", :method => :get %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

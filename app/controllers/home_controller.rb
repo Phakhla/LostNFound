@@ -6,7 +6,7 @@ class HomeController < ApplicationController
     @q = Post.ransack(params[:q])
     @posts = @q.result
 
-    @losts = @posts.lost_item.page(params[:page]).per(3)
-    @founds = @posts.found_item.page(params[:page]).per(3)
+    @losts = @posts.lost_item.order(created_at: :desc).page(params[:page]).per(10)
+    @founds = @posts.found_item.order(created_at: :desc).page(params[:page]).per(10)
   end
 end
