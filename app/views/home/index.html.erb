@@ -1,5 +1,6 @@
-
-<%= render 'posts/search_form' %>
+<div class="container">
+  <%= render 'posts/search_form' %>
+</div>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="margin:40px; padding:20px; border:20px">
   <div class="carousel-indicators">
@@ -29,49 +30,80 @@
 </div>
 
 <div class = "listposts">
+  <div class="container mt-5">
+    <span>
+      <h1>รายการประกาศตามหาของหาย</h1>
+      <% if @search.present? %>
+        <%= link_to found_posts_path(q: {name_cont: "#{@search}"} ) do %>
+          ดูรายการทั้งหมด<i class="fa-solid fa-angles-right"></i>
+        <% end %>
+      <% else %>
+        <%= link_to found_posts_path do %>
+          ดูรายการทั้งหมด<i class="fa-solid fa-angles-right"></i>
+        <% end %>
+      <% end %>
+    </span>
+    <hr>
+    <div class="scroll">
 
-  <h1>Found</h1>
-  <div class="scroll">
-
-      <% @founds.each do |found| %>
-      <div class = "box">
+        <% @founds.each do |found| %>
+        <div class = "box">
 
         <div id = "imm">
-        <% if found.images.attached? %>  
+        <% if found.images.attached? %>
           <%= image_tag(found.images.first, style:"width: 150px; height: 150px; object-fit: cover;") if found.images.attached? %>
         <% else %>
         <img alt="image" class="" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" style = "width: 150px; height: 150px; object-fit: cover;">
         <% end %>
         </div>
 
-        <div id = "namee">
-          <strong>Name:</strong>
-          <%= found.name %>
-        </div>
-        <div id = "datee">
-          <strong>Date:</strong>
-          <%= found.date %>
-        </div>
-        <div id = "locc">
-          <strong>Location:</strong>
-          <%= found.location %>
-        </div>
+            <% if found.images.attached? %>
+              <% found.images.each do |pic| %>
+                <%= image_tag(pic, style:"width: 150px; height: 150px; object-fit: cover; ") %>
+              <% end %>
+            <% end %>
+          </div>
 
-        <div id = "linkk">
-          <%= link_to "View Post >", found,style:"color: black; text-decoration: none;" %>
-        </div>
-      </div>
-      <% end %>
+          <div id = "namee">
+            <strong>Name:</strong>
+            <%= found.name %>
+          </div>
+          <div id = "datee">
+            <strong>Date:</strong>
+            <%= found.date %>
+          </div>
+          <div id = "locc">
+            <strong>Location:</strong>
+            <%= found.location %>
+          </div>
 
+          <div id = "linkk">
+            <%= link_to "View Post >", found,style:"color: black; text-decoration: none;" %>
+          </div>
+        </div>
+        <% end %>
+    </div>
   </div>
+    <br><br>
 
-  <br><br>
+  <div class="container mt-5">
+    <span>
+      <h1>รายการประกาศตามหาเจ้าของ</h1>
+      <% if @search.present? %>
+        <%= link_to lost_posts_path(q: {name_cont: "#{@search}"} ) do %>
+          ดูรายการทั้งหมด<i class="fa-solid fa-angles-right"></i>
+        <% end %>
+      <% else %>
+        <%= link_to lost_posts_path do %>
+          ดูรายการทั้งหมด<i class="fa-solid fa-angles-right"></i>
+        <% end %>
+      <% end %>
+    </span>
+    <hr>
+    <div class="scroll">
 
-  <h1>Lost</h1>
-  <div class="scroll">
-
-      <% @losts.each do |lost| %>
-      <div class = "box">
+        <% @losts.each do |lost| %>
+        <div class = "box">
         <div id = "imm">
         <% if lost.images.attached? %>
           <%= image_tag(lost.images.first, style:"width: 150px; height: 150px; object-fit: cover;") if lost.images.attached? %>
@@ -80,25 +112,33 @@
         <% end %>
         </div>
 
-        <div id = "namee">
-          <strong>Name:</strong>
-          <%= lost.name %>
-        </div>
-        <div id = "datee">
-          <strong>Date:</strong>
-          <%= lost.date %>
-        </div>
-        <div id = "locc">
-          <strong>Location:</strong>
-          <%= lost.location %>
-        </div>
+            <% if lost.images.attached? %>
+              <% lost.images.each do |pic| %>
+                <%= image_tag(pic, style:"width:150px; height:150px; object-fit: cover; ") %>
+              <% end %>
+            <% end %>
+          </div>
 
-        <div id = "linkk">
-          <%= link_to "View Post >", lost, style:"color: black; text-decoration: none;"%>
-        </div>
-      </div>
-      <% end %>
+          <div id = "namee">
+            <strong>Name:</strong>
+            <%= lost.name %>
+          </div>
+          <div id = "datee">
+            <strong>Date:</strong>
+            <%= lost.date %>
+          </div>
+          <div id = "locc">
+            <strong>Location:</strong>
+            <%= lost.location %>
+          </div>
 
+          <div id = "linkk">
+            <%= link_to "View Post >", lost, style:"color: black; text-decoration: none;"%>
+          </div>
+        </div>
+        <% end %>
+
+    </div>
   </div>
 
 </div>

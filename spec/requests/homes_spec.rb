@@ -9,6 +9,19 @@ RSpec.describe 'Homes', type: :request do
 
       expect(response).to have_http_status(:ok)
     end
+
+    it 'gets search result' do
+      found = create(:post, name: 'test', category: 'found_item')
+      lost = create(:post, name: 'test', category: 'lost_item')
+
+      q = { name_cont: 'test' }
+
+      get root_path, params: { q: }
+
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include(found.name)
+      expect(response.body).to include(lost.name)
+    end
   end
 
   describe 'listposts' do

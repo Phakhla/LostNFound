@@ -35,6 +35,16 @@ RSpec.describe 'Posts', type: :request do
       expect(response.body).to include('<h3>รายการประกาศตามหาของหาย</h3>')
       expect(response).to have_http_status(:ok)
     end
+
+    it 'gets lost page with search' do
+      lost = create(:post,  name: 'test', category: 'lost_item')
+
+      q = { name_cont: 'test' }
+
+      get lost_posts_path, params: { q: }
+
+      expect(response.body).to include(lost.name)
+    end
   end
 
   describe 'GET /posts/found' do
@@ -43,6 +53,24 @@ RSpec.describe 'Posts', type: :request do
 
       expect(response.body).to include('<h3>รายการประกาศตามหาเจ้าของ</h3>')
       expect(response).to have_http_status(:ok)
+    end
+
+    it 'gets found page with search' do
+      found = create(:post,  name: 'test', category: 'found_item')
+      q = { name_cont: 'test' }
+
+      get found_posts_path, params: { q: }
+
+      expect(response.body).to include(found.name)
+    end
+  end
+
+  describe 'GET /posts/autocomplete' do
+    it 'gets search autocomplete' do
+      q = 'test'
+      get autocomplete_posts_path, params: { q: }
+
+      expect(q).to include('test')
     end
   end
 
@@ -132,7 +160,6 @@ RSpec.describe 'Posts', type: :request do
       }
       get search_posts_path(q)
       expect(response).to have_http_status(:ok)
-      expect(q[:name_cont]).to eq('test')
       expect(response.body).to include(my_post.name)
     end
   end

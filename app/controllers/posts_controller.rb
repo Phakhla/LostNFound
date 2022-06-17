@@ -2,6 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :load_post, only: %i[show edit update destroy]
+  before_action :load_posts, only: %i[lost found]
   before_action :load_comments, only: %i[show]
   before_action :load_user, only: %i[show]
   before_action :mark_all_comments_as_read, only: %i[show]
@@ -37,18 +38,29 @@ class PostsController < ApplicationController
     @posts = @posts.page(params[:page]).per(4)
   end
 
+  def autocomplete
+    @search_results = Post.all.distinct.where('name LIKE ?', "%#{params[:q]}%").pluck(:name)
+    render layout: false
+  end
+
   def lost
-    @posts = Post.lost_item.page(params[:page]).per(6)
+    @posts = @posts.lost_item.page(params[:page]).per(6)
   end
 
   def found
-    @posts = Post.found_item.page(params[:page]).per(6)
+    @posts = @posts.found_item.page(params[:page]).per(6)
   end
 
   private
 
   def load_post
     @post = Post.find(params[:id])
+  end
+
+  def load_posts
+    @search = params[:q][:name_cont] if params[:q]
+    @q = Post.ransack(params[:q])
+    @posts = @q.result
   end
 
   def load_comments
