@@ -37,7 +37,7 @@
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= search_form_for @q|| Post.ransack , url: search_posts_path , method: "GET", html: { class: 'form-inline' } do |f| %>
+  <%= search_form_for @q|| Post.ransack , url: search_posts_path , method: "GET", html: { class: 'form-inline' }, data: {controller: "autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -58,7 +58,8 @@
 
           <div class="namemodal">
             <%= f.label "ค้นหา" %><br>
-            <%= f.search_field :name_cont %>
+            <%= f.search_field :name_cont, data: {autocomplete_target: "input" } %>
+            <ul data-autocomplete-target="results"></ul>
           </div>
 
           <div class="selectmodal">

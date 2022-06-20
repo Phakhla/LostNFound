@@ -8,6 +8,45 @@
 <hr>
 </div>
 <h1>ผลลัพธ์การค้นหา</h1>
+  <div class="col-md-12">
+    <% if @q.present? %>
+      <div class="row g-3 mt-2 ">
+        <hr>
+        <div class="searchfilter">
+          <p>ค้นหา: </p>
+          <% if @q.name_cont.present? %>
+          <p>ชื่อ: <%= @q.name_cont %></p>
+          <% end %>
+          <% if @q.category_eq_any.present? %>
+            <% if @q.category_eq_any == [0] %>
+              <p>ประเภท: ตามหาเจ้าของ</p>
+            <% end %>
+            <% if @q.category_eq_any == [1] %>
+              <p>ประเภท: หาของหาย</p>
+            <% end %>
+            <% if @q.category_eq_any == [1,0] %>
+              <p>ประเภท: หาของหาย & ตามหาเจ้าของ</p>
+            <% end %>
+          <% end %>
+          <% if @q.types_eq.present? %>
+            <% if @q.types_eq == 0 %>
+              <p>หมวดหมู่: personal_items</p>
+            <% end %>
+            <% if @q.types_eq == 1 %>
+              <p>หมวดหมู่: other</p>
+            <% end %>
+          <% end %>
+          <% if @q.date_gteq.present? %>
+          <p>ช่วงวันที่: <%= @q.date_gteq %></p>
+          <% end %>
+          <% if @q.date_lteq.present? %>
+          <p>ถึงวันที่: <%= @q.date_lteq %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
 <div class="container">
   <% if @q.result.empty? %>
     <h2>No Posts were found.</h2>
