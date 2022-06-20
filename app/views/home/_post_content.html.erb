@@ -1,11 +1,15 @@
 <%
+  q = @search.present? ? { name_cont: "#{@search}" } : nil
+
   if post_type == 'lost'
-    link_posts = lost_posts_path
+    link_posts = lost_posts_path(q:)
     header = 'ประกาศหาของหาย'
     date_label = 'วันที่หาย'
     location_label = 'สถานที่หาย'
-  else
-    link_posts = found_posts_path
+  end
+
+  if post_type == 'found'
+    link_posts = found_posts_path(q:)
     header = 'ประกาศตามหาเจ้าของ'
     date_label = 'วันที่เจอ'
     location_label = 'สถานที่เจอ'
@@ -16,7 +20,7 @@
   <div class="col-md-5 col-lg-4 order-md-last">
     <p class="d-flex justify-content-between align-items-center mb-3">
       <span class="text-primary"></span>
-      <span><%= link_to 'ดูรายการทั้งหมด >>', link_posts %></span>
+      <span><%= link_to 'ดูรายการทั้งหมด', link_posts %><i class="fa-solid fa-angles-right"></i></span>
     </p>
   </div>
 
