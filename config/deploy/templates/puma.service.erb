@@ -1,0 +1,20 @@
+[Unit]
+Description=Puma HTTP Server for <%= "#{fetch(:application)} (#{fetch(:stage)})" %>
+After=network.target
+
+[Service]
+Type=simple
+User=<%= puma_user(@role) %>
+Environment=RAILS_ENV=production
+WorkingDirectory=<%= current_path %>
+ExecStart=/bin/bash -lc 'exec <%= "/home/#{puma_user(@role)}/.rbenv/shims/bundle exec puma -C #{current_path}/puma.rb'" %>
+ExecReload=/bin/bash -lc 'exec <%= "/home/#{puma_user(@role)}/.rbenv/shims/bundle exec pumactl -S #{shared_path}/tmp/pids/puma.state -F #{current_path}/puma.rb restart'" %>
+ExecStop=/bin/bash -lc 'exec <%= "/home/#{puma_user(@role)}/.rbenv/shims/bundle exec pumactl -S #{shared_path}/tmp/pids/puma.state -F #{current_path}/puma.rb stop'" %>
+TimeoutSec=15
+Restart=always
+KillMode=process
+StandardOutput=append:<%= fetch(:puma_access_log) %>
+StandardError=append:<%= fetch(:puma_error_log) %>
+
+[Install]
+WantedBy=multi-user.target

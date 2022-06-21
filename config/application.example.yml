@@ -1,4 +1,8 @@
 DB_USER: db_user
 DB_PASSWORD: db_password
 DB_HOST: db_host
+
 MAPS_API_KEY: maps_api_key
+
+AWS_KEY: aws_key
+AWS_ACCESS_KEY: aws_access_key
