@@ -22,6 +22,15 @@ RSpec.describe 'Homes', type: :request do
       expect(response.body).to include(found.name)
       expect(response.body).to include(lost.name)
     end
+
+    it 'gets lost_item and no_found.' do
+      post = create(:post, name: 'test', category: 'found_item')
+
+      get root_path, params: { filter: { lost_item: { status: 'no_found' } } }
+
+      expect(response.body).to include(post.name)
+      expect(response).to have_http_status(:ok)
+    end
   end
 
   describe 'listposts' do

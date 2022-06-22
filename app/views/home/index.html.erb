@@ -2,10 +2,23 @@
   <%= render 'posts/search_form' %>
 </div>
 
-<div class="listposts mt-5">
-  <%= render 'post_content', posts: @losts, post_type: 'lost' %>
+<div style="margin:30px; padding:20px; border:20px">
+  <% if user_signed_in? %>
+    <%= link_to 'รายการทั้งหมด', root_path, class: "btn btn-primary" %>
+    <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn-primary" %>
+  <% end %>
+</div>
 
-  <br><br>
+<div class = "container listposts">
+  <%= form_with(url: root_path, method: :get, id: 'homeFilter') do |f| %>
+    <%= hidden_field_tag 'tab', @tab %>
 
-  <%= render 'post_content', posts: @founds, post_type: 'found' %>
+    <div>
+      <%= render 'post_content', posts: @losts, category: 'lost_item', tab: @tab, filter: @filter, f: %>
+
+      <br><br>
+
+      <%= render 'post_content', posts: @founds, category: 'found_item', tab: @tab, filter: @filter, f: %>
+    </div>
+  <% end %>
 </div>

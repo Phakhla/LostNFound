@@ -2,13 +2,13 @@ import { Controller } from '@hotwired/stimulus';
 
 // Connects to data-controller="my-posts"
 export default class extends Controller {
-  static targets = ['notFoundCheckbox', 'foundCheckbox'];
+  static targets = ['notFoundCheckbox', 'foundCheckbox', 'statusInput'];
 
   connect() { }
 
   checkboxChange(e) {
-    const form = document.getElementById('filter-status');
-    const statusInput = document.getElementById('status');
+    const form = document.getElementById('homeFilter');
+    const statusInput = this.statusInputTarget;
 
     const checkbox = e.currentTarget;
 

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col" data-controller="my-posts">
+      <%= f.hidden_field "filter[#{category}][status]", value: filter.dig(category.to_sym, :status),
+        data: { 'my-posts-target': 'statusInput' } %>
+
+      <div class="form-check form-check-inline">
+        <%= check_box_tag '', 'no_found', filter.dig(category.to_sym, :status) == 'no_found', {
+          data: {
+            action: 'input->my-posts#checkboxChange',
+            'my-posts-target': 'notFoundCheckbox'
+          }
+
+        } %>
+        <%= label_tag '', 'หาเจ้าของ' %>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <%= check_box_tag '', 'found', filter.dig(category.to_sym, :status) == 'found', {
+          data: {
+            action: 'input->my-posts#checkboxChange',
+            'my-posts-target': 'foundCheckbox'
+          }
+
+        } %>
+        <%= label_tag '', 'ปิดประกาศ' %>
+      </div>
+    </div>
+  </div>
+</div>
