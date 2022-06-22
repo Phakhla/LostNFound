@@ -1,23 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700;800&display=swap');
 
 @import 'bootstrap/scss/bootstrap';
 
-@import 'layouts/banner';
-@import 'layouts/footer';
-@import 'layouts/navbar';
-@import 'layouts/modal';
-@import 'layouts/index';
-
-.map {
-  width: 100%;
-  min-height: 400px;
-}
-
-.searchfilter{
-  display: flex;
-}
-
-.searchfilter p{
-  padding-right: 20px;
-}
-
+@import 'custom';

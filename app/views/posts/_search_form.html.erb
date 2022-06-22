@@ -1,89 +1,77 @@
-<div class="container mt-5 ">
-  <div class="row d-flex justify-content-center">
-    <div class="col-md-12">
-     <h1 class="text-center">คุณกำลังมองหาอะไร ...</h1>
-      <div class="row g-3 mt-2 ">
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-8">
+<div class="row d-flex justify-content-center search-form">
+  <div class="col-md-9">
+  <h2 class="text-center">คุณกำลังมองหาอะไร ...</h2>
+    <div class="box-search">
+      <div class="d-md-flex">
+        <div class="flex-grow-1 me-md-3">
           <%= search_form_for @q, url: root_path, data: {controller: "autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
-            <%= f.search_field :name_cont, data: {autocomplete_target: "input" }, class: "form-control" %>
-            <ul data-autocomplete-target="results"></ul>
-          <% end %>
+          <%= f.search_field :name_cont, data: {autocomplete_target: "input" }, class: "form-control" %>
+          <ul data-autocomplete-target="results"></ul>
+        <% end %>
         </div>
-        <div class="col-md-3">
-          <button class="btn btn-secondary btn-block" data-bs-toggle="modal" data-bs-target="#myModal">ค้นหาขั้นสูง</button>
-        </div>
+       <div class="d-grid mt-3 mt-md-0">
+        <button class="btn btn--secondary">ค้นหา</button>
+       </div>
       </div>
-    </div>
-    <div class="col-md-12">
-      <% if @search.present? %>
-        <div class="row g-3 mt-2 ">
-          <%= link_to root_path do %>
-            <p><i class="fa-solid fa-arrow-left"></i>ย้อนกลับ</p>
-          <% end %>
-          <hr>
-          <div class="col-md-1">
-            <p>ค้นหา: <%= @search %></p>
-          </div>
-          <div class="col-md-8">
-          </div>
-          <div class="col-md-3">
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= search_form_for @q|| Post.ransack , url: search_posts_path , method: "GET", html: { class: 'form-inline' }, data: {controller: "autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="myModalLabel">Modal title</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="checkboxmodal">
-            <div class="checkboxitem">
+      <p class="text-decoration-underline mt-4 pointer" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ค้นหาขั้นสูงและฟิลเตอร์</p>
+
+      <%= search_form_for @q|| Post.ransack , url: search_posts_path , method: "GET", html: { class: 'form-inline' } do |f| %>
+      <div class="collapse mt-5" id="collapseExample">
+        <hr>
+        <div class="row mt-5">
+          <div class="col-lg-2 d-flex align-items-center">
+            <p class="mb-0">ประเภท :</p>
+          </div>
+          <div class="col-md-6 col-lg-5 col-xl-3">
+            <div class="checkboxitem d-flex align-items-center">
               <%= check_box_tag('q[category_eq_any][]', 1) %> ประกาศหาของหาย
             </div>
-            <div class="checkboxitem">
+          </div>
+          <div class="col-md-6 col-lg-5 col-xl-3 mt-5 mt-md-0">
+            <div class="checkboxitem d-flex align-items-center">
               <%= check_box_tag('q[category_eq_any][]', 0) %> ประกาศตามหาเจ้าของ
             </div>
           </div>
-
-          <div class="namemodal">
-            <%= f.label "ค้นหา" %><br>
-            <%= f.search_field :name_cont, data: {autocomplete_target: "input" } %>
-            <ul data-autocomplete-target="results"></ul>
+        </div>
+        <div class="row mt-5">
+          <div class="col-lg-2 d-flex align-items-center">
+            <%= f.label "ค้นหา :" %>
           </div>
-
-          <div class="selectmodal">
-            <div class="selectitem">
-              <%= f.label "เลือกหมวดหมู่" %><br>
-              <%= f.select :types_eq, Post.types.to_a, {:include_blank => true} %>
-            </div>
-            <div class="selectitem">
-              <%= f.label "ช่วงวันที่หาย" %><br>
-              <%= f.date_field :date_gteq %>
-            </div>
-            <div class="selectitem">
-              <%= f.label "ถึงวันที่" %><br>
-              <%= f.date_field :date_lteq %>
-            </div>
+          <div class="col-lg-10 col-xl-6">
+            <%= f.search_field :name_cont, class: 'form-control ' %>
           </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <p><%= f.submit "Apply", class: "btn btn-primary" %></p>
-      </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-lg-2 d-flex align-items-center">
+            <%= f.label "หมวดหมู่ :" %>
+          </div>
+          <div class="col-lg-6 col-xl-3">
+            <%= f.select :types_eq, Post.types.to_a, {:include_blank => true}, class: 'form-control ' %>
 
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-lg-2 d-flex align-items-center">
+            <%= f.label "วันที่เริ่มต้น :"%>
+          </div>
+          <div class="col-lg-5 col-xl-3">
+            <%= f.date_field :date_gteq, class: 'form-control '  %>
+          </div>
+          <div class="col-auto d-flex align-items-center mt-5 mt-lg-0">
+            <%= f.label "ถึงวันที่สิ้นสุด :" %>
+          </div>
+          <div class="col-lg-5 col-xl-3">
+            <%= f.date_field :date_lteq, class: 'form-control '  %>
+          </div>
+        </div>
+        <div class="pt-5"></div>
+        <div class="d-md-flex mt-5">
+          <div class="flex-grow-1 d-flex align-items-center"><i class="fa-solid fa-arrow-rotate-left me-3"></i> ล้างข้อมูล</div>
+          <div class="me-md-3 d-grid mt-5 mt-md-0"><%= f.submit "Cancel", class: "btn btn--outline-secondary" %></div>
+          <div class="d-grid mt-5 mt-md-0"><%= f.submit "Apply", class: "btn btn--primary" %></div>
+        </div>
+      <%end %>
     </div>
   </div>
-  <%end %>
 </div>
-

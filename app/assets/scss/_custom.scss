@@ -1,0 +1,19 @@
+@import 'breakpoints';
+@import 'color';
+@import 'typography';
+@import 'spacing';
+@import 'button';
+@import 'components';
+@import 'forms';
+
+
+body {
+  background-image: url('bg.jpg');
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  padding-top: 80px;
+}

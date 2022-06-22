@@ -1,45 +1,44 @@
-<footer class="footer container-fluid">
-  <div class="row content mt-2">
-    <div class="col-md-1">
-      <div class="logo"></div>
+<footer class="footer container-fluid p-0">
+  <div class="row">
+    <div class="col-md-2 col-lg-1">
+      <%= image_tag 'logo-footer.png', class: 'img-fluid', alt: '' %>
     </div>
+    <div class="col-md-4 col-lg-5 mt-5 mt-md-0">
+      <h4>Lost n Found</h4>
+      <p class="mt-4">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged.
+      </p>
+    </div>
+    <div class="col-md-2 mt-5 px-0">
+      <%= link_to root_path, class: 'nav-link text-decoration-underline' do %> Home <% end %>
+      <%= link_to lost_posts_path, class: 'nav-link text-decoration-underline' do %> ประกาศตามหาของหาย <% end %>
+      <%= link_to found_posts_path, class: 'nav-link text-decoration-underline' do %> ประกาศตามหาเจ้าของ <% end %>
+      <%= link_to new_user_session_path, class: 'nav-link text-decoration-underline' do %> Login <% end %>
 
-    <div class="col-md-11">
-      <div>
-        <h4>Lost n Found</h4>
-      </div>
+    </div>
+    <div class="col-md-4 mt-5">
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-lg-6">
           <div>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-              It has survived not only five centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged.
-            </p>
+            <i class="fa-brands fa-facebook fa-xl"></i> Lost n Found <br>
+            <i class="fa-brands fa-instagram-square fa-xl mt-4"></i> Lost.n.Found
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-lg-6 mt-4 mt-lg-0">
           <div>
-            <%= link_to root_path, class: 'nav-link' do %> Home <% end %>
-            <%= link_to lost_posts_path, class: 'nav-link' do %> ประกาศตามหาของหาย <% end %>
-            <%= link_to found_posts_path, class: 'nav-link' do %> ประกาศตามหาเจ้าของ <% end %>
-            <%= link_to new_user_session_path, class: 'nav-link' do %> Login <% end %>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div>
-            <i class="fa-brands fa-facebook-square"></i> Lost n Found
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div>
-            <i class="fa-solid fa-square-envelope"></i> info@lostnfound.com <br />
-            <i class="fa-solid fa-square-phone"></i> 090 001 0000
+            <i class="fa-solid fa-envelope fa-xl"></i> info@lostnfound.com <br />
+            <i class="fa-solid fa-phone fa-xl mt-4"></i> 090 001 0000
           </div>
         </div>
       </div>
+    </div>
+    <hr class="mt-5">
+    <div class="text-center">
+      <p>@ lostnfound All right reserved</p>
     </div>
   </div>
 </footer>

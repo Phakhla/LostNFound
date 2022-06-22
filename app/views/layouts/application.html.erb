@@ -3,6 +3,7 @@
   <head>
     <title>LostItem</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= favicon_link_tag 'logo_nav.png' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -16,10 +17,14 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
-    
-    <%= yield %>
-
-    <%= render 'layouts/footer' %>
+    <header>
+      <%= render 'layouts/navbar' %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
   </body>
 </html>

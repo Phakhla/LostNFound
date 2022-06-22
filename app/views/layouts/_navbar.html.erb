@@ -1,40 +1,80 @@
-<div>
-  <nav class="nav">
-    <div>
-      <div class="logo"></div>
-    </div>
-
-    <div class="nav">
-      <% if user_signed_in? %>
-        <%= link_to root_path, class: 'nav-link' do %> Home <% end %>
-        <i class="fas fa-grip-lines-vertical mt-3"></i>
-        <%= link_to lost_posts_path, class: 'nav-link' do %> รายการตามหาของ <% end %>
-        <i class="fas fa-grip-lines-vertical mt-3"></i>
-        <%= link_to found_posts_path, class: 'nav-link' do %> รายการตามหาเจ้าของ <% end %>
-        <i class="fas fa-grip-lines-vertical mt-3"></i>
-
-        <div class="dropdown nav-link">
-          <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-user-circle"></i></i> <%= current_user.username %>
+<nav class="navbar navbar-expand-lg">
+  <div class="container px-md-0">
+    <a class="navbar-brand" href="#">
+      <%= image_tag 'logo_nav.png', alt: '' %>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars fa-2xl"></i>
+    </button>
+    <% if user_signed_in? %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+        <li class="nav-item ms-3">
+          <%= link_to root_path, class: 'nav-link' do %> หน้าแรก <% end %>
+        </li>
+        <li class="nav-item ms-3">
+          <%= link_to posts_path, class: 'nav-link' do %> รายการตามหาของ <% end %>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="nav-link" aria-current="page" href="#">
+            <%= link_to posts_path, class: '' do %> รายการตามหาเจ้าของ <% end %>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><%= link_to edit_user_registration_path, class: 'dropdown-item' do %> โปรไฟล์ <% end %></li>
-            <li><%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %> Sign out <% end %></li>
-          </ul>
-        </div>
+        </li>
+        <li class="nav-item ms-3">
+          <div class="dropdown nav-link">
+            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user-circle"></i></i> <%= current_user.email %>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" href="#"> โพสต์ของฉัน </a></li>
+              <li><%= link_to edit_user_registration_path, class: 'dropdown-item' do %> โปรไฟล์ <% end %></li>
+              <li><%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %> Sign out <% end %></li>
+            </ul>
+          </div>
+        </li>
 
         <%= render 'layouts/notification' %>
-      <% else %>
-        <%= link_to root_path, class: 'nav-link' do %> Home <% end %>
-        <i class="fas fa-grip-lines-vertical mt-3"></i>
-        <%= link_to lost_posts_path, class: 'nav-link' do %> ประกาศตามหาของ <% end %>
-        <i class="fas fa-grip-lines-vertical mt-3"></i>
-        <%= link_to found_posts_path, class: 'nav-link' do %> ประกาศตามหาเจ้าของ <% end %>
-        <i class="fas fa-grip-lines-vertical mt-3"></i>
-        <%= link_to new_user_session_path, class: 'nav-link' do %> Sign in <% end %>
-        <i class="fas fa-grip-lines-vertical mt-3"></i>
-        <%= link_to new_user_registration_path, class: 'nav-link' do %> Sign up <% end %>
-      <% end %>
+      </ul>
     </div>
-  </nav>
-</div>
+
+    <% else %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-md-flex align-items-md-center mt-5 mt-md-0">
+        <li class="nav-item ms-3">
+          <%= link_to root_path, class: 'nav-link' do %> หน้าแรก <% end %>
+        </li>
+        <li class="nav-item ms-3">
+          <%= link_to posts_path, class: 'nav-link' do %> รายการตามหาของ <% end %>
+        </li>
+        <li class="nav-item ms-3">
+          <%= link_to posts_path, class: 'nav-link' do %> รายการหาเจ้าของ <% end %>
+        </li>
+
+        <li class="nav-item ms-3 mt-3 mt-md-0">
+          <button class="btn btn--outline-secondary">
+            <%= link_to new_user_session_path, class: '' do %> เข้าสู่ระบบ <% end %>
+          </button>
+        </li>
+        <!--<li class="nav-item ms-3 mt-3 mt-md-0">
+          <button class="btn btn--outline-primary">
+            <%= link_to new_user_registration_path, class: 'nav-link p-0' do %> สมัครสมาชิก <% end %>
+          </button>
+        </li>-->
+        <li class="nav-item dropdown ms-3 mt-3 mt-md-0">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= image_tag 'Thai.png', alt: '', class: 'icon-l' %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li class="p-3">
+              <%= image_tag 'Thai.png', alt: '', class: 'icon-l' %> Thai
+            </li>
+            <li class="p-3">
+              <%= image_tag 'Eng.png', alt: '', class: 'icon-l' %> English
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+</nav>

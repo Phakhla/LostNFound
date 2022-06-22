@@ -1,0 +1,18 @@
+.form-control {
+  border-radius: 8px;
+  font-size: 16px;
+  height: 42px;
+
+  &:focus{
+    border-color: var(--color-primary);
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+
+footer {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  padding: 57px 40px;
+}

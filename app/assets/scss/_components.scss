@@ -1,0 +1,155 @@
+
+.navbar-brand img {
+  height: 58px;
+  width: 66px;
+}
+
+.icon-l {
+  height: 25px;
+  width: 25px;
+}
+
+.found-lists {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .card {
+    background-color: var(--bg-card);
+    border: 0;
+    border-radius: 8px;
+    width: 302px;
+
+    img {
+      border-bottom-left-radius: 8px;
+      border-top-left-radius: 8px;
+    }
+  }
+
+  .card-body {
+    padding: 24px;
+  }
+
+  .card-title {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .card-text {
+    font-size: 1.6rem;
+  }
+
+  .found-item {
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .found-lists {
+    display: flex;
+    flex-direction: column;
+
+    .card {
+      background-color: var(--bg-card);
+      border: 0;
+      border-radius: 8px;
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .found-lists {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .found-item {
+    width: 48%;
+  }
+}
+
+.circle-green {
+  background: var(--color-green);
+  border-radius: 100%;
+  height: 7px;
+  position: relative;
+  width: 7px;
+
+  &::before,
+  &::after {
+    animation: pulse-me 3s linear infinite;
+    background-color: var(--color-green);
+    border-radius: 100%;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scale(.5);
+    transform-origin: center center;
+  }
+
+  &::after {
+    animation-delay: 1s;
+  }
+}
+
+@keyframes pulse-me {
+  0% {
+    opacity: 0;
+    transform: scale(.5);
+  }
+
+  70% {
+    opacity: .09;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(5);
+  }
+}
+
+// search box
+.box-search {
+  background-color: var(--color-white);
+  border-radius: 16px;
+  padding: 40px;
+}
+
+.checkboxitem {
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+  height: 42px;
+  padding: 0 16px;
+
+  &:focus {
+    border: 1px solid var(--color-primary);
+  }
+}
+
+.search-form {
+  margin: 96px 0;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+// footer
+.footer {
+  .nav-link {
+    color: var(--color-white);
+  }
+}
+
+.listposts {
+  background-color: var(--color-white);
+}
