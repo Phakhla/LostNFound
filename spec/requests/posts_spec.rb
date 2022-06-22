@@ -144,8 +144,7 @@ RSpec.describe 'Posts', type: :request do
 
       expect(response).to have_http_status(:ok)
       expect(response.body).to include(my_post.name)
-      expect(response.body).to include(my_post.category)
-      expect(response.body).to include(my_post.status)
+      expect(response.body).to include(my_post.location)
     end
 
     it 'mark all comments as read' do

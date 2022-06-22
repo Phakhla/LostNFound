@@ -1,85 +1,12 @@
-<div id="<%= dom_id @post %>">
-  <div class="container">
-    <div class="container">
-      <%= link_to "back", root_path %>
-      <p>
-        <strong>โพสต์:</strong>
-        <%= @post.category %><br>
-      </p>
-      <p>
-        <strong>สิ่งของ:</strong>
-        <%= @post.name %><br>
-      </p>
-      <p>
-        <strong>สถานะ:</strong>
-        <%= @post.status %><br>
-      </p>
-      <p>
-        <strong>หมวดหมู่:</strong>
-        <%= @post.types %><br>
-      </p>
-      <p>
-        <strong>วันที่หาย:</strong>
-        <%= @post.date %><br>
-      </p>
-      <p>
-        <strong>เวลาที่หาย:</strong>
-        <%= @post.time.strftime('%H:%M') %><br>
-      </p>
-      <p>
-        <strong>รายละเอียดเพิ่มเติม:</strong>
-        <%= @post.detail %><br>
-      </p>
-      <p>
-        <strong>สถานที่:</strong>
-        <%= @post.location %><br>
-      </p>
-      <p>
-        <strong>ภาพ:</strong>
-        <% if @post.images.attached? %>
-          <% @post.images.each do |img| %>
-            <%= image_tag(img, style:"width:150px; height:150px") %>
-          <% end %>
-        <% end %>
-      </p>
-    </div>
-    <div class="container">
-      <p>
-        <strong>ข้อมูลติดต่อ</strong>
-        <br>
-      </p>
-      <p>
-        <strong>ชื่อ:</strong>
-        <%= @user.firstname %><br>
-      </p>
-      <p>
-        <strong>นามสกุล:</strong>
-        <%= @user.lastname %><br>
-      </p>
-      <p>
-        <strong>เบอร์โทร:</strong>
-        <%= @user.tel %><br>
-      </p>
-      <p>
-        <strong>Email:</strong>
-        <%= @user.email %><br>
-      </p>
-    </div>
-    <div class="container">
-      <strong>Comment</strong>
-      <% if user_signed_in? %>
-        <%= render 'comments/form', post: @post %>
-      <% end %>
-      <% @comments.each do |comment| %>
-        <%= render 'comments/comment', post: @post, comment: comment %>
-      <% end %>
-    </div>
-  </div>
+<div class="container">
+  <%= render 'posts/post', post: @post %>
 </div>
-<div class="container text-center">
-  <hr>
-  <p>Share this post</p>
-  <%= link_to "https://www.facebook.com/sharer/sharer.php?u="+request.original_url, :target => :popup  do %>
-  <i class="fa-brands fa-facebook" style="font-size: 35px;"></i>
+<div class="container">
+  <strong>Comment</strong>
+  <% if user_signed_in? %>
+    <%= render 'comments/form', post: @post %>
+  <% end %>
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', post: @post, comment: comment %>
   <% end %>
 </div>

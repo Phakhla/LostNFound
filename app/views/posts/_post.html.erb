@@ -1,0 +1,98 @@
+<div id="<%= dom_id @post %>">
+  <div class="container mt-5">
+    <%= link_to root_path do %>
+      <i class="fa-solid fa-arrow-left" style="font-size: 35px;"></i>
+    <% end %>
+    <div class="row g-0 mt-5">
+      <div class="card padding-fix">
+        <div class="card-body">
+          <div class="row justify-content-space-between">
+            <div class="col-auto">
+              <h1 class="card-title"><%= post.name %></h1>
+            </div>
+            <div class="col mt-3">
+              <p class="card-text"><i class="fa-solid fa-circle"></i><%= post.status? ? 'กำลังตามหา' : 'เจอแล้ว' %></p>
+            </div>
+            <div class="col">
+            </div>
+            <div class="col-2">
+              <p class="card-text">วันที่ประกาศ: <%= post.created_at.localtime.strftime("%d/%m/%y") %></p>
+            </div>
+          </div>
+          <div class="row mt-2 justify-content-space-between">
+            <div class="col-8">
+              <div class="row mt-2">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width:80%; height: 400px; display: flex;">
+                  <div class="carousel-inner">
+                    <% if post.images.attached? %>
+                      <% post.images.each_with_index do |image, i| %>
+                        <div class="carousel-item <%= "active " if i==0 %>">
+                            <%= image_tag(image) %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <ul>
+                  <li style="display: inline-block; list-style-type: none">
+                    <% if post.images.attached? %>
+                      <% post.images.each do |image| %>
+                        <%= image_tag(image, style: "width: 150px; height: 150px;") %>
+                      <% end %>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-4">
+              <p class="card-text"><%= post.lost_item? ? 'วันที่หาย: ': 'วันที่เจอ: ' %><%= post.date.strftime("%d/%m/%y") %></p>
+              <p class="card-text"><%= post.lost_item? ? 'สถานที่หาย: ': 'สถานที่เจอ: ' %> <%= post.location %></p>
+              <p class="card-text">รายละเอียดเพิ่มเติม: <%= post.detail %></p>
+              <p class="card-text">แชร์:
+                <%= button_tag 'Copy to Clipboard', type: 'button', data: { controller: 'clipboard', action: 'clipboard#copyToClipboard' } %>
+                <%= link_to "https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, :target => :popup  do %>
+                  <i class="fa-brands fa-facebook-square" style="font-size: 35px;"></i>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-0 mt-2">
+      <div class="card">
+        <div class="row">
+          <div class="col-auto mt-3">
+            <% if post.user.avatar.present? %>
+              <%= image_tag(post.user.avatar, style:"width: 40px; height: 40px; object-fit: cover;", class: "rounded-circle") %>
+            <% else %>
+              <img alt="image" class="rounded-circle" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=" style = "width: 40px; height: 40px; object-fit: cover;">
+            <% end %>
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+            <%= post.user.username %>
+            <p class="card-text">ติดต่อได้ที่&nbsp;
+              <i class="fa-solid fa-phone" style="font-size: 20px;"></i>&nbsp;<%= phone_to post.user.tel %>&nbsp;
+              <%= link_to post.user.fblink do %>
+                  <i class="fa-brands fa-facebook-square" style="font-size: 25px;"></i>
+                  Facaebook
+              <% end %>
+            </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
