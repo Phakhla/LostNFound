@@ -1,13 +1,33 @@
-<%= simple_form_for post || Post.new do |f| %>
+<%= simple_form_for @post, { data: { controller: 'maps' } } do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.hidden_field :status, value: 'no_found' %>
+  <%= f.hidden_field :category %>
+  <%= f.hidden_field :lat, data: { maps_target: "latitude" } %>
+  <%= f.hidden_field :lng, data: { maps_target: "longitude" } %>
+
+  <%= f.label :name, "หัวข้อประกาศ" %>
   <%= f.input :name %>
-  <%= f.input :category, collection: Post.categories.map{|c| [c[0], c[0]]}, include_blank: false %>
-  <%= f.input :types, collection: Post.types.map{|t| [t[0], t[0]]}, include_blank: false %>
-  <%= f.input :status, as: :hidden, input_html: { value: 'no_found' } %>
-  <%= f.input :date, as: :date, html5: true %>
-  <%= f.input :time, as: :time, html5: true %>
-  <%= f.input :location %>
+
+  <%= f.label :types, "หมวดหมู่" %>
+  <%= f.select( :types,  [ ['personal_items'], ['other'] ],
+                        { include_blank: "เลือก" },
+                        { class: 'form-select pointer', :required => 'required' } ) %>
+
+  <%= f.input :date, as: :datetime, html5: true %>
+
+  <%= f.label :images, "อัปโหลดรูป" %>
+  <%= f.input :images, as: :file, input_html: { multiple: true }  %>
+
+  <%= f.label :detail, "รายละเอียดเพิ่มเติม" %>
   <%= f.input :detail %>
-  <%= f.label :images %>
-  <%= f.file_field :images, multiple: true, class: "form-control" %>
-  <%= f.button :submit %>
+
+  <div class="form-group">
+    <input class="form-control" type="text" data-maps-target="address" disabled>
+  </div>
+
+  <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->maps#initializeMap', maps_target: "map" }, class: 'map' %>
+
+  <%= f.button :button, "ยกเลิก", type: "reset", class: "btn-outline-secondary" %>
+  <%= f.button :button, "สร้างโพสต์", type: "submit", class: "btn-primary" %>
 <% end %>

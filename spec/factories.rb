@@ -17,8 +17,10 @@ FactoryBot.define do
     status { 'no_found' }
     date { Time.zone.now }
     time { Time.zone.now }
-    location { 'locationname' }
+    lat { 10.00000 }
+    lng { 10.00000 }
     detail { 'detailname' }
+    images { [Rack::Test::UploadedFile.new('spec/fixtures/files/user-icon.png')] }
     association :user
   end
 

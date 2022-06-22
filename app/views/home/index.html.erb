@@ -1,5 +1,11 @@
 <div class="">
   <%= render 'posts/search_form' %>
+<div class="row">
+  <div class="d-flex justify-content-end">
+    <% if user_signed_in? %>
+      <%= link_to "สร้างโพสต์", category_selects_posts_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
 
 <div style="margin:30px; padding:20px; border:20px">

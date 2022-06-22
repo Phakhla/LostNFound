@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get :lost
       get :found
       get :my_post
+      get :category_selects
     end
   end
 

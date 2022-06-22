@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col mt-5">
+      <h1>เลือกประเภทประกาศ</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <%= link_to "ตามหาของ", new_post_path(category: 'lost_item'), class: "btn btn-primary" %>
+    </div>
+    <div class="col">
+      <%= link_to "หาเจ้าของ", new_post_path(category: 'found_item'), class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

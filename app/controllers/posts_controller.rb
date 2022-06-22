@@ -15,7 +15,9 @@ class PostsController < ApplicationController
 
   def show; end
 
-  def new; end
+  def new
+    @post = Post.new(category: params[:category])
+  end
 
   def edit; end
 
@@ -102,7 +104,7 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(
       :name, :category, :types, :status, :date, :time,
-      :location, :detail, :reward, images: []
+      :location, :detail, :reward, :lat, :lng, images: []
     )
   end
 end

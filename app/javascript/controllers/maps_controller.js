@@ -12,60 +12,64 @@ export default class extends Controller {
   initializeMap() {
     this.setMap();
     this.setMarker();
-    this.setAutocomplete();
+
+    if (this.hasFieldTarget) {
+      this.setAutocomplete();
+    }
   }
 
   setMap() {
-    if (this.map === undefined) {
-      this.map = new google.maps.Map(this.mapTarget, {
-        center: new google.maps.LatLng(
-          this.latitudeTarget.value,
-          this.longitudeTarget.value,
-        ),
-        zoom: 17,
-      });
+    if (this.map !== undefined) { return this.map; }
 
-      this.map.addListener('click', (mapsMouseEvent) => {
-        this.setMarker().setPosition(mapsMouseEvent.latLng);
-        this.setMarker().setVisible(true);
+    this.map = new google.maps.Map(this.mapTarget, {
+      center: new google.maps.LatLng(
+        this.getLatitude(),
+        this.getLongitude(),
+      ),
+      zoom: 17,
+    });
 
-        this.setAddress(mapsMouseEvent.latLng);
-        this.latitudeTarget.value = mapsMouseEvent.latLng.lat();
-        this.longitudeTarget.value = mapsMouseEvent.latLng.lng();
-      });
+    this.map.addListener('click', (mapsMouseEvent) => {
+      this.setMarker().setPosition(mapsMouseEvent.latLng);
+      this.setMarker().setVisible(true);
 
-      const locationButton = document.createElement('button');
-      locationButton.textContent = 'Current Location';
-      locationButton.setAttribute('type', 'button');
-      locationButton.setAttribute('data-action', 'click->maps#preventSubmit');
-      this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-      locationButton.addEventListener('click', () => {
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const location = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-              };
+      this.setAddress(mapsMouseEvent.latLng);
+      this.latitudeTarget.value = mapsMouseEvent.latLng.lat();
+      this.longitudeTarget.value = mapsMouseEvent.latLng.lng();
+    });
 
-              this.setMap().setCenter(location);
-              this.setMarker().setPosition(location);
+    const locationButton = document.createElement('button');
+    locationButton.textContent = 'Current Location';
+    locationButton.setAttribute('type', 'button');
+    locationButton.setAttribute('data-action', 'click->maps#preventSubmit');
+    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+    locationButton.addEventListener('click', () => {
+      // Try HTML5 geolocation.
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const location = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
 
-              this.setAddress(location);
-              this.latitudeTarget.value = location.lat;
-              this.longitudeTarget.value = location.lng;
-            },
-            () => {
-              this.handleLocationError(true);
-            },
-          );
-        } else {
-          // Browser doesn't support Geolocation
-          this.handleLocationError(false);
-        }
-      });
-    }
+            this.setMap().setCenter(location);
+            this.setMarker().setPosition(location);
+
+            this.setAddress(location);
+            this.latitudeTarget.value = location.lat;
+            this.longitudeTarget.value = location.lng;
+          },
+          () => {
+            this.handleLocationError(true);
+          },
+        );
+      } else {
+        // Browser doesn't support Geolocation
+        this.handleLocationError(false);
+      }
+    });
+
     return this.map;
   }
 
@@ -76,8 +80,8 @@ export default class extends Controller {
         anchorPoint: new google.maps.Point(0, 0),
       });
       const mapLocation = {
-        lat: parseFloat(this.latitudeTarget.value),
-        lng: parseFloat(this.longitudeTarget.value),
+        lat: parseFloat(this.getLatitude()),
+        lng: parseFloat(this.getLongitude()),
       };
       this.marker.setPosition(mapLocation);
       this.marker.setVisible(true);
@@ -136,5 +140,13 @@ export default class extends Controller {
     } else {
       window.alert("Error: Your browser doesn't support geolocation.");
     }
+  }
+
+  getLatitude() {
+    return this.latitudeTarget.value || 18.7767383;
+  }
+
+  getLongitude() {
+    return this.longitudeTarget.value || 98.9516685;
   }
 }

@@ -83,25 +83,6 @@ RSpec.describe 'Posts', type: :request do
   end
 
   describe 'POST /posts' do
-    it 'Create POST with no attachments' do
-      post = {
-        name: 'test',
-        category: 'found_item',
-        types: 'other',
-        status: 'no_found',
-        date: Time.zone.now,
-        time: Time.zone.now,
-        location: 'locationname',
-        detail: 'detailname'
-      }
-      post posts_path, params: { post: }
-
-      post = Post.last
-
-      expect(response).to redirect_to(root_path)
-      expect(post.images_attachments.size).to eq(0)
-    end
-
     it 'Create POST with attachments' do
       post = {
         name: 'test',
@@ -110,7 +91,8 @@ RSpec.describe 'Posts', type: :request do
         status: 'no_found',
         date: Time.zone.now,
         time: Time.zone.now,
-        location: 'locationname',
+        lat: 10.00000,
+        lng: 10.00000,
         detail: 'detailname',
         images: [fixture_file_upload(file_fixture('user-icon.png'))]
       }
@@ -144,7 +126,7 @@ RSpec.describe 'Posts', type: :request do
 
       expect(response).to have_http_status(:ok)
       expect(response.body).to include(my_post.name)
-      expect(response.body).to include(my_post.location)
+      expect(response.body).to include(my_post.detail)
     end
 
     it 'mark all comments as read' do
