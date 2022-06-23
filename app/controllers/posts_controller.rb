@@ -31,7 +31,13 @@ class PostsController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    if @post.update(post_params)
+      redirect_to post_path(@post.id)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   def destroy; end
 
@@ -104,7 +110,8 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(
       :name, :category, :status, :date, :time,
-      :location, :detail, :reward, :lat, :lng, :type_id, images: []
+      :location, :detail, :reward, :lat, :lng,
+      :type_id, :reason, images: []
     )
   end
 end

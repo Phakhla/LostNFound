@@ -23,4 +23,8 @@ class Post < ApplicationRecord
   #           content_type: { in: %w[image/jpeg image/png], message: 'must be jpeg or png.' },
   #           size: { less_than_or_equal_to: 5.megabytes, message: 'oversize limited (5MB)' },
   #           limit: { max: 4, message: 'over limited(4 files)' }
+
+  def owner?(user)
+    user_id == user.id
+  end
 end

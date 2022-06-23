@@ -1,8 +1,56 @@
 <div id="<%= dom_id @post %>">
   <div class="container mt-5">
-    <%= link_to root_path do %>
-      <i class="fa-solid fa-arrow-left" style="font-size: 35px;"></i>
-    <% end %>
+    <div class="row">
+      <div class="col text-start">
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-arrow-left" style="font-size: 35px;"></i>
+        <% end %>
+      </div>
+      <div class="col-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <% if user_signed_in? && post.owner?(current_user) %>
+            <%= button_tag 'ลบโพส',  class: 'btn btn-light' %>
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">ปิดโพส</button>
+            <%= button_tag 'แก้ไข', class: 'btn btn-light' %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <%= simple_form_for @post do |f| %>
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">คุณต้องการปิดโพสนี้ใช่ไหม?</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body justify-content-center">
+                <div class="modal-text">
+                  <p>เลือกเหตุผล</p>
+                    <p>
+                      <%= f.radio_button :reason, "เจอของแล้ว" %>
+                      <%= f.label :reason, "เจอของแล้ว" %>
+                    </p>
+                    <p>
+                      <%= f.radio_button :reason, "หมดหวังที่จะเจอ" %>
+                      <%= f.label :reason, "หมดหวังที่จะเจอ" %>
+                    </p>
+                    <p>
+                      <%= f.radio_button :reason, "อื่นๆ" %>
+                      <%= f.label :reason, "อื่นๆ ระบุ" %>
+                      <%= f.text_field :reason %>
+                    </p>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-center">
+                  <%= f.button :button, "ยกเลิก", class: "btn-outline-secondary", data: { bs_dismiss: 'modal' } %>
+                  <%= f.button :button, "ยืนยัน", type: "submit", class: "btn-primary" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <div class="row g-0 mt-5">
       <div class="card padding-fix">
         <div class="card-body">
@@ -56,7 +104,12 @@
             </div>
             <div class="col-4">
               <p class="card-text"><%= post.lost_item? ? 'วันที่หาย: ': 'วันที่เจอ: ' %><%= post.date.strftime("%d/%m/%y") %></p>
-              <p class="card-text"><%= post.lost_item? ? 'สถานที่หาย: ': 'สถานที่เจอ: ' %> <%= post.location %></p>
+
+              <p class="card-text">
+                <%= post.lost_item? ? 'สถานที่หาย: ': 'สถานที่เจอ: ' %>
+                <%= post.location %>
+                <%= button_tag 'สร้างโปสเตอร์', class: 'btn btn-warning' %>
+              </p>
               <p class="card-text">รายละเอียดเพิ่มเติม: <%= post.detail %></p>
               <p class="card-text">แชร์:
                 <%= button_tag 'Copy to Clipboard', type: 'button', data: { controller: 'clipboard', action: 'clipboard#copyToClipboard' } %>
@@ -69,30 +122,32 @@
         </div>
       </div>
     </div>
-    <div class="row g-0 mt-2">
-      <div class="card">
-        <div class="row">
-          <div class="col-auto mt-3">
-            <% if post.user.avatar.present? %>
-              <%= image_tag(post.user.avatar, style:"width: 40px; height: 40px; object-fit: cover;", class: "rounded-circle") %>
-            <% else %>
-              <img alt="image" class="rounded-circle" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=" style = "width: 40px; height: 40px; object-fit: cover;">
-            <% end %>
-          </div>
-          <div class="col-8">
-            <div class="card-body">
-            <%= post.user.username %>
-            <p class="card-text">ติดต่อได้ที่&nbsp;
-              <i class="fa-solid fa-phone" style="font-size: 20px;"></i>&nbsp;<%= phone_to post.user.tel %>&nbsp;
-              <%= link_to post.user.fblink do %>
-                  <i class="fa-brands fa-facebook-square" style="font-size: 25px;"></i>
-                  Facaebook
+    <% unless user_signed_in? && post.owner?(current_user) %>
+      <div class="row g-0 mt-2">
+        <div class="card">
+          <div class="row">
+            <div class="col-auto mt-3">
+              <% if post.user.avatar.present? %>
+                <%= image_tag(post.user.avatar, style:"width: 40px; height: 40px; object-fit: cover;", class: "rounded-circle") %>
+              <% else %>
+                <img alt="image" class="rounded-circle" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=" style = "width: 40px; height: 40px; object-fit: cover;">
               <% end %>
-            </p>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+              <%= post.user.username %>
+              <p class="card-text">ติดต่อได้ที่&nbsp;
+                <i class="fa-solid fa-phone" style="font-size: 20px;"></i>&nbsp;<%= phone_to post.user.tel %>&nbsp;
+                <%= link_to post.user.fblink do %>
+                    <i class="fa-brands fa-facebook-square" style="font-size: 25px;"></i>
+                    Facaebook
+                <% end %>
+              </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+      </div>
+    <% end %>
 </div>
