@@ -9,6 +9,7 @@ RSpec.describe 'Posts', type: :request do
 
   before do
     sign_in user
+    type
     my_post
   end
 
@@ -94,6 +95,7 @@ RSpec.describe 'Posts', type: :request do
         lat: 10.00000,
         lng: 10.00000,
         detail: 'detailname',
+        type_id: type.id,
         images: [fixture_file_upload(file_fixture('user-icon.png'))]
       }
       post posts_path, params: { post: }

@@ -86,8 +86,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_062443) do
     t.datetime "updated_at", null: false
     t.decimal "lat", precision: 10, scale: 6
     t.decimal "lng", precision: 10, scale: 6
-    t.bigint "type_id"
     t.text "reason"
+    t.bigint "type_id"
     t.index ["type_id"], name: "index_posts_on_type_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
