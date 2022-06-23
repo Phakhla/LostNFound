@@ -6,7 +6,15 @@ class Notification < ApplicationRecord
   belongs_to :recipient, polymorphic: true
 
   after_create_commit :update_notification_count
-  after_create_commit :prepend_new_notification
+  after_create_commit :update_notification
+
+  def self.latest_with_limit
+    latest.limit(10)
+  end
+
+  def self.unread_latest_with_limit
+    unread.latest_with_limit
+  end
 
   private
 
@@ -19,7 +27,15 @@ class Notification < ApplicationRecord
     )
   end
 
-  def prepend_new_notification
-    broadcast_prepend_later_to("notification_user_#{recipient.id}")
+  def update_notification
+    broadcast_update_later_to(
+      "notification_user_#{recipient.id}",
+      target: 'notifications',
+      partial: 'notifications/notifications',
+      locals: {
+        notifications: recipient.notifications.latest_with_limit.to_a,
+        unread_notifications: recipient.notifications.unread_latest_with_limit.to_a
+      }
+    )
   end
 end

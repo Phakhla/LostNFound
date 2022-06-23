@@ -1,17 +1,18 @@
 <%= turbo_stream_from dom_id(current_user, :notification)  %>
 
-<li class="nav-item ms-3">
+<div class="dropdown">
   <button id="dropdownNotification" type="button" class="btn btn-default"
-    data-bs-toggle="dropdown" aria-expanded="false">
+    data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
     <i class="fas fa-bell"></i>
     <div class="d-inline" id="notification_count">
       <%= render 'notifications/count', count: current_user.notifications.unread.count %>
     </div>
   </button>
 
-  <ul id="notifications" class="dropdown-menu" aria-labelledby="dropdownNotification">
-    <% current_user.notifications.unread.each do |noti| %>
-      <%= render noti %>
-    <% end %>
-  </ul>
-</li>
+  <div id="notifications" class="dropdown-menu" aria-labelledby="dropdownNotification"
+    style="right: 0; left: unset">
+    <%= render 'notifications/notifications',
+      notifications: current_user.notifications.latest_with_limit,
+      unread_notifications: current_user.notifications.unread_latest_with_limit %>
+  </div>
+</div>

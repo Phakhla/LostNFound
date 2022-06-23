@@ -1,0 +1,30 @@
+<div class="container" style="width: 600px">
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" type="button" role="tab"
+        data-bs-toggle="tab" data-bs-target="#all-noti-tab">
+        ทั้งหมด
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" type="button" role="tab"
+        data-bs-toggle="tab" data-bs-target="#unread-noti-tab">
+        ยังไม่ได้อ่าน
+      </button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="all-noti-tab" class="tab-pane fade show active" role="tabpanel" aria-labelledby="all-noti-tab" tabindex="0">
+      <% notifications.each do |noti| %>
+        <%= render noti %>
+      <% end %>
+    </div>
+
+    <div id="unread-noti-tab" class="tab-pane fade" role="tabpanel" aria-labelledby="unread-noti-tab" tabindex="0">
+      <% unread_notifications.each do |noti| %>
+        <%= render noti %>
+      <% end %>
+    </div>
+  </div>
+</div>
