@@ -2,4 +2,12 @@
 
 return if Rails.env.test?
 
-Figaro.require_keys('MAPS_API_KEY')
+keys = %w[EMAIL_FROM MAPS_API_KEY]
+
+unless Rails.env.development?
+  keys += %w[
+    DOMAIN HOST AWS_KEY AWS_ACCESS_KEY SENDGRID_USERNAME SENDGRID_API_KEY SENTRY_DSN
+  ]
+end
+
+Figaro.require_keys(keys)
