@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     @founds = load_posts_with_filter(:found_item)
   end
 
-  def my_post; end
+  private
 
   def set_tab
     @tab = params[:tab] || 'all_posts'
@@ -23,13 +23,11 @@ class HomeController < ApplicationController
     @filter = params[:filter] || {}
   end
 
-  private
-
   def load_posts_with_filter(category)
     if @filter.dig(category, :status)
       @posts.where(status: @filter[category][:status], category:)
     else
-      @posts.where(category:).order(created_at: :desc).page(params[:page]).per(10)
+      @posts.where(category:).latest.page(params[:page]).per(10)
     end
   end
 end

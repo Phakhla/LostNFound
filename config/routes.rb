@@ -2,12 +2,14 @@
 
 Rails.application.routes.draw do
   root 'home#index'
+
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  resources :posts do
-    resources :comments
+  resources :posts, only: %i[new show edit create update destroy] do
+    resources :comments, only: %i[create]
+
     collection do
       get :autocomplete
       get :search

@@ -16,14 +16,14 @@
 
   <div class="tab-content">
     <div id="all-noti-tab" class="tab-pane fade show active" role="tabpanel" aria-labelledby="all-noti-tab" tabindex="0">
-      <% notifications.each do |noti| %>
-        <%= render noti %>
+      <% notifications.each do |notification| %>
+        <%= render 'notifications/notification', notification: %>
       <% end %>
     </div>
 
     <div id="unread-noti-tab" class="tab-pane fade" role="tabpanel" aria-labelledby="unread-noti-tab" tabindex="0">
-      <% unread_notifications.each do |noti| %>
-        <%= render noti %>
+      <% unread_notifications.each do |notification| %>
+        <%= render 'notifications/notification', notification: %>
       <% end %>
     </div>
   </div>

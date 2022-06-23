@@ -9,10 +9,6 @@ class PostsController < ApplicationController
   before_action :set_status, only: [:my_post]
   before_action :set_tab, only: [:my_post]
 
-  def index
-    @posts = Post.all
-  end
-
   def show; end
 
   def new
@@ -20,6 +16,8 @@ class PostsController < ApplicationController
   end
 
   def edit; end
+
+  def category_selects; end
 
   def create
     @post = current_user.posts.build(post_params)

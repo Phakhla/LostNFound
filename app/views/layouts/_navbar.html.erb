@@ -3,65 +3,59 @@
     <a class="navbar-brand" href="#">
       <%= image_tag 'logo_nav.png', alt: '' %>
     </a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fa-solid fa-bars fa-2xl"></i>
     </button>
-    <% if user_signed_in? %>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
         <li class="nav-item ms-3">
-          <%= link_to root_path, class: 'nav-link' do %> หน้าแรก <% end %>
-        </li>
-        <li class="nav-item ms-3">
-          <%= link_to posts_path, class: 'nav-link' do %> รายการตามหาของ <% end %>
-        </li>
-        <li class="nav-item ms-3">
-          <a class="nav-link" aria-current="page" href="#">
-            <%= link_to posts_path, class: '' do %> รายการตามหาเจ้าของ <% end %>
-          </a>
-        </li>
-        <li class="nav-item ms-3">
-          <div class="dropdown nav-link">
-            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-user-circle"></i></i> <%= current_user.email %>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item" href="#"> โพสต์ของฉัน </a></li>
-              <li><%= link_to edit_user_registration_path, class: 'dropdown-item' do %> โปรไฟล์ <% end %></li>
-              <li><%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %> Sign out <% end %></li>
-            </ul>
-          </div>
+          <%= link_to 'หน้าแรก', root_path, class: 'nav-link'%>
         </li>
 
         <li class="nav-item ms-3">
-          <%= render 'layouts/notification' %>
-        </li>
-      </ul>
-    </div>
-
-    <% else %>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-md-flex align-items-md-center mt-5 mt-md-0">
-        <li class="nav-item ms-3">
-          <%= link_to root_path, class: 'nav-link' do %> หน้าแรก <% end %>
-        </li>
-        <li class="nav-item ms-3">
-          <%= link_to posts_path, class: 'nav-link' do %> รายการตามหาของ <% end %>
-        </li>
-        <li class="nav-item ms-3">
-          <%= link_to posts_path, class: 'nav-link' do %> รายการหาเจ้าของ <% end %>
+          <%= link_to 'รายการตามหาของ', lost_posts_path, class: 'nav-link' %>
         </li>
 
-        <li class="nav-item ms-3 mt-3 mt-md-0">
-          <button class="btn btn--outline-secondary">
-            <%= link_to new_user_session_path, class: '' do %> เข้าสู่ระบบ <% end %>
-          </button>
+        <li class="nav-item ms-3">
+          <%= link_to 'รายการตามหาเจ้าของ', found_posts_path, class: 'nav-link' %>
         </li>
-        <!--<li class="nav-item ms-3 mt-3 mt-md-0">
-          <button class="btn btn--outline-primary">
-            <%= link_to new_user_registration_path, class: 'nav-link p-0' do %> สมัครสมาชิก <% end %>
-          </button>
-        </li>-->
+
+        <% if  user_signed_in? %>
+          <li class="nav-item ms-3">
+            <div class="dropdown nav-link">
+              <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user-circle"></i></i> <%= current_user.email %>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li>
+                  <%= link_to 'โพสต์ของฉัน', my_post_posts_path, class: 'dropdown-item' %>
+                </li>
+                <li>
+                  <%= link_to 'โปรไฟล์', edit_user_registration_path, class: 'dropdown-item' %>
+                </li>
+                <li>
+                  <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item ms-3">
+            <%= render 'layouts/notification' %>
+          </li>
+        <% else %>
+          <li class="nav-item ms-3 mt-3 mt-md-0">
+            <%= link_to 'เข้าสู่ระบบ', new_user_session_path, class: 'btn btn--outline-secondary' %>
+          </li>
+          <!--<li class="nav-item ms-3 mt-3 mt-md-0">
+            <button class="btn btn--outline-primary">
+              <%= link_to new_user_registration_path, class: 'nav-link p-0' do %> สมัครสมาชิก <% end %>
+            </button>
+          </li>-->
+        <% end %>
+
         <li class="nav-item dropdown ms-3 mt-3 mt-md-0">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <%= image_tag 'Thai.png', alt: '', class: 'icon-l' %>
@@ -77,6 +71,5 @@
         </li>
       </ul>
     </div>
-    <% end %>
   </div>
 </nav>
