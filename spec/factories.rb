@@ -13,7 +13,6 @@ FactoryBot.define do
   factory :post do
     name { 'postname' }
     category { 'found_item' }
-    types { 'other' }
     status { 'no_found' }
     date { Time.zone.now }
     time { Time.zone.now }
@@ -22,11 +21,16 @@ FactoryBot.define do
     detail { 'detailname' }
     images { [Rack::Test::UploadedFile.new('spec/fixtures/files/user-icon.png')] }
     association :user
+    association :type
   end
 
   factory :comment do
     content { 'comment message' }
     association :user
     association :post
+  end
+
+  factory :type do
+    type_name { 'typename' }
   end
 end

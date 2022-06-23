@@ -47,8 +47,7 @@
             <%= f.label "หมวดหมู่ :" %>
           </div>
           <div class="col-lg-6 col-xl-3">
-            <%= f.select :types_eq, Post.types.to_a, {:include_blank => true}, class: 'form-control ' %>
-
+            <%= f.select :type_id_eq, Type.all.map{ |l| [l.type_name, l.id] }, {:include_blank => true}, class: 'form-control ' %>
           </div>
         </div>
         <div class="row mt-5">

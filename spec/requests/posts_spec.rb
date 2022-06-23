@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   let(:user) { create(:user) }
-  let(:my_post) { create(:post, user:) }
+  let(:type) { create(:type) }
+  let(:my_post) { create(:post, user:, type:) }
 
   before do
     sign_in user
@@ -87,7 +88,6 @@ RSpec.describe 'Posts', type: :request do
       post = {
         name: 'test',
         category: 'found_item',
-        types: 'other',
         status: 'no_found',
         date: Time.zone.now,
         time: Time.zone.now,
@@ -107,7 +107,6 @@ RSpec.describe 'Posts', type: :request do
     it 'Create failed' do
       post = {
         category: 'found_item',
-        types: 'other',
         status: 'no_found',
         date: Time.zone.now,
         time: Time.zone.now,
@@ -143,7 +142,7 @@ RSpec.describe 'Posts', type: :request do
       q = {
         category_eq_any: ['0'],
         name_cont: 'test',
-        types_eq: '1',
+        type_id_eq: '1',
         date_gteq: '2022-06-15',
         date_lteq: '2022-06-24'
       }

@@ -9,10 +9,8 @@
   <%= f.label :name, "หัวข้อประกาศ" %>
   <%= f.input :name %>
 
-  <%= f.label :types, "หมวดหมู่" %>
-  <%= f.select( :types,  [ ['personal_items'], ['other'] ],
-                        { include_blank: "เลือก" },
-                        { class: 'form-select pointer', :required => 'required' } ) %>
+  <%= f.label :type_id, "หมวดหมู่" %>
+  <%= f.select :type_id, Type.all.map{ |l| [l.type_name, l.id] } %>
 
   <%= f.input :date, as: :datetime, html5: true %>
 

@@ -2,7 +2,6 @@
 
 class Post < ApplicationRecord
   enum category: { found_item: 0, lost_item: 1 }
-  enum types: { personal_items: 0, other: 1 }
   enum status: { no_found: 0, found: 1 }
 
   belongs_to :user

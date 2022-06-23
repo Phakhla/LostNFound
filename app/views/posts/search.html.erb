@@ -28,13 +28,8 @@
               <p>ประเภท: หาของหาย & ตามหาเจ้าของ</p>
             <% end %>
           <% end %>
-          <% if @q.types_eq.present? %>
-            <% if @q.types_eq == 0 %>
-              <p>หมวดหมู่: personal_items</p>
-            <% end %>
-            <% if @q.types_eq == 1 %>
-              <p>หมวดหมู่: other</p>
-            <% end %>
+          <% if @q.type_id_eq.present? %>
+            <p>หมวดหมู่: <%= Type.find(@q.type_id_eq).type_name %></p>
           <% end %>
           <% if @q.date_gteq.present? %>
           <p>ช่วงวันที่: <%= @q.date_gteq %></p>
