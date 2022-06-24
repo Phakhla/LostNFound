@@ -1,3 +1,18 @@
+<% content_for :meta do %>
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="<%= post.name %>" />
+  <meta property="og:description" content="<%= post.detail || "more detail" %>" />
+  <% if post.images.attached? %>
+    <meta property="og:image" content="<%= polymorphic_url(post.images.first) %>" />
+  <% else %>
+    <meta property="og:image" content="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" />
+  <% end %>
+<% end %>
+
+
+
+
 <div id="<%= dom_id @post %>">
   <div class="container mt-5">
     <div class="row">

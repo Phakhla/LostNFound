@@ -6,7 +6,7 @@
     <%= favicon_link_tag 'logo_nav.png' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= yield :meta %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Figaro.env.MAPS_API_KEY}&libraries=places&callback=dispatchMapsEvent",

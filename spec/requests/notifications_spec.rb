@@ -17,4 +17,12 @@ RSpec.describe 'Notifications', type: :request do
 
     expect(response.body).to include("#{comment.user.display_name} ได้แสดงความคิดเห็นต่อโพสต์ของคุณ")
   end
+
+  describe 'GET notifications' do
+    it 'show all notifications page' do
+      get notifications_path
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
 end

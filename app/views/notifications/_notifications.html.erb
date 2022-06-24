@@ -16,6 +16,18 @@
 
   <div class="tab-content">
     <div id="all-noti-tab" class="tab-pane fade show active" role="tabpanel" aria-labelledby="all-noti-tab" tabindex="0">
+      <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col nav-link">
+          <h5> ใหม่ </h5>
+        </div>
+        <div class="col-2">
+        </div>
+        <div class="col ">
+          <%= link_to notifications_path, class: 'nav-link' do %><h5> ดูทั้งหมด </h5> <% end %>
+        </div>
+      </div>
       <% notifications.each do |notification| %>
         <%= render 'notifications/notification', notification: %>
       <% end %>

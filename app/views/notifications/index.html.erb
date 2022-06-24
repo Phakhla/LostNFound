@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>การแจ้งเตือน</h2>
+  <hr>
+  <h4>ทั้งหมด</h4>
+  <p>ใหม่</p>
+    <% @notifications.each do |n|  %>
+      <% next if current_user.id == n.params[:comment].user_id %>
+      <%= link_to post_path(n.params[:comment].post) , class: "nav-link" do %>
+        <div class="row justify-content-space-between">
+          <div class="col-auto">
+            <%= n.params[:comment].user.email %>
+            &nbspได้แสดงความคิดเห็น
+          </div>
+          <div class="col ">
+            <%= n.params[:comment].content %>
+          </div>
+          <div class="col ">
+          </div>
+          <div class="col-2">
+            <%= n.params[:comment].created_at.localtime.strftime("%d/%m/%y") %>
+          </div>
+        </div>
+        <br><hr><br>
+      <% end %>
+    <% end %>
+<%= paginate @notifications %>
+</div>
+
