@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  before_action :set_tab, only: %i[lost found]
+  before_action :set_filter, only: %i[lost found]
   before_action :load_post, only: %i[show edit update destroy]
   before_action :load_posts, only: %i[lost found]
   before_action :load_comments, only: %i[show]
   before_action :load_user, only: %i[show]
   before_action :mark_all_comments_as_read, only: %i[show]
-  before_action :set_status, only: [:my_post]
-  before_action :set_tab, only: [:my_post]
 
   def show; end
 
@@ -52,14 +52,12 @@ class PostsController < ApplicationController
   end
 
   def lost
-    @posts = @posts.lost_item.page(params[:page]).per(6)
+    @posts = load_posts_with_filter(:lost_item)
   end
 
   def found
-    @posts = @posts.found_item.page(params[:page]).per(6)
+    @posts = load_posts_with_filter(:found_item)
   end
-
-  def my_post; end
 
   private
 
@@ -69,7 +67,7 @@ class PostsController < ApplicationController
 
   def load_posts
     @search = params[:q][:name_cont] if params[:q]
-    @q = Post.ransack(params[:q])
+    @q = @tab == 'all_posts' ? Post.ransack(params[:q]) : current_user.posts.ransack(params[:q])
     @posts = @q.result
   end
 
@@ -89,20 +87,19 @@ class PostsController < ApplicationController
   end
 
   def set_tab
-    @render = params[:render] || 'find_item'
-
-    @posts =
-      if @render == 'find_item'
-        current_user.posts.lost_item.page(params[:page])
-      else
-        current_user.posts.found_item.page(params[:page])
-      end
-
-    @posts = @posts.where(status: @status) if @status.present?
+    @tab = params[:tab] || 'all_posts'
   end
 
-  def set_status
-    @status = params[:status]
+  def set_filter
+    @filter = params[:filter] || {}
+  end
+
+  def load_posts_with_filter(category)
+    if @filter.dig(category, :status)
+      @posts.where(status: @filter[category][:status], category:).page(params[:page]).per(10)
+    else
+      @posts.where(category:).order(created_at: :desc).page(params[:page]).per(10)
+    end
   end
 
   def post_params

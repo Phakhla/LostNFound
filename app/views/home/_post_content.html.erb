@@ -2,21 +2,21 @@
   q = @search.present? ? { name_cont: "#{@search}" } : nil
 
   if category == 'lost_item'
-    link_posts = lost_posts_path(q:)
+    link_posts = lost_posts_path(q:, tab:)
     header = 'ประกาศหาของหาย'
     date_label = 'วันที่หาย'
     location_label = 'สถานที่หาย'
   end
 
   if category == 'found_item'
-    link_posts = found_posts_path(q:)
+    link_posts = found_posts_path(q:, tab:)
     header = 'ประกาศตามหาเจ้าของ'
     date_label = 'วันที่เจอ'
     location_label = 'สถานที่เจอ'
   end
 %>
 
-<div class="row g-">
+<div class="row g-5">
   <div class="col-md-5 col-lg-4 order-md-last">
     <p class="d-flex justify-content-between align-items-center mb-3">
       <span class="text-primary"></span>
@@ -74,7 +74,7 @@
   <% end %>
 </div>
 
-<div class="container px-md-0 pt-5">
+<!--<div class="container px-md-0 pt-5">
   <div class="row">
     <div class="col-12 text-end">
       <button class="btn btn--primary">
@@ -169,4 +169,4 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->

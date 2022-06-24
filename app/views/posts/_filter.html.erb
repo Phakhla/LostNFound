@@ -1,37 +1,29 @@
-<div class="border-bottom pb-2">
-  <div class="container">
-    <div class="row">
-      <div class="col-2">
-        <h5>รายการของฉัน</h5>
-      </div>
-      <div class="col">
-        <%= f.hidden_field :status, value: status  %>
+<div class="container">
+  <div class="row">
+    <div class="col" data-controller="my-posts">
+      <%= f.hidden_field "filter[#{category}][status]", value: filter.dig(category.to_sym, :status),
+        data: { 'my-posts-target': 'statusInput' } %>
 
-        <div class="form-check form-check-inline">
-          <%= f.check_box :checkbox1, {
-            data: {
-              action: 'input->my-posts#checkboxChange',
-              'my-posts-target': 'notFoundCheckbox'
-            },
-            checked: status == 'no_found'
-          }, 'no_found', nil %>
-          <%= f.label :checkbox1, 'หาเจ้าของ' %>
-        </div>
-        <div class="form-check form-check-inline">
-          <%= f.check_box :checkbox2, {
-            data: {
-              action: 'input->my-posts#checkboxChange',
-              'my-posts-target': 'foundCheckbox'
-            },
-            checked: status == 'found'
-          }, 'found', nil %>
-          <%= f.label :checkbox2, 'ปิดประกาศ' %>
-        </div>
+      <div class="form-check form-check-inline">
+        <%= check_box_tag '', 'no_found', filter.dig(category.to_sym, :status) == 'no_found', {
+          data: {
+            action: 'input->my-posts#checkboxChange',
+            'my-posts-target': 'notFoundCheckbox'
+          }
+
+        } %>
+        <%= label_tag '', 'หาเจ้าของ' %>
       </div>
-      <div class="col">
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button class="btn btn-primary me-md-2" type="button"><i class="fa fa-add"></i>เพิ่มประกาศ</button>
-        </div>
+
+      <div class="form-check form-check-inline">
+        <%= check_box_tag '', 'found', filter.dig(category.to_sym, :status) == 'found', {
+          data: {
+            action: 'input->my-posts#checkboxChange',
+            'my-posts-target': 'foundCheckbox'
+          }
+
+        } %>
+        <%= label_tag '', 'ปิดประกาศ' %>
       </div>
     </div>
   </div>

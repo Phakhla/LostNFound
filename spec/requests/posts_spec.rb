@@ -21,14 +21,6 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
-  describe 'GET /post/my_post' do
-    it 'gets find_item and no_found.' do
-      get my_post_posts_path, params: { render: 'find_item', status: 'no_found' }
-
-      expect(response).to have_http_status(:ok)
-    end
-  end
-
   describe 'GET /posts/search' do
     it 'gets result page' do
       get search_posts_path
@@ -42,7 +34,7 @@ RSpec.describe 'Posts', type: :request do
     it 'gets lost page' do
       get lost_posts_path
 
-      expect(response.body).to include('<h3>รายการประกาศตามหาของหาย</h3>')
+      expect(response.body).to include('<i class="fa-solid fa-arrow-left"></i> ตามหาของหาย')
       expect(response).to have_http_status(:ok)
     end
 
@@ -55,13 +47,22 @@ RSpec.describe 'Posts', type: :request do
 
       expect(response.body).to include(lost.name)
     end
+
+    it 'gets lost' do
+      post = create(:post, name: 'test', category: 'lost_item')
+
+      get lost_posts_path, params: { filter: { lost_item: { status: 'no_found' } } }
+
+      expect(response.body).to include(post.name)
+      expect(response).to have_http_status(:ok)
+    end
   end
 
   describe 'GET /posts/found' do
     it 'gets found page' do
       get found_posts_path
 
-      expect(response.body).to include('<h3>รายการประกาศตามหาเจ้าของ</h3>')
+      expect(response.body).to include('<i class="fa-solid fa-arrow-left"></i> ตามหาเจ้าของ')
       expect(response).to have_http_status(:ok)
     end
 
@@ -72,6 +73,15 @@ RSpec.describe 'Posts', type: :request do
       get found_posts_path, params: { q: }
 
       expect(response.body).to include(found.name)
+    end
+
+    it 'gets found' do
+      post = create(:post, name: 'test', category: 'found_item')
+
+      get found_posts_path, params: { filter: { found_item: { status: 'no_found' } } }
+
+      expect(response.body).to include(post.name)
+      expect(response).to have_http_status(:ok)
     end
   end
 
