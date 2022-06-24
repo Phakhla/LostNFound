@@ -16,7 +16,7 @@
 
       <p class="text-decoration-underline mt-4 pointer" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ค้นหาขั้นสูงและฟิลเตอร์</p>
 
-      <%= search_form_for @q|| Post.ransack , url: search_posts_path , method: "GET", html: { class: 'form-inline' } do |f| %>
+      <%= search_form_for @q|| Post.ransack , url: search_posts_path , method: "GET", html: { class: 'form-inline' }, data: {controller: "autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
       <div class="collapse mt-5" id="collapseExample">
         <hr>
         <div class="row mt-5">
@@ -39,7 +39,8 @@
             <%= f.label "ค้นหา :" %>
           </div>
           <div class="col-lg-10 col-xl-6">
-            <%= f.search_field :name_cont, class: 'form-control ' %>
+            <%= f.search_field :name_cont, data: {autocomplete_target: "input" }, class: 'form-control ' %>
+            <ul data-autocomplete-target="results"></ul>
           </div>
         </div>
         <div class="row mt-5">

@@ -37,7 +37,10 @@ class PostsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    @post.destroy!
+    redirect_to root_url, status: :see_other
+  end
 
   def search
     @q = Post.ransack(params[:q])

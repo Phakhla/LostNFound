@@ -163,4 +163,11 @@ RSpec.describe 'Posts', type: :request do
       expect(response.body).to include(my_post.name)
     end
   end
+
+  describe 'DELETE /posts/id' do
+    it 'delete post' do
+      delete "/posts/#{my_post.id}"
+      expect(response).to redirect_to(root_path)
+    end
+  end
 end
