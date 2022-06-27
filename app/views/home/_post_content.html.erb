@@ -63,8 +63,8 @@
                 <p class="card-text"><%= location_label %>:<%= post.location %></p>
                 <p class="card-text">	&bull; <%= post.status %></p><br>
                 <p class="card-text">โพสต์เมื่อวันที่:<%= post.created_at %></p>
-                <%= button_to "ดูรายละเอียด", post, id: "open-contacts-dialog-btn",
-                    class: "inbox-sf-add-btn tip", method: :get %>
+                <%= link_to "ดูรายละเอียด", post_path(post),
+                    class: "btn btn-light" %>
               </div>
             </div>
           </div>
