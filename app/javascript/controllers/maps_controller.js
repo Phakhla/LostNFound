@@ -3,6 +3,10 @@ import { Controller } from '@hotwired/stimulus';
 export default class extends Controller {
   static targets = ['address', 'field', 'map', 'latitude', 'longitude'];
 
+  initialize() {
+    this.initialLocation = { lat: 18.7767383, lng: 98.9516685 };
+  }
+
   connect() {
     if (typeof (google) !== 'undefined') {
       this.initializeMap();
@@ -11,10 +15,13 @@ export default class extends Controller {
 
   initializeMap() {
     this.setMap();
-    this.setMarker();
+    this.setAutocomplete();
 
-    if (this.hasFieldTarget) {
-      this.setAutocomplete();
+    if (this.latitudeTarget.value && this.longitudeTarget.value) {
+      this.setMarker({
+        lat: +this.latitudeTarget.value,
+        lng: +this.longitudeTarget.value,
+      });
     }
   }
 
@@ -22,17 +29,12 @@ export default class extends Controller {
     if (this.map !== undefined) { return this.map; }
 
     this.map = new google.maps.Map(this.mapTarget, {
-      center: new google.maps.LatLng(
-        this.getLatitude(),
-        this.getLongitude(),
-      ),
+      center: this.initialLocation,
       zoom: 17,
     });
 
     this.map.addListener('click', (mapsMouseEvent) => {
-      this.setMarker().setPosition(mapsMouseEvent.latLng);
-      this.setMarker().setVisible(true);
-
+      this.setMarker(mapsMouseEvent.latLng);
       this.setAddress(mapsMouseEvent.latLng);
       this.latitudeTarget.value = mapsMouseEvent.latLng.lat();
       this.longitudeTarget.value = mapsMouseEvent.latLng.lng();
@@ -44,48 +46,45 @@ export default class extends Controller {
     locationButton.setAttribute('data-action', 'click->maps#preventSubmit');
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
     locationButton.addEventListener('click', () => {
-      // Try HTML5 geolocation.
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const location = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            };
-
-            this.setMap().setCenter(location);
-            this.setMarker().setPosition(location);
-
-            this.setAddress(location);
-            this.latitudeTarget.value = location.lat;
-            this.longitudeTarget.value = location.lng;
-          },
-          () => {
-            this.handleLocationError(true);
-          },
-        );
-      } else {
-        // Browser doesn't support Geolocation
-        this.handleLocationError(false);
+      // Browser doesn't support Geolocation
+      if (!navigator.geolocation) {
+        return this.handleLocationError(false);
       }
+
+      // Try HTML5 geolocation.
+      return navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const location = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+
+          this.setMap().setCenter(location);
+          this.setMarker(location);
+
+          this.setAddress(location);
+          this.latitudeTarget.value = location.lat;
+          this.longitudeTarget.value = location.lng;
+        },
+        () => {
+          this.handleLocationError(true);
+        },
+      );
     });
 
     return this.map;
   }
 
-  setMarker() {
+  setMarker(mapLocation) {
     if (this.marker === undefined) {
       this.marker = new google.maps.Marker({
         map: this.setMap(),
         anchorPoint: new google.maps.Point(0, 0),
       });
-      const mapLocation = {
-        lat: parseFloat(this.getLatitude()),
-        lng: parseFloat(this.getLongitude()),
-      };
-      this.marker.setPosition(mapLocation);
-      this.marker.setVisible(true);
     }
+
+    this.marker.setPosition(mapLocation);
+    this.marker.setVisible(true);
 
     return this.marker;
   }
@@ -104,14 +103,12 @@ export default class extends Controller {
     const place = this.setAutocomplete().getPlace();
 
     if (!place.geometry) {
-      window.alert(`No details available for input: '${place.name}'`);
       return;
     }
 
     this.setMap().fitBounds(place.geometry.viewport);
     this.setMap().setCenter(place.geometry.location);
-    this.setMarker().setPosition(place.geometry.location);
-    this.setMarker().setVisible(true);
+    this.setMarker(place.geometry.location);
 
     this.addressTarget.value = place.name;
     this.latitudeTarget.value = place.geometry.location.lat();
@@ -125,7 +122,7 @@ export default class extends Controller {
       if (status === 'OK') {
         this.addressTarget.value = result[0].formatted_address;
       } else {
-        this.addressTarget.value = '';
+        this.addressTarget.value = 'Unknown location';
       }
     });
   }
@@ -140,13 +137,5 @@ export default class extends Controller {
     } else {
       window.alert("Error: Your browser doesn't support geolocation.");
     }
-  }
-
-  getLatitude() {
-    return this.latitudeTarget.value || 18.7767383;
-  }
-
-  getLongitude() {
-    return this.longitudeTarget.value || 98.9516685;
   }
 }

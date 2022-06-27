@@ -1,10 +1,11 @@
-<%= simple_form_for @post, { data: { controller: 'maps' } } do |f| %>
+<%= simple_form_for post, { data: { controller: 'maps' } } do |f| %>
   <%= f.error_notification %>
 
   <%= f.hidden_field :status, value: 'no_found' %>
   <%= f.hidden_field :category %>
   <%= f.hidden_field :lat, data: { maps_target: "latitude" } %>
   <%= f.hidden_field :lng, data: { maps_target: "longitude" } %>
+  <%= f.hidden_field :location, data: { maps_target: "address" } %>
 
   <%= f.label :name, "หัวข้อประกาศ" %>
   <%= f.input :name %>
@@ -20,11 +21,19 @@
   <%= f.label :detail, "รายละเอียดเพิ่มเติม" %>
   <%= f.input :detail %>
 
-  <div class="form-group">
-    <input class="form-control" type="text" data-maps-target="address" disabled>
+  <div class="mt-3">
+    <label class="form-label">สถานที่ที่เจอ</label>
   </div>
 
-  <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->maps#initializeMap', maps_target: "map" }, class: 'map' %>
+  <div class="form-group mb-3">
+    <%= f.input :search, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit" }, value: '' } %>
+  </div>
+
+  <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->maps#initializeMap', maps_target: "map" }, class: 'map mb-5' %>
+
+  <% if post.errors.key?(:lat) || post.errors.key?(:lng)  %>
+    <p class="text-danger">Please select location.</p>
+  <% end %>
 
   <%= f.button :button, "ยกเลิก", type: "reset", class: "btn-outline-secondary" %>
   <%= f.button :button, "สร้างโพสต์", type: "submit", class: "btn-primary" %>

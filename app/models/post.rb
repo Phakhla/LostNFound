@@ -14,9 +14,8 @@ class Post < ApplicationRecord
   validates :name, presence: true
   validates :date, presence: true
 
-  # Hold this function for easy to development
-  # validates :lat, numericality: true
-  # validates :lng, numericality: true
+  validates :lat, numericality: true
+  validates :lng, numericality: true
 
   # validates :images,
   #           attached: true,
