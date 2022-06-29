@@ -1,18 +1,18 @@
 <div class="row d-flex justify-content-center search-form">
   <div class="col-md-9">
   <h2 class="text-center">คุณกำลังมองหาอะไร ...</h2>
-    <div class="box-search">
-      <div class="d-md-flex">
-        <div class="flex-grow-1 me-md-3">
-          <%= search_form_for @q, url: root_path, data: {controller: "autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
-          <%= f.search_field :name_cont, data: {autocomplete_target: "input" }, class: "form-control" %>
-          <ul data-autocomplete-target="results"></ul>
-        <% end %>
+    <%= search_form_for @q, url: root_path, data: {controller: "autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
+      <div class="box-search">
+        <div class="d-md-flex">
+          <div class="flex-grow-1 me-md-3">
+            <%= f.search_field :name_cont, data: {autocomplete_target: "input" }, class: "form-control" %>
+            <ul class="list-group position-absolute" data-autocomplete-target="results"></ul>
+          </div>
+        <div class="d-grid mt-3 mt-md-0">
+          <%= f.submit 'ค้นหา', class: "btn btn--secondary" %>
         </div>
-       <div class="d-grid mt-3 mt-md-0">
-        <button class="btn btn--secondary">ค้นหา</button>
-       </div>
       </div>
+    <% end %>
 
       <p class="text-decoration-underline mt-4 pointer" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ค้นหาขั้นสูงและฟิลเตอร์</p>
 

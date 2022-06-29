@@ -50,7 +50,7 @@ class PostsController < ApplicationController
   end
 
   def autocomplete
-    @search_results = Post.all.distinct.where('name LIKE ?', "%#{params[:q]}%").pluck(:name)
+    @search_results = Post.all.distinct.where('name ILIKE ?', "%#{params[:q]}%").pluck(:name)
     render layout: false
   end
 
