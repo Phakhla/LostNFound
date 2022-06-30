@@ -26,7 +26,7 @@
           <% if user_signed_in? && post.owner?(current_user) %>
             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">ลบโพส</button>
             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">ปิดโพส</button>
-            <%= button_tag 'แก้ไข', class: 'btn btn-light' %>
+            <%= link_to 'แก้ไข', edit_post_path(post), class: 'btn btn-light' %>
           <% end %>
         </div>
       </div>
@@ -185,6 +185,3 @@
     </div>
   </div>
 </div>
-
-
-

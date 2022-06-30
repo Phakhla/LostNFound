@@ -1,4 +1,5 @@
-<%= simple_form_for post, { data: { controller: 'maps' } } do |f| %>
+<div class="container">
+<%= simple_form_for post, data: { controller: 'maps' } do |f| %>
   <%= f.error_notification %>
 
   <%= f.hidden_field :status, value: 'no_found' %>
@@ -16,7 +17,13 @@
   <%= f.input :date, as: :datetime, html5: true %>
 
   <%= f.label :images, "อัปโหลดรูป" %>
-  <%= f.input :images, as: :file, input_html: { multiple: true }  %>
+  <div class="dropzone dropzone-default dz-clickable"  data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="4">
+    <%= f.file_field :images, multiple: true, direct_upload: true, data: { target: 'dropzone.input' } %>
+    <div class="dropzone-msg dz-message">
+      <h3 class="dropzone-msg-title">Drag here to upload or click here to browse</h3>
+      <span class="dropzone-msg-desc text-sm">2 MB file size maximum. Allowed file types png, jpg.</span>
+    </div>
+  </div>
 
   <%= f.label :detail, "รายละเอียดเพิ่มเติม" %>
   <%= f.input :detail %>
@@ -38,3 +45,6 @@
   <%= f.button :button, "ยกเลิก", type: "reset", class: "btn-outline-secondary" %>
   <%= f.button :button, "สร้างโพสต์", type: "submit", class: "btn-primary" %>
 <% end %>
+
+
+</div>
