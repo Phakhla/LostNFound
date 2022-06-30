@@ -25,5 +25,13 @@ RSpec.describe 'Comments', type: :request do
 
       expect(my_post.user.notifications.unread.count).to be > 0
     end
+
+    it 'not create comment notification for post owner' do
+      my_post.update!(user_id: user.id)
+
+      post post_comments_path(my_post), params: { comment: { content: 'test' } }
+
+      expect(user.notifications.count).to eq(0)
+    end
   end
 end

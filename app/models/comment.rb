@@ -8,9 +8,13 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true
 
-  after_create_commit :notify_new_comment
+  after_create_commit :notify_new_comment, unless: :post_owner?
 
   private
+
+  def post_owner?
+    user_id == post.user_id
+  end
 
   def notify_new_comment
     CommentNotification.with(comment: self).deliver_later(post.user)
