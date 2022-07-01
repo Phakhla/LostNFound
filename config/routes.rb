@@ -7,6 +7,15 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  namespace :users do
+    resources :settings, only: [] do
+      collection do
+        get 'password/edit', to: 'settings#edit_password'
+        put 'password'
+      end
+    end
+  end
+
   resources :posts, only: %i[new show edit create update destroy] do
     resources :comments, only: %i[create]
 
