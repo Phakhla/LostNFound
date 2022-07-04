@@ -1,71 +1,93 @@
-
-<h1>My Profile</h1>
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <% if current_user.avatar.present? %>
-  <%= image_tag(current_user.avatar, style:"width: 150px; height: 150px; object-fit: cover;", class: "rounded-circle") %>
-  <% else %>
-  <img alt="image" class="rounded-circle" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=" style = "width: 150px; height: 150px; object-fit: cover;">
-  <% end %>
-
-  <div class="form-group">
-    <label>Avatar</label>
-    <div class="col-sm-8"><%= f.file_field :avatar, class: "form-control" %></div>
+<div style="margin:30px; padding:20px; border:20px">
+  <div class="container">
+    <div class="row ">
+      <div class="p-5 mb-4 bg-body rounded-3">
+        <div class="container-fluid py-5">
+          <h4 class="border-bottom pb-4 mb-0">แก้ไขโปรไฟล์</h4>
+          <br>
+          <div class="row mb-2">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+              <div class="row">
+                <div class="col-md-5 col-lg-3">
+                  <% if current_user.avatar.present? %>
+                    <%= image_tag(current_user.avatar, style:"width: 250px; height: 250px; object-fit: cover; border-radius: 25px; ", class: "card-img-top") %>
+                  <% else %>
+                    <img alt="image" class="card-img-top" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=" style = "width: 250px; height: 250px; object-fit: cover; border-radius: 25px;">
+                  <% end %>
+                  <br>
+                  <br>
+                  <%= f.file_field :avatar,  class: "form-control" %>
+                  <label>*ขนาดไฟล์รูปไม่เกิน 500 KB</label>
+                </div>
+                <div class="col-md-5 col-lg-8">
+                  <div class="row g-5">
+                    <div class="col-sm-4">
+                      <div class="field">
+                        <%= f.label :username, "ชื่อผู้ใช้" %><br />
+                        <%= f.text_field :username, autofocus: true, style: "width: 100%; border-radius: 4px;" %>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="field">
+                        <%= f.label :email, "อีเมล" %><br />
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email" , disabled: true, style: "width: 100%; border-radius: 4px;" %>
+                      </div>
+                      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                      <% end %>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="field">
+                        <%= f.label :tel, "เบอร์ติดต่อ" %><br />
+                        <%= f.text_field :tel, autofocus: true, style: "width: 100%; border-radius: 4px;"%>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="field">
+                        <%= f.label :facebook, "ชื่อ facebook" %><br />
+                        <%= f.text_field :facebook, autofocus: true, style: "width: 100%; border-radius: 4px;" %>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="field">
+                        <%= f.label :fblink, "ลิงค์ facebook" %><br />
+                        <%= f.text_field :fblink, autofocus: true, style: "width: 100%; border-radius: 4px;" %>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <%= f.label :password, "รหัสผ่าน" %><br />
+                      <%= link_to 'เปลี่ยนรหัสผ่าน', password_edit_users_settings_path, class: 'btn btn-dark' %>
+                    </div>
+                    <div class="col-sm-8">
+                      <div class="field">
+                        <%= f.label :address, "ที่อยู่" %><br />
+                        <%= f.text_field :address, autofocus: true, class: "col-lg-11", style: "width: 100%; border-radius: 4px; height: 70px;"%>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          ไม่แสดงที่อยู่ของฉัน
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br><hr>
+              <br>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="actions">
+                  <%= link_to "ยกเลิก", root_path, class: "btn btn-outline-warning"%>
+                  <%= f.submit "บันทึก",  class: "btn btn-warning" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <label>อีเมล</label><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" , disabled: true %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <label>Username</label><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
-  <div class="field">
-    <label>ชื่อ</label><br />
-    <%= f.text_field :firstname, autofocus: true %>
-  </div>
-  <div class="field">
-    <label>นามสกุล</label><br />
-    <%= f.text_field :lastname, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <label>เบอร์โทรศัพท์</label><br />
-    <%= f.text_field :tel, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <label>Facebook Link</label><br />
-    <%= f.text_field :fblink, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <label>ที่อยู่</label><br />
-    <%= f.text_field :address, autofocus: true %>
-  </div>
-
-  <%= link_to "เปลี่ยนรหัสผ่าน", password_edit_users_settings_path, class: "btn btn-light" %>
-
-<br>
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-<%= link_to "Back", :back %>
-
-
-<br><br>
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-
+</div>
