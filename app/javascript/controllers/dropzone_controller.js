@@ -19,6 +19,8 @@ function createDropZone(controller) {
     acceptedFiles: controller.acceptedFiles,
     addRemoveLinks: controller.addRemoveLinks,
     autoQueue: false,
+    thumbnailWidth: 551.5,
+    thumbnailHeight: 551.5,
   });
 }
 

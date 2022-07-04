@@ -4,3 +4,8 @@
 @import 'dropzone/src/dropzone';
 
 @import 'custom';
+
+.dz-image img {
+  width: 100%;
+  height: 100%;
+}
