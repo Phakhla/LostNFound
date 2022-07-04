@@ -23,13 +23,22 @@ RSpec.describe 'Homes', type: :request do
       expect(response.body).to include(lost.name)
     end
 
-    it 'gets lost_item and no_found.' do
-      post = create(:post, name: 'test', category: 'found_item')
+    it 'gets lost_item with filter' do
+      lost = create(:post, category: 'lost_item', status: 'closed')
 
-      get root_path, params: { filter: { lost_item: { status: 'no_found' } } }
+      get root_path, params: { filter: { lost_item: { status: 'in_active' } } }
 
-      expect(response.body).to include(post.name)
-      expect(response).to have_http_status(:ok)
+      expect(response.body).to include(lost.name)
+      expect(response.body).to include('closed')
+    end
+
+    it 'gets found_item with filter' do
+      found = create(:post, category: 'found_item', status: 'active')
+
+      get root_path, params: { filter: { found_item: { status: 'active' } } }
+
+      expect(response.body).to include(found.name)
+      expect(response.body).to include('found')
     end
   end
 

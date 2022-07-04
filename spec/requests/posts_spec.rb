@@ -48,13 +48,13 @@ RSpec.describe 'Posts', type: :request do
       expect(response.body).to include(lost.name)
     end
 
-    it 'gets lost' do
-      post = create(:post, name: 'test', category: 'lost_item')
+    it 'gets lost with filter' do
+      post = create(:post, name: 'test', category: 'lost_item', status: 'closed')
 
-      get lost_posts_path, params: { filter: { lost_item: { status: 'no_found' } } }
+      get lost_posts_path, params: { filter: { lost_item: { status: 'in_active' } } }
 
       expect(response.body).to include(post.name)
-      expect(response).to have_http_status(:ok)
+      expect(response.body).to include('closed')
     end
   end
 
@@ -75,13 +75,13 @@ RSpec.describe 'Posts', type: :request do
       expect(response.body).to include(found.name)
     end
 
-    it 'gets found' do
-      post = create(:post, name: 'test', category: 'found_item')
+    it 'gets found with filter' do
+      post = create(:post, name: 'test', category: 'found_item', status: 'active')
 
-      get found_posts_path, params: { filter: { found_item: { status: 'no_found' } } }
+      get found_posts_path, params: { filter: { found_item: { status: 'active' } } }
 
       expect(response.body).to include(post.name)
-      expect(response).to have_http_status(:ok)
+      expect(response.body).to include('found')
     end
   end
 
@@ -99,7 +99,7 @@ RSpec.describe 'Posts', type: :request do
       post = {
         name: 'test',
         category: 'found_item',
-        status: 'no_found',
+        status: 'active',
         date: Time.zone.now,
         time: Time.zone.now,
         lat: 10.00000,
@@ -119,7 +119,7 @@ RSpec.describe 'Posts', type: :request do
     it 'Create failed' do
       post = {
         category: 'found_item',
-        status: 'no_found',
+        status: 'active',
         date: Time.zone.now,
         time: Time.zone.now,
         location: 'locationname',

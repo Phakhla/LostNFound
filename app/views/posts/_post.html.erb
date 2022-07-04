@@ -23,7 +23,7 @@
       </div>
       <div class="col-5">
         <div class="d-flex justify-content-between align-items-center">
-          <% if user_signed_in? && post.owner?(current_user) %>
+          <% if user_signed_in? && post.owner?(current_user) && post.active? %>
             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">ลบโพส</button>
             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">ปิดโพส</button>
             <%= link_to 'แก้ไข', edit_post_path(post), class: 'btn btn-light' %>
@@ -33,7 +33,7 @@
 
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-          <%= simple_form_for @post do |f| %>
+          <%= simple_form_for @post, url: post_path, method: 'patch', data: { controller: "radio-selection", action: "radio-selection#checkOption" } do |f| %>
             <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel">คุณต้องการปิดโพสนี้ใช่ไหม?</h4>
@@ -42,24 +42,28 @@
               <div class="modal-body justify-content-center">
                 <div class="modal-text">
                   <p>เลือกเหตุผล</p>
-                    <p>
-                      <%= f.radio_button :reason, "เจอของแล้ว" %>
-                      <%= f.label :reason, "เจอของแล้ว" %>
-                    </p>
-                    <p>
-                      <%= f.radio_button :reason, "หมดหวังที่จะเจอ" %>
-                      <%= f.label :reason, "หมดหวังที่จะเจอ" %>
-                    </p>
-                    <p>
-                      <%= f.radio_button :reason, "อื่นๆ" %>
-                      <%= f.label :reason, "อื่นๆ ระบุ" %>
-                      <%= f.text_field :reason %>
-                    </p>
+                  <p>
+                    <%= radio_button 'status', '', 'เจอของแล้ว', data: { radio_selection_target: "foundRadioButton" } %>
+                    <%= f.label "เจอของแล้ว" %>
+                  </p>
+                  <p>
+                    <%= radio_button 'status', '', 'หมดหวังที่จะเจอ', data: { radio_selection_target: "hopelessRadioButton" } %>
+                    <%= f.label "หมดหวังที่จะเจอ" %>
+                  </p>
+                  <p>
+                    <%= radio_button 'status', '', nil, data: { radio_selection_target: "otherRadioButton" } %>
+                    <%= f.label "อื่นๆ ระบุ" %>
+                    <%= text_field_tag :other_reason, '', data: { radio_selection_target: "textInput" } %>
+                  </p>
+                  <p>
+                    <%= f.hidden_field :status, data: { radio_selection_target: "statusInput" } %>
+                    <%= f.hidden_field :reason, data: { radio_selection_target: "reasonInput" } %>
+                  </p>
                 </div>
               </div>
               <div class="modal-footer justify-content-center">
                   <%= f.button :button, "ยกเลิก", class: "btn-outline-secondary", data: { bs_dismiss: 'modal' } %>
-                  <%= f.button :button, "ยืนยัน", type: "submit", class: "btn-primary" %>
+                  <%= f.button :button, "ยืนยัน", class: "btn-primary" %>
               </div>
             </div>
           <% end %>
@@ -73,13 +77,24 @@
             <div class="col-auto">
               <h1 class="card-title"><%= post.name %></h1>
             </div>
-            <div class="col mt-3">
-              <p class="card-text"><i class="fa-solid fa-circle"></i><%= post.status? ? 'กำลังตามหา' : 'เจอแล้ว' %></p>
-            </div>
-            <div class="col">
-            </div>
+            <% if post.active? %>
+              <div class="col mt-3">
+                <p class="card-text"><i class="fa-solid fa-circle"></i>กำลังตามหา</p>
+              </div>
+              <div class="col">
+              </div>
+              <div class="col-2">
+                <p class="card-text">วันที่ประกาศ: <%= post.created_at.localtime.strftime("%d/%m/%y") %></p>
+              </div>
+            <% else %>
+              <div class="col-3">
+                <div class="row ">
+                  <p class="card-text">ปิดประกาศเมื่อ: <%= post.updated_at.localtime.strftime("%d/%m/%y") %></p>
+                  <p class="card-text">หมายเหตุ: <%= post.reason %></p>
+                </div>
+              </div>
+            <% end %>
             <div class="col-2">
-              <p class="card-text">วันที่ประกาศ: <%= post.created_at.localtime.strftime("%d/%m/%y") %></p>
             </div>
           </div>
           <div class="row mt-2 justify-content-space-between">

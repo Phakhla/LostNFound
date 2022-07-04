@@ -5,24 +5,26 @@
         data: { 'my-posts-target': 'statusInput' } %>
 
       <div class="form-check form-check-inline">
-        <%= check_box_tag '', 'no_found', filter.dig(category.to_sym, :status) == 'no_found', {
+        <%= check_box_tag '', 'active', filter.dig(category.to_sym, :status) == 'active', {
           data: {
             action: 'input->my-posts#checkboxChange',
-            'my-posts-target': 'notFoundCheckbox'
+            'my-posts-target': 'activeCheckbox'
           }
 
         } %>
         <%= label_tag '', 'หาเจ้าของ' %>
       </div>
 
+
       <div class="form-check form-check-inline">
-        <%= check_box_tag '', 'found', filter.dig(category.to_sym, :status) == 'found', {
+        <%= check_box_tag '', 'in_active', filter.dig(category.to_sym, :status) == 'in_active', {
           data: {
             action: 'input->my-posts#checkboxChange',
-            'my-posts-target': 'foundCheckbox'
+            'my-posts-target': 'inActiveCheckbox'
           }
 
         } %>
+
         <%= label_tag '', 'ปิดประกาศ' %>
       </div>
     </div>

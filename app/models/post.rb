@@ -2,7 +2,7 @@
 
 class Post < ApplicationRecord
   enum category: { found_item: 0, lost_item: 1 }
-  enum status: { no_found: 0, found: 1 }
+  enum status: { active: 0, found: 1, closed: 2 }
 
   belongs_to :user
   belongs_to :type
@@ -16,6 +16,8 @@ class Post < ApplicationRecord
 
   validates :lat, numericality: true
   validates :lng, numericality: true
+
+  scope :in_active, -> { where(status: %w[found closed]) }
 
   # validates :images,
   #           attached: true,

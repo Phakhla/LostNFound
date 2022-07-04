@@ -24,10 +24,8 @@ class HomeController < ApplicationController
   end
 
   def load_posts_with_filter(category)
-    if @filter.dig(category, :status)
-      @posts.where(status: @filter[category][:status], category:)
-    else
-      @posts.where(category:).latest.page(params[:page]).per(10)
-    end
+    status = @filter.dig(category, :status)
+    posts = status.present? ? @posts.send(status.to_sym) : @posts
+    posts.where(category:).latest.limit(4)
   end
 end

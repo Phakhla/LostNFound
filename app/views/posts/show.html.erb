@@ -2,8 +2,8 @@
   <%= render 'posts/post', post: @post %>
 </div>
 <div class="container">
-  <strong>Comment</strong>
-  <% if user_signed_in? %>
+  <strong>ความคิดเห็น</strong>
+  <% if user_signed_in? && @post.active? %>
     <%= render 'comments/form', post: @post %>
   <% end %>
   <% @comments.each do |comment| %>

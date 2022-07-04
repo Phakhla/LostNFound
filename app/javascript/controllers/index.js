@@ -18,3 +18,5 @@ application.register("my-posts", MyPostsController)
 import SearchPostsController from "./search_posts_controller.js"
 application.register("search-posts", SearchPostsController)
 
+import RadioSelectionController from './radio_selection_controller';
+application.register('radio-selection', RadioSelectionController);

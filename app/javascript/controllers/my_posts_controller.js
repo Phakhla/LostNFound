@@ -2,7 +2,7 @@ import { Controller } from '@hotwired/stimulus';
 
 // Connects to data-controller="my-posts"
 export default class extends Controller {
-  static targets = ['notFoundCheckbox', 'foundCheckbox', 'statusInput'];
+  static targets = ['activeCheckbox', 'inActiveCheckbox', 'statusInput'];
 
   connect() { }
 
@@ -18,12 +18,12 @@ export default class extends Controller {
       statusInput.value = '';
     }
 
-    if (statusInput.value === 'no_found') {
-      this.notFoundCheckboxTarget.checked = true;
-      this.foundCheckboxTarget.checked = false;
-    } else if (statusInput.value === 'found') {
-      this.notFoundCheckboxTarget.checked = false;
-      this.foundCheckboxTarget.checked = true;
+    if (statusInput.value === 'active') {
+      this.activeCheckboxTarget.checked = true;
+      this.inActiveCheckboxTarget.checked = false;
+    } else if (statusInput.value === 'in_active') {
+      this.activeCheckboxTarget.checked = false;
+      this.inActiveCheckboxTarget.checked = true;
     }
 
     form.submit();

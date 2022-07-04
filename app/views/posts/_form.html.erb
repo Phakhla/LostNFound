@@ -2,7 +2,7 @@
 <%= simple_form_for post, data: { controller: 'maps' } do |f| %>
   <%= f.error_notification %>
 
-  <%= f.hidden_field :status, value: 'no_found' %>
+  <%= f.hidden_field :status, value: 'active' %>
   <%= f.hidden_field :category %>
   <%= f.hidden_field :lat, data: { maps_target: "latitude" } %>
   <%= f.hidden_field :lng, data: { maps_target: "longitude" } %>

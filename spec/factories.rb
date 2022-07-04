@@ -13,7 +13,7 @@ FactoryBot.define do
   factory :post do
     name { 'postname' }
     category { 'found_item' }
-    status { 'no_found' }
+    status { 'active' }
     date { Time.zone.now }
     time { Time.zone.now }
     lat { 10.00000 }
