@@ -1,12 +1,12 @@
 <div class="container">
   <%= render 'posts/post', post: @post %>
 </div>
-<div class="container">
-  <strong>ความคิดเห็น</strong>
-  <% if user_signed_in? && @post.active? %>
-    <%= render 'comments/form', post: @post %>
-  <% end %>
+<div class="container mt-5">
+  <p style="font-size: 20px;">
+    <%= @comments.count != 0 ? "ความคิดเห็น(#{@comments.count})" : "ความคิดเห็น" %>
+  </p>
   <% @comments.each do |comment| %>
     <%= render 'comments/comment', post: @post, comment: comment %>
   <% end %>
+  <%= render 'comments/form', post: @post %>
 </div>
