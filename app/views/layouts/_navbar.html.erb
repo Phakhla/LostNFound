@@ -24,16 +24,21 @@
 
         <% if  user_signed_in? %>
           <li class="nav-item ms-3">
-            <div class="dropdown nav-link">
-              <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-user-circle"></i></i> <%= current_user.email %>
+            <div class="dropdown " >
+              <a class="nav-link link-dark border border-1 border-dark rounded-5" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <% if current_user.avatar.attached? %>
+                <%= image_tag(current_user.avatar, style:"width: 40px; height: 40px; object-fit: cover;", class: "rounded-circle") %>&Tab;<%= current_user.username %>&nbsp;&nbsp;<i class='fas fa-chevron-down'></i>
+                <% else %>
+                <img alt="image" class="rounded-circle" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0="
+                style = "width: 40px; height: 40px; object-fit: cover;">&Tab;<%= current_user.username %>&nbsp;&nbsp;<i class='fas fa-chevron-down'></i>
+                <% end %>
               </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <ul class="dropdown-menu dropdown-min-width-1 border border-1 border-dark rounded-5 " aria-labelledby="dropdownMenuLink">
                 <li>
-                  <%= link_to 'โปรไฟล์', edit_user_registration_path, class: 'dropdown-item' %>
+                  <%= link_to 'โปรไฟล์ของฉัน', edit_user_registration_path, class: 'dropdown-item' %>
                 </li>
                 <li>
-                  <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+                  <%= link_to 'ออกจากระบบ', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
                 </li>
               </ul>
             </div>

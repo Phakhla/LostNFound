@@ -1,0 +1,88 @@
+// home page navbar
+.rounded-5 {
+  border-radius: 1.25rem !important;
+}
+
+.dropdown-min-width-1{
+  min-inline-size: 100%;
+  font-size: 14px;
+  padding: 15px;
+}
+
+// home page landing
+hr.style {
+  border: black;
+  border-width: unset;
+  border-color: #000000;
+  color: #000000;
+  background-color: black;
+  }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+  grid-gap: 10px;
+  align-items: stretch;
+
+}
+
+.grid > article {
+  border: #fff;
+  background-color: #f8f8f8;
+  width: 260px;
+  height: fit-content;
+  border-radius: 1.25rem;
+
+}
+
+.grid > article img {
+  width: 260px;
+  height: 200px;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+  object-fit: cover;
+
+}
+
+.grid .text {
+  padding: 20px;
+}
+
+.b {
+  font-size: 22px;
+  font-weight: bolder;
+  white-space: nowrap;
+  width: 22rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1rem;
+
+}
+
+.mt-14{
+  margin-top: 14rem;
+}
+
+
+.col-md-7 {
+  flex: 0 0 auto;
+  width: 21%;
+}
+
+.listposts{
+  margin-bottom: -10rem;
+}
+
+
+
+// This is horizontal scroll
+
+// .scrolling-wrapper {
+//   padding-left: 1rem;
+//   height: fit-content;
+//   overflow-x: scroll;
+//   overflow-y: hidden;
+
+// }
+
+

@@ -3,7 +3,7 @@
 
   if category == 'lost_item'
     link_posts = lost_posts_path(q:, tab:)
-    header = 'ประกาศหาของหาย'
+    header = 'ประกาศตามหาของหาย'
     date_label = 'วันที่หาย'
     location_label = 'สถานที่หาย'
   end
@@ -11,68 +11,56 @@
   if category == 'found_item'
     link_posts = found_posts_path(q:, tab:)
     header = 'ประกาศตามหาเจ้าของ'
-    date_label = 'วันที่เจอ'
+    date_label = 'วันที่พบ'
     location_label = 'สถานที่เจอ'
   end
-%>
 
-<div class="row g-5">
+%>
+<div class="row">
   <div class="col-md-5 col-lg-4 order-md-last">
     <p class="d-flex justify-content-between align-items-center mb-3">
       <span class="text-primary"></span>
-      <span><%= link_to 'ดูรายการทั้งหมด', link_posts %><i class="fa-solid fa-angles-right"></i></span>
+      <span><%= link_to 'ดูรายการทั้งหมด', link_posts %>&nbsp;<i class="fa-solid fa-angles-right"></i></span>
     </p>
   </div>
-
   <div class="col-md-4 col-6">
-    <h4 class="mb-2"><%= header %></h4>
+    <h4 class="mb-3"><%= header %></h4>
   </div>
-
-   <div class=" gap-2 col-lg-4 mx-auto">
+  <div class=" gap-2 col-lg-4 mx-auto">
     <% if tab == 'my_post' %>
       <%= render 'filter', f:, filter:, category: %>
     <% end %>
   </div>
-
-</div>
-
-<hr>
-
-<div class="scrolling-wrapper d-flex flex-nowrap">
+</div><br>
+<div class="d-flex flex-nowrap">
   <% posts.each do |post| %>
-    <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
-      <div class="col-sm-6">
-        <div class="card mb-2">
-          <div class="row no-gutters">
-            <div class="col-md-4 ">
-
-              <% if post.images.attached? %>
-                <% post.images.each do |img| %>
-                  <%= image_tag(img, class: "img-thumbnail" , width: "150px" , hight: "150px") %>
-                <% end %>
-              <% else %>
-                <img alt="image" class="img-thumnail" width="150 px" hight="150px"   src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
-              <% end %>
-            </div>
-
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title"><%= post.name %></h5>
-                <hr>
-                <p class="card-text"><%= date_label %>:<%= post.date %></p>
-                <p class="card-text"><%= location_label %>:<%= post.location %></p>
-                <p class="card-text">	&bull; <%= post.status %></p><br>
-                <p class="card-text">โพสต์เมื่อวันที่:<%= post.created_at %></p>
-                <%= link_to "ดูรายละเอียด", post_path(post),
-                    class: "btn btn-light" %>
-              </div>
-            </div>
-          </div>
+    <div class="grid">
+      <article>
+        <% if post.images.attached? %>
+            <%= image_tag(post.images.order(created_at: :desc).first) %>
+        <% else %>
+          <img alt="image" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
+        <% end %>
+        <div class="text">
+          <div class="b" ><%= post.name %></div>
+          <p><%= date_label %> : <%= post.date.strftime("%d/%m/%y") %></p>
+          <b><i class='fas fa-map-marker-alt' style='font-size:20px'></i>&nbsp;<%= post.location %></b><br>
+          <% if post.active? %>
+            <b style="color: #8bb72f ; font-size: 10;"> &bull; กำลังตามหา</b>
+          <% else %>
+            <b style="color: red; font-size: 10;">ปิดประกาศตามหา</b>
+          <% end %>
+          <br><br>
+          <i style="font-size:14px; color: gray;">โพสต์เมื่อวันที่:<%= post.created_at.localtime.strftime("%d/%m/%y") %></i>
+          <%= link_to "ดูรายละเอียด", post_path(post), class: "btn btn--outline-secondary btn-lg btn-block mt-3" ,style:"width: 100%; border-width: unset;" %>
         </div>
-      </div>
+      </article>
     </div>
   <% end %>
 </div>
+
+
+
 
 <!--<div class="container px-md-0 pt-5">
   <div class="row">

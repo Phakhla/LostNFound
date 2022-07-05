@@ -3,7 +3,7 @@
 <div class="dropdown">
   <button id="dropdownNotification" type="button" class="btn btn-default"
     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-    <i class="fas fa-bell"></i>
+    <i class="fas fa-bell" style="font-size: 24px"></i>
     <div class="d-inline" id="notification_count">
       <%= render 'notifications/count', count: current_user.notifications.unread.count %>
     </div>
