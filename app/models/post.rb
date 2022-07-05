@@ -18,7 +18,6 @@ class Post < ApplicationRecord
   validates :lng, numericality: true
 
   scope :in_active, -> { where(status: %w[found closed]) }
-
   # validates :images,
   #           attached: true,
   #           content_type: { in: %w[image/jpeg image/png], message: 'must be jpeg or png.' },
