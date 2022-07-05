@@ -24,3 +24,7 @@ application.register("search-posts", SearchPostsController)
 
 import RadioSelectionController from './radio_selection_controller';
 application.register('radio-selection', RadioSelectionController);
+
+import PasswordToggleController from './password_toggle_controller';
+application.register('password-toggle', PasswordToggleController);
+

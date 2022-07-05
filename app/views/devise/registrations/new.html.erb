@@ -20,34 +20,38 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field" style = "padding: 10px;">
-        <%= f.label "ชื่อผู้ใช้" %><br />
-        <%= f.text_field :username, autofocus: true, autocomplete: "firstname", class: "form-control", style: "border-color: black;" %>
+        <%= f.label "ชื่อผู้ใช้", style: "padding-bottom:8px" %><br />
+        <%= f.text_field :username, autofocus: true, autocomplete: "firstname", class: "form-control", style: "border-color: black;", :required => true %>
       </div>
 
       <div class="field" style = "padding: 10px;">
-        <%= f.label "อีเมล" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "border-color: black;" %>
+        <%= f.label "อีเมล", style: "padding-bottom:8px" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "border-color: black;", :required => true %>
       </div>
 
-      <div class="field" style = "padding: 10px;">
-        <%= f.label "รหัสผ่าน" %> <i class="fas fa-info-circle"></i>
-        <% if @minimum_password_length %>
-        <% end %><br />
-
-      <div class="card border-dark" style=" color: #FBD034FF; font-size: 25px; border-radius: 10px;">
-        <div class = "d-flex justify-content-around">
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" ,style: "border: 0;"%>
-            <div class="pt-1 pe-3" style="border: 0;">
-              <i class="fas fa-eye" style=" color: black; font-size: 25px;"></i>
-            </div>
+      <div class="field" style = "padding: 10px;" data-controller="password-toggle">
+        <%= f.label "รหัสผ่าน", style: "padding-bottom:8px" %>
+        <div class="tool"><i class="fas fa-info-circle"></i>
+          <span class="tooltiptext">(ใช้อักขระ <%= @minimum_password_length %> ตัวขึ้นไป)</span>
+        </div>
+        <div class="card border-dark" style=" color: #FBD034FF; font-size: 25px; border-radius: 10px;">
+          <div class = "d-flex justify-content-around">
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" ,style: "border: 0;", :required => true, id: "password" %>
+              <div class="pt-1 pe-3" style="border: 0;" >
+                <span><i class="fas fa-eye" style="color:black; font-size: 25px;" id="eye" data-action="click->password-toggle#password"></i></span>
+              </div>
+          </div>
         </div>
       </div>
 
       <div class="actions" style="text-align:center; padding: 20px 0;">
         <%= f.submit "สร้างบัญชี", class: "btn" , style: "background-color:black; color:#FBD034FF; width:100%;" %>
       </div>
+
     <% end %>
     <%= render "devise/shared/links" %>
   </div>
 </div>
+
+
 
