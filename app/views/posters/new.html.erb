@@ -1,0 +1,57 @@
+<%= simple_form_for @post, { url: post_posters_path(@post), method: "get", data: { controller: 'maps' } } do |f| %>
+  <div class = "container pb-5" >
+    <div class = "card p-5" >
+    <h4>สร้างโปสเตอร์</h4>
+    <%= f.error_notification %>
+    <%= f.hidden_field :lat, data: { maps_target: "latitude" } %>
+    <%= f.hidden_field :lng, data: { maps_target: "longitude" } %>
+    <%= f.hidden_field :location, data: { maps_target: "address" } %>
+    <%= content_tag :div, nil, data: { maps_target: "map" } %>
+
+    <% if @post.user.avatar.present? %>
+      <%= f.hidden_field :avatar , value: "#{url_for(@post.user.avatar)}" %>
+    <% else %>
+      <%= f.hidden_field :avatar, value: "https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=" %>
+    <% end %>
+
+    <div class="form-group col-md-12">
+      <%= f.input :name, label: 'หัวข้อประกาศ' %>
+    </div>
+
+    <div class="d-flex justify-content-around">
+      <div class="form-group col-md-10 py-5">
+      <% if @post.images.attached? %>
+        <% @post.images.each do |image| %>
+          <label>
+            <%= f.radio_button :image, polymorphic_url(image), :checked => true %>
+            <%= image_tag(image, style:"width:150px; height:150px") %>
+          </label>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <%= f.input :type_id, :label => "หมวดหมู่", :collection => Type.all.map{ |l| [l.type_name, l.id] }%>
+      </div>
+
+      <div class="col">
+      <%= f.input :date, :label => "วันที่", as: :datetime, html5: true %>
+      </div>
+    </div>
+
+    <%= f.input :detail, as: :text, :input_html => { :rows => 7 , :style => 'height: 100%'}, label: 'รายละเอียดเพิ่มเติม' %>
+
+    <div class="form-group mb-3">
+      <%= f.input :location, label: 'สถานที่', input_html: { data: { maps_target: "field", action: "maps#setAutocomplete" }} %>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <%= link_to "ยกเลิก", "/posts/#{@post.id}", class: "btn btn-secondary"%>
+      <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn-primary" %>
+    </div>
+  <% end %>
+
+  </div>
+</div>

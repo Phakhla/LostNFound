@@ -19,6 +19,12 @@ Rails.application.routes.draw do
   resources :posts, only: %i[new show edit create update destroy] do
     resources :comments, only: %i[create]
 
+    resources :posters, only: %i[new] do
+      collection do
+        get :show
+      end
+    end
+
     collection do
       get :autocomplete
       get :search

@@ -14,8 +14,11 @@ export default class extends Controller {
   }
 
   initializeMap() {
-    this.setMap();
     this.setAutocomplete();
+
+    if (this.hasMapTarget) {
+      this.setMap();
+    }
 
     if (this.latitudeTarget.value && this.longitudeTarget.value) {
       this.setMarker({
@@ -92,9 +95,12 @@ export default class extends Controller {
   setAutocomplete() {
     if (this.autocomplete === undefined) {
       this.autocomplete = new google.maps.places.Autocomplete(this.fieldTarget);
-      this.autocomplete.bindTo('bounds', this.setMap());
       this.autocomplete.setFields(['address_components', 'geometry', 'icon', 'name']);
       this.autocomplete.addListener('place_changed', this.locationChanged.bind(this));
+
+      if (this.hasMapTarget) {
+        this.autocomplete.bindTo('bounds', this.setMap());
+      }
     }
     return this.autocomplete;
   }
@@ -106,13 +112,16 @@ export default class extends Controller {
       return;
     }
 
-    this.setMap().fitBounds(place.geometry.viewport);
-    this.setMap().setCenter(place.geometry.location);
-    this.setMarker(place.geometry.location);
-
     this.addressTarget.value = place.name;
-    this.latitudeTarget.value = place.geometry.location.lat();
-    this.longitudeTarget.value = place.geometry.location.lng();
+
+    if (this.hasMapTarget) {
+      this.setMap().fitBounds(place.geometry.viewport);
+      this.setMap().setCenter(place.geometry.location);
+      this.setMarker(place.geometry.location);
+
+      this.latitudeTarget.value = place.geometry.location.lat();
+      this.longitudeTarget.value = place.geometry.location.lng();
+    }
   }
 
   setAddress(latLng) {

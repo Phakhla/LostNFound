@@ -9,3 +9,42 @@
   width: 100%;
   height: 100%;
 }
+
+.pagesize {
+  background: white;
+  width: 210mm;
+  height: 297mm;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+}
+
+@media print {
+  .pagesize {
+    -webkit-print-color-adjust: exact !important;
+    background-color: red ;
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .pagesize * {
+      visibility: visible;
+  }
+
+  .no-print {
+    visibility: hidden;
+  }
+
+}
+
+.qr-code {
+  img {
+    width: 90px;
+    height: 90px;
+  }
+}
