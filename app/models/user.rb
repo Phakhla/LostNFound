@@ -14,6 +14,8 @@ class User < ApplicationRecord
             size: { less_than_or_equal_to: 5.megabytes, message: 'oversize limited (5MB)' },
             allow_blank: true
 
+  validates :username, presence: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,

@@ -25,7 +25,7 @@
                     <div class="col-sm-4">
                       <div class="field">
                         <%= f.label :username, "ชื่อผู้ใช้" %><br />
-                        <%= f.text_field :username, autofocus: true, style: "width: 100%; border-radius: 4px;" %>
+                        <%= f.text_field :username, autofocus: true, style: "width: 100%; border-radius: 4px;", required: true %>
                       </div>
                     </div>
                     <div class="col-sm-4">
@@ -57,20 +57,18 @@
                     </div>
                     <div class="col-sm-4">
                       <%= f.label :password, "รหัสผ่าน" %><br />
-                      <%= link_to 'เปลี่ยนรหัสผ่าน', password_edit_users_settings_path, class: 'btn btn-dark' %>
+                      <%= link_to 'เปลี่ยนรหัสผ่าน', password_edit_users_settings_path, class: 'btn btn-dark', style: 'color:#FFCC00;' %>
                     </div>
                     <div class="col-sm-8">
                       <div class="field">
                         <%= f.label :address, "ที่อยู่" %><br />
-                        <%= f.text_field :address, autofocus: true, class: "col-lg-11", style: "width: 100%; border-radius: 4px; height: 70px;"%>
+                        <%= f.text_area :address, autofocus: true, class: "col-lg-11", style: "width: 100%; border-radius: 4px; height: 70px;" %>
                       </div>
                     </div>
                     <div class="col-sm-4">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                          ไม่แสดงที่อยู่ของฉัน
-                        </label>
+                        <%= f.check_box :not_show_address %>
+                        <%= f.label 'ไม่แสดงที่อยู่ของฉัน' %>
                       </div>
                     </div>
                   </div>

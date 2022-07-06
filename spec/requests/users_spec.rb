@@ -19,11 +19,11 @@ RSpec.describe 'Users', type: :request do
     it 'Signup' do
       user = {
         email: 'signup@gmail.com',
+        username: 'signup',
         password: 'password',
         password_confirmation: 'password'
       }
       post user_registration_path, params: { user: }
-
       expect(response).to redirect_to(root_path)
     end
   end
