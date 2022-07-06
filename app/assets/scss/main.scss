@@ -1,74 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700;800&display=swap');
-
 @import 'bootstrap/scss/bootstrap';
 @import 'dropzone/src/dropzone';
-
 @import 'custom';
 
 .dz-image img {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
 
 .pagesize {
-  background: white;
-  width: 210mm;
-  height: 297mm;
+  background: #fff;
   display: block;
+  height: 297mm;
   margin: 0 auto;
   margin-bottom: 0.5cm;
+  width: 210mm;
 }
 
 @media print {
   .pagesize {
-    -webkit-print-color-adjust: exact !important;
-    background-color: red ;
-    visibility: visible;
-    position: absolute;
-    top: 0;
+    background-color: #ff0000;
     left: 0;
-    right: 0;
-    padding: 0;
     margin: 0 auto;
+    padding: 0;
+    position: absolute;
+    -webkit-print-color-adjust: exact;
+    right: 0;
+    top: 0;
+    visibility: visible;
   }
 
   .pagesize * {
-      visibility: visible;
+    visibility: visible;
   }
 
   .no-print {
     visibility: hidden;
   }
-
 }
 
 .qr-code {
   img {
-    width: 90px;
     height: 90px;
+    width: 90px;
   }
 }
 
 .tool {
-  position: relative;
   display: inline-block;
+  position: relative;
 }
 
 .tool .tooltiptext {
+  background-color: #FDE89AFF;
+  border-radius: 6px;
+  color: #000;
   font-size: 14px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  position: absolute;
+  text-align: center;
   visibility: hidden;
   width: 150px;
-  background-color: #FDE89AFF;
-  color: black;
-  text-align: center;
-  padding: 5px 10px;
-  border-radius: 6px;
-  position: absolute;
-  margin-left: 10px;
   z-index: 1;
 }
 
 .tool:hover .tooltiptext {
   visibility: visible;
 }
-

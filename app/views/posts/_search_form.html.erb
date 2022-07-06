@@ -4,7 +4,7 @@
     <%= search_form_for @q, url: root_path, data: {controller: "autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
       <div class="box-search">
         <div class="d-md-flex">
-          <div class="flex-grow-1 me-md-3">
+          <div class="flex-grow-1 me-md-3 box-search-item">
             <%= f.search_field :name_cont, data: {autocomplete_target: "input" }, class: "form-control" %>
             <ul class="list-group position-absolute" data-autocomplete-target="results"></ul>
           </div>

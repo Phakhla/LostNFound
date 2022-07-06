@@ -20,15 +20,31 @@ h1 {
   font-size: var(--text-header1);
 }
 
+.text-header1 {
+  font-size: var(--text-header1);
+}
+
 h2 {
   font-size: var(--text-header2);
 }
 
-h3 {
+.text-header2 {
   font-size: var(--text-header2);
 }
 
+h3 {
+  font-size: var(--text-header3);
+}
+
+.text-header3 {
+  font-size: var(--text-header3);
+}
+
 h4 {
+  font-size: var(--text-subtitle);
+}
+
+.text-subtitle {
   font-size: var(--text-subtitle);
 }
 
