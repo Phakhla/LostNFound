@@ -13,6 +13,7 @@ class Post < ApplicationRecord
 
   validates :name, presence: true
   validates :date, presence: true
+  validates :type_id, presence: true
 
   validates :lat, numericality: true
   validates :lng, numericality: true
