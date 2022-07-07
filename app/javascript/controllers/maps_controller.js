@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ['address', 'field', 'map', 'latitude', 'longitude'];
 
   initialize() {
-    this.initialLocation = { lat: 18.7767383, lng: 98.9516685 };
+    this.initialLocation = { lat: 18.804668, lng: 98.955033 };
   }
 
   connect() {
