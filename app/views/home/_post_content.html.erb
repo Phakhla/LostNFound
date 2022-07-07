@@ -2,14 +2,14 @@
   q = @search.present? ? { name_cont: "#{@search}" } : nil
 
   if category == 'lost_item'
-    link_posts = lost_posts_path(q:, tab:)
+    link_posts = lost_posts_path(q:, tab:, filter: { lost_item: { status: filter.dig(:lost_item, :status) } })
     header = 'ประกาศตามหาของหาย'
     date_label = 'วันที่หาย'
     location_label = 'สถานที่หาย'
   end
 
   if category == 'found_item'
-    link_posts = found_posts_path(q:, tab:)
+    link_posts = found_posts_path(q:, tab:, filter: { found_item: { status: filter.dig(:found_item, :status) } })
     header = 'ประกาศตามหาเจ้าของ'
     date_label = 'วันที่พบ'
     location_label = 'สถานที่เจอ'

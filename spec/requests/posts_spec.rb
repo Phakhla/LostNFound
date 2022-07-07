@@ -32,7 +32,7 @@ RSpec.describe 'Posts', type: :request do
 
   describe 'GET /posts/lost' do
     it 'gets lost page' do
-      get lost_posts_path
+      get lost_posts_path, params: { filter: { lost_item: { status: 'in_active' } } }
 
       expect(response.body).to include('<i class="fa-solid fa-arrow-left"></i> ตามหาของหาย')
       expect(response).to have_http_status(:ok)
@@ -60,7 +60,7 @@ RSpec.describe 'Posts', type: :request do
 
   describe 'GET /posts/found' do
     it 'gets found page' do
-      get found_posts_path
+      get found_posts_path, params: { filter: { found_item: { status: 'active' } } }
 
       expect(response.body).to include('<i class="fa-solid fa-arrow-left"></i> ตามหาเจ้าของ')
       expect(response).to have_http_status(:ok)
