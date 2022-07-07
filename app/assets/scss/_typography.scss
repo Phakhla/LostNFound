@@ -67,6 +67,14 @@ p {
   font-weight: 600;
 }
 
+.text-pertitle{
+  font-size: var(--text-pertitle);
+}
+
+.text-small{
+  font-size: var(--text-small);
+}
+
 a {
   color: var(--color-black);
 

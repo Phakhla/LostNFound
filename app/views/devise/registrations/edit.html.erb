@@ -9,16 +9,21 @@
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
               <div class="row">
-                <div class="col-md-5 col-lg-3">
+                <div class="col-md-5 col-lg-3 text-center" style="width: fit-content" data-controller="file-image">
                   <% if current_user.avatar.present? %>
-                    <%= image_tag(current_user.avatar, style:"width: 250px; height: 250px; object-fit: cover; border-radius: 25px; ", class: "card-img-top") %>
+                    <%= image_tag(current_user.avatar, data:{ file_image_target: "image" }, style:"width: 310px; height: 310px; object-fit: cover; border-radius: 25px; ", class: "card-img-top") %>
                   <% else %>
-                    <img alt="image" class="card-img-top" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=" style = "width: 250px; height: 250px; object-fit: cover; border-radius: 25px;">
+                    <img , data-file-image-target="image"  alt="image" class="card-img-top" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=" style = "width: 250px; height: 250px; object-fit: cover; border-radius: 25px;">
                   <% end %>
                   <br>
                   <br>
-                  <%= f.file_field :avatar,  class: "form-control" %>
-                  <label>*ขนาดไฟล์รูปไม่เกิน 500 KB</label>
+                  <div class="image-upload">
+                    <label for="file-input">
+                      <span class="btn btn--secondary">อัพเดตรูปโปรไฟล์</span>
+                    </label>
+                    <%= f.file_field :avatar, id: "file-input", style: "display: none;", data:{ action: "change->file-image#previewImage", file_image_target: "input" } %>
+                  </div>
+                  <p class="mt-3 color--red text-small"  >*ขนาดไฟล์รูปไม่เกิน 500 KB</p>
                 </div>
                 <div class="col-md-5 col-lg-8">
                   <div class="row g-5">

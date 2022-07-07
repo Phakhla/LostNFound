@@ -28,3 +28,5 @@ application.register('radio-selection', RadioSelectionController);
 import PasswordToggleController from './password_toggle_controller';
 application.register('password-toggle', PasswordToggleController);
 
+import FileImageController from "./file_image_controller"
+application.register('file-image', FileImageController);
