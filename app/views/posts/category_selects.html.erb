@@ -4,13 +4,26 @@
       <h1>เลือกประเภทประกาศ</h1>
     </div>
   </div>
+  <% if user_signed_in? %>
+    <div class="row">
+      <div class="col">
+        <%= link_to "ตามหาของ", new_post_path(category: 'lost_item'), class: "btn btn-primary" %>
+      </div>
+      <div class="col">
+        <%= link_to "หาเจ้าของ", new_post_path(category: 'found_item'), class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
 
-  <div class="row">
-    <div class="col">
-      <%= link_to "ตามหาของ", new_post_path(category: 'lost_item'), class: "btn btn-primary" %>
+  <% if !user_signed_in? %>
+    <div class="row">
+      <div class="col">
+        <%= link_to "ตามหาของ", new_user_session_path, class: "btn btn-primary" %>
+      </div>
+      <div class="col">
+        <%= link_to "หาเจ้าของ", new_user_session_path, class: "btn btn-primary" %>
+      </div>
     </div>
-    <div class="col">
-      <%= link_to "หาเจ้าของ", new_post_path(category: 'found_item'), class: "btn btn-primary" %>
-    </div>
-  </div>
+  <% end %>
+
 </div>
