@@ -1,29 +1,24 @@
 <% @posts.each do |post| %>
-      <div class="col">
-        <div class="card mb-3" style="max-width: 540px;">
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <% if post.images.attached? %>
-                <% post.images.each do |img| %>
-                  <%= image_tag(img, style:"width:150px; height:150px") %>
-                <% end %>
-              <% else %>
-                <img alt="image" class="" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" style = "width: 100px; height: 300px; object-fit: cover;">
-              <% end %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title"><%= post.name %></h5>
-                <hr>
-                <p class="card-text">วันที่เจอ:<%= post.date %></p>
-                <p class="card-text">สถานที่ที่เจอ:<%= post.location %></p>
-                <p class="card-text">	&bull; <%= post.status %></p><br>
-                <p class="card-text">โพสต์เมื่อวันที่:<%= post.date %></p>
-                <%= button_to "ดูรายละเอียด", post, :id => "open-contacts-dialog-btn",
-                :class => "inbox-sf-add-btn tip", :method => :get %>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="grid">
+    <article>
+      <% if post.images.attached? %>
+        <%= image_tag(post.images.order(created_at: :desc).first) %>
+      <% else %>
+        <img alt="image" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
+      <% end %>
+      <div class="text">
+        <div class="b" ><%= post.name %></div>
+        <p><%= post.date.strftime("%d/%m/%y") %></p>
+        <b><i class='fas fa-map-marker-alt' style='font-size:20px'></i>&nbsp;<%= post.location %></b><br>
+        <% if post.active? %>
+          <b style="color: #8bb72f ; font-size: 10;"> &bull; กำลังตามหา</b>
+        <% else %>
+          <b style="color: red; font-size: 10;">ปิดประกาศตามหา</b>
+        <% end %>
+        <br><br>
+        <i style="font-size:14px; color: gray;">โพสต์เมื่อวันที่:<%= post.created_at.localtime.strftime("%d/%m/%y") %></i>
+          <%= link_to "ดูรายละเอียด", post_path(post), class: "btn btn--outline-secondary btn-lg btn-block mt-3" ,style:"width: 100%; border-width: unset;" %>
       </div>
-    <% end %>
+    </article>
+  </div>
+<% end %>

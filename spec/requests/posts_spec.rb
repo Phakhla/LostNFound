@@ -34,7 +34,7 @@ RSpec.describe 'Posts', type: :request do
     it 'gets lost page' do
       get lost_posts_path, params: { filter: { lost_item: { status: 'in_active' } } }
 
-      expect(response.body).to include('<i class="fa-solid fa-arrow-left"></i> ตามหาของหาย')
+      expect(response.body).to include('<h4>รายการประกาศตามหาของทั้งหมด(0)</h4>')
       expect(response).to have_http_status(:ok)
     end
 
@@ -54,7 +54,7 @@ RSpec.describe 'Posts', type: :request do
       get lost_posts_path, params: { filter: { lost_item: { status: 'in_active' } } }
 
       expect(response.body).to include(post.name)
-      expect(response.body).to include('closed')
+      expect(response).to have_http_status(:ok)
     end
   end
 

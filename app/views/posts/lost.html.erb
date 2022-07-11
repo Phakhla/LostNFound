@@ -1,25 +1,26 @@
 <%= render 'posts/search_form' %>
-<div style="margin:30px; padding:20px; border:20px">
-  <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-    <div class="btn-group" role="group" aria-label="First group">
-    <% if @tab == 'my_post' %>
-      <%= link_to 'ทั้งหมด', root_path, class: "btn btn-primary" %>
-      <%= link_to 'รายการของฉัน', lost_posts_path(tab: 'my_post'), class: "btn btn-primary" %>
-    <% end %>
+<div class="container listposts mt-14">
+  <div style="margin:30px; padding:20px; border:20px">
+    <div class="row justify-content-between align-items-center mb-5">
+      <% if @tab == 'my_post' %>
+        <div class="col-md-7 order-md-last">
+          <div class="btn btn--primary" >
+            <i class='fas fa-plus-circle'></i>
+            <%= link_to "สร้างโพสต์ประกาศ", category_selects_posts_path %>
+          </div>
+        </div>
+        <div class="col-md-5  btn-group" >
+          <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary" %>
+          <%= link_to 'รายการของฉัน', lost_posts_path(tab: 'my_post'), class: "btn btn--secondary" %>
+        </div>
+      <% end %>
     </div>
-
-  </div>
-</div>
-<div style="margin:30px; padding:20px; border:20px">
-  <div class="container">
-    <div class="row ">
+    <div class="row justify-content-between align-items-center mb-5">
       <%= form_with(url: lost_posts_path, method: :get, id: 'homeFilter') do |f| %>
         <%= hidden_field_tag 'tab', @tab %>
-        <div class="row justify-content-md">
-          <div class="fs-2 col col-lg-2">
-            <%= link_to root_path do %>
-              <i class="fa-solid fa-arrow-left"></i> ตามหาของหาย
-            <% end %>
+        <div class="row justify-content-md border-bottom pb-4 mb-0">
+          <div class="col-lg-4">
+            <h4>รายการประกาศตามหาของทั้งหมด(<%= @posts.count %>)</h4>
           </div>
           <div class="col-md-auto">
             <% if @tab == 'my_post' %>
@@ -27,8 +28,8 @@
             <% end %>
           </div>
         </div>
-        <hr>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <br>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
           <%= render 'posts/card_content', posts: @losts, category: 'lost_item', tab: @tab, filter: @filter, f:  %>
         </div>
       <% end %>
