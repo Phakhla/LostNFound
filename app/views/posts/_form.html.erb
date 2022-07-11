@@ -27,7 +27,7 @@
           <%= f.input :name, input_html: { data: { post_preview_target: 'nameInput' } }, label: "หัวข้อประกาศ" %><br/>
           <div class="row g-5">
             <div class="col-sm-4">
-              <%= f.input :type_id, :label => "หมวดหมู่", :collection => Type.all.map{ |l| [l.type_name, l.id] }, include_blank: 'เลือก' %>
+              <%= f.input :type_id, :label => "ประเภท", :collection => Type.all.map{ |l| [l.type_name, l.id] }, include_blank: 'เลือก' %>
             </div>
             <div class="col-sm-4">
               <%= f.input :date, as: :datetime, html5: true, input_html: { data: { post_preview_target: 'dateInput' } }, label: "วันที่ทำหาย" %>

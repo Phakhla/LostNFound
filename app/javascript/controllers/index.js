@@ -18,7 +18,6 @@ application.register("my-posts", MyPostsController)
 import PostPreviewController from "./post_preview_controller.js"
 application.register("post-preview", PostPreviewController)
 
-
 import SearchPostsController from "./search_posts_controller.js"
 application.register("search-posts", SearchPostsController)
 
@@ -30,3 +29,9 @@ application.register('password-toggle', PasswordToggleController);
 
 import FileImageController from "./file_image_controller"
 application.register('file-image', FileImageController);
+
+import PosterValidateController from './poster_validate_controller';
+application.register('poster-validate', PosterValidateController);
+
+
+
