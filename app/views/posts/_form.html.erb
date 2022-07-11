@@ -44,7 +44,10 @@
           </div>
           <label>*สามารถอัพโหลดรูปได้ไม่เกิน 10 รูป/ขนาดรูป 1080x720 px และขนาดไฟล์ไม่เกิน 500 KB</label><br/>
           <br>
-          <%= f.input :detail, input_html: { data: { post_preview_target: 'detailInput' } }, id: 'img', label: "รายละเอียดเพิ่มเติม" %>
+          <div class="mb-3">
+            <%= f.label :detail, "รายละเอียดเพิ่มเติม", class: 'form-label' %>
+            <%= f.text_area :detail, class: 'form-control form-textarea', rows: 5, input_html: { data: { post_preview_target: 'detailInput' } }, id: 'img' %>
+          </div>
           <br>
           <div class="mt-3">
             <label class="form-label">สถานที่หาย</label>
