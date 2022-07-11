@@ -3,10 +3,16 @@
 </div>
 <div class="container mt-5">
   <p style="font-size: 20px;">
-    <%= @comments.count != 0 ? "ความคิดเห็น(#{@comments.count})" : "ความคิดเห็น" %>
+    <% if @post.active? && @comments.count == 0 %>
+      ความคิดเห็น
+    <% elsif @comments.count != 0 %>
+      ความคิดเห็น(<%= @comments.count %>)
+    <% end %>
   </p>
   <% @comments.each do |comment| %>
     <%= render 'comments/comment', post: @post, comment: comment %>
   <% end %>
-  <%= render 'comments/form', post: @post %>
+  <% if @post.active? %>
+    <%= render 'comments/form', post: @post %>
+  <% end %>
 </div>
