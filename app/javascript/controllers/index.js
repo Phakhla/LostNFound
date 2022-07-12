@@ -35,3 +35,6 @@ application.register('poster-validate', PosterValidateController);
 
 import SearchFormController from './search_form_controller';
 application.register('search-form', SearchFormController);
+
+import DatetimeController from './datetime_controller';
+application.register('datetime', DatetimeController);

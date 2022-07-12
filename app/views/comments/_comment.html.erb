@@ -13,12 +13,11 @@
           <p>
             <p>
               <span class="user-comment fw-bold">
-                <%= comment.user.firstname %>
-                <%= comment.user.lastname %> :
+                <%= comment.user.username %> :
               </span>
               <%= comment.content %>
             </p>
-            <%= comment.created_at.strftime("%d %B %Y | %H:%M") %>
+            <p class="text-small" data-controller="datetime" data-datetime-date-value="<%= comment.created_at %>" data-datetime-target="datetimeConvert"></p>
           </p>
         </div>
       </div>
