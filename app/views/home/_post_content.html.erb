@@ -3,14 +3,14 @@
 
   if category == 'lost_item'
     link_posts = lost_posts_path(q:, tab:, filter: { lost_item: { status: filter.dig(:lost_item, :status) } })
-    header = 'ประกาศตามหาของหาย'
+    header = 'โพสต์ตามหาของหาย'
     date_label = 'วันที่หาย'
     location_label = 'สถานที่หาย'
   end
 
   if category == 'found_item'
     link_posts = found_posts_path(q:, tab:, filter: { found_item: { status: filter.dig(:found_item, :status) } })
-    header = 'ประกาศตามหาเจ้าของ'
+    header = 'โพสต์ตามหาเจ้าของ'
     date_label = 'วันที่พบ'
     location_label = 'สถานที่เจอ'
   end
@@ -32,32 +32,41 @@
     <% end %>
   </div>
 </div><br>
-<div class="d-flex flex-nowrap">
-  <% posts.each do |post| %>
-    <div class="grid">
-      <article>
-        <% if post.images.attached? %>
-            <%= image_tag(post.images.order(created_at: :desc).first) %>
-        <% else %>
-          <img alt="image" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
-        <% end %>
-        <div class="text">
-          <div class="b" ><%= post.name %></div>
-          <p><%= date_label %> : <%= post.date.strftime("%d/%m/%y") %></p>
-          <b><i class='fas fa-map-marker-alt' style='font-size:20px'></i>&nbsp;<%= post.location %></b><br>
-          <% if post.active? %>
-            <b style="color: #8bb72f ; font-size: 10;"> &bull; กำลังตามหา</b>
+<% if posts.present? %>
+  <div class="d-flex flex-nowrap">
+    <% posts.each do |post| %>
+      <div class="grid">
+        <article>
+          <% if post.images.attached? %>
+              <%= image_tag(post.images.order(created_at: :desc).first) %>
           <% else %>
-            <b style="color: red; font-size: 10;">ปิดประกาศตามหา</b>
+            <img alt="image" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
           <% end %>
-          <br><br>
-          <i style="font-size:14px; color: gray;">โพสต์เมื่อวันที่:<%= post.created_at.localtime.strftime("%d/%m/%y") %></i>
-          <%= link_to "ดูรายละเอียด", post_path(post), class: "btn btn--outline-secondary btn-lg btn-block mt-3" ,style:"width: 100%; border-width: unset;" %>
-        </div>
-      </article>
+          <div class="text">
+            <div class="b" ><%= post.name %></div>
+            <p><%= date_label %> : <%= post.date.strftime("%d/%m/%y") %></p>
+            <b><i class='fas fa-map-marker-alt' style='font-size:20px'></i>&nbsp;<%= post.location %></b><br>
+            <% if post.active? %>
+              <b style="color: #8bb72f ; font-size: 10;"> &bull; กำลังตามหา</b>
+            <% else %>
+              <b style="color: red; font-size: 10;">ปิดประกาศตามหา</b>
+            <% end %>
+            <br><br>
+            <i style="font-size:14px; color: gray;">โพสต์เมื่อวันที่:<%= post.created_at.localtime.strftime("%d/%m/%y") %></i>
+            <%= link_to "ดูรายละเอียด", post_path(post), class: "btn btn--outline-secondary btn-lg btn-block mt-3" ,style:"width: 100%; border-width: unset;" %>
+          </div>
+        </article>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="bell-item">
+      <i class="fa-regular fa-bell-on"></i>
+      <p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 
 

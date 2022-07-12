@@ -10,19 +10,6 @@ RSpec.describe 'Homes', type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'gets search result' do
-      found = create(:post, name: 'test', category: 'found_item')
-      lost = create(:post, name: 'test', category: 'lost_item')
-
-      q = { name_cont: 'test' }
-
-      get root_path, params: { q: }
-
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to include(found.name)
-      expect(response.body).to include(lost.name)
-    end
-
     it 'gets lost_item with filter' do
       lost = create(:post, category: 'lost_item', status: 'closed')
 
@@ -55,6 +42,21 @@ RSpec.describe 'Homes', type: :request do
       expect(response.body).to include(lost.name.to_s)
       expect(response.body).to include(lost.date.strftime('%d/%m/%y').to_s)
       expect(response.body).to include(lost.location.to_s)
+    end
+  end
+
+  describe 'GET Search Index' do
+    it 'gets post with search' do
+      post = create(:post)
+
+      get root_path, params: { q: { name_cont: 'postname' } }
+
+      expect(response.body).to include(post.name)
+    end
+
+    it 'not found search' do
+      get root_path, params: { q: { name_cont: 'test' } }
+      expect(response.body).to include('<p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>')
     end
   end
 end

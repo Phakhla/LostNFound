@@ -38,22 +38,25 @@ RSpec.describe 'Posts', type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'gets lost page with search' do
+    it 'gets lost_item with search' do
       lost = create(:post,  name: 'test', category: 'lost_item')
 
-      q = { name_cont: 'test' }
-
-      get lost_posts_path, params: { q: }
+      get lost_posts_path, params: { q: { name_cont: 'test' } }
 
       expect(response.body).to include(lost.name)
     end
 
+    it 'not found search' do
+      get lost_posts_path, params: { q: { name_cont: 'test' } }
+      expect(response.body).to include('<p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>')
+    end
+
     it 'gets lost with filter' do
-      post = create(:post, name: 'test', category: 'lost_item', status: 'closed')
+      lost = create(:post, name: 'test', category: 'lost_item', status: 'closed')
 
       get lost_posts_path, params: { filter: { lost_item: { status: 'in_active' } } }
 
-      expect(response.body).to include(post.name)
+      expect(response.body).to include(lost.name)
       expect(response).to have_http_status(:ok)
     end
   end
@@ -73,6 +76,11 @@ RSpec.describe 'Posts', type: :request do
       get found_posts_path, params: { q: }
 
       expect(response.body).to include(found.name)
+    end
+
+    it 'not found search' do
+      get found_posts_path, params: { q: { name_cont: 'test' } }
+      expect(response.body).to include('<p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>')
     end
 
     it 'gets found with filter' do
