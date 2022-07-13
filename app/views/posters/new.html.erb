@@ -62,7 +62,9 @@
     </div>
 
     <div class="form-group mb-5 col-md-9">
-      <%= f.input :location, label: 'สถานที่', input_html: { data: { maps_target: "field", action: "maps#setAutocomplete" }}, :label_html => { :class => 'font-weight600' }, input_html: { data: { poster_validate_target: 'location'}} %>
+      <%= f.input :location, label: 'สถานที่',
+        input_html: { data: { maps_target: "field", action: "maps#setAutocomplete", poster_validate_target: 'location' }},
+        label_html: { class: 'font-weight600' } %>
       <div class="alert alert-danger alert-dismissible fade show d-none" role="alert" id="alertlo">
         กรุณากรอกสถานที่
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

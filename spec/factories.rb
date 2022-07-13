@@ -16,8 +16,8 @@ FactoryBot.define do
     status { 'active' }
     date { Time.zone.now }
     time { Time.zone.now }
-    lat { 10.00000 }
-    lng { 10.00000 }
+    lat { 18.804668 }
+    lng { 98.955033 }
     detail { 'detailname' }
     images { [Rack::Test::UploadedFile.new('spec/fixtures/files/user-icon.png')] }
     association :user

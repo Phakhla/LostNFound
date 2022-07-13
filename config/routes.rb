@@ -30,10 +30,11 @@ Rails.application.routes.draw do
 
     collection do
       get :autocomplete
-      get :search
       get :lost
       get :found
       get :category_selects
+
+      post :search
     end
   end
 

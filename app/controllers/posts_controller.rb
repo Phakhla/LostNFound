@@ -3,8 +3,8 @@
 class PostsController < ApplicationController
   before_action :set_tab, only: %i[lost found]
   before_action :set_filter, only: %i[lost found]
-  before_action :load_post, only: %i[show edit update destroy]
   before_action :load_posts, only: %i[lost found]
+  before_action :load_post, only: %i[show edit update destroy]
   before_action :load_comments, only: %i[show]
   before_action :load_user, only: %i[show]
   before_action :mark_all_comments_as_read, only: %i[show]
@@ -45,6 +45,7 @@ class PostsController < ApplicationController
   def search
     @q = Post.ransack(params[:q])
     @posts = @q.result
+    @posts = sort_by_coordinates
 
     @posts = @posts.page(params[:page]).per(4)
   end
@@ -101,6 +102,13 @@ class PostsController < ApplicationController
     status = @filter.dig(category, :status)
     posts = status.present? ? @posts.send(status.to_sym) : @posts
     posts.where(category:).latest.page(params[:page]).per(10)
+  end
+
+  def sort_by_coordinates
+    @lat = params[:lat]
+    @lng = params[:lng]
+
+    @posts.order_nearest(@lat, @lng)
   end
 
   def post_params

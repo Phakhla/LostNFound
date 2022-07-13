@@ -1,6 +1,6 @@
 <div class="row d-flex justify-content-center search-form">
   <div class="col-md-9">
-  <h2 class="text-center">คุณกำลังมองหาอะไร ...</h2>
+    <h2 class="text-center">คุณกำลังมองหาอะไร ...</h2>
     <%= search_form_for @q, url: root_path, data: {controller: "autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
       <div class="box-search">
         <div class="d-md-flex">
@@ -14,9 +14,19 @@
       </div>
     <% end %>
 
-      <p class="text-decoration-underline mt-4 pointer" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ค้นหาขั้นสูงและฟิลเตอร์</p>
+    <p class="text-decoration-underline mt-4 pointer" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ค้นหาขั้นสูงและฟิลเตอร์</p>
 
-      <%= search_form_for @q|| Post.ransack , url: search_posts_path , method: "GET", html: { class: 'form-inline' }, data: {controller: "search-form autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
+    <%= search_form_for @q|| Post.ransack, url: search_posts_path,
+      html: { class: 'form-inline', method: :post },
+      data: {
+        controller: "search-form autocomplete maps",
+        autocomplete_url_value: autocomplete_posts_path
+      } do |f| %>
+
+      <%= hidden_field_tag :lat, @lat, data: { maps_target: "latitude", search_form_target: 'latitude' } %>
+      <%= hidden_field_tag :lng, @lng, data: { maps_target: "longitude", search_form_target: 'longitude' } %>
+      <%= hidden_field_tag :location, '', data: { maps_target: "address" } %>
+
       <div class="collapse mt-5" id="collapseExample">
         <hr>
         <div class="alert alert-danger d-none" id="categoriesAlert">กรุณาเลือกประเภท</div>
@@ -27,14 +37,14 @@
           <div class="col-md-6 col-lg-5 col-xl-3">
             <label>
               <div class="checkboxitem d-flex align-items-center">
-                <%= check_box_tag('q[category_eq_any][]', 1, false, data: { search_form_target: 'lostCheckbox' }) %> ประกาศหาของหาย
+                <%= check_box_tag('q[category_eq_any][]', 1, @q.category_eq_any&.include?(1) || false, data: { search_form_target: 'lostCheckbox' }) %> ประกาศหาของหาย
               </div>
             </label>
           </div>
           <div class="col-md-6 col-lg-5 col-xl-3 mt-5 mt-md-0">
             <label>
               <div class="checkboxitem d-flex align-items-center">
-                <%= check_box_tag('q[category_eq_any][]', 0, false, data: { search_form_target: 'foundCheckbox' }) %> ประกาศตามหาเจ้าของ
+                <%= check_box_tag('q[category_eq_any][]', 0, @q.category_eq_any&.include?(0)  || false, data: { search_form_target: 'foundCheckbox' }) %> ประกาศตามหาเจ้าของ
               </div>
             </label>
           </div>
@@ -71,6 +81,23 @@
             <%= f.date_field :date_lteq, class: 'form-control'  %>
           </div>
         </div>
+
+        <div class="mt-5 alert alert-danger d-none" id="mapAlert">กรุณาระบุสถานที่</div>
+        <div class="row mt-5">
+          <div class="col-lg-2 d-flex align-items-center">
+            <%= f.label "สถานที่ :" %>
+          </div>
+          <div class="col-lg-10 col-xl-6">
+            <%= text_field :map, :field, class: 'form-control', data: { maps_target: "field", action: "keydown->maps#preventSubmit" } %>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-12">
+            <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->maps#initializeMap', maps_target: "map" }, class: 'map' %>
+          </div>
+        </div>
+
         <div class="pt-5"></div>
         <div class="d-md-flex mt-5">
           <div class="flex-grow-1 d-flex align-items-center">
@@ -81,7 +108,7 @@
           <div class="me-md-3 d-grid mt-5 mt-md-0"><%= link_to "ยกเลิก", :back, class: "btn btn--outline-secondary", data: { bs_toggle: 'collapse', bs_target: '#collapseExample' } %></div>
           <div class="d-grid mt-5 mt-md-0"><%= f.submit "ตกลง", class: "btn btn--primary", data: { action: 'search-form#validateForm' } %></div>
         </div>
-      <%end %>
-    </div>
+      </div>
+    <%end %>
   </div>
 </div>

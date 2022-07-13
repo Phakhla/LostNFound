@@ -21,12 +21,18 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
-  describe 'GET /posts/search' do
-    it 'gets result page' do
-      get search_posts_path
+  describe 'POST /posts/search' do
+    it 'show result search' do
+      q = {
+        category_eq_any: [Post.categories[my_post.category]],
+        name_cont: my_post.name,
+        type_id_eq: my_post.type_id
+      }
 
-      expect(response.body).to include('<h1>ผลลัพธ์การค้นหา</h1>')
+      post search_posts_path, params: { lat: my_post.lat, lng: my_post.lng, q: }
+
       expect(response).to have_http_status(:ok)
+      expect(response.body).to include(my_post.name)
     end
   end
 
@@ -154,21 +160,6 @@ RSpec.describe 'Posts', type: :request do
       get post_path(my_post)
 
       expect(user.notifications.unread.count).to eq(0)
-    end
-  end
-
-  describe 'Advance Search Modal' do
-    it 'return result page' do
-      q = {
-        category_eq_any: ['0'],
-        name_cont: 'test',
-        type_id_eq: '1',
-        date_gteq: '2022-06-15',
-        date_lteq: '2022-06-24'
-      }
-      get search_posts_path(q)
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to include(my_post.name)
     end
   end
 

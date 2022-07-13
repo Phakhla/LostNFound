@@ -25,6 +25,16 @@ class Post < ApplicationRecord
   #           size: { less_than_or_equal_to: 5.megabytes, message: 'oversize limited (5MB)' },
   #           limit: { max: 4, message: 'over limited(4 files)' }
 
+  def self.order_nearest(lat, lng)
+    sql = sanitize_sql_array(
+      [
+        '((posts.lat - :lat) * (posts.lat - :lat)) + ((posts.lng - :lng) * (posts.lng - :lng)) ASC',
+        { lat:, lng: }
+      ]
+    )
+    order(Arel.sql(sql))
+  end
+
   def owner?(user)
     user_id == user.id
   end
