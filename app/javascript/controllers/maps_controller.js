@@ -43,8 +43,21 @@ export default class extends Controller {
       this.longitudeTarget.value = mapsMouseEvent.latLng.lng();
     });
 
+    const controlDiv = document.createElement('div');
+
     const locationButton = document.createElement('button');
-    locationButton.textContent = 'Current Location';
+    locationButton.style.backgroundColor = '#fff';
+    locationButton.style.border = 'none';
+    locationButton.style.outline = 'none';
+    locationButton.style.width = '28px';
+    locationButton.style.height = '28px';
+    locationButton.style.borderRadius = '2px';
+    locationButton.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
+    locationButton.style.cursor = 'pointer';
+    locationButton.style.marginRight = '10px';
+    locationButton.style.padding = '0px';
+    locationButton.title = 'Your Location';
+    controlDiv.appendChild(locationButton);
     locationButton.setAttribute('type', 'button');
     locationButton.setAttribute('data-action', 'click->maps#preventSubmit');
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
