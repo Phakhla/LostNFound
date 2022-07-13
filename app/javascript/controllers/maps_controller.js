@@ -60,8 +60,29 @@ export default class extends Controller {
     controlDiv.appendChild(locationButton);
     locationButton.setAttribute('type', 'button');
     locationButton.setAttribute('data-action', 'click->maps#preventSubmit');
-    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+
+    const locationIcon = document.createElement('div');
+    locationIcon.style.margin = '5px';
+    locationIcon.style.width = '18px';
+    locationIcon.style.height = '18px';
+    locationIcon.style.backgroundImage = 'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-1x.png)';
+    locationIcon.style.backgroundSize = '180px 18px';
+    locationIcon.style.backgroundPosition = '0px 0px';
+    locationIcon.style.backgroundRepeat = 'no-repeat';
+    locationIcon.id = 'you_location_img';
+    locationButton.appendChild(locationIcon);
+
+    google.maps.event.addListener(this.map, 'dragend', () => {
+      $('#you_location_img').css('background-position', '0px 0px');
+    });
+
     locationButton.addEventListener('click', () => {
+      let imgX = '0';
+      const animationInterval = setInterval(() => {
+        if (imgX === '-18') imgX = '0';
+        else imgX = '-18';
+        $('#you_location_img').css('background-position', `${imgX}px 0px`);
+      }, 500);
       // Browser doesn't support Geolocation
       if (!navigator.geolocation) {
         return this.handleLocationError(false);
@@ -75,6 +96,9 @@ export default class extends Controller {
             lng: position.coords.longitude,
           };
 
+          clearInterval(animationInterval);
+          $('#you_location_img').css('background-position', '-144px 0px');
+
           this.setMap().setCenter(location);
           this.setMarker(location);
 
@@ -87,6 +111,9 @@ export default class extends Controller {
         },
       );
     });
+
+    controlDiv.index = 1;
+    this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
 
     return this.map;
   }
