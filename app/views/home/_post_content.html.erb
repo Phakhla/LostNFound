@@ -16,20 +16,20 @@
   end
 
 %>
-<div class="row">
-  <div class="col-md-5 col-lg-4 order-md-last">
-    <p class="d-flex justify-content-between align-items-center mb-3">
+<div class="row mt-5">
+  <div class="d-md-flex">
+    <div class="">
+      <h4 class="mb-3"><%= header %></h4>
+    </div>
+    <div class="flex-grow-1 mt-2">
+      <% if tab == 'my_post' %>
+      <%= render 'filter', f:, filter:, category: %>
+    <% end %>
+    </div>
+    <p class="d-flex justify-content-between align-items-center mb-3 mt-5 mt-md-0">
       <span class="text-primary"></span>
       <span><%= link_to 'ดูรายการทั้งหมด', link_posts %>&nbsp;<i class="fa-solid fa-angles-right"></i></span>
     </p>
-  </div>
-  <div class="col-md-4 col-6">
-    <h4 class="mb-3"><%= header %></h4>
-  </div>
-  <div class=" gap-2 col-lg-4 mx-auto">
-    <% if tab == 'my_post' %>
-      <%= render 'filter', f:, filter:, category: %>
-    <% end %>
   </div>
 </div><br>
 <% if posts.present? %>

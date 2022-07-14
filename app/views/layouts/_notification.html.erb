@@ -1,7 +1,7 @@
 <%= turbo_stream_from dom_id(current_user, :notification)  %>
 
 <div class="dropdown">
-  <button id="dropdownNotification" type="button" class="btn btn-default"
+  <button id="dropdownNotification" type="button" class="btn btn-default px-0 px-lg-auto"
     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
     <i class="fas fa-bell" style="font-size: 24px"></i>
     <div class="d-inline" id="notification_count">

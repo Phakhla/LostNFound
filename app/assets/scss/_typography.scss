@@ -95,6 +95,20 @@ a {
   font-weight: 800;
 }
 
+@media (max-width: 767.98px) {
+  h2 {
+    font-size: 32px;
+  }
+
+  .text-header2 {
+    font-size: 32px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+}
+
 @media (max-width: 1023.89px) {
   h2 {
     font-size: var(--text-header2);

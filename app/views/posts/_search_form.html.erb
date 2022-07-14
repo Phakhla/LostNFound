@@ -1,6 +1,14 @@
 <div class="row d-flex justify-content-center search-form">
   <div class="col-md-9">
-    <h2 class="text-center">คุณกำลังมองหาอะไร ...</h2>
+    <div class="d-flex justify-content-center me-3 mb-5">
+      <h2 class="text-header2 text-center">
+        คุณกำลังมองหาอะไร
+      </h2>
+      <div class="ms-5 align-self-end pb-4">
+        <div class="dot-typing"></div>
+      </div>
+    </div>
+
     <%= search_form_for @q, url: root_path, data: {controller: "autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
       <div class="box-search">
         <div class="d-md-flex">
