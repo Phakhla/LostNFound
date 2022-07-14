@@ -5,23 +5,23 @@
     </div>
 
     <div class = "printbody" style = "padding: 30px; height: 262mm;">
-      <%= wicked_pdf_image_tag(@p["image"], style:"width: 100%; height:550px;") %>
+      <%= image_tag(@p["image"], style:"width: 100%; height:550px;") %>
 
       <div class="row">
-        <b><p style = "text-align: center; font-size: 40px; text-decoration: underline;"><%= @p["name"] %></p></b>
+        <b><p style = "text-align: center; font-size: 40px; text-decoration: underline;"><%= @post.name %></p></b>
       </div>
 
       <div class="row">
         <div class="col">
           <b><p style = "font-size: 20px; text-align: center;">
-            <%= @post.lost_item? ? 'วันที่หาย: ': 'วันที่เจอ: ' %><%= @p["date"].to_date.strftime("%d/%m/%y") %>
+            <%= @post.lost_item? ? 'วันที่หาย: ': 'วันที่เจอ: ' %><%= @post.date.strftime("%d/%m/%y") %>
           </p></b>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <b><p style = "font-size: 20px; text-align: center;">สถานที่: <%= @p["location"] %></p></b>
+          <b><p style = "font-size: 20px; text-align: center;">สถานที่: <%= @post.location %></p></b>
         </div>
       </div>
 
@@ -34,24 +34,21 @@
       <div class = "row" style = "display: -webkit-box; display: -webkit-flex; display: flex;" >
         <div style = "margin-right: 5%; padding-top: 20px;">
           <% avatar_url = @post.user.avatar.attached? ? polymorphic_url(@post.user.avatar) : 'https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=' %>
-          <p class="text-start"><%= wicked_pdf_image_tag(avatar_url, style:"width: 40px; height: 40px; object-fit: cover; border-radius: 50%;")  %></p>
+          <p class="text-start"><%= image_tag(avatar_url, style:"width: 40px; height: 40px; object-fit: cover; border-radius: 50%;")  %></p>
         </div>
         <div style = "padding-top: 30px;">
           <b><%= @post.user.username %></b>
           <div class = "col" style = "display: -webkit-box; display: -webkit-flex; display: flex;">
-            <div style = "margin-right: 5%;">
-              <strong>เบอร์โทร:</strong> <%= @post.user.tel %>
+            <div style = "width: 200px; margin-right: 5%;">
+              <strong>ติดต่อ: </strong><strong>tel:</strong> <%= @post.user.tel %>
             </div>
-            <div style = "padding-right: 5%;">
-              <strong>facebook:</strong>
-            </div>
-            <div style = "padding-right: 350px;">
-              <%= @post.user.fblink %>
+            <div style = "width: 500px;">
+              <strong>facebook:</strong> <%= @post.user.facebook %>
             </div>
           </div>
         </div>
 
-        <div class="qr-code" style="padding-top: 15px;">
+        <div class="qr-code" style="padding-top: 15px;  text-align: right;">
           <img src="<%= PostersHelper.generate_qr(post_url(@post)).to_data_url %>" />
         </div>
       </div>

@@ -1,5 +1,5 @@
 
-<%= simple_form_for @post, { url: post_posters_path(@post), method: "get", data: { controller: 'maps poster-validate' } } do |f| %>
+<%= simple_form_for :post, { url: post_posters_path(), method: "get", data: { controller: 'maps' } } do |f| %>
   <div class = "container pb-5" >
     <div class="col text-start mb-5" style="font-size: 20px;">
       <%= link_to(root_path, style: 'text-decoration: none;') do %>
@@ -23,13 +23,8 @@
     <% end %>
 
     <div class="form-group col-md-9 pt-4">
-      <%= f.input :name, label: 'หัวข้อประกาศ', required: true, :label_html => { :class => 'font-weight600' }, input_html: { data: { poster_validate_target: 'name'}} %>
+      <%= f.input :name, label: 'หัวข้อประกาศ', required: true, :label_html => { :class => 'font-weight600' },:disabled => true %>
     </div>
-    <div class="alert alert-danger alert-dismissible fade show col-md-9 d-none" role="alert" id="alertname">
-      กรุณากรอกหัวข้อประกาศ
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-
 
     <div class="form-group col-md-12 py-5">
       <% if @post.images.attached? %>
@@ -48,29 +43,20 @@
 
     <div class="row mb-5">
       <div class="col-md-3">
-        <%= f.input :type_id, :label => "ประเภท", :collection => Type.all.map{ |l| [l.type_name, l.id] }, :label_html => { :class => 'font-weight600' }, include_blank: 'เลือก' %>
+        <%= f.input :type_id, :label => "ประเภท", :collection => Type.all.map{ |l| [l.type_name, l.id] }, :label_html => { :class => 'font-weight600' }, include_blank: 'เลือก', :disabled => true %>
       </div>
 
       <div class="col-md-3">
-        <%= f.input :date, :label => "วันที่", as: :datetime, html5: true, :label_html => { :class => 'font-weight600' }, input_html: { data: { poster_validate_target: 'date'}}%>
-        <div class="alert alert-danger alert-dismissible fade show d-none" role="alert" id="alertdate">
-          กรุณากรอกวันที่
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        <%= f.input :date, :label => "วันที่", as: :date, html5: true, :label_html => { :class => 'font-weight600' }, input_html: {}, :disabled => true %>
       </div>
 
     </div>
 
     <div class="form-group mb-5 col-md-9">
       <%= f.input :location, label: 'สถานที่',
-        input_html: { data: { maps_target: "field", action: "maps#setAutocomplete", poster_validate_target: 'location' }},
-        label_html: { class: 'font-weight600' } %>
-      <div class="alert alert-danger alert-dismissible fade show d-none" role="alert" id="alertlo">
-        กรุณากรอกสถานที่
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
+        input_html: { data: { maps_target: "field", action: "maps#setAutocomplete" }},
+        label_html: { class: 'font-weight600' }, :disabled => true %>
     </div>
-
 
     <div class="form-group mb-5 pb-5 col-md-9">
       <%= f.input :detail, as: :text, :input_html => { :rows => 7 , :style => 'height: 100%'}, label: 'รายละเอียด', :label_html => { :class => 'font-weight600' } %>
@@ -81,7 +67,7 @@
         <%= link_to "ยกเลิก", "/posts/#{@post.id}", class: "btn btn--outline-primary"%>
       </div>
       <div>
-        <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn--primary", data: { action: 'poster-validate#validateForm' }%>
+        <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn--primary" %>
       </div>
     </div>
   <% end %>

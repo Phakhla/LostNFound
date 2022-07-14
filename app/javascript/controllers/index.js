@@ -34,9 +34,6 @@ application.register('password-toggle', PasswordToggleController);
 import FileImageController from "./file_image_controller"
 application.register('file-image', FileImageController);
 
-import PosterValidateController from './poster_validate_controller';
-application.register('poster-validate', PosterValidateController);
-
 import SearchFormController from './search_form_controller';
 application.register('search-form', SearchFormController);
 
