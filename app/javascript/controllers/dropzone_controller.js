@@ -10,17 +10,43 @@ function createDirectUploadController(source, file) {
   return new DirectUploadController(source, file);
 }
 
+function accept(file, done) {
+  const validWidth = 1080;
+  const validHeight = 720;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const img = new Image();
+
+    img.src = e.target.result;
+
+    img.onload = () => {
+      const valid = img.width === validWidth && img.height === validHeight;
+
+      if (!valid) {
+        return done(Error('Invalid image dimensions'));
+      }
+
+      return done();
+    };
+  };
+
+  reader.readAsDataURL(file);
+}
+
 function createDropZone(controller) {
   return new Dropzone(controller.element, {
     url: controller.url,
     headers: controller.headers,
     maxFiles: controller.maxFiles,
     maxFilesize: controller.maxFileSize,
-    acceptedFiles: controller.acceptedFiles,
+    acceptedFiles: '.jpeg, .jpg, .png',
     addRemoveLinks: controller.addRemoveLinks,
     autoQueue: false,
-    thumbnailWidth: 551.5,
-    thumbnailHeight: 551.5,
+    thumbnailWidth: '551.5',
+    thumbnailHeight: '551.5',
+    previewsContainer: '#dropzone-container',
+    accept,
   });
 }
 

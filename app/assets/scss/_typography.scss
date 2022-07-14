@@ -67,11 +67,11 @@ p {
   font-weight: 600;
 }
 
-.text-pertitle{
+.text-pertitle {
   font-size: var(--text-pertitle);
 }
 
-.text-small{
+.text-small {
   font-size: var(--text-small);
 }
 
@@ -100,4 +100,10 @@ a {
     font-size: var(--text-header2);
     letter-spacing: 0;
   }
+}
+
+.plus {
+  margin: 86px;
+  font-size: 4rem;
+  color: #efbd05;
 }

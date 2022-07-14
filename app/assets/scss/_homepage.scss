@@ -10,13 +10,13 @@
 }
 
 // home page landing
-.style {
-  background-color: #000;
-  border: #000;
-  border-color: #000;
+hr.style {
+  border: black;
   border-width: unset;
-  color: #000;
-  }
+  border-color: #000000;
+  color: #000000;
+  background-color: black;
+}
 
 .grid {
   align-items: stretch;
@@ -46,26 +46,29 @@
 }
 
 .b {
-  font-weight: bolder;
   font-size: 22px;
-  margin-bottom: 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-weight: bolder;
   white-space: nowrap;
   width: 22rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1rem;
+
+  .text {
+    padding: 20px;
+  }
 }
 
-.mt-14{
+.mt-14 {
   margin-top: 14rem;
 }
+
 
 .col-md-7 {
   flex: 0 0 auto;
   width: 21%;
 }
 
-.listposts{
+.listposts {
   margin-bottom: -10rem;
 }
-
-
