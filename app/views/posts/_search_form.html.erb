@@ -17,7 +17,7 @@
     <p class="text-decoration-underline mt-4 pointer" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ค้นหาขั้นสูงและฟิลเตอร์</p>
 
     <%= search_form_for @q|| Post.ransack, url: search_posts_path,
-      html: { class: 'form-inline', method: :post },
+      html: { id: 'searchForm', class: 'form-inline', method: :post },
       data: {
         controller: "search-form autocomplete maps",
         autocomplete_url_value: autocomplete_posts_path
@@ -72,7 +72,7 @@
             <%= f.label "วันที่เริ่มต้น :"%>
           </div>
           <div class="col-lg-5 col-xl-3">
-            <%= f.date_field :date_gteq, class: 'form-control'  %>
+            <%= f.date_field :date_gteq, class: 'form-control' %>
           </div>
           <div class="col-auto d-flex align-items-center mt-5 mt-lg-0">
             <%= f.label "ถึงวันที่สิ้นสุด :" %>
@@ -101,7 +101,7 @@
         <div class="pt-5"></div>
         <div class="d-md-flex mt-5">
           <div class="flex-grow-1 d-flex align-items-center">
-            <%= button_tag type: 'reset', class: 'btn' do %>
+            <%= button_tag type: 'button', data: { action: 'search-form#clearForm' }, class: 'btn' do %>
               <i class="fa-solid fa-arrow-rotate-left me-3"></i> ล้างข้อมูล
             <% end %>
             </div>

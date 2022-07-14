@@ -32,4 +32,11 @@ export default class extends Controller {
       e.preventDefault();
     }
   }
+
+  clearForm() {
+    document.getElementById('searchForm').reset();
+    $('#categoriesAlert').addClass('d-none');
+    $('#nameAndTypeAlert').addClass('d-none');
+    $('#mapAlert').addClass('d-none');
+  }
 }
