@@ -2,31 +2,59 @@
   <%= render 'layouts/navbar' %>
 </header>
 <div class="container">
-  <div class="row mt-5">
-    <div class="col mt-5">
-      <h1>เลือกประเภทประกาศ</h1>
+  <div class="row spacing-06">
+    <div class="col layout-09 text-center">
+      <h3>เลือกประเภทโพสต์</h3>
     </div>
   </div>
+
   <% if user_signed_in? %>
-    <div class="row">
-      <div class="col">
-        <%= link_to "ตามหาของ", new_post_path(category: 'lost_item'), class: "btn btn-primary" %>
+    <div class="row justify-content-center spacing-06 mb-5">
+      <div class="col-lg-3 text-center">
+        <a href="<%= new_post_path(category: 'lost_item') %>" class="none-underline">
+          <div class="card-menu">
+            <div class="item-menu">
+                <i class="fa-regular fa-magnifying-glass"></i>
+                <p class="text-subtitle font-weight600"">โพสต์ตามหาของ</p>
+            </div>
+          </div>
+        </a>
       </div>
-      <div class="col">
-        <%= link_to "หาเจ้าของ", new_post_path(category: 'found_item'), class: "btn btn-primary" %>
+      <div class="col-lg-3 text-center">
+        <a href="<%= new_post_path(category: 'found_item') %>" class="none-underline">
+          <div class="card-menu">
+            <div class="item-menu">
+              <i class="fa-regular fa-bullhorn"></i>
+              <p class="text-subtitle font-weight600">โพสต์หาเจ้าของ</p>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   <% end %>
 
   <% if !user_signed_in? %>
-    <div class="row">
-      <div class="col">
-        <%= link_to "ตามหาของ", new_user_session_path, class: "btn btn-primary" %>
+    <div class="row justify-content-center spacing-06 mb-5">
+      <div class="col-lg-3 text-center">
+        <a href="<%= new_user_session_path %>" class="none-underline">
+          <div class="card-menu">
+            <div class="item-menu">
+                <i class="fa-regular fa-magnifying-glass"></i>
+                <p class="text-subtitle font-weight600">โพสต์ตามหาของ</p>
+            </div>
+          </div>
+        </a>
       </div>
-      <div class="col">
-        <%= link_to "หาเจ้าของ", new_user_session_path, class: "btn btn-primary" %>
+      <div class="col-lg-3 text-center">
+        <a href="<%= new_user_session_path %>" class="none-underline">
+          <div class="card-menu">
+            <div class="item-menu">
+              <i class="fa-regular fa-bullhorn"></i>
+              <p class="text-subtitle font-weight600">โพสต์หาเจ้าของ</p>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   <% end %>
-
 </div>

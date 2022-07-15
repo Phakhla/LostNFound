@@ -19,11 +19,11 @@ class Post < ApplicationRecord
   validates :lng, numericality: true
 
   scope :in_active, -> { where(status: %w[found closed]) }
-  # validates :images,
-  #           attached: true,
-  #           content_type: { in: %w[image/jpeg image/png], message: 'must be jpeg or png.' },
-  #           size: { less_than_or_equal_to: 5.megabytes, message: 'oversize limited (5MB)' },
-  #           limit: { max: 4, message: 'over limited(4 files)' }
+  validates :images,
+            attached: true,
+            content_type: { in: %w[image/jpeg image/png], message: 'must be jpeg or png.' },
+            size: { less_than_or_equal_to: 5.megabytes, message: 'oversize limited (5MB)' },
+            limit: { max: 4, message: 'over limited(4 files)' }
 
   def self.order_nearest(lat, lng)
     sql = sanitize_sql_array(
