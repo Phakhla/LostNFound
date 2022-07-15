@@ -1,78 +1,78 @@
-<header class="nav-white">
-  <%= render 'layouts/navbar' %>
-</header>
-<div style="margin:30px; padding:20px; border:50px">
-  <div class="container">
-    <div class="row ">
-      <div class="row justify-content-md">
-        <div class="fs-2 col col-lg-2">
-          <%= link_to category_selects_posts_path do %>
-            <i class="fa-solid fa-arrow-left"></i> ย้อนกลับ
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <br>
-    <div class="p-5 mb-4 bg-body rounded-5" style="border: 1px solid;">
-      <div class="container-fluid py-5">
-        <% title = post.lost_item? ? 'ประกาศตามหาของหาย' : 'ประกาศตามหาเจ้าของ' %>
-        <h4 class="border-bottom pb-4 mb-0">สร้างโพสต์<%= title %></h4>
-        <br>
-        <%= simple_form_for post, { data: { controller: 'maps post-preview', post_preview_target: 'form' } } do |f| %>
-          <%= f.error_notification %>
+<%= simple_form_for post, { data: { controller: 'maps post-preview', post_preview_target: 'form' } } do |f| %>
+  <%= f.error_notification %>
 
-          <%= f.hidden_field :status, value: 'active' %>
-          <%= f.hidden_field :category, data: { post_preview_target: 'categoryInput' } %>
-          <%= f.hidden_field :lat, data: { maps_target: "latitude", post_preview_target: "latitude" } %>
-          <%= f.hidden_field :lng, data: { maps_target: "longitude", post_preview_target: "longitude" } %>
-          <%= f.hidden_field :location, data: { maps_target: "address", post_preview_target: "address" } %>
-          <%= f.input :name, input_html: { data: { post_preview_target: 'nameInput' } }, label: "หัวข้อประกาศ" %><br/>
-          <div class="row g-5">
-            <div class="col-sm-4">
-              <%= f.input :type_id, :label => "ประเภท", :collection => Type.all.map{ |l| [l.type_name, l.id] }, include_blank: 'เลือก' %>
-            </div>
-            <div class="col-sm-4">
-              <%= f.input :date, as: :datetime, html5: true, input_html: { data: { post_preview_target: 'dateInput' } }, label: "วันที่ทำหาย" %>
-            </div>
-            <br>
-            <%= f.label :images, "อัปโหลดรูป" %>
-            <div class="box dropzone dropzone-box" id="dropzone-container"  >
-              <div class="dropzone dropzone-custom dz-clickable "  data-controller="dropzone" data-dropzone-max-file-size="0.5" data-dropzone-max-files="10">
-                <%= f.file_field :images, multiple: true, direct_upload: true, data: { target: 'dropzone.input' } %>
-                <div class="dropzone-msg dz-message ">
-                  <h3 class="plus"><i class="fa fa-plus "></i></h3>
-                </div>
-              </div>
-            </div>
-            <p class="color--red mt-3">*สามารถอัพโหลดรูปได้ไม่เกิน 10 รูป / ขนาดรูป 1080x720 px และขนาดไฟล์ไม่เกิน 500 KB</p>
-            <br>
-            <div class="mb-3">
-              <%= f.label :detail, "รายละเอียดเพิ่มเติม", class: 'form-label' %>
-              <%= f.text_area :detail, class: 'form-control form-textarea', rows: 5, data: { post_preview_target: 'detailInput' }, id: 'img' %>
-            </div>
-            <br>
-            <div class="mt-3">
-              <label class="form-label">สถานที่หาย</label>
-            </div>
-            <div class="form-group mb-3">
-              <%= f.input :search, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit" }, value: '' } %>
-            </div>
-            <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->maps#initializeMap', maps_target: "map" }, class: 'map mb-5' %>
-            <% if post.errors.key?(:lat) || post.errors.key?(:lng)  %>
-              <p class="text-danger">Please select location.</p>
-            <% end %>
-            <hr><br>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <%= f.button :button, "ยกเลิก", type: "reset", class: "btn btn-outline-warning" %>
-              <%= f.button :button, "สร้างโพสต์", type: 'button', class: "btn btn-warning",
-              data: {
-                action: 'click->post-preview#preview'
-              } %>
-              <%= render 'preview_modal', f: %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+  <%= f.hidden_field :status, value: 'active' %>
+  <%= f.hidden_field :category, data: { post_preview_target: 'categoryInput' } %>
+  <%= f.hidden_field :lat, data: { maps_target: "latitude", post_preview_target: "latitude" } %>
+  <%= f.hidden_field :lng, data: { maps_target: "longitude", post_preview_target: "longitude" } %>
+  <%= f.hidden_field :location, data: { maps_target: "address", post_preview_target: "address" } %>
+
+  <%= f.input :name, input_html: { data: { post_preview_target: 'nameInput' } }, label: "หัวข้อประกาศ" %><br/>
+  <div class="row g-5">
+    <div class="col-sm-4">
+      <%= f.input :type_id, :label => "ประเภท", :collection => Type.all.map{ |l| [l.type_name, l.id] }, include_blank: 'เลือก' %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.input :date, as: :datetime, html5: true, input_html: { data: { post_preview_target: 'dateInput' } }, label: "วันที่ทำหาย" %>
     </div>
   </div>
-</div>
+  <br>
+  <%= f.label :images, "อัปโหลดรูป*"  %>
+  <div class="box dropzone dropzone-box" id="dropzone-container"  >
+    <div class="dropzone dropzone-custom dz-clickable "  data-controller="dropzone" data-dropzone-max-file-size="0.5" data-dropzone-max-files="10">
+      <%= f.file_field :images, multiple: true, direct_upload: true, data: { dropzone_target: 'input' } %>
+      <div class="dropzone-msg dz-message ">
+        <h3 class="plus"><i class="fa fa-plus "></i></h3>
+      </div>
+    </div>
+    <div class="d-inline">
+      <% if post.persisted? %>
+        <% if post.images.attached? %>
+          <% post.images.each do |image| %>
+            <div class="m-2 d-inline-block" data-controller="post-image" data-post-image-target="image">
+              <div class="d-flex image justify-content-center">
+                <%= f.hidden_field :images, multiple: true, value: image.signed_id %>
+                <%= image_tag(image, size: '150x150') %>
+              </div>
+              <%= button_tag "ลบภาพนี้", data: { action: 'click->post-image#removeImage' } %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <p class="color--red mt-3">*สามารถอัพโหลดรูปได้ไม่เกิน 10 รูป / ขนาดรูป 1080x720 px และขนาดไฟล์ไม่เกิน 500 KB</p>
+  <%= f.label :detail, "รายละเอียดเพิ่มเติม", class: 'form-label' %>
+  <%= f.text_area :detail, class: 'form-control form-textarea', rows: 5, data: { post_preview_target: 'detailInput' }, id: 'img' %>
+  <br>
+  <div class="mt-3">
+    <label class="form-label">สถานที่หาย</label>
+  </div>
+
+  <div class="form-group mb-3">
+    <% if post.persisted? %>
+      <%= f.input :search, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit" }, value: post.location} %>
+    <% else %>
+      <%= f.input :search, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit" }, value: '' } %>
+    <% end %>
+  </div>
+
+  <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->maps#initializeMap', maps_target: "map" }, class: 'map mb-5' %>
+
+  <% if post.errors.key?(:lat) || post.errors.key?(:lng)  %>
+    <p class="text-danger">Please select location.</p>
+  <% end %>
+  <hr><br>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <%= f.button :button, "ยกเลิก", type: "reset", class: "btn btn-outline-warning" %>
+    <% if post.persisted? %>
+      <%= f.submit "บันทึก", class: "btn btn-warning" %>
+    <% else %>
+      <%= f.button :button, "สร้างโพสต์", type: 'button', class: "btn btn-warning",
+      data: {
+        action: 'click->post-preview#preview'
+      } %>
+    <% end %>
+    <%= render 'preview_modal', f: %>
+  </div>
+<% end %>

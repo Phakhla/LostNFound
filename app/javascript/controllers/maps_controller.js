@@ -3,8 +3,22 @@ import { Controller } from '@hotwired/stimulus';
 export default class extends Controller {
   static targets = ['address', 'field', 'map', 'latitude', 'longitude'];
 
-  initialize() {
-    this.initialLocation = { lat: 18.804668, lng: 98.955033 };
+  get initialLocation() {
+    return { lat: 18.804668, lng: 98.955033 };
+  }
+
+  get latLng() {
+    if (!this.latitudeTarget.value || !this.longitudeTarget.value) {
+      return null;
+    }
+    return {
+      lat: +this.latitudeTarget.value,
+      lng: +this.longitudeTarget.value,
+    };
+  }
+
+  get center() {
+    return this.latLng || this.initialLocation;
   }
 
   connect() {
@@ -19,12 +33,8 @@ export default class extends Controller {
     if (this.hasMapTarget) {
       this.setMap();
     }
-
     if (this.latitudeTarget.value && this.longitudeTarget.value) {
-      this.setMarker({
-        lat: +this.latitudeTarget.value,
-        lng: +this.longitudeTarget.value,
-      });
+      this.setMarker(this.latLng);
     }
   }
 
@@ -32,7 +42,7 @@ export default class extends Controller {
     if (this.map !== undefined) { return this.map; }
 
     this.map = new google.maps.Map(this.mapTarget, {
-      center: this.initialLocation,
+      center: this.center,
       zoom: 17,
     });
 

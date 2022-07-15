@@ -163,6 +163,36 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
+  describe 'GET /posts/id/edit' do
+    it 'owner should gets edit' do
+      get edit_post_path(my_post)
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'not owner should not gets edit' do
+      user2 = create(:user)
+
+      sign_out user
+      sign_in user2
+
+      get edit_post_path(my_post)
+
+      expect(response).to have_http_status(:found)
+    end
+
+    it 'not owner should not update' do
+      user2 = create(:user)
+
+      sign_out user
+      sign_in user2
+
+      patch post_path(my_post)
+
+      expect(response).to redirect_to(post_path)
+    end
+  end
+
   describe 'DELETE /posts/id' do
     it 'delete post' do
       delete "/posts/#{my_post.id}"

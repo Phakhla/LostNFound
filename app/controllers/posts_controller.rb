@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   before_action :load_comments, only: %i[show]
   before_action :load_user, only: %i[show]
   before_action :mark_all_comments_as_read, only: %i[show]
+  before_action :authorize_owner, only: %i[edit update]
 
   def show; end
 
@@ -109,6 +110,10 @@ class PostsController < ApplicationController
     @lng = params[:lng]
 
     @posts.order_nearest(@lat, @lng)
+  end
+
+  def authorize_owner
+    redirect_to post_path unless @post.owner?(current_user)
   end
 
   def post_params

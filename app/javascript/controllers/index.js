@@ -40,4 +40,5 @@ application.register('search-form', SearchFormController);
 import DatetimeController from './datetime_controller';
 application.register('datetime', DatetimeController);
 
-
+import PostImageController from './post_image_controller';
+application.register('post-image', PostImageController);
