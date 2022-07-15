@@ -1,61 +1,62 @@
-<%= render 'posts/search_form' %>
-<br><br>
+<div class="background">
+  <header>
+      <%= render 'layouts/navbar' %>
+    </header>
+  <%= render 'posts/search_form' %>
+  <br><br>
 
-<div class="listposts mt-14" >
-  <div class="container">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-end mt-5">
-        <% if !user_signed_in? && (!params[:q].present? || !params[:q][:name_cont].present?) %>
-        <div class="btn btn--primary" >
-          <i class='fas fa-plus-circle'></i>
-          <%= link_to "สร้างโพสต์ประกาศ", category_selects_posts_path %>
-        </div>
-      <% end %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <% if params[:q].present? && params[:q][:name_cont].present? %>
-        <p class="text-subtitle">ผลลัพธ์การค้นหา (<%= @posts.count %> รายการ)</p>
-        <hr class="style">
-        <div class="d-flex align-items-center layout-05">
-          <p class="text-body">ค้นหา :</p>
-            <div class="mb-3 ms-3 px-4 py-2 rounded-pill bg-color--primary200"> <%= params[:q][:name_cont] %></div>
-        </div>
-      <% end %>
-      </div>
-    </div>
-
-    <% if user_signed_in? && (!params[:q].present? || !params[:q][:name_cont].present?) %>
-      <div class="row justify-content-between align-items-center my-5">
-        <div class="col-md-5 btn-group mt-5 mt-md-0">
-          <% if @tab == 'my_post' %>
-            <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary px-4 px-md-auto" %>
-            <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--secondary px-4 px-md-auto" %>
-          <% else %>
-            <%= link_to 'รายการทั้งหมด', root_path, class: "btn btn--secondary px-4 px-md-auto" %>
-            <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--outline-secondary px-4 px-md-auto" %>
-          <% end %>
-        </div>
-        <div class="col-auto mt-5 mt-md-0">
-          <div class="btn btn--primary" >
-            <i class='fas fa-plus-circle'></i>
-            <%= link_to "สร้างโพสต์ประกาศ", category_selects_posts_path %>
+  <div class = "container listposts mt-14" >
+    <div style="margin:30px; padding:20px; border:20px">
+      <% if !user_signed_in? && (!params[:q].present? || !params[:q][:name_cont].present?) %>
+        <div class="row justify-content-end align-items-center mb-5">
+          <div class="col-md-7 order-md-last">
+            <div class="btn btn--primary" >
+              <i class='fas fa-plus-circle'></i>
+              <%= link_to "สร้างโพสต์ประกาศ", category_selects_posts_path %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  
-    <div class="col-12">
-      <%= form_with(url: root_path, method: :get, id: 'homeFilter') do |f| %>
-        <%= hidden_field_tag 'tab', @tab %>
-        <div>
-          <%= render 'post_content', posts: @losts, category: 'lost_item', tab: @tab, filter: @filter, f: %>
-          <br><br><hr class="style"><br><br>
-          <%= render 'post_content', posts: @founds, category: 'found_item', tab: @tab, filter: @filter, f: %>
-          <br><br><br>
+      <% end %>
+      <% if params[:q].present? && params[:q][:name_cont].present? %>
+        <div class="row justify-content-start align-items-center mb-5">
+          <div class="col">
+            <p class="text-subtitle">ผลลัพธ์การค้นหา (<%= @posts.count %> รายการ)</p>
+            <hr class="style">
+            <div class="d-flex align-items-center layout-05">
+              <p class="text-body">ค้นหา :</p>
+                <div class="mb-3 ms-3 px-4 py-2 rounded-pill bg-color--primary200"> <%= params[:q][:name_cont] %></div>
+            </div>
+          </div>
         </div>
       <% end %>
+      <% if user_signed_in? && (!params[:q].present? || !params[:q][:name_cont].present?) %>
+        <div class="row justify-content-between align-items-center mb-5">
+          <div class="col-md-7 order-md-last">
+            <div class="btn btn--primary" >
+              <i class='fas fa-plus-circle'></i>
+              <%= link_to "สร้างโพสต์ประกาศ", category_selects_posts_path %>
+            </div>
+          </div>
+          <div class="col-md-5  btn-group" >
+            <% if @tab == 'my_post' %>
+              <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary" %>
+              <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--secondary" %>
+            <% else %>
+              <%= link_to 'รายการทั้งหมด', root_path, class: "btn btn--secondary" %>
+              <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--outline-secondary" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+        <%= form_with(url: root_path, method: :get, id: 'homeFilter') do |f| %>
+          <%= hidden_field_tag 'tab', @tab %>
+          <div>
+            <%= render 'post_content', posts: @losts, category: 'lost_item', tab: @tab, filter: @filter, f: %>
+            <br><br><hr class="style"><br><br>
+            <%= render 'post_content', posts: @founds, category: 'found_item', tab: @tab, filter: @filter, f: %>
+            <br><br><br>
+          </div>
+        <% end %>
     </div>
   </div>
 
