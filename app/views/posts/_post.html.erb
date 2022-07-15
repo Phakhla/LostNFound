@@ -137,6 +137,9 @@
                     <%= post.user.facebook %>
                 <% end %>
               </p>
+              <% if !post.user.not_show_address %>
+                <p class="card-text">ที่อยู่ : <%= post.user.address %></p>
+              <% end %>
             </div>
           </div>
           <div class="col d-flex justify-content-end">
