@@ -8,7 +8,6 @@
         <div class="dot-typing"></div>
       </div>
     </div>
-
     <%= search_form_for @q, url: root_path, data: {controller: "autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
       <div class="box-search">
         <div class="d-md-flex">
@@ -21,7 +20,7 @@
         </div>
       </div>
     <% end %>
-
+    
     <p class="text-decoration-underline mt-4 pointer" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ค้นหาขั้นสูงและฟิลเตอร์</p>
 
     <%= search_form_for @q|| Post.ransack, url: search_posts_path,

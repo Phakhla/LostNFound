@@ -1,3 +1,17 @@
+<%
+  if category == 'lost_item'
+    header = 'โพสต์ตามหาของหาย'
+    date_label = 'วันที่หาย'
+    location_label = 'สถานที่หาย'
+  end
+
+  if category == 'found_item'
+    header = 'โพสต์ตามหาเจ้าของ'
+    date_label = 'วันที่พบ'
+    location_label = 'สถานที่เจอ'
+  end
+
+%>
 <% @posts.each do |post| %>
   <div class="grid">
     <article>
@@ -8,7 +22,9 @@
       <% end %>
       <div class="text">
         <div class="b" ><%= post.name %></div>
-        <p><%= post.date.strftime("%d/%m/%y") %></p>
+        <div class="col-md-12">
+          <%= date_label %> : <span data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD/MM/YYYY' data-datetime-target="output"></span>
+        </div>
         <b><i class='fas fa-map-marker-alt' style='font-size:20px'></i>&nbsp;<%= post.location %></b><br>
         <% if post.active? %>
           <b style="color: #8bb72f ; font-size: 10;"> &bull; กำลังตามหา</b>
