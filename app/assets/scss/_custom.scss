@@ -6,6 +6,8 @@
 @import 'components';
 @import 'forms';
 @import 'homepage';
+@import 'modal_noti';
+
 
 
 .background {
@@ -22,4 +24,14 @@ main {
 .map {
   height: 333px;
   width: 100%;
+}
+
+hr {
+  background-color: #000;
+}
+
+.nav-link-padding {
+  display: block;
+  padding: zero;
+  text-decoration: none;
 }

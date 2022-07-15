@@ -3,6 +3,9 @@
 @import 'dropzone/src/dropzone';
 @import 'custom';
 
+div.target > hr:first-child {
+  display: none;
+}
 
 .dropzone-custom {
   padding: 0;

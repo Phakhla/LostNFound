@@ -1,5 +1,39 @@
 <% noti = notification.to_notification %>
-
 <p id="<%= dom_id(notification) %>">
-  <%= link_to noti.message, noti.url, class: 'link-secondary' %>
+  <%= link_to noti.url, class: "nav-link-padding" do %>
+    <div class="row" style="--bs-gutter-x: -2.5rem;">
+      <div class="d-flex flex-start align-items-start">
+        <div class="user-avatar">
+          <% if noti.params[:comment].user.avatar.present? %>
+            <div class="d-inline-flex position-relative light">
+                <div class="d-inline-flex position-relative">
+                  <% if noti.unread? %>
+                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle" style="margin-left: -20px; margin-top: 6px;">
+                      <span class="visually-hidden">New alerts</span>
+                    </span>
+                  <% end %>
+                  <%= image_tag(noti.params[:comment].user.avatar, style:"width: 50px; height: 50px; object-fit: cover;", class: "rounded-circle shadow-1-strong me-4") %>
+                </div>
+            </div>
+          <% else %>
+            <% if noti.unread? %>
+              <span class="notify-badge" role="status"></span>
+            <% end %>
+            <img alt="image" class="rounded-circle shadow-1-strong me-3" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=" style = "width: 50px; height: 50px; object-fit: cover;">
+          <% end %>
+        </div>
+        <div class="comment-body">
+          <p>
+            <span class="user-comment">
+              <b><%= noti.params[:comment].user.username %></b>
+                &nbspได้แสดงความคิดเห็น :
+            </span><br>
+            "<%= noti.params[:comment].content %>"
+          </p>
+          <p class="text-small" data-controller="datetime" data-datetime-date-value="<%= noti.params[:comment].created_at %>" data-datetime-target="output"></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </p>
+

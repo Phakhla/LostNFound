@@ -1,4 +1,4 @@
-<%= turbo_stream_from dom_id(current_user, :notification)  %>
+<%= turbo_stream_from dom_id(current_user,:notification)  %>
 
 <div class="dropdown">
   <button id="dropdownNotification" type="button" class="btn btn-default px-0 px-lg-auto"
@@ -9,8 +9,7 @@
     </div>
   </button>
 
-  <div id="notifications" class="dropdown-menu" aria-labelledby="dropdownNotification"
-    style="right: 0; left: unset">
+  <div id="notifications" class="dropdown-menu dropdown-caret dropdown-size" aria-labelledby="dropdownNotification">
     <%= render 'notifications/notifications',
       notifications: current_user.notifications.latest_with_limit,
       unread_notifications: current_user.notifications.unread_latest_with_limit %>

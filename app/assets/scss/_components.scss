@@ -105,6 +105,27 @@
   justify-content: center;
 }
 
+.item-unread {
+  align-items: center;
+  background-color: var(--color-white);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 321px;
+  justify-content: center;
+  margin: 12px;
+  width: 321px;
+
+  i {
+    color: var(--color-primary-200);
+    font-size: 76px;
+  }
+
+  p {
+    margin-top: var(--layout-07);
+  }
+}
+
 .item-menu {
   align-items: center;
   background-color: var(--bg-card);
@@ -135,6 +156,14 @@
     }
   }
 }
+
+// unread
+.card-unread {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 
 // dot
 .dot-typing {

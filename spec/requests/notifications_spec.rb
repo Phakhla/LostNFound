@@ -15,7 +15,8 @@ RSpec.describe 'Notifications', type: :request do
 
     get root_path
 
-    expect(response.body).to include("#{comment.user.display_name} ได้แสดงความคิดเห็นต่อโพสต์ของคุณ")
+    expect(response.body).to include(comment.user.display_name)
+    expect(response.body).to include(comment.content)
   end
 
   describe 'GET notifications' do
