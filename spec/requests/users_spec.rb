@@ -99,8 +99,7 @@ RSpec.describe 'Users', type: :request do
         avatar: 'pic.jpg',
         email: 'test@test.com',
         password: 'password',
-        firstname: 'first',
-        lastname: 'last',
+        username: 'username',
         tel: '0999999999',
         fblink: 'link',
         address: 'address'

@@ -5,10 +5,10 @@ class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username firstname lastname tel email password
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username tel email password
                                                          password_confirmation address fblink facebook])
     devise_parameter_sanitizer.permit(:sign_in, keys: %i[email password])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[username firstname lastname tel email password
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[username tel email password
                                                                 password_confirmation address fblink avatar facebook
                                                                 not_show_address ])
   end

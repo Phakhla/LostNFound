@@ -22,6 +22,6 @@ class User < ApplicationRecord
          :validatable
 
   def display_name
-    firstname || email
+    username || email
   end
 end
