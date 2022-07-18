@@ -178,38 +178,43 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 	  <%= simple_form_for @post, url: post_path, method: 'patch', data: { controller: "radio-selection", action: "radio-selection#checkOption" } do |f| %>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel">คุณต้องการปิดโพสนี้ใช่ไหม?</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body justify-content-center">
-          <div class="modal-text">
-            <p>เลือกเหตุผล</p>
-            <p>
-              <%= radio_button 'status', '', 'เจอของแล้ว', data: { radio_selection_target: "foundRadioButton" } %>
-              <%= f.label "เจอของแล้ว" %>
-            </p>
-            <p>
-              <%= radio_button 'status', '', 'หมดหวังที่จะเจอ', data: { radio_selection_target: "hopelessRadioButton" } %>
-              <%= f.label "หมดหวังที่จะเจอ" %>
-            </p>
-            <p>
-              <%= radio_button 'status', '', nil, data: { radio_selection_target: "otherRadioButton" } %>
-              <%= f.label "อื่นๆ ระบุ" %>
-              <%= text_field_tag :other_reason, '', data: { radio_selection_target: "textInput" } %>
-            </p>
-            <p>
-              <%= f.hidden_field :status, data: { radio_selection_target: "statusInput" } %>
-              <%= f.hidden_field :reason, data: { radio_selection_target: "reasonInput" } %>
-            </p>
+      <div class="close-post-modal">
+        <div class="modal-content">
+          <div class="close-btn">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-header">
+            <p class="modal-title" id="exampleModalLabel">คุณต้องการปิดโพสนี้ใช่ไหม?</p>
+          </div>
+          <div class="modal-body justify-content-center">
+            <div class="modal-text">
+              <p class="mb">กรุณาเลือกเหตุผล</p>
+              <p>
+                <%= radio_button 'status', '', 'พบเจอของ/เจ้าของแล้ว', data: { radio_selection_target: "foundRadioButton" } %>
+                <%= f.label "พบเจอของ/เจ้าของแล้ว" %>
+              </p>
+              <p>
+                <%= radio_button 'status', '', 'ไม่ต้องการค้นหาอีกต่อไป', data: { radio_selection_target: "hopelessRadioButton" } %>
+                <%= f.label "ไม่ต้องการค้นหาอีกต่อไป" %>
+              </p>
+              <p>
+                <%= radio_button 'status', '', nil, data: { radio_selection_target: "otherRadioButton" } %>
+                <%= f.label "อื่นๆ โปรดระบุ" %>
+                <%= text_field_tag :other_reason, '', data: { radio_selection_target: "textInput" }, class:'form-control' %>
+              </p>
+              <p>
+                <%= f.hidden_field :status, data: { radio_selection_target: "statusInput" } %>
+                <%= f.hidden_field :reason, data: { radio_selection_target: "reasonInput" } %>
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <%= f.button :button, "ยกเลิก", type: "button", class: "btn btn--outline-primary style", data: { bs_dismiss: 'modal' } %>
+            <%= f.button :button, "ยืนยัน", class: "btn btn--primary" %>
           </div>
         </div>
-        <div class="modal-footer justify-content-center">
-          <%= f.button :button, "ยกเลิก", type: "button", class: "btn-outline-secondary", data: { bs_dismiss: 'modal' } %>
-          <%= f.button :button, "ยืนยัน", class: "btn-primary" %>
-        </div>
       </div>
+
 	  <% end %>
 	</div>
 </div>
