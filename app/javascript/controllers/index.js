@@ -7,8 +7,14 @@ import { application } from "./application"
 import ClipboardController from "./clipboard_controller.js"
 application.register("clipboard", ClipboardController)
 
+import DatetimeController from "./datetime_controller.js"
+application.register("datetime", DatetimeController)
+
 import DropzoneController from "./dropzone_controller.js"
 application.register("dropzone", DropzoneController)
+
+import FileImageController from "./file_image_controller.js"
+application.register("file-image", FileImageController)
 
 import ForgotPasswordController from "./forgot_password_controller.js"
 application.register("forgot-password", ForgotPasswordController)
@@ -19,26 +25,23 @@ application.register("maps", MapsController)
 import MyPostsController from "./my_posts_controller.js"
 application.register("my-posts", MyPostsController)
 
+import PasswordToggleController from "./password_toggle_controller.js"
+application.register("password-toggle", PasswordToggleController)
+
+import PostImageController from "./post_image_controller.js"
+application.register("post-image", PostImageController)
+
 import PostPreviewController from "./post_preview_controller.js"
 application.register("post-preview", PostPreviewController)
+
+import RadioSelectionController from "./radio_selection_controller.js"
+application.register("radio-selection", RadioSelectionController)
+
+import SearchFormController from "./search_form_controller.js"
+application.register("search-form", SearchFormController)
 
 import SearchPostsController from "./search_posts_controller.js"
 application.register("search-posts", SearchPostsController)
 
-import RadioSelectionController from './radio_selection_controller';
-application.register('radio-selection', RadioSelectionController);
-
-import PasswordToggleController from './password_toggle_controller';
-application.register('password-toggle', PasswordToggleController);
-
-import FileImageController from "./file_image_controller"
-application.register('file-image', FileImageController);
-
-import SearchFormController from './search_form_controller';
-application.register('search-form', SearchFormController);
-
-import DatetimeController from './datetime_controller';
-application.register('datetime', DatetimeController);
-
-import PostImageController from './post_image_controller';
-application.register('post-image', PostImageController);
+import ShowMapController from "./show_map_controller.js"
+application.register("show-map", ShowMapController)
