@@ -17,8 +17,8 @@
       <%= link_to root_path, class: 'nav-link text-decoration-underline' do %> Home <% end %>
       <%= link_to lost_posts_path, class: 'nav-link text-decoration-underline' do %> ประกาศตามหาของหาย <% end %>
       <%= link_to found_posts_path, class: 'nav-link text-decoration-underline' do %> ประกาศตามหาเจ้าของ <% end %>
-      <%= link_to new_user_session_path, class: 'nav-link text-decoration-underline' do %> Login <% end %>
-  
+      <% if !user_signed_in? %><%= link_to new_user_session_path, class: 'nav-link text-decoration-underline' do %> Login <% end %><% end %>
+
     </div>
     <div class="col-md-4 mt-5">
       <div class="row">
