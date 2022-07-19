@@ -40,7 +40,7 @@ RSpec.describe 'Posts', type: :request do
     it 'gets lost page' do
       get lost_posts_path, params: { filter: { lost_item: { status: 'in_active' } } }
 
-      expect(response.body).to include('<h4>รายการประกาศตามหาของทั้งหมด(0)</h4>')
+      expect(response.body).to include('<h4>รายการโพสต์ตามหาของทั้งหมด(0)</h4>')
       expect(response).to have_http_status(:ok)
     end
 
@@ -71,7 +71,7 @@ RSpec.describe 'Posts', type: :request do
     it 'gets found page' do
       get found_posts_path, params: { filter: { found_item: { status: 'active' } } }
 
-      expect(response.body).to include('<h4>รายการประกาศตามหาเจ้าทั้งหมด(1)</h4>')
+      expect(response.body).to include('<h4>รายการโพสต์ตามหาเจ้าทั้งหมด(1)</h4>')
       expect(response).to have_http_status(:ok)
     end
 

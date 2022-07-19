@@ -15,7 +15,7 @@
     <br>
     <div class="p-5 mb-4 bg-body card-form">
       <div class="container-fluid py-5">
-        <h4 class="border-bottom pb-4 mb-0">สร้างโพสต์<%= @post.lost_item? ? 'ประกาศตามหาของหาย' : 'ประกาศตามหาเจ้าของ' %></h4>
+        <h4 class="border-bottom pb-4 mb-0">สร้างโพสต์<%= @post.lost_item? ? 'ตามหาของหาย' : 'ตามหาเจ้าของ' %></h4>
         <br>
         <%= render 'form', post: @post %>
       </div>

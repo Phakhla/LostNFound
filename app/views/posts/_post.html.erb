@@ -43,11 +43,11 @@
               </p>
             <% else %>
               <p class="card-text p-2 text-center" style="margin-left: auto; margin-right: 0; width: 60%; color: white; border-radius: 20px; background-color: #f03d3d;">
-                ปิดประกาศตามหา
+                ปิดโพสต์ตามหา
               </p>
             <% end %>
             <p class="card-text">
-              <span class="fw-bold">วันที่ประกาศ : </span>
+              <span class="fw-bold">วันที่โพสต์ : </span>
               <%= post.created_at.strftime("%d %B %y") %>
             </p>
           </div>
@@ -90,11 +90,11 @@
           <div class="col ps-5">
             <% if post.lost_item? %>
               <p class="card-text text-center" style="width: 35%; color: #312FA9; border-radius: 10px; background-color: #B2C5FC;">
-                ประกาศหาของหาย
+                โพสต์หาของหาย
               </p>
             <% else %>
               <p class="card-text text-center" style="width: 35%; color: #C86111; border-radius: 10px; background-color: #F7E3B0;">
-                ประกาศหาเจ้าของ
+                โพสต์หาเจ้าของ
               </p>
             <% end %>
             <p class="card-text fw-bold" style="font-size: 20px;"><%= post.location %></p>

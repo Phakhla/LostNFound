@@ -47,7 +47,7 @@
             <% if post.active? %>
               <b style="color: #8bb72f ; font-size: 10;"> &bull; กำลังตามหา</b>
             <% else %>
-              <b style="color: red; font-size: 10;">ปิดประกาศตามหา</b>
+              <b style="color: red; font-size: 10;">ปิดโพสต์ตามหา</b>
             <% end %>
             <br><br>
             <i style="font-size:14px; color: gray;">โพสต์เมื่อวันที่:<%= post.created_at.localtime.strftime("%d/%m/%y") %></i>

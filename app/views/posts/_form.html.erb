@@ -7,7 +7,7 @@
   <%= f.hidden_field :lng, data: { maps_target: "longitude", post_preview_target: "longitude" } %>
   <%= f.hidden_field :location, data: { maps_target: "address", post_preview_target: "address" } %>
 
-  <%= f.input :name, input_html: { data: { post_preview_target: 'nameInput' } }, label: "หัวข้อประกาศ" %><br/>
+  <%= f.input :name, input_html: { data: { post_preview_target: 'nameInput' } }, label: "หัวข้อโพสต์" %><br/>
   <div class="row g-5">
     <div class="col-sm-4">
       <%= f.input :type_id, :label => "ประเภท", :collection => Type.all.map{ |l| [l.type_name, l.id] }, include_blank: 'เลือก' %>
