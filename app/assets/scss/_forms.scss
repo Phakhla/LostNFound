@@ -9,8 +9,27 @@
     box-shadow: none;
     outline: none;
   }
+}
 
+// hide icon invalid
 
+select.form-control.is-invalid {
+  background-image: none !important;
+  padding-right: inherit;
+}
+
+.form-control.is-invalid.datetime {
+  background-image: none !important;
+  padding-right: inherit;
+}
+
+textarea.form-control.is-invalid {
+  background-image: none !important;
+  padding-right: inherit;
+}
+
+.form-invalid {
+  border: 1px solid var(--color-red);
 }
 
 .card-form {

@@ -4,17 +4,32 @@ import dayjs from 'dayjs';
 
 export default class extends Controller {
   static targets = [
-    'category', 'categoryInput', 'today', 'name', 'nameInput', 'date', 'dateInput',
-    'location', 'detail', 'detailInput', 'map', 'latitude', 'longitude', 'address',
-    'fieldPreview', 'form',
+    'category',
+    'categoryInput',
+    'today',
+    'name',
+    'nameInput',
+    'date',
+    'dateInput',
+    'location',
+    'detail',
+    'detailInput',
+    'map',
+    'latitude',
+    'longitude',
+    'address',
+    'fieldPreview',
+    'form',
   ];
 
   get latLng() {
-    return { lat: +this.latitudeTarget.value, lng: +this.longitudeTarget.value };
+    return {
+      lat: +this.latitudeTarget.value,
+      lng: +this.longitudeTarget.value,
+    };
   }
 
-  connect() {
-  }
+  connect() {}
 
   preview() {
     if (!this.valid()) {
@@ -44,7 +59,9 @@ export default class extends Controller {
     $imgContainer.html('');
     $indicatorContainer.html('');
 
-    if ($imgs.length === 0) { return; }
+    if ($imgs.length === 0) {
+      return;
+    }
 
     $imgs.each((index, elem) => {
       const $item = this.buildCarouselItem(elem);
@@ -83,7 +100,9 @@ export default class extends Controller {
   }
 
   setMap() {
-    if (this.map !== undefined) { return this.map; }
+    if (this.map !== undefined) {
+      return this.map;
+    }
 
     this.map = new google.maps.Map(this.mapTarget, {
       center: this.latLng,

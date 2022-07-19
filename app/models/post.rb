@@ -14,12 +14,14 @@ class Post < ApplicationRecord
   validates :name, presence: true
   validates :date, presence: true
   validates :type_id, presence: true
+  validates :detail, presence: true
 
   validates :lat, numericality: true
   validates :lng, numericality: true
 
   scope :in_active, -> { where(status: %w[found closed]) }
   validates :images,
+            presence: true,
             attached: true,
             content_type: { in: %w[image/jpeg image/png], message: 'must be jpeg or png.' },
             size: { less_than_or_equal_to: 5.megabytes, message: 'oversize limited (5MB)' },
