@@ -19,8 +19,8 @@
       data: { turbo_eval: false } %>
   </head>
 
-  <body class="background">
-    <header>
+  <body>
+    <header class="nav-white">
       <%= render 'layouts/navbar' %>
     </header>
 
@@ -28,7 +28,7 @@
       <%= yield %>
     </main>
 
-    <footer class="footer container-fluid p-0">
+    <footer>
       <%= render 'layouts/footer' %>
     </footer>
   </body>

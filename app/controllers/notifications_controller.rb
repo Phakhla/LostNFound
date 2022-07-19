@@ -4,6 +4,8 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_tab, only: [:index]
 
+  layout 'nav_white'
+
   def index
     @q = Notification.ransack(params[:q])
     result = @q.result

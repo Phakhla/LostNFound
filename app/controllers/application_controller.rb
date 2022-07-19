@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :store_user_location!, if: :storable_location?
 
+  layout :layout_by_resource
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[username tel email password
                                                          password_confirmation address fblink facebook])
@@ -27,5 +29,21 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(_resource)
     new_user_session_path
+  end
+
+  private
+
+  def layout_by_resource
+    if devise_controller?
+      if action_name == 'edit'
+        'devise_sign_in'
+      else
+        'devise'
+      end
+    elsif action_name == 'show' || action_name == 'edit'
+      'nav_white'
+    else
+      'application'
+    end
   end
 end
