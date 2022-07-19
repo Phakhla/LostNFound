@@ -59,8 +59,8 @@ export default class extends Controller {
     locationButton.style.backgroundColor = '#fff';
     locationButton.style.border = 'none';
     locationButton.style.outline = 'none';
-    locationButton.style.width = '28px';
-    locationButton.style.height = '28px';
+    locationButton.style.width = '40px';
+    locationButton.style.height = '40px';
     locationButton.style.borderRadius = '2px';
     locationButton.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
     locationButton.style.cursor = 'pointer';
@@ -72,12 +72,12 @@ export default class extends Controller {
     locationButton.setAttribute('data-action', 'click->maps#preventSubmit');
 
     const locationIcon = document.createElement('div');
-    locationIcon.style.margin = '5px';
-    locationIcon.style.width = '18px';
-    locationIcon.style.height = '18px';
+    locationIcon.style.margin = '8px';
+    locationIcon.style.width = '30px';
+    locationIcon.style.height = '30px';
     locationIcon.style.backgroundImage = 'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-1x.png)';
-    locationIcon.style.backgroundSize = '180px 18px';
-    locationIcon.style.backgroundPosition = '0px 0px';
+    locationIcon.style.backgroundSize = '250px 25px';
+    locationIcon.style.backgroundPosition = '0.5px 0px';
     locationIcon.style.backgroundRepeat = 'no-repeat';
     locationIcon.id = 'you_location_img';
     locationButton.appendChild(locationIcon);
@@ -107,7 +107,7 @@ export default class extends Controller {
           };
 
           clearInterval(animationInterval);
-          $('#you_location_img').css('background-position', '-144px 0px');
+          $('#you_location_img').css('background-position', '-225px 0px');
 
           this.setMap().setCenter(location);
           this.setMarker(location);
