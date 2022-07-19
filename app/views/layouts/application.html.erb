@@ -20,8 +20,10 @@
   </head>
 
   <body>
-    <%= yield %>
-    <footer>
+    <main class="pt-0">
+      <%= yield %>
+    </main>
+    <footer class="footer container-fluid p-0">
       <%= render 'layouts/footer' %>
     </footer>
   </body>

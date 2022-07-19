@@ -3,10 +3,9 @@
       <%= render 'layouts/navbar' %>
     </header>
   <%= render 'posts/search_form' %>
-  <br><br>
 
-  <div class = "container listposts mt-14" >
-    <div style="margin:30px; padding:20px; border:20px">
+  <div class="listposts mt-14">
+    <div class="container pt-5">
       <% if !user_signed_in? && (!params[:q].present? || !params[:q][:name_cont].present?) %>
         <div class="row justify-content-end align-items-center mb-5">
           <div class="col-md-7 order-md-last">
@@ -50,17 +49,16 @@
           </div>
         </div>
       <% end %>
-        <%= form_with(url: root_path, method: :get, id: 'homeFilter') do |f| %>
-          <%= hidden_field_tag 'tab', @tab %>
-          <div>
-            <%= render 'post_content', posts: @losts, category: 'lost_item', tab: @tab, filter: @filter, f: %>
-            <br><br><hr class="style"><br><br>
-            <%= render 'post_content', posts: @founds, category: 'found_item', tab: @tab, filter: @filter, f: %>
-            <br><br><br>
-          </div>
-        <% end %>
+      <%= form_with(url: root_path, method: :get, id: 'homeFilter') do |f| %>
+        <%= hidden_field_tag 'tab', @tab %>
+        <div>
+          <%= render 'post_content', posts: @losts, category: 'lost_item', tab: @tab, filter: @filter, f: %>
+          <br><br><hr class="style"><br><br>
+          <%= render 'post_content', posts: @founds, category: 'found_item', tab: @tab, filter: @filter, f: %>
+          <br><br><br>
+        </div>
+      <% end %>
     </div>
   </div>
-
 </div>
 
