@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
       else
         'devise'
       end
-    elsif action_name == 'show' || action_name == 'edit'
+    elsif %w[new show edit category_selects].include?(action_name)
       'nav_white'
     else
       'application'
