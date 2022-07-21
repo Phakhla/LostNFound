@@ -180,6 +180,7 @@ export default class extends Controller {
     geocoder.geocode({ latLng }, (result, status) => {
       if (status === 'OK') {
         this.addressTarget.value = result[0].formatted_address;
+        $(this.fieldTarget).val(this.addressTarget.value);
       } else {
         this.addressTarget.value = 'Unknown location';
       }
