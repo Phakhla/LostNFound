@@ -3,6 +3,15 @@
 @import 'dropzone/src/dropzone';
 @import 'custom';
 
+.text-bold {
+  font-weight: bold;
+}
+
+.text--gray {
+  color: #919191;
+  font-weight: 300;
+}
+
 div.target>hr:first-child {
   display: none;
 }
