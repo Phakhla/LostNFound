@@ -1,7 +1,7 @@
 <div data-controller = 'notice'>
   <br>
-  <div class="container" style="width:580px; height:670px; background-color:white; border-radius: 15px;">
-    <div class="card p-4 mt-4 mb-5" style="width:380px; height:500px; margin:auto; border: 0; padding: 20px;">
+  <div class="container" style="width:580px; height:100%; background-color:white; border-radius: 15px;">
+    <div class="card p-4 mt-4 mb-5" style="width:380px; height:auto; margin:auto; border: 0; padding: 20px;">
 
       <a class="navbar-brand" href="#" style="text-align:center; margin-top: 15px;">
         <%= image_tag 'logo_nav.png', alt: '' %>
@@ -25,17 +25,17 @@
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
 
         <div class="field" style = "padding: 10px;">
-          <%= f.label "อีเมล" %><br />
+          <%= f.label "อีเมล", class: "pb-3" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "border-color: black;", :required => true %>
         </div>
 
         <div class="field" style = "padding: 10px;" data-controller="password-toggle">
-          <%= f.label "รหัสผ่าน" %><br />
+          <%= f.label "รหัสผ่าน", class: "pb-3" %><br />
           <div class="card border-dark" style=" color: #FBD034FF; font-size: 25px; border-radius: 10px;">
             <div class = "d-flex justify-content-around">
               <%= f.password_field :password, autocomplete: "current-password", class: "form-control", style: "border: 0;", id: "password" %>
                 <div class="pt-1 pe-3" style="border: 0;">
-                  <span><i class="fas fa-eye" style=" color: black; font-size: 25px;" id="eye" data-action="click->password-toggle#password"></i></span>
+                  <span><i class="fas fa-eye" id="eye" data-action="click->password-toggle#password"></i></span>
                 </div>
             </div>
           </div>
@@ -55,7 +55,7 @@
         </div>
 
         <div class="actions" style="text-align:center; padding: 20px 10px">
-          <%= f.submit "เข้าสู่ระบบ", class: "btn" , style: "background-color:black; color:#FBD034FF; width:100%;" %>
+          <%= f.submit "เข้าสู่ระบบ", class: "btn" , style: "background-color:black; color:#FBD034; width:100%;" %>
         </div>
       <% end %>
       <%= render "devise/shared/links" %>

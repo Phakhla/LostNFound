@@ -23,6 +23,16 @@ select.form-control.is-invalid {
   padding-right: inherit;
 }
 
+.form-control.is-invalid.signup {
+  background-image: none !important;
+  padding-right: inherit;
+}
+
+.form-control.is-valid.signup {
+  background-image: none !important;
+  padding-right: inherit;
+}
+
 textarea.form-control.is-invalid {
   background-image: none !important;
   padding-right: inherit;

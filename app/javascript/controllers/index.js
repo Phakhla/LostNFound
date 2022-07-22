@@ -45,8 +45,3 @@ application.register("search-posts", SearchPostsController)
 
 import ShowMapController from "./show_map_controller.js"
 application.register("show-map", ShowMapController)
-
-
-
-
-
