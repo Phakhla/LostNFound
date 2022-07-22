@@ -459,3 +459,14 @@
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
 }
+
+.field_with_errors {
+  input, input:focus {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + 0.75rem);
+  }
+
+  & + .invalid-feedback {
+    display: block;
+  }
+}

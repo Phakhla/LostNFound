@@ -1,4 +1,4 @@
-<% if resource.errors.any? %>
+<% if resource.errors.any? && resource.errors[:email] != ["can't be blank"] %>
   <div class="modal fade" id="forgot-password" data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"
     data-controller="forgot-password" data-forgot-password-target="modal">

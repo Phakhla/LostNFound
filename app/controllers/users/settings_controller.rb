@@ -3,6 +3,8 @@
 class Users::SettingsController < ApplicationController
   before_action :authenticate_user!
 
+  layout 'nav_white'
+
   def edit_password
     @user = current_user
   end

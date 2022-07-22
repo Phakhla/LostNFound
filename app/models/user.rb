@@ -15,6 +15,7 @@ class User < ApplicationRecord
             allow_blank: true
 
   validates :username, presence: true
+  validates :email, presence: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
