@@ -14,7 +14,8 @@
       <div class="row">
         <div class="col">
           <b><p style = "font-size: 20px; text-align: center;">
-            <%= @post.lost_item? ? 'วันที่หาย: ': 'วันที่เจอ: ' %><%= @post.date.strftime("%d/%m/%y") %>
+            <%= @post.lost_item? ? 'วันที่หาย: ': 'วันที่เจอ: ' %>
+            <span data-datetime="<%= @post.date %>"></span>
           </p></b>
         </div>
       </div>
@@ -40,10 +41,10 @@
           <b><%= @post.user.username %></b>
           <div class = "col" style = "display: -webkit-box; display: -webkit-flex; display: flex;">
             <div style = "width: 200px; margin-right: 5%;">
-              <strong>ติดต่อ: </strong><strong>tel:</strong> <%= @post.user.tel %>
+              <strong>ติดต่อ : </strong><i class="fa-solid fa-phone" style="font-size: 20px;"></i> <%= @post.user.tel %>
             </div>
             <div style = "width: 500px;">
-              <strong>facebook:</strong> <%= @post.user.facebook %>
+              <i class="fa-brands fa-facebook-square" style="font-size: 25px;"></i> <%= @post.user.facebook %>
             </div>
           </div>
         </div>

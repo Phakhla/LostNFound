@@ -3,6 +3,13 @@
   <head>
     <meta charset='utf-8' />
     <link href='https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700;800&display=swap' rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/locale/th.js"></script>
+
     <style>
       .printable{
         font-family: 'Prompt';
@@ -15,6 +22,17 @@
         }
       }
     </style>
+
+    <script>
+      $(function() {
+        $('*[data-datetime]').each(function(index, elem) {
+          const $elem = $(elem);
+          const dateStr = $elem.data('datetime');
+          $elem.html(dayjs().locale('th').format('DD MMMM YYYY'));
+        })
+      })
+    </script>
+
   </head>
   <body>
     <main>
