@@ -15,8 +15,12 @@
       <%= f.input :type_id, label: false, :collection => Type.all.map{ |l| [l.type_name, l.id] }, error: "กรุณาเลือกประเภท", include_blank: 'เลือก' %>
     </div>
     <div class="col-sm-4">
-      <%= f.label "วันที่หาย" %>
-      <%= f.input :date, as: :datetime, html5: true, input_html: { data: { post_preview_target: 'dateInput' } }, error: "กรุณาเลือกวันที่" , label: false %>
+      <% if post.category == 'lost_item' %>
+        <%= f.label "วันที่หาย" %>
+      <% elsif post.category == 'found_item' %>
+        <%= f.label "วันที่พบ" %>
+      <% end %>
+      <%= f.input :date, as: :date, html5: true, input_html: { data: { post_preview_target: 'dateInput' } }, error: "กรุณาเลือกวันที่" , label: false %>
     </div>
   </div>
   <br>
@@ -48,7 +52,11 @@
   <%= f.text_area :detail, class: 'form-control form-textarea', rows: 5, data: { post_preview_target: 'detailInput' }, id: 'img' %>
   <br>
   <div class="mt-3">
-    <label class="form-label">สถานที่หาย</label>
+    <% if post.category == 'lost_item' %>
+      <%= f.label "สถานที่หาย" %>
+    <% elsif post.category == 'found_item' %>
+      <%= f.label "สถานที่พบ" %>
+    <% end %>
   </div>
 
   <div class="form-group mb-3">
