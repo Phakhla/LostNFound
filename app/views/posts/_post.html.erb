@@ -199,17 +199,20 @@
             <div class="modal-text">
               <p class="mb">กรุณาเลือกเหตุผล</p>
               <p>
-                <%= radio_button 'status', '', 'พบเจอของ/เจ้าของแล้ว', data: { radio_selection_target: "foundRadioButton" } %>
-                <%= f.label "พบเจอของ/เจ้าของแล้ว" %>
+                <label class="cursor-pointer">
+                  <%= radio_button 'status', '', 'พบเจอของ/เจ้าของแล้ว', data: { radio_selection_target: "foundRadioButton" } %> พบเจอของ/เจ้าของแล้ว
+                </label>
               </p>
               <p>
-                <%= radio_button 'status', '', 'ไม่ต้องการค้นหาอีกต่อไป', data: { radio_selection_target: "hopelessRadioButton" } %>
-                <%= f.label "ไม่ต้องการค้นหาอีกต่อไป" %>
+                <label class="cursor-pointer">
+                  <%= radio_button 'status', '', 'ไม่ต้องการค้นหาอีกต่อไป', data: { radio_selection_target: "hopelessRadioButton" } %> ไม่ต้องการค้นหาอีกต่อไป
+                </label>
               </p>
               <p>
-                <%= radio_button 'status', '', nil, data: { radio_selection_target: "otherRadioButton" } %>
-                <%= f.label "อื่นๆ โปรดระบุ" %>
-                <%= text_field_tag :other_reason, '', data: { radio_selection_target: "textInput" }, class:'form-control' %>
+                <label class="cursor-pointer">
+                  <%= radio_button 'status', '', nil, data: { radio_selection_target: "otherRadioButton" } %> อื่นๆ โปรดระบุ
+                  <%= text_field_tag :other_reason, '', data: { radio_selection_target: "textInput" }, class:'form-control' %>
+                </label>
               </p>
               <p>
                 <%= f.hidden_field :status, data: { radio_selection_target: "statusInput" } %>
