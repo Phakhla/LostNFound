@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   root 'home#index'
+  get 'changelog', to: 'home#changelog'
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',

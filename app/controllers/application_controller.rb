@@ -42,6 +42,8 @@ class ApplicationController < ActionController::Base
       end
     elsif %w[new show edit category_selects].include?(action_name)
       'nav_white'
+    elsif %w[changelog].include?(action_name)
+      'nav_white_without_footer'
     else
       'application'
     end
