@@ -14,7 +14,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'd273e4a70395c41c523266b8bb55b43670b3d88b327f96dfdcc02b2af28897d290091673b5953a1e467353ec3b78f15f0df1f750769a3d17aae427107c625372'
+  # config.secret_key = 'd273e4a70395c41c523266b8bb55b43670b3d88b327f96dfdc
+  #                      c02b2af28897d290091673b5953a1e467353ec3b78f15f0df1f750769a3d17aae427107c625372'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +127,8 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'b1451525770f227ed628baccc0dc62f8571ac269958766fe252cce82a098dad1d2638fd96d8756706e901092a5781e68854b9f557000bc263d6b6b9130c639d6'
+  # config.pepper = 'b1451525770f227ed628baccc0dc62f8571ac269958766fe252cce82a098
+  #                  dad1d2638fd96d8756706e901092a5781e68854b9f557000bc263d6b6b9130c639d6'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -178,7 +180,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 6..128
+  config.password_length = 8..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -263,10 +265,10 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html]
+  config.navigational_formats = ['*/*', :html, :turbo_stream]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  
+
   # config.sign_out_via = :delete
   config.sign_out_via = :get
 

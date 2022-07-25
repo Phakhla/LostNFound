@@ -1,0 +1,79 @@
+// home page navbar
+.rounded-5 {
+  border-radius: 1.25rem;
+}
+
+.dropdown-min-width-1 {
+  font-size: 14px;
+  min-inline-size: 100%;
+  padding: 15px;
+}
+
+// home page landing
+hr.style {
+  border: black;
+  border-width: unset;
+  border-color: #000000;
+  color: #000000;
+  background-color: black;
+}
+
+.grid {
+  align-items: stretch;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+
+  article {
+    background-color: #f8f8f8;
+    border: #fff;
+    border-radius: 1.25rem;
+    height: fit-content;
+    width: 260px;
+
+    img {
+      border-top-left-radius: 1.25rem;
+      border-top-right-radius: 1.25rem;
+      height: 200px;
+      object-fit: cover;
+      width: 260px;
+    }
+  }
+
+  .text {
+    padding: 20px;
+  }
+}
+
+.b {
+  font-size: 22px;
+  font-weight: bolder;
+  white-space: nowrap;
+  width: 22rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1rem;
+
+  .text {
+    padding: 20px;
+  }
+}
+
+.mt-14 {
+  margin-top: 14rem;
+}
+
+
+.col-md-7 {
+  flex: 0 0 auto;
+  width: fit-content;
+}
+
+.listposts {
+  margin-bottom: -10rem !important;
+}
+
+.ps-md-5 {
+  padding-left: 5rem !important;
+}
+

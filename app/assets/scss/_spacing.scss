@@ -1,0 +1,98 @@
+// Spacing
+
+:root {
+  --layout-01: calc(0.4 * var(--layout-unit));
+  --layout-02: calc(0.8 * var(--layout-unit));
+  --layout-03: calc(1.2 * var(--layout-unit));
+  --layout-04: calc(1.6 * var(--layout-unit));
+  --layout-05: calc(2.4 * var(--layout-unit));
+  --layout-06: calc(3.2 * var(--layout-unit));
+  --layout-07: calc(4 * var(--layout-unit));
+  --layout-08: calc(4.8 * var(--layout-unit));
+  --layout-09: calc(5.6 * var(--layout-unit));
+  --layout-10: calc(6.4 * var(--layout-unit));
+  --layout-11: calc(7.2 * var(--layout-unit));
+  --layout-12: calc(9.6 * var(--layout-unit));
+  --layout-unit: 1rem;
+  --spacing-01: calc(0.4 * var(--spacing-unit));
+  --spacing-02: calc(0.8 * var(--spacing-unit));
+  --spacing-03: calc(1.2 * var(--spacing-unit));
+  --spacing-04: calc(1.6 * var(--spacing-unit));
+  --spacing-05: calc(2.4 * var(--spacing-unit));
+  --spacing-06: calc(3.2 * var(--spacing-unit));
+  --spacing-07: calc(4 * var(--spacing-unit));
+  --spacing-08: calc(4.8 * var(--spacing-unit));
+  --spacing-09: calc(5.6 * var(--spacing-unit));
+  --spacing-10: calc(6.4 * var(--spacing-unit));
+  --spacing-11: calc(7.2 * var(--spacing-unit));
+  --spacing-12: calc(9.6 * var(--spacing-unit));
+  --spacing-unit: 1em;
+}
+
+.layout-01 {
+  margin-top: var(--layout-01);
+}
+
+.layout-02 {
+  margin-top: var(--layout-02);
+}
+
+.layout-03 {
+  margin-top: var(--layout-03);
+}
+
+.layout-04 {
+  margin-top: var(--layout-04);
+}
+
+.layout-05 {
+  margin-top: var(--layout-05);
+}
+
+.layout-06 {
+  margin-top: var(--layout-06);
+}
+
+.layout-07 {
+  margin-top: var(--layout-07);
+}
+
+.spacing-01 {
+  margin-top: var(--spacing-01);
+}
+
+.spacing-02 {
+  margin-top: var(--spacing-02);
+}
+
+.spacing-03 {
+  margin-top: var(--spacing-03);
+}
+
+.spacing-04 {
+  margin-top: var(--spacing-04);
+}
+
+.spacing-05 {
+  margin-top: var(--spacing-05);
+}
+
+.spacing-06 {
+  margin-top: var(--spacing-06);
+}
+
+.spacing-07 {
+  margin-top: var(--spacing-07);
+}
+
+.spacing-08 {
+  margin-top: var(--spacing-08);
+}
+
+.spacing-09 {
+  margin-top: var(--spacing-09);
+}
+
+.layout-mt-04{
+  margin-bottom: var(--layout-07);
+}

@@ -1,0 +1,18 @@
+<div class="container">
+  <%= render 'posts/post', post: @post %>
+</div>
+<div class="container mt-5">
+  <p style="font-size: 20px;">
+    <% if @post.active? && @comments.count == 0 %>
+      ความคิดเห็น
+    <% elsif @comments.count != 0 %>
+      ความคิดเห็น(<%= @comments.count %>)
+    <% end %>
+  </p>
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', post: @post, comment: comment %>
+  <% end %>
+  <% if @post.active? %>
+    <%= render 'comments/form', post: @post %>
+  <% end %>
+</div>

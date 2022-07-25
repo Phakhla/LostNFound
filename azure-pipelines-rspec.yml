@@ -1,0 +1,51 @@
+# Ruby
+# Package your Ruby application.
+# Add steps that install rails, analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/ruby
+
+trigger: none
+
+pool: ruby-rbenv
+variables:
+  RAILS_ENV: 'test'
+  RUBY_VERSION: '3.1.2'
+  disable.coverage.autogenerate: 'true'
+
+steps:
+- script: |
+    rbenv install ${RUBY_VERSION} --skip-existing
+    rbenv rehash
+    rbenv global $(RUBY_VERSION)
+    gem install bundler
+    bundle install --retry=3 --jobs=4
+  displayName: 'bundle install'
+
+- script: |
+    cp $(Agent.HomeDirectory)/lostitem_database.yml config/database.yml
+    cp $(Agent.HomeDirectory)/lostitem_application.yml config/application.yml
+    RAILS_ENV=${RAILS_ENV} bundle exec rake db:create
+    RAILS_ENV=${RAILS_ENV} bundle exec rake db:migrate
+  displayName: 'create and migrate db'
+
+- script: |
+    yarn --ignore-platform
+    echo $(MASTER_KEY) > config/master.key
+    bundle exec rake assets:precompile
+  displayName: 'compile assets'
+
+- script: RAILS_ENV=test; bundle exec rspec --no-drb -r rspec_junit_formatter --format RspecJunitFormatter -o TEST-rspec.xml;
+  displayName: 'run exec rspec for test'
+  failOnStderr: false
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFiles: '$(System.DefaultWorkingDirectory)/TEST-rspec.xml'
+    testRunTitle: 'Ruby tests'
+
+- task: PublishCodeCoverageResults@1
+  condition: succeededOrFailed()
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'

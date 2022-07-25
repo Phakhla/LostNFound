@@ -1,0 +1,40 @@
+<%
+  if category == 'lost_item'
+    header = 'โพสต์ตามหาของหาย'
+    date_label = 'วันที่หาย'
+    location_label = 'สถานที่หาย'
+  end
+
+  if category == 'found_item'
+    header = 'โพสต์ตามหาเจ้าของ'
+    date_label = 'วันที่พบ'
+    location_label = 'สถานที่เจอ'
+  end
+
+%>
+<% @posts.each do |post| %>
+  <div class="grid">
+    <article>
+      <% if post.images.attached? %>
+        <%= image_tag(post.images.order(created_at: :desc).first) %>
+      <% else %>
+        <img alt="image" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
+      <% end %>
+      <div class="text">
+        <div class="b" ><%= post.name %></div>
+        <div class="col-md-12">
+          <%= date_label %> : <span data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD/MM/YYYY' data-datetime-target="output"></span>
+        </div>
+        <b><i class='fas fa-map-marker-alt' style='font-size:20px'></i>&nbsp;<%= post.location %></b><br>
+        <% if post.active? %>
+          <b style="color: #8bb72f ; font-size: 10;"> &bull; กำลังตามหา</b>
+        <% else %>
+          <b style="color: red; font-size: 10;">ปิดโพสต์ตามหา</b>
+        <% end %>
+        <br><br>
+        <i style="font-size:14px; color: gray;">โพสต์เมื่อวันที่:<%= post.created_at.localtime.strftime("%d/%m/%y") %></i>
+          <%= link_to "ดูรายละเอียด", post_path(post), class: "btn btn--outline-secondary btn-lg btn-block mt-3" ,style:"width: 100%; border-width: unset;" %>
+      </div>
+    </article>
+  </div>
+<% end %>

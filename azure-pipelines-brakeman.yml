@@ -1,0 +1,28 @@
+# Ruby
+# Package your Ruby application.
+# Add steps that install rails, analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/ruby
+
+trigger: none
+
+pool: ruby-rbenv
+variables:
+  RUBY_VERSION: '3.1.2'
+
+steps:
+- script: |
+    rbenv install ${RUBY_VERSION} --skip-existing
+    rbenv rehash
+    rbenv global $(RUBY_VERSION)
+    gem install bundler
+    bundle install --retry=3 --jobs=4
+  displayName: 'Bundle install'
+
+- script: bundle exec brakeman --no-exit-on-error --color -o security.html
+  displayName: 'run check security'
+
+- task: PublishHtmlReport@1
+  displayName: 'Publish HTML Report'
+  condition: succeededOrFailed()
+  inputs:
+    reportDir: '$(System.DefaultWorkingDirectory)/security.html'

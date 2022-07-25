@@ -1,0 +1,10 @@
+<div class="card p-3 mt-4 mb-5 border-dark" style="border-radius: 15px;">
+  <%= simple_form_for [@post, @post.comments.build] do |f| %>
+    <div class="d-flex justify-content-around">
+      <%= f.text_field :content, placeholder: 'แสดงความคิดเห็น', class: 'form-control', style: "border: 0;" %>
+      <%= button_tag class: 'btn' do %>
+        <i class="fa fa-paper-plane" aria-hidden="true" style="color: #FBD034FF; font-size: 25px;"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,123 @@
+// Typography
+
+// For english
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+
+:root {
+  --base-font-size: 10px;
+  --body-line-height: 1.5;
+  --font-primary: 'Prompt', sans-serif;
+  --text-body: 16px;
+  --text-header1: 61.04px;
+  --text-header2: 48.83px;
+  --text-header3: 39.06px;
+  --text-pertitle: 10px;
+  --text-small: 14px;
+  --text-subtitle: 25px;
+}
+
+h1 {
+  font-size: var(--text-header1);
+}
+
+.text-header1 {
+  font-size: var(--text-header1);
+}
+
+h2 {
+  font-size: var(--text-header2);
+}
+
+.text-header2 {
+  font-size: var(--text-header2);
+}
+
+h3 {
+  font-size: var(--text-header3);
+}
+
+.text-header3 {
+  font-size: var(--text-header3);
+}
+
+h4 {
+  font-size: var(--text-subtitle);
+}
+
+.text-subtitle {
+  font-size: var(--text-subtitle);
+}
+
+html {
+  font-size: var(--base-font-size);
+  line-height: var(--body-line-height);
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 1.6rem;
+}
+
+p {
+  font-size: 1.6rem;
+}
+
+.subtitle {
+  font-size: var(--text-subtitle);
+  font-weight: 600;
+}
+
+.text-pertitle {
+  font-size: var(--text-pertitle);
+}
+
+.text-small {
+  font-size: var(--text-small);
+}
+
+a {
+  color: var(--color-black);
+
+  &:visited {
+    color: var(--color-black);
+  }
+}
+
+.font-weight500 {
+  font-weight: 500;
+}
+
+.font-weight600 {
+  font-weight: 600;
+}
+
+.font-weight800 {
+  font-weight: 800;
+}
+
+@media (max-width: 767.98px) {
+  h2 {
+    font-size: 32px;
+  }
+
+  .text-header2 {
+    font-size: 32px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1023.89px) {
+  h2 {
+    font-size: var(--text-header2);
+    letter-spacing: 0;
+  }
+}
+
+.plus {
+  margin: 86px;
+  font-size: 4rem;
+  color: #efbd05;
+}

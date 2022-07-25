@@ -1,0 +1,17 @@
+DOMAIN: localhost:3000
+HOST: localhost:3000
+EMAIL_FROM: 'from@example.com'
+
+DB_USER: db_user
+DB_PASSWORD: db_password
+DB_HOST: db_host
+
+MAPS_API_KEY: maps_api_key
+
+AWS_KEY: aws_key
+AWS_ACCESS_KEY: aws_access_key
+
+SENDGRID_USERNAME: sendgrid_username
+SENDGRID_API_KEY: sendgrid_api_key
+
+SENTRY_DSN: sentry_dsn

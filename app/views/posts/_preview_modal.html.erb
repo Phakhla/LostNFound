@@ -1,0 +1,64 @@
+<div id="preview_modal" class="modal fade" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <h5 class="modal-title" data-post-preview-target="category">category</h5>
+          </div>
+          <div class="col-6">
+            <p class="text-end">วันที่โพสต์: <span data-post-preview-target="today">dd/mm/yyyy</span></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <h4 data-post-preview-target="name">Name</h4>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <div id="postImageIndicators" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-indicators" id="imgIndicator">
+              </div>
+
+              <div class="carousel-inner" id="imgPreview">
+                <div class="carousel-item active">
+                </div>
+              </div>
+
+              <button class="carousel-control-prev" type="button" data-bs-target="#postImageIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#postImageIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <h5 data-post-preview-target="date">วันที่เจอ: dd/mm/yyyy</h5>
+            <h5 data-post-preview-target="fieldPreview">สถานที่เจอ: value</h5>
+
+            <div>
+              <%= content_tag :div, nil, data: { post_preview_target: "map" }, class: 'map mb-5' %>
+            </div>
+
+            <h5>รายละเอียดเพิ่มเติม:</h5>
+            <p data-post-preview-target="detail">detail</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+        <%= f.button :button, "สร้างโพสต์", type: 'submit', class: "btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

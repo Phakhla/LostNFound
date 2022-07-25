@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LostItem</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= favicon_link_tag 'logo-color.svg' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= yield :meta %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Figaro.env.MAPS_API_KEY}&libraries=places&callback=dispatchMapsEvent",
+      defer: true,
+      data: { turbo_eval: false } %>
+    <%= javascript_include_tag 'https://kit.fontawesome.com/70f81e00e8.js',
+      crossorigin: 'anonymous',
+      defer: true,
+      data: { turbo_eval: false } %>
+  </head>
+
+  <body>
+    <header class="nav-white">
+      <%= render 'layouts/navbar' %>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
+  </body>
+</html>

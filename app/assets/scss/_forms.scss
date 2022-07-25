@@ -1,0 +1,124 @@
+.form-control {
+  border: 1px solid var(--color-secondary);
+  border-radius: 8px;
+  font-size: 16px;
+  height: 42px;
+
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+// hide icon invalid
+
+select.form-control.is-invalid {
+  background-image: none !important;
+  padding-right: inherit;
+}
+
+.form-control.is-invalid.datetime {
+  background-image: none !important;
+  padding-right: inherit;
+}
+
+.form-control.is-invalid.signup {
+  background-image: none !important;
+  padding-right: inherit;
+}
+
+.form-control.is-valid.signup {
+  background-image: none !important;
+  padding-right: inherit;
+}
+
+textarea.form-control.is-invalid {
+  background-image: none !important;
+  padding-right: inherit;
+}
+
+.form-invalid {
+  border: 1px solid var(--color-red);
+}
+
+.card-form {
+  border-radius: 15px;
+  border: 1px solid;
+}
+
+.form-textarea {
+  border-radius: 8px;
+  font-size: 16px;
+  height: auto;
+}
+
+.form-select {
+  border-color: var(--color-black);
+  border-radius: 8px;
+  font-size: 16px;
+  height: 42px;
+
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+.box-search-item {
+  .form-control {
+    border-radius: 8px;
+    font-size: 16px;
+    height: 52px;
+  }
+}
+
+.input-icon--left {
+  .input-group-text {
+    background-color: inherit;
+    border-bottom-left-radius: 8px;
+    border-right: 0;
+    border-top-left-radius: 8px;
+    font-size: 16px;
+  }
+
+  .form-control {
+    border-bottom-left-radius: 0;
+    border-left: 0;
+    border-top-left-radius: 0;
+  }
+}
+
+.has-search {
+  .form-control {
+    padding-left: 36px;
+  }
+
+  .form-control-feedback {
+    color: var(--color-black);
+    display: block;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 14px;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+  }
+}
+
+.fa-eye {
+  color: var(--color-black);
+  font-size: 16px;
+  z-index: 2000;
+}
+
+.form-label {
+  font-size: 16px;
+}
+
+footer {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  padding: 57px 40px;
+}

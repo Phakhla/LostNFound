@@ -1,0 +1,167 @@
+<%
+  q = @search.present? ? { name_cont: "#{@search}" } : nil
+
+  if category == 'lost_item'
+    link_posts = lost_posts_path(q:, tab:, filter: { lost_item: { status: filter.dig(:lost_item, :status) } })
+    header = 'โพสต์ตามหาของหาย'
+    date_label = 'วันที่หาย'
+    location_label = 'สถานที่หาย'
+  end
+
+  if category == 'found_item'
+    link_posts = found_posts_path(q:, tab:, filter: { found_item: { status: filter.dig(:found_item, :status) } })
+    header = 'โพสต์ตามหาเจ้าของ'
+    date_label = 'วันที่พบ'
+    location_label = 'สถานที่เจอ'
+  end
+
+%>
+<div class="row mt-5">
+  <div class="d-md-flex">
+    <h4 class="mb-3"><%= header %></h4>
+    <div class="flex-grow-1 mt-2">
+      <% if tab == 'my_post' %>
+      <%= render 'filter', f:, filter:, category: %>
+    <% end %>
+    </div>
+    <p class="d-flex justify-content-between align-items-center mb-3 mt-5 mt-md-0">
+      <span class="text-primary"></span>
+      <span><%= link_to 'ดูรายการทั้งหมด', link_posts %>&nbsp;<i class="fa-solid fa-angles-right"></i></span>
+    </p>
+  </div>
+</div><br>
+<% if posts.present? %>
+  <div class="d-flex flex-nowrap">
+    <% posts.each do |post| %>
+      <div class="grid">
+        <article>
+          <% if post.images.attached? %>
+              <%= image_tag(post.images.order(created_at: :desc).first) %>
+          <% else %>
+            <img alt="image" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
+          <% end %>
+          <div class="text">
+            <div class="b"><%= post.name %></div>
+            <p><%= date_label %> : <%= post.date.strftime("%d/%m/%y") %></p>
+            <b><i class='fas fa-map-marker-alt' style='font-size:20px'></i>&nbsp;<%= post.location %></b><br>
+            <% if post.active? %>
+              <b style="color: #8bb72f ; font-size: 10;"> &bull; กำลังตามหา</b>
+            <% else %>
+              <b style="color: red; font-size: 10;">ปิดโพสต์ตามหา</b>
+            <% end %>
+            <br><br>
+            <i style="font-size:14px; color: gray;">โพสต์เมื่อวันที่:<%= post.created_at.localtime.strftime("%d/%m/%y") %></i>
+            <%= link_to "ดูรายละเอียด", post_path(post), class: "btn btn--outline-secondary btn-lg btn-block mt-3" ,style:"width: 100%; border-width: unset;" %>
+          </div>
+        </article>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="bell-item">
+      <i class="fa-regular fa-bell-on"></i>
+      <p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+<!--<div class="container px-md-0 pt-5">
+  <div class="row">
+    <div class="col-12 text-end">
+      <button class="btn btn--primary">
+        <i class="fa-solid fa-circle-plus"></i><%= link_to new_post_path(), class: '' do %> สร้างโพสต์ <% end %>
+      </button>
+    </div>
+    <div class="col-12 mt-5">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="subtitle">
+          ตามหาของหาย
+        </div>
+        <a href="">ดูรายการทั้งหมด <i class="fa-solid fa-angles-right"></i></a>
+      </div>
+
+    </div>
+  </div>
+  <div class="found-lists mt-5">
+    <div class="found-item">
+      <div class="card">
+        <%= image_tag 'https://cloudfront-us-east-1.images.arcpublishing.com/elespectador/GXHMGQ4UAFCA3MUWIIN7NDMCZA.jpg', alt: '' %>
+        <div class="card-body">
+          <h5 class="card-title">ตามหา iphone 13 Pro</h5>
+          <div class="mt-4"></div>
+          <p class="card-text">วันที่หาย : 03/05/2022</p>
+          <p class="card-text"><i class="fa-solid fa-location-dot"></i> MAYA Chiang Mai</p>
+          <div class="d-flex align-items-center">
+            <div class="circle-green"></div>
+            <p class="mb-0 ms-3">กำลังตามหา</p>
+          </div>
+          <p class="fst-italic color-gray1 mt-5">โพสเมื่อวันที่ : 03/05/2022</p>
+          <div class="d-grid">
+            <a href="#" class="btn btn--outline-secondary">ดูรายละเอียด</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="found-item">
+      <div class="card">
+        <%= image_tag 'https://cloudfront-us-east-1.images.arcpublishing.com/elespectador/GXHMGQ4UAFCA3MUWIIN7NDMCZA.jpg', alt: '' %>
+        <div class="card-body">
+          <h5 class="card-title">ตามหา iphone 13 Pro</h5>
+          <div class="mt-4"></div>
+          <p class="card-text">วันที่หาย : 03/05/2022</p>
+          <p class="card-text"><i class="fa-solid fa-location-dot"></i> MAYA Chiang Mai</p>
+          <div class="d-flex align-items-center">
+            <div class="circle-green"></div>
+            <p class="mb-0 ms-3">กำลังตามหา</p>
+          </div>
+          <p class="fst-italic color-gray1 mt-5">โพสเมื่อวันที่ : 03/05/2022</p>
+          <div class="d-grid">
+            <a href="#" class="btn btn--outline-secondary">ดูรายละเอียด</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="found-item">
+      <div class="card">
+        <%= image_tag 'https://cloudfront-us-east-1.images.arcpublishing.com/elespectador/GXHMGQ4UAFCA3MUWIIN7NDMCZA.jpg', alt: '' %>
+        <div class="card-body">
+          <h5 class="card-title">ตามหา iphone 13 Pro</h5>
+          <div class="mt-4"></div>
+          <p class="card-text">วันที่หาย : 03/05/2022</p>
+          <p class="card-text"><i class="fa-solid fa-location-dot"></i> MAYA Chiang Mai</p>
+          <div class="d-flex align-items-center">
+            <div class="circle-green"></div>
+            <p class="mb-0 ms-3">กำลังตามหา</p>
+          </div>
+          <p class="fst-italic color-gray1 mt-5">โพสเมื่อวันที่ : 03/05/2022</p>
+          <div class="d-grid">
+            <a href="#" class="btn btn--outline-secondary">ดูรายละเอียด</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="found-item">
+      <div class="card">
+        <%= image_tag 'https://cloudfront-us-east-1.images.arcpublishing.com/elespectador/GXHMGQ4UAFCA3MUWIIN7NDMCZA.jpg', alt: '' %>
+        <div class="card-body">
+          <h5 class="card-title">ตามหา iphone 13 Pro</h5>
+          <div class="mt-4"></div>
+          <p class="card-text">วันที่หาย : 03/05/2022</p>
+          <p class="card-text"><i class="fa-solid fa-location-dot"></i> MAYA Chiang Mai</p>
+          <div class="d-flex align-items-center">
+            <div class="circle-green"></div>
+            <p class="mb-0 ms-3">กำลังตามหา</p>
+          </div>
+          <p class="fst-italic color-gray1 mt-5">โพสเมื่อวันที่ : 03/05/2022</p>
+          <div class="d-grid">
+            <a href="#" class="btn btn--outline-secondary">ดูรายละเอียด</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->

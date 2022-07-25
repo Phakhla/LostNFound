@@ -1,40 +1,44 @@
-<%= stylesheet_link_tag "footer" %>
-<html>
-<head>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-4 col-md-2 col-lg-1">
+      <%= image_tag 'logo-footer.png', class: 'img-fluid', alt: '' %>
+    </div>
+    <div class="col-md-4 col-lg-5 mt-5 mt-md-0">
+      <h4>Lost n Found</h4>
+      <p class="mt-4">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged.
+      </p>
+    </div>
+    <div class="col-md-2 mt-5 px-0">
+      <%= link_to root_path, class: 'nav-link text-decoration-underline' do %> Home <% end %>
+      <%= link_to lost_posts_path, class: 'nav-link text-decoration-underline' do %> โพสต์ตามหาของหาย <% end %>
+      <%= link_to found_posts_path, class: 'nav-link text-decoration-underline' do %> โพสต์ตามหาเจ้าของ <% end %>
+      <%= link_to new_user_session_path, class: 'nav-link text-decoration-underline' do %> Login <% end %>
 
-</head>
-<body>
-
-</body>
- <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-row">
-          <div class="footer-col">
-            <h4>Lost Item</h4>
-            <p>
-              เว็บไซต์เพื่อตามหาของที่คุณทำหาย
-            </p>
+    </div>
+    <div class="col-md-4 mt-5">
+      <div class="row">
+        <div class="col-lg-6">
+          <div>
+            <i class="fa-brands fa-facebook fa-xl"></i> Lost n Found <br> <div class="my-3"></div>
+            <i class="fa-brands fa-instagram-square fa-xl mt-4"></i> Lost.n.Found
           </div>
-
-          <div class="footer-col">
-            <h4>รายการสิ่งของ</h4>
-            <ul>
-              <li><a href="#">ตามหาของหาย</a></li>
-              <li><a href="#">เจอของหาย</a></li>
-            </ul>
+        </div>
+        <div class="col-lg-6 mt-4 mt-lg-0">
+          <div>
+            <i class="fa-solid fa-envelope fa-xl"></i> info@lostnfound.com <br> <div class="my-3"></div>
+            <i class="fa-solid fa-phone fa-xl mt-4"></i> 090 001 0000
           </div>
-
-          <div class="footer-col">
-            <h4>Contact Us</h4>
-            <ul>
-              <li><a href="#">Donate here: </a></li>
-              <li><a href="#">Tel: </a></li>
-              <li><a href="#">Email: </a></li>
-            </ul>
-          </div>
-
-          
         </div>
       </div>
-    </footer>
-</html>
+    </div>
+    <hr class="mt-5">
+    <div class="text-center">
+      <p>@ lostnfound All right reserved</p>
+    </div>
+  </div>
+</div>

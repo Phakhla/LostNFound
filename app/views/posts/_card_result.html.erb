@@ -1,0 +1,25 @@
+<div class="row row-cols-1 row-cols-md-2 g-4">
+<% @posts.each do |post| %>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <% if post.images.attached? %>
+          <% post.images.each do |img| %>
+            <%= image_tag(img, style:"width:150px; height:150px") %>
+          <% end %>
+        <% else %>
+        <img alt="image" class="" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" style = "width: 300px; height: 150px; object-fit: cover;">
+        <% end %>
+        <h5 class="card-title"><%= post.name %></h5>
+        <p class="card-text"><%= post.category %></p>
+        <p class="card-text"><%= post.status %></p>
+        <p class="card-text"><%= post.date %></p>
+        <%= button_to "ดูรายละเอียด", post, :id => "open-contacts-dialog-btn",
+        :class => "inbox-sf-add-btn tip", :method => :get %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+<br>
+<%= paginate @posts %>

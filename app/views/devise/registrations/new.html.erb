@@ -1,54 +1,68 @@
-<h2>Sign up</h2>
+<div class="background">
+  <br>
+  <div class="container" style="width:580px; height:100%; background-color:white; border-radius: 15px;">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="card p-4 mt-4 mb-5" style="width:380px; height:auto; margin:auto; border: 0; padding: 20px;">
 
-  
-   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "firstname" %>
+    <a class="navbar-brand" href="#" style="text-align:center; margin-top: 15px;">
+      <%= image_tag 'logo_nav.png', alt: '' %>
+    </a>
+    <p style="text-align:center; padding-top: 30px; font-size:20px; font-weight: bold;">สร้างบัญชีผู้ใช้</p>
+
+    <button type="button" class="btn btn-outline-dark">
+        <i class="fab fa-google"></i> สร้างบัญชีด้วย Google
+    </button>
+
+    <div class = "choice" style = "text-align: center;">
+      <p style="width: 100%; border-bottom: 1px solid #000; line-height: 0.5em; margin: 10px 0 20px; padding-top:20px;"><span style="background:#fff; padding:0 20px;">หรือ</span></p>
+    </div>
+
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>
+      <div class='pb-4 pt-2'>
+        <%= f.input :username, label: "ชื่อผู้ใช้",input_html: {class: "signup"}, label_html: {class: 'pb-3'}, error: false %>
+        <%if resource.errors.full_messages_for(:username).first == "Username can't be blank" %>
+          <p class="text-danger pt-3">กรุณากรอกชื่อผู้ใช้</p>
+        <% end %>
+        <%if resource.errors.full_messages_for(:username).first == "Username has already been taken" %>
+          <p class="text-danger pt-3">ชื่อผู้ใช้นี้ถูกใช้งานแล้ว</p>
+        <% end %>
+      </div>
+      <div class='pb-3'>
+        <%= f.input :email, label: "อีเมล", input_html: {class: "signup"}, label_html: {class: 'pb-3'}, error: false %>
+        <% if resource.errors.key?(:email)%>
+            <%if resource.errors.full_messages_for(:email).first == "Email can't be blank" %>
+              <p class="text-danger pt-3">กรุณากรอกอีเมล</p>
+            <% end %>
+            <%if resource.errors.full_messages_for(:email).first == "Email has already been taken" %>
+              <p class="text-danger pt-3">อีเมลนี้ถูกใช้งานแล้ว</p>
+            <% end %>
+            <%if resource.errors.full_messages_for(:email).first == "Email is invalid" %>
+              <p class="text-danger pt-3">อีเมลไม่ถูกต้อง</p>
+            <% end %>
+          <input type='hidden' value='อีเมลนี้ถูกใช้งานแล้ว' id='emailerror'>
+        <% end %>
+      </div>
+
+      <div class = "pb-3" data-controller="password-toggle">
+        <%= f.label "รหัสผ่าน", class: "pb-3" %>
+        <div class="tool"><i class="fas fa-info-circle"></i>
+          <span class="tooltiptext">ใช้อักขระ <%= @minimum_password_length %> ตัวขึ้นไป</span>
+        </div>
+        <%= f.input :password, autocomplete: "new-password", input_html: { class: "signup", id:"password" }, label_html: {class: 'pb-3'}, error: false, label: false %>
+        <i class="fas fa-eye signup" id="eye" data-action="click->password-toggle#password"></i>
+      </div>
+
+      <% if resource.errors.key?(:password)%>
+        <p class="text-danger">กรุณาตั้งรหัสด้วยอักขระ 8 ตัวขึ้นไป</p>
+        <input type='hidden' value='กรุณาตั้งรหัสด้วยอักขระ 8 ตัวขึ้นไป' id='passerror'>
+      <% end %>
+
+      <div class="actions justify-content-center py-5" >
+        <%= f.submit "สร้างบัญชี", class: "btn" , style: "background-color:black; color:#FBD034FF; width:100%;" %>
+      </div>
+
+    <% end %>
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-
- <div class="field">
-    <%= f.label :firstname %><br />
-    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname" %>
-  </div>
-
-   <div class="field">
-    <%= f.label :lastname %><br />
-    <%= f.text_field :lastname, autofocus: true, autocomplete: "firstname" %>
-  </div>
-
-   <div class="field">
-    <%= f.label :tel %><br />
-    <%= f.text_field :tel, autofocus: true, autocomplete: "firstname" %>
-  </div>
-
-
-
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

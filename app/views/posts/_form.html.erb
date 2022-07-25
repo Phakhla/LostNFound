@@ -1,0 +1,88 @@
+<%= simple_form_for post, { data: { controller: 'maps post-preview', post_preview_target: 'form' } } do |f| %>
+
+  <%= f.hidden_field :status, value: 'active' %>
+  <%= f.hidden_field :category, data: { post_preview_target: 'categoryInput' } %>
+  <%= f.hidden_field :lat, data: { maps_target: "latitude", post_preview_target: "latitude" } %>
+  <%= f.hidden_field :lng, data: { maps_target: "longitude", post_preview_target: "longitude" } %>
+  <%= f.hidden_field :location, data: { maps_target: "address", post_preview_target: "address" } %>
+
+  <%= f.label "หัวข้อโพสต์" %>
+  <%= f.input :name, input_html: { data: { post_preview_target: 'nameInput' } }, error: "กรุณากรอกข้อมูล" , label: false %>
+  <br/>
+  <div class="row g-5">
+    <div class="col-sm-4">
+      <%= f.label "ประเภท" %>
+      <%= f.input :type_id, label: false, :collection => Type.all.map{ |l| [l.type_name, l.id] }, error: "กรุณาเลือกประเภท", include_blank: 'เลือก' %>
+    </div>
+    <div class="col-sm-4">
+      <% if post.category == 'lost_item' %>
+        <%= f.label "วันที่หาย" %>
+      <% elsif post.category == 'found_item' %>
+        <%= f.label "วันที่พบ" %>
+      <% end %>
+      <%= f.input :date, as: :date, html5: true, input_html: { data: { post_preview_target: 'dateInput' } }, error: "กรุณาเลือกวันที่" , label: false %>
+    </div>
+  </div>
+  <br>
+  <%= f.label :images, "อัปโหลดรูป*" %><span class="text--gray"> (ต้องมีอย่างน้อย 1 รูป และสามารถอัพโหลดได้สูงสุดไม่เกิน 10 รูป)</span>
+  <div class="box dropzone dropzone-box <%= 'form-invalid' if post.errors.key?(:images) %>" id="dropzone-container">
+    <div class="dropzone dropzone-custom dz-clickable "  data-controller="dropzone" data-dropzone-max-files="10">
+      <%= f.file_field :images, multiple: true, direct_upload: true, data: { dropzone_target: 'input' } %>
+      <div class="dropzone-msg dz-message ">
+        <h3 class="plus"><i class="fa fa-plus "></i></h3>
+      </div>
+    </div>
+    <div class="d-inline">
+      <% if post.persisted? %>
+        <% if post.images.attached? %>
+          <% post.images.each do |image| %>
+            <div class="m-2 d-inline-block" data-controller="post-image" data-post-image-target="image">
+              <div class="d-flex image justify-content-center">
+                <%= f.hidden_field :images, multiple: true, value: image.signed_id %>
+                <%= image_tag(image, size: '150x150') %>
+              </div>
+              <%= button_tag "ลบภาพนี้", data: { action: 'click->post-image#removeImage' } %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <%= f.label :detail, "รายละเอียดเพิ่มเติม", class: 'form-label mt-5' %>
+  <%= f.text_area :detail, class: 'form-control form-textarea', rows: 5, data: { post_preview_target: 'detailInput' }, id: 'img' %>
+  <br>
+  <div class="mt-3">
+    <% if post.category == 'lost_item' %>
+      <%= f.label "สถานที่หาย" %>
+    <% elsif post.category == 'found_item' %>
+      <%= f.label "สถานที่พบ" %>
+    <% end %>
+  </div>
+
+  <div class="form-group mb-3">
+    <% if post.persisted? %>
+      <%= f.input :search, required: true, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit" }, value: post.location, class: post.errors.key?(:lat) || post.errors.key?(:lng) ? 'form-invalid' : 'form-control' }, label: false %>
+    <% else %>
+      <%= f.input :search, required: true, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit" }, value: '', class: post.errors.key?(:lat) || post.errors.key?(:lng) ? 'form-invalid' : 'form-control' }, label: false %>
+    <% end %>
+    <% if post.errors.key?(:lat) || post.errors.key?(:lng) %>
+      <p class="text-small text-danger">กรุณากรอกข้อมูล</p>
+    <% end %>
+  </div>
+  <div class="col-sm-10">
+    <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->maps#initializeMap', maps_target: "map" }, class: 'map map-size mb-5' %>
+  </div>
+  <hr><br>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <%= f.button :button, "ยกเลิก", type: "reset", class: "btn btn-outline-warning" %>
+    <% if post.persisted? %>
+      <%= f.submit "บันทึก", class: "btn btn-warning" %>
+    <% else %>
+      <%= f.button :button, "สร้างโพสต์", type: 'button', class: "btn btn-warning",
+      data: {
+        action: 'click->post-preview#preview'
+      } %>
+    <% end %>
+    <%= render 'preview_modal', f: %>
+  </div>
+<% end %>
