@@ -45,14 +45,14 @@
               <div class="col-md-6 col-lg-5 col-xl-3">
                 <label>
                   <div class="checkboxitem d-flex align-items-center">
-                    <%= check_box_tag('q[category_eq_any][]', 1, @q.category_eq_any&.include?(1) || false, data: { search_form_target: 'lostCheckbox' }) %> ประกาศหาของหาย
+                    <%= check_box_tag('q[category_eq_any][]', 1, @q.category_eq_any&.include?(1) || false, data: { search_form_target: 'lostCheckbox' }) %> โพสต์หาของหาย
                   </div>
                 </label>
               </div>
               <div class="col-md-6 col-lg-5 col-xl-3 mt-5 mt-md-0">
                 <label>
                   <div class="checkboxitem d-flex align-items-center">
-                    <%= check_box_tag('q[category_eq_any][]', 0, @q.category_eq_any&.include?(0)  || false, data: { search_form_target: 'foundCheckbox' }) %> ประกาศตามหาเจ้าของ
+                    <%= check_box_tag('q[category_eq_any][]', 0, @q.category_eq_any&.include?(0)  || false, data: { search_form_target: 'foundCheckbox' }) %> โพสต์ตามหาเจ้าของ
                   </div>
                 </label>
               </div>
