@@ -22,11 +22,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-
     if @post.save
       redirect_to root_url
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity, layout: 'nav_white'
     end
   end
 
@@ -34,7 +33,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post.id)
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity, layout: 'nav_white'
     end
   end
 
