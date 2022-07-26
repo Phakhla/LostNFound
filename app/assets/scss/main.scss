@@ -3,6 +3,10 @@
 @import 'dropzone/src/dropzone';
 @import 'custom';
 
+.text-underline {
+  text-decoration: underline;
+}
+
 .text-bold {
   font-weight: bold;
 }
@@ -271,13 +275,15 @@ div.target>hr:first-child {
 }
 
 // eye icon in password field
-.fa-eye, .fa-eye-slash {
+.fa-eye,
+.fa-eye-slash {
   font-size: 20px;
-  color:var(--color-black);
+  color: var(--color-black);
   cursor: pointer;
 }
 
-.signup.fa-eye, .signup.fa-eye-slash {
+.signup.fa-eye,
+.signup.fa-eye-slash {
   position: absolute;
   right: 30px;
   margin-top: -30px;
@@ -287,7 +293,48 @@ div.target>hr:first-child {
 }
 
 // Map-size
-.map-size{
+.map-size {
   height: 450px;
   width: 100%;
+}
+
+// Edit upload
+.edit-upload {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  min-height: 100px;
+  margin-top: 22px;
+  margin-left: 14px;
+  margin-right: 14px;
+  margin-bottom: 22px;
+
+  .edit-image {
+    border-radius: 20px;
+    overflow: hidden;
+    width: 210px;
+    height: 210px;
+    position: relative;
+    display: block;
+    z-index: 10;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+    }
+
+  }
+
+
+  .edit-remove {
+    font-size: 14px;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    border: none;
+    text-decoration: underline;
+  }
+
 }

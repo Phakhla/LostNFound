@@ -30,25 +30,23 @@
   <div class="box dropzone dropzone-box <%= 'form-invalid' if post.errors.key?(:images) %>" id="dropzone-container">
     <div class="dropzone dropzone-custom dz-clickable "  data-controller="dropzone" data-dropzone-max-files="10">
       <%= f.file_field :images, multiple: true, direct_upload: true, data: { dropzone_target: 'input' } %>
-      <div class="dropzone-msg dz-message ">
-        <h3 class="plus"><i class="fa fa-plus "></i></h3>
-      </div>
+        <div class="dropzone-msg dz-message ">
+          <h3 class="plus"><i class="fa fa-plus "></i></h3>
+        </div>
     </div>
-    <div class="d-inline">
-      <% if post.persisted? %>
-        <% if post.images.attached? %>
-          <% post.images.each do |image| %>
-            <div class="m-2 d-inline-block" data-controller="post-image" data-post-image-target="image">
-              <div class="d-flex image justify-content-center">
-                <%= f.hidden_field :images, multiple: true, value: image.signed_id %>
-                <%= image_tag(image, size: '150x150') %>
-              </div>
-              <%= button_tag "ลบภาพนี้", data: { action: 'click->post-image#removeImage' } %>
+    <% if post.persisted? %>
+      <% if post.images.attached? %>
+        <% post.images.each do |image| %>
+          <div class="edit-upload text-center " data-controller="post-image" data-post-image-target="image">
+            <%= f.hidden_field :images, multiple: true, value: image.signed_id %>
+            <div class="edit-image">
+              <%= image_tag(image)  %>
             </div>
-          <% end %>
+            <%= f.label "remove file", type: 'submit', data: { action: 'click->post-image#removeImage' }, class: 'edit-remove' %>
+          </div>
         <% end %>
       <% end %>
-    </div>
+    <% end %>
   </div>
   <% if post.errors.key?(:images) %>
       <p class="text-small text-danger">กรุณาอัพโหลดรูป</p>
