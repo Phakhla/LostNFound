@@ -12,20 +12,20 @@
 
 <div id="<%= dom_id @post %>">
   <div class="row">
-    <div class="col text-start" style="font-size: 20px;">
+    <div class="col-sm-12 text-start" style="font-size: 20px;">
       <%= link_to(root_path, style: 'text-decoration: none;') do %>
           <i class="fa-solid fa-arrow-left"></i>
           ย้อนกลับ
       <% end %>
     </div>
-    <div class="col-5">
-      <div class="d-flex justify-content-between align-items-center">
-        <% if user_signed_in? && post.owner?(current_user) && post.active? %>
-          <button type="button" class="btn" style="background-color: #FDE89AFF;" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
-          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">ปิดโพสต์นี้</button>
-          <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn-light' %>
-        <% end %>
-      </div>
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-8 text-end ">
+      <% if user_signed_in? && post.owner?(current_user) && post.active? %>
+        <button type="button" class="btn bg-color--primary100" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
+        <button type="button" class="btn btn--outline-primary-width" data-bs-toggle="modal" data-bs-target="#closeRemovePostModal">ปิดโพสต์นี้</button>
+        <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn--primary-black' %>
+      <% end %>
     </div>
   </div>
   <div class="row g-0 mt-4">
@@ -184,7 +184,7 @@
   </div>
 </div>
 <!-- Modal close post -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="closeRemovePostModal" tabindex="-1" aria-labelledby="closeRemovePostModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 	  <%= simple_form_for @post, url: post_path, method: 'patch', data: { controller: "radio-selection", action: "radio-selection#checkOption" } do |f| %>
       <div class="close-post-modal">
@@ -193,7 +193,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-header">
-            <p class="modal-title" id="exampleModalLabel">คุณต้องการปิดโพสนี้ใช่ไหม?</p>
+            <p class="modal-title" id="closeRemovePostModalLabel">คุณต้องการปิดโพสนี้ใช่ไหม?</p>
           </div>
           <div class="modal-body justify-content-center">
             <div class="modal-text">
