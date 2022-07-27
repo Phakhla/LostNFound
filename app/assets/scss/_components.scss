@@ -98,11 +98,79 @@
   }
 }
 
+// tag
+.category-tag {
+  width: 35%;
+  border-radius: 10px;
+}
+
+.lost-tag {
+  color: #312FA9;
+  background-color: #B2C5FC;
+}
+
+.found-tag {
+  color: #C86111;
+  background-color: var(--color-primary-200);
+}
+
+.status-tag {
+  margin-left: auto;
+  margin-right: 0;
+  width: 50%;
+  border-radius: 20px;
+  color: white;
+}
+
+.active-status {
+  background-color: #8BB72FFF;
+}
+
+.inactive-status {
+  background-color: #f03d3d;
+}
+
+// dot white
+.dot-white {
+  position: relative;
+  height: 10px;
+  width: 10px;
+  background-color: var(--color-white);
+  border-radius: 100%;
+  display: inline-block;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 // menu card
 .card-menu {
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+// post detail
+.card-detail {
+  width: 80%;
+  color: #000;
+
+  hr {
+    margin: 0;
+  }
+}
+
+.detail-text {
+  margin-top: 16px;
+  margin-bottom: 19px;
+
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .item-unread {

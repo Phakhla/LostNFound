@@ -12,8 +12,8 @@
 
 <div id="<%= dom_id @post %>">
   <div class="row">
-    <div class="col-sm-12 text-start" style="font-size: 20px;">
-      <%= link_to(root_path, style: 'text-decoration: none;') do %>
+    <div class="col text-start text-subtitle">
+      <%= link_to(root_path, class: 'text-decoration-none') do %>
           <i class="fa-solid fa-arrow-left"></i>
           ย้อนกลับ
       <% end %>
@@ -37,19 +37,19 @@
           </div>
           <div class="col text-end">
             <% if post.active? %>
-              <p class="card-text p-2 text-center" style="margin-left: auto; margin-right: 0; width: 50%; color: white; border-radius: 20px; background-color: #8BB72FFF;">
-                <span class="dot" style="position: relative; height: 10px; width: 10px; background-color: #ffffff; border-radius: 100%; display: inline-block;"></span>
+              <p class="card-text p-2 text-center status-tag active-status">
+                <span class="dot-white"></span>
                 กำลังตามหา
               </p>
             <% else %>
-              <p class="card-text p-2 text-center" style="margin-left: auto; margin-right: 0; width: 60%; color: white; border-radius: 20px; background-color: #f03d3d;">
-                ปิดโพสต์ตามหา
+              <p class="card-text p-2 text-center status-tag inactive-status">
+                ปิดโพสต์
               </p>
             <% end %>
-            <p class="card-text">
-              <span class="fw-bold">วันที่โพสต์ : </span>
-              <%= post.created_at.strftime("%d %B %y") %>
-            </p>
+            <div class="d-flex justify-content-end">
+              <p class="fw-bold">วันที่ประกาศ :&nbsp;</p>
+              <p data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></p>
+          </div>
           </div>
         </div>
         <hr style="height: 2px; background-color:black;">
@@ -76,29 +76,65 @@
 
           <div class="col-5 post-detail">
             <% if post.lost_item? %>
-              <p class="card-text text-center" style="width: 35%; color: #312FA9; border-radius: 10px; background-color: #B2C5FC;">
+              <p class="card-text text-center category-tag lost-tag">
                 โพสต์หาของหาย
               </p>
             <% else %>
-              <p class="card-text text-center" style="width: 35%; color: #C86111; border-radius: 10px; background-color: #F7E3B0;">
+              <p class="card-text text-center category-tag found-tag">
                 โพสต์หาเจ้าของ
               </p>
             <% end %>
-            <p class="card-text fw-bold" style="font-size: 20px;"><%= post.location %></p>
             <p class="card-text"><%= post.detail %></p>
-            <p class="card-text fw-bold pt-5" style="font-size: 20px;">รายละเอียด</p>
-            <p class="card-text">ประเภท&emsp;<%= Type.find(post.type_id).type_name %></p>
-            <hr>
-            <p class="card-text" data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output">วันที่พบ&emsp;</p>
-            <hr>
-            <p class="card-text">สถานที่&emsp;<%= post.location %></p>
-            <hr>
-            <% if !post.active? %>
-              <p data-controller="datetime" data-datetime-date-value="<%= post.updated_at %>" data-datetime-format-value='DD MMMM YYYY | HH:mm' data-datetime-target="output">วันที่ปิดโพสต์&emsp;</p>
+            <p class="card-text fw-bold text-subtitle pt-5">รายละเอียด</p>
+            <div class="card-detail">
+              <div class="row detail-text">
+                <div class="col">
+                  <p class="font-weight500">ประเภท</p>
+                </div>
+                <div class="col">
+                  <p><%= Type.find(post.type_id).type_name %></p>
+                </div>
+              </div>
               <hr>
-              <p class="card-text">เหตุผล&emsp;<%= post.reason %></p>
+              <div class="row detail-text">
+                <div class="col">
+                  <p class="font-weight500"><%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%></p>
+                </div>
+                <div class="col">
+                  <p data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></p>
+                </div>
+              </div>
               <hr>
-            <% end %>
+              <div class="row detail-text">
+                <div class="col">
+                  <p class="font-weight500">สถานที่</p>
+                </div>
+                <div class="col">
+                  <p><%= post.location %></p>
+                </div>
+              </div>
+              <hr>
+              <% if !post.active? %>
+                <div class="row detail-text">
+                  <div class="col">
+                    <p class="font-weight500">วันที่ปิดโพสต์</p>
+                  </div>
+                  <div class="col">
+                    <p data-controller="datetime" data-datetime-date-value="<%= post.updated_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row detail-text">
+                  <div class="col">
+                    <p class="font-weight500">เหตุผล</p>
+                  </div>
+                  <div class="col">
+                    <p><%= post.reason %></p>
+                  </div>
+                </div>
+                <hr>
+              <% end %>
+            </div>
 
             <!-- Location -->
             <%= simple_form_for post, { data: { controller: 'show-map'} } do |f| %>
@@ -108,24 +144,24 @@
               <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->show-map#showMap', show_map_target: "map" }, class: 'map mb-5 mt-5' %>
             <% end %>
 
-            <div class="create-poster">
+            <div class="create-poster mb-5">
               <% if user_signed_in? && post.owner?(current_user) && post.active? %>
-                <%= link_to(new_post_poster_path(post), class: 'btn btn--secondary p-3', style: 'width: 100%;' ) do %>
+                <%= link_to(new_post_poster_path(post), class: 'btn btn--secondary p-3 w-100' ) do %>
                   <i class="fa-solid fa-wand-magic-sparkles"></i> สร้างโปสเตอร์
                 <% end %>
               <% end %>
             </div>
           </div>
         </div>
-        <br><br><br><br><br><br>
+
         <hr style="height: 2px; background-color:black;">
         <div class="row mt-5">
           <div class="col-9 d-flex align-items-center">
             <div class="user-avatar pe-5">
               <% if post.user.avatar.present? %>
-                <%= image_tag(post.user.avatar, style:"width: 50px; height: 50px; object-fit: cover;", class: "rounded-circle") %>
+                <%= image_tag(post.user.avatar, class: 'avatar') %>
               <% else %>
-                <img alt="image" class="rounded-circle" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=" style = "width: 40px; height: 40px; object-fit: cover;">
+                <img alt="image" class="avatar" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
               <% end %>
             </div>
             <div class="user-info">
