@@ -151,6 +151,15 @@ div.target>hr:first-child {
 }
 
 // custom radio-btn for img select on create poster
+.space{
+  padding-right: 24px;
+  padding-bottom: 24px;
+}
+
+input[type="radio"].radiobtn  {
+  display: block;
+}
+
 .radiobtn {
   border: 1px solid var(--color-black);
   background-color: var(--color-white);
@@ -159,8 +168,12 @@ div.target>hr:first-child {
   appearance: none;
 }
 
-.radiobtn:checked {
-  background: var(--color-primary);
+.radiobtn:checked::after {
+  position: absolute;
+  font-family: FontAwesome, sans-serif;
+  top: 10px;
+  left: 14px;
+  content: "\f00c";
 }
 
 .radio {
@@ -174,13 +187,21 @@ div.target>hr:first-child {
   cursor: pointer;
 }
 
+.imgsize {
+  width: 100%;
+  width: 210px;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
 .chooseimg:hover {
-  border-radius: 8px;
+  border-radius: 20px;
   outline: 4px solid var(--color-primary);
 }
 
 .radio:hover+.chooseimg {
-  border-radius: 8px;
+  border-radius: 20px;
   outline: 4px solid var(--color-primary);
 }
 
@@ -349,3 +370,14 @@ div.target>hr:first-child {
   }
 
 }
+
+// change bgcolor of disabled field
+input[type]:disabled {
+  background-color: var(--color-white);
+}
+
+.form-control.select.required.disabled {
+  background-color: var(--color-white);
+}
+
+
