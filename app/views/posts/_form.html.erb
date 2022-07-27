@@ -36,7 +36,6 @@
         <h3 class="plus"><i class="fa fa-plus"></i></h3>
       </div>
     </div>
-    <% if post.persisted? %>
       <% if post.images.attached? %>
         <% post.images.each do |image| %>
           <div class="edit-upload text-center " data-controller="post-image" data-post-image-target="image">
@@ -48,7 +47,6 @@
           </div>
         <% end %>
       <% end %>
-    <% end %>
   </div>
   <% if post.errors.key?(:images) %>
       <p class="text-small text-danger" id="imgtext">กรุณาอัพโหลดรูป</p>
