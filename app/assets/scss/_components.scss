@@ -194,6 +194,11 @@
   }
 }
 
+.manage-bar {
+  margin-bottom: var(--layout-05);
+  align-items: center;
+}
+
 // gallery
 .gallery {
   display: flex;

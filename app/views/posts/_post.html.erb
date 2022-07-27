@@ -11,16 +11,14 @@
 <% end %>
 
 <div id="<%= dom_id @post %>">
-  <div class="row">
-    <div class="col text-start text-subtitle">
+  <div class="row manage-bar">
+    <div class="col d-flex align-items-center text-subtitle">
       <%= link_to(root_path, class: 'text-decoration-none') do %>
           <i class="fa-solid fa-arrow-left"></i>
           ย้อนกลับ
       <% end %>
     </div>
-    <div class="col-sm-4">
-    </div>
-    <div class="col-sm-8 text-end ">
+    <div class="col-8 text-end ">
       <% if user_signed_in? && post.owner?(current_user) && post.active? %>
         <button type="button" class="btn bg-color--primary100" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
         <button type="button" class="btn btn--outline-primary-width" data-bs-toggle="modal" data-bs-target="#closePostModal">ปิดโพสต์นี้</button>
@@ -28,7 +26,7 @@
       <% end %>
     </div>
   </div>
-  <div class="row mt-4">
+  <div class="row">
     <div class="card p-5 border-dark" style="border-radius: 15px">
       <div class="card-body">
         <div class="row m-2">
