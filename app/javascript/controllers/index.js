@@ -45,3 +45,6 @@ application.register("search-posts", SearchPostsController)
 
 import ShowMapController from "./show_map_controller.js"
 application.register("show-map", ShowMapController)
+
+import LiveValidateController from "./live_validate_controller.js"
+application.register("live-validate", LiveValidateController)

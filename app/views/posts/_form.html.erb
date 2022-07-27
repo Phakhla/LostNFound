@@ -1,4 +1,4 @@
-<%= simple_form_for post, { data: { controller: 'maps post-preview', post_preview_target: 'form' } } do |f| %>
+<%= simple_form_for post, { data: { controller: 'maps post-preview live-validate', post_preview_target: 'form'} } do |f| %>
 
   <%= f.hidden_field :status, value: 'active' %>
   <%= f.hidden_field :category, data: { post_preview_target: 'categoryInput' } %>
@@ -6,15 +6,14 @@
   <%= f.hidden_field :lng, data: { maps_target: "longitude", post_preview_target: "longitude" } %>
   <%= f.hidden_field :location, data: { maps_target: "address", post_preview_target: "address" } %>
 
-  <div class="col-sm-9 ">
-    <%= f.label "หัวข้อโพสต์" %>
-    <%= f.input :name, input_html: { data: { post_preview_target: 'nameInput' } }, error: "กรุณากรอกข้อมูล" , label: false %>
-  </div>
+  <%= f.label "หัวข้อประกาศ" %>
+  <%= f.input :name, input_html: { data: { post_preview_target: 'nameInput', live_validate_target: 'name', action: "input->live-validate#checkName" }, id: 'name' }, error: "กรุณากรอกข้อมูล" , label: false %>
+
   <br/>
   <div class="row g-5 ">
     <div class="col-sm-3 ">
       <%= f.label "ประเภท" %>
-      <%= f.input :type_id, label: false, :collection => Type.all.map{ |l| [l.type_name, l.id] }, error: "กรุณาเลือกประเภท", include_blank: 'เลือก' %>
+      <%= f.input :type_id, label: false, :collection => Type.all.map{ |l| [l.type_name, l.id] }, error: "กรุณาเลือกประเภท", include_blank: 'เลือก', input_html: { data: { live_validate_target: 'types', action: "input->live-validate#checkTypes" }, id: 'types' } %>
     </div>
     <div class="col-sm-3">
       <% if post.category == 'lost_item' %>
@@ -22,17 +21,20 @@
       <% elsif post.category == 'found_item' %>
         <%= f.label "วันที่พบ" %>
       <% end %>
-      <%= f.input :date, as: :date, html5: true, input_html: { data: { post_preview_target: 'dateInput' } }, error: "กรุณาเลือกวันที่" , label: false %>
+      <%= f.input :date, as: :date, html5: true, input_html: { data: { post_preview_target: 'dateInput', live_validate_target: 'date', action: "input->live-validate#checkDate" }, id: 'date' }, error: false, label: false %>
+      <% if post.errors.key?(:date) %>
+      <p class="text-small text-danger pt-1" id="datetext">กรุณาเลือกวันที่</p>
+      <% end %>
     </div>
   </div>
   <br>
   <%= f.label :images, "อัปโหลดรูป*" %><span class="text--gray"> (ต้องมีอย่างน้อย 1 รูป และสามารถอัพโหลดได้สูงสุดไม่เกิน 10 รูป)</span>
   <div class="box dropzone dropzone-box <%= 'form-invalid' if post.errors.key?(:images) %>" id="dropzone-container">
-    <div class="dropzone dropzone-custom dz-clickable "  data-controller="dropzone" data-dropzone-max-files="10">
-      <%= f.file_field :images, multiple: true, direct_upload: true, data: { dropzone_target: 'input' } %>
-        <div class="dropzone-msg dz-message ">
-          <h3 class="plus"><i class="fa fa-plus "></i></h3>
-        </div>
+    <div class="dropzone dropzone-custom dz-clickable "  data-controller="dropzone" data-dropzone-max-files="10" data-action = "click->live-validate#checkImages">
+      <%= f.file_field :images, multiple: true, direct_upload: true, data: { dropzone_target: 'input'} %>
+      <div class="dropzone-msg dz-message ">
+        <h3 class="plus"><i class="fa fa-plus"></i></h3>
+      </div>
     </div>
     <% if post.persisted? %>
       <% if post.images.attached? %>
@@ -49,7 +51,7 @@
     <% end %>
   </div>
   <% if post.errors.key?(:images) %>
-      <p class="text-small text-danger">กรุณาอัพโหลดรูป</p>
+      <p class="text-small text-danger" id="imgtext">กรุณาอัพโหลดรูป</p>
   <% end %>
   <div class="col-sm-9">
     <%= f.label :detail, "รายละเอียดเพิ่มเติม", class: 'form-label mt-5' %>
@@ -66,12 +68,12 @@
 
   <div class="form-group mb-3 col-7">
     <% if post.persisted? %>
-      <%= f.input :search, required: true, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit" }, value: post.location, class: post.errors.key?(:lat) || post.errors.key?(:lng) ? 'form-invalid' : 'form-control' }, label: false %>
+      <%= f.input :search, required: true, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit", live_validate_target: 'place', action: "input->live-validate#checkPlace" }, id: 'place', value: post.location, class: post.errors.key?(:lat) || post.errors.key?(:lng) ? 'form-invalid' : 'form-control' }, label: false %>
     <% else %>
-      <%= f.input :search, required: true, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit" }, value: '', class: post.errors.key?(:lat) || post.errors.key?(:lng) ? 'form-invalid' : 'form-control' }, label: false %>
+      <%= f.input :search, required: true, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit", live_validate_target: 'place', action: "input->live-validate#checkPlace" }, id: 'place', value: '', class: post.errors.key?(:lat) || post.errors.key?(:lng) ? 'form-invalid' : 'form-control' }, label: false %>
     <% end %>
     <% if post.errors.key?(:lat) || post.errors.key?(:lng) %>
-      <p class="text-small text-danger">กรุณากรอกข้อมูล</p>
+      <p class="text-small text-danger" id="placetext">กรุณากรอกข้อมูล</p>
     <% end %>
   </div>
   <div class="col-sm-10">
@@ -88,6 +90,7 @@
         action: 'click->post-preview#preview'
       } %>
     <% end %>
+
     <%= render 'preview_modal', f: %>
   </div>
 <% end %>
