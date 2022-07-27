@@ -77,7 +77,7 @@
     <% end %>
   </div>
   <div class="col-sm-10">
-    <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->maps#initializeMap', maps_target: "map" }, class: 'map map-size mb-5' %>
+    <%= content_tag :div, nil, data: { maps_target: "map", live_validate_target: 'place', action: 'google-maps-callback@window->maps#initializeMap click->live-validate#checkPlace' }, class: 'map map-size mb-5' %>
   </div>
   <hr><br>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
