@@ -28,7 +28,7 @@
       <% end %>
     </div>
   </div>
-  <div class="row g-0 mt-4">
+  <div class="row mt-4">
     <div class="card p-5 border-dark" style="border-radius: 15px">
       <div class="card-body">
         <div class="row m-2">
@@ -53,41 +53,28 @@
           </div>
         </div>
         <hr style="height: 2px; background-color:black;">
-        <div class="row mt-5">
-          <div class="col-7">
-            <div class="row mt-2">
-            <!--Carousel-->
-              <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="row post-body mt-5">
+
+          <!-- Gallery image -->
+          <div class="col post-image">
+            <section class="gallery" data-controller="post-image">
+              <div class="gallery-scroll" id="gallery-scroll">
                 <% if post.images.attached? %>
-                  <div class="carousel-indicators" style="buttom: 100px;">
-                    <% post.images.each_with_index do |image, index| %>
-                      <button type="button" style="width: 200px; background: rgba(0, 0, 0, 0);" data-bs-target="#carouselExampleDark" data-bs-slide-to="<%= index %>" class="<%= "active " if index==0 %>" aria-current="true" aria-label="Slide <%= index %>">
-                          <%= image_tag(image, style: "display: block; width: 100%; height: 80px; border-radius: 15px;") %>
-                      </button>
-                    <% end %>
-                  </div>
+                  <% post.images.each_with_index do |image, i| %>
+                    <div class="gallery-item">
+                      <input type="radio" id="img-<%= i %>" checked name="gallery" class="gallery-selector"/>
+                      <%= image_tag(image, class: 'gallery-img', alt: '') %>
+                      <label for="img-<%= i %>" class="gallery-thumb"><%= image_tag(image, alt: '') %></label>
+                    </div>
+                  <% end %>
                 <% end %>
-                <% if post.images.attached? %>
-                  <div class="carousel-inner">
-                      <% post.images.each_with_index do |image, i| %>
-                        <div class="carousel-item <%= "active " if i==0 %>">
-                          <%= image_tag(image, style: "width:100%; height: 500px; display: flex; border-radius: 15px;") %>
-                        </div>
-                      <% end %>
-                  </div>
-                <% end %>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
+                <a class="prev" data-action="click->post-image#slideLeft"><i class="fa-regular fa-chevron-left"></i></a>
+                <a class="next" data-action="click->post-image#slideRight"><i class="fa-regular fa-chevron-right"></i></a>
               </div>
-            </div>
+            </section>
           </div>
-          <div class="col ps-5">
+
+          <div class="col-5 post-detail">
             <% if post.lost_item? %>
               <p class="card-text text-center" style="width: 35%; color: #312FA9; border-radius: 10px; background-color: #B2C5FC;">
                 โพสต์หาของหาย
@@ -102,10 +89,16 @@
             <p class="card-text fw-bold pt-5" style="font-size: 20px;">รายละเอียด</p>
             <p class="card-text">ประเภท&emsp;<%= Type.find(post.type_id).type_name %></p>
             <hr>
-            <p class="card-text">วันที่พบ&emsp;<%= post.date.strftime("%d %B %y") %></p>
+            <p class="card-text" data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output">วันที่พบ&emsp;</p>
             <hr>
             <p class="card-text">สถานที่&emsp;<%= post.location %></p>
             <hr>
+            <% if !post.active? %>
+              <p data-controller="datetime" data-datetime-date-value="<%= post.updated_at %>" data-datetime-format-value='DD MMMM YYYY | HH:mm' data-datetime-target="output">วันที่ปิดโพสต์&emsp;</p>
+              <hr>
+              <p class="card-text">เหตุผล&emsp;<%= post.reason %></p>
+              <hr>
+            <% end %>
 
             <!-- Location -->
             <%= simple_form_for post, { data: { controller: 'show-map'} } do |f| %>
