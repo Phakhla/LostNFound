@@ -502,6 +502,7 @@
 
   & + .invalid-feedback {
     display: block;
+
   }
 }
 
@@ -512,4 +513,8 @@
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.inother {
+  margin-left: 12rem;
 }

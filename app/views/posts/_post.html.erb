@@ -23,7 +23,7 @@
     <div class="col-sm-8 text-end ">
       <% if user_signed_in? && post.owner?(current_user) && post.active? %>
         <button type="button" class="btn bg-color--primary100" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
-        <button type="button" class="btn btn--outline-primary-width" data-bs-toggle="modal" data-bs-target="#closeRemovePostModal">ปิดโพสต์นี้</button>
+        <button type="button" class="btn btn--outline-primary-width" data-bs-toggle="modal" data-bs-target="#closePostModal">ปิดโพสต์นี้</button>
         <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn--primary-black' %>
       <% end %>
     </div>
@@ -202,8 +202,8 @@
   </div>
 </div>
 <!-- Modal close post -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered ">
+<div class="modal fade" id="closePostModal" tabindex="-1" aria-labelledby="closePostModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
       <%= simple_form_for @post, url: post_path, method: 'patch', data: { controller: "radio-selection", action: "radio-selection#checkOption" } do |f| %>
         <div class="close-post-modal">
           <div class="modal-content">
@@ -211,7 +211,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-header">
-              <p class="modal-title" id="exampleModalLabel">คุณต้องการปิดโพสนี้ใช่ไหม?</p>
+               <p class="modal-title" id="closePostModalLabel">คุณต้องการปิดโพสนี้ใช่ไหม?</p>
             </div>
             <div class="modal-body justify-content-center">
               <div class="modal-text">
@@ -227,10 +227,15 @@
                   </label>
                 </p>
                 <p>
-                  <label class="cursor-pointer">
-                    <%= radio_button 'status', '', nil, data: { radio_selection_target: "otherRadioButton" } %> อื่นๆ โปรดระบุ
-                    <%= text_field_tag :other_reason, '', data: { radio_selection_target: "textInput" }, class:'form-control' %>
-                  </label>
+                  <div>
+                    <label class="cursor-pointer">
+                      <%= radio_button 'status', '', nil, data: { radio_selection_target: "otherRadioButton" } %> อื่นๆ โปรดระบุ
+                      <%= text_field_tag :other_reason, nil, data: { radio_selection_target: "textInput", action: "keyup->radio-selection#checkOther" },  class:'form-control', id: 'SelectionAlert', required: true %>
+                      <div class="invalid-feedback inother">
+                        โปรดระบุข้อความ
+                      </div>
+                    </label>
+                  </div>
                 </p>
                 <p>
                   <%= f.hidden_field :status, data: { radio_selection_target: "statusInput" } %>
@@ -247,3 +252,4 @@
       <% end %>
 	</div>
 </div>
+
