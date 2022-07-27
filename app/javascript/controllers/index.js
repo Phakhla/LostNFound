@@ -48,3 +48,7 @@ application.register("show-map", ShowMapController)
 
 import LiveValidateController from "./live_validate_controller.js"
 application.register("live-validate", LiveValidateController)
+
+import DetailLengthController from "./detail_length_controller.js"
+application.register("detail-length", DetailLengthController)
+

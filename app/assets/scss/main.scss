@@ -370,3 +370,12 @@ input[type]:disabled {
   background-color: var(--color-primary-100);
   font-weight: 700;
 }
+
+// long text detail
+.textdetail {
+  text-align: center;
+  word-wrap: break-word;
+}
+
+
+

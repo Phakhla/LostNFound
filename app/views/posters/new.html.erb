@@ -1,4 +1,4 @@
-<%= simple_form_for :post, { url: post_posters_path(), method: "get", data: { controller: 'maps' } } do |f| %>
+<%= simple_form_for :post, { url: post_posters_path(), method: "get", data: { controller: 'maps detail-length' } } do |f| %>
   <div class = "container pb-5" >
     <div class="col text-start mb-5" style="font-size: 20px;">
       <%= link_to(root_path, style: 'text-decoration: none;') do %>
@@ -62,7 +62,9 @@
 
     <div class="form-group mb-5 pb-5 col-md-9">
       <label class='font-weight600'>รายละเอียด</label>
-      <%= f.input :detail, as: :text, :input_html => { :rows => 7 , :style => 'height: 100%'}, label: false %>
+      <%= f.input :detail, as: :text, :input_html => { :rows => 7 , :style => 'height: 100%',
+        data: { detail_length_target: "detail", action: "input->detail-length#checkLength" }, id: "detail"},
+        label: false, error: 'สามารถใส่ข้อความได้สูงสุดไม่เกิน 500 ตัวอักษร' %>
     </div>
     <hr>
     <div class="d-flex justify-content-end mt-5">
@@ -70,7 +72,7 @@
         <%= link_to "ยกเลิก", "/posts/#{@post.id}", class: "btn btn--outline-primary"%>
       </div>
       <div>
-        <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn--primary" %>
+        <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn--primary"%>
       </div>
     </div>
   <% end %>
