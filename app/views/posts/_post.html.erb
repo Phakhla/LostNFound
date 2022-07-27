@@ -20,7 +20,7 @@
     </div>
     <div class="col-8 text-end ">
       <% if user_signed_in? && post.owner?(current_user) && post.active? %>
-        <button type="button" class="btn bg-color--primary100" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
+        <button type="button" class="btn bg-color--primary100-weight" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
         <button type="button" class="btn btn--outline-primary-width" data-bs-toggle="modal" data-bs-target="#closePostModal">ปิดโพสต์นี้</button>
         <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn--primary-black' %>
       <% end %>

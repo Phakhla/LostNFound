@@ -3,19 +3,6 @@
 @import 'dropzone/src/dropzone';
 @import 'custom';
 
-.text-underline {
-  text-decoration: underline;
-}
-
-.text-bold {
-  font-weight: bold;
-}
-
-.text--gray {
-  color: #919191;
-  font-weight: 300;
-}
-
 div.target>hr:first-child {
   display: none;
 }
@@ -151,12 +138,12 @@ div.target>hr:first-child {
 }
 
 // custom radio-btn for img select on create poster
-.space{
+.space {
   padding-right: 24px;
   padding-bottom: 24px;
 }
 
-input[type="radio"].radiobtn  {
+input[type="radio"].radiobtn {
   display: block;
 }
 
@@ -359,7 +346,6 @@ input[type="radio"].radiobtn  {
 
   }
 
-
   .edit-remove {
     font-size: 14px;
     text-align: center;
@@ -380,4 +366,7 @@ input[type]:disabled {
   background-color: var(--color-white);
 }
 
-
+.bg-color--primary100-weight {
+  background-color: var(--color-primary-100);
+  font-weight: 700;
+}

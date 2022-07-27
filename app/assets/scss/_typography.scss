@@ -91,6 +91,10 @@ a {
   font-weight: 600;
 }
 
+.font-weight700 {
+  font-weight: 700;
+}
+
 .font-weight800 {
   font-weight: 800;
 }
@@ -120,4 +124,17 @@ a {
   margin: 86px;
   font-size: 4rem;
   color: #efbd05;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text--gray {
+  color: #919191;
+  font-weight: 300;
 }
