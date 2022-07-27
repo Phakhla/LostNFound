@@ -85,50 +85,30 @@
             <p class="card-text"><%= post.detail %></p>
             <p class="card-text fw-bold text-subtitle pt-5">รายละเอียด</p>
             <div class="card-detail">
-              <div class="row detail-text">
-                <div class="col">
-                  <p class="font-weight500">ประเภท</p>
-                </div>
-                <div class="col">
-                  <p><%= Type.find(post.type_id).type_name %></p>
-                </div>
+              <div class="detail-text">
+                <div class="text-content"><p class="font-weight500">ประเภท</p></div>
+                <%= Type.find(post.type_id).type_name %>
               </div>
               <hr>
-              <div class="row detail-text">
-                <div class="col">
-                  <p class="font-weight500"><%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%></p>
-                </div>
-                <div class="col">
-                  <p data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></p>
-                </div>
+              <div class="detail-text">
+                <div class="text-content"><p class="font-weight500"><%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%></p></div>
+                <div data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
               </div>
               <hr>
-              <div class="row detail-text">
-                <div class="col">
-                  <p class="font-weight500">สถานที่</p>
-                </div>
-                <div class="col">
-                  <p><%= post.location %></p>
-                </div>
+              <div class="detail-text">
+                <div class="text-content"><p class="font-weight500">สถานที่</p></div>
+                <%= post.location %>
               </div>
               <hr>
               <% if !post.active? %>
-                <div class="row detail-text">
-                  <div class="col">
-                    <p class="font-weight500">วันที่ปิดโพสต์</p>
-                  </div>
-                  <div class="col">
-                    <p data-controller="datetime" data-datetime-date-value="<%= post.updated_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></p>
-                  </div>
+                <div class="detail-text">
+                  <div class="text-content"><p class="font-weight500">วันที่ปิดโพสต์</p></div>
+                  <div data-controller="datetime" data-datetime-date-value="<%= post.updated_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
                 </div>
                 <hr>
-                <div class="row detail-text">
-                  <div class="col">
-                    <p class="font-weight500">เหตุผล</p>
-                  </div>
-                  <div class="col">
-                    <p><%= post.reason %></p>
-                  </div>
+                <div class="detail-text">
+                  <div class="text-content"><p class="font-weight500">เหตุผล</p></div>
+                  <%= post.reason %>
                 </div>
                 <hr>
               <% end %>
