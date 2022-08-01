@@ -1,4 +1,4 @@
-<%= simple_form_for :post, { url: post_posters_path(), method: "get", data: { controller: 'maps' } } do |f| %>
+<%= simple_form_for :post, { url: post_posters_path(), method: "get", data: { controller: 'maps detail-length' } } do |f| %>
   <div class = "container pb-5" >
     <div class="col text-start mb-5" style="font-size: 20px;">
       <%= link_to(root_path, style: 'text-decoration: none;') do %>
@@ -22,17 +22,18 @@
     <% end %>
 
     <div class="form-group col-md-9 pt-4">
-      <%= f.input :name, label: 'หัวข้อโพสต์', required: true, :label_html => { :class => 'font-weight600' },:disabled => true %>
+      <label class='font-weight600'>หัวข้อประกาศ</label>
+      <%= f.input :name, label: false, required: true, :disabled => true %>
     </div>
 
     <div class="form-group col-md-12 py-5">
       <% if @post.images.attached? %>
       <p class = "font-weight600">เลือกรูปภาพ*</p>
-      <div class="d-flex justify-content-between">
+      <div class = "imglist">
         <% @post.images.each do |image| %>
-          <label>
+          <label class = "space">
             <div class = "radio"><%= f.radio_button :image, polymorphic_url(image), :checked => true, class: 'radiobtn' %></div>
-            <div class = "chooseimg"><%= image_tag(image, style:"width: 100%; max-width: 220px; height:220px; object-fit:cover; border-radius: 8px;") %></div>
+            <div class = "chooseimg"><%= image_tag(image, class: 'imgsize') %></div>
           </label>
         <% end %>
       </div>
@@ -42,23 +43,28 @@
 
     <div class="row mb-5">
       <div class="col-md-3">
-        <%= f.input :type_id, :label => "ประเภท", :collection => Type.all.map{ |l| [l.type_name, l.id] }, :label_html => { :class => 'font-weight600' }, include_blank: 'เลือก', :disabled => true %>
+        <label class='font-weight600'>ประเภท</label>
+        <%= f.input :type_id, label: false, :collection => Type.all.map{ |l| [l.type_name, l.id] }, include_blank: 'เลือก', :disabled => true %>
       </div>
 
       <div class="col-md-3">
-        <%= f.input :date, :label => "วันที่", as: :date, html5: true, :label_html => { :class => 'font-weight600' }, input_html: {}, :disabled => true %>
+        <label class='font-weight600'>วันที่</label>
+        <%= f.input :date, label: false, as: :date, html5: true, input_html: {}, :disabled => true %>
       </div>
 
     </div>
 
     <div class="form-group mb-5 col-md-9">
-      <%= f.input :location, label: 'สถานที่',
-        input_html: { data: { maps_target: "field", action: "maps#setAutocomplete" }},
-        label_html: { class: 'font-weight600' }, :disabled => true %>
+      <label class='font-weight600'>สถานที่</label>
+      <%= f.input :location, label: false,
+        input_html: { data: { maps_target: "field", action: "maps#setAutocomplete" }}, :disabled => true %>
     </div>
 
     <div class="form-group mb-5 pb-5 col-md-9">
-      <%= f.input :detail, as: :text, :input_html => { :rows => 7 , :style => 'height: 100%'}, label: 'รายละเอียด', :label_html => { :class => 'font-weight600' } %>
+      <label class='font-weight600'>รายละเอียด</label>
+      <%= f.input :detail, as: :text, :input_html => { :rows => 7 , :style => 'height: 100%',
+        data: { detail_length_target: "detail", action: "input->detail-length#checkLength" }, id: "detail"},
+        label: false, error: 'สามารถใส่ข้อความได้สูงสุดไม่เกิน 500 ตัวอักษร' %>
     </div>
     <hr>
     <div class="d-flex justify-content-end mt-5">
@@ -66,7 +72,7 @@
         <%= link_to "ยกเลิก", "/posts/#{@post.id}", class: "btn btn--outline-primary"%>
       </div>
       <div>
-        <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn--primary" %>
+        <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn--primary"%>
       </div>
     </div>
   <% end %>

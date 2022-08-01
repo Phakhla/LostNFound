@@ -36,3 +36,13 @@ rails db:prepare
 gem install foreman
 ./bin/dev
 ```
+
+6. Start redis server
+
+sometime you will need to start redis server by yourself.
+
+Please skip this step if you have no problem about redis.
+
+```
+sudo service redis-server start
+```

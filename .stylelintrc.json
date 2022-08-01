@@ -6,6 +6,7 @@
   "rules": {
     "selector-class-pattern": null,
     "color-hex-length": null,
-    "declaration-block-no-redundant-longhand-properties": null
+    "declaration-block-no-redundant-longhand-properties": null,
+    "property-no-vendor-prefix": null
   }
 }
