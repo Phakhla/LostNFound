@@ -45,7 +45,7 @@
               </p>
             <% end %>
             <div class="d-flex justify-content-end">
-              <p class="fw-bold">วันที่ประกาศ :&nbsp;</p>
+              <p class="fw-bold">วันที่โพสต์ :&nbsp;</p>
               <p data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></p>
           </div>
           </div>
@@ -231,7 +231,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-header">
-               <p class="modal-title" id="closePostModalLabel">คุณต้องการปิดโพสนี้ใช่ไหม?</p>
+               <p class="modal-title" id="closePostModalLabel">คุณต้องการปิดโพสต์นี้ใช่ไหม?</p>
             </div>
             <div class="modal-body justify-content-center">
               <div class="modal-text">
@@ -252,7 +252,7 @@
                       <%= radio_button 'status', '', nil, data: { radio_selection_target: "otherRadioButton" } %> อื่นๆ โปรดระบุ
                       <%= text_field_tag :other_reason, nil, data: { radio_selection_target: "textInput", action: "keyup->radio-selection#checkOther" },  class:'form-control', id: 'SelectionAlert', required: true %>
                       <div class="invalid-feedback inother">
-                        โปรดระบุข้อความ
+                        กรุณาระบุเหตุผล
                       </div>
                     </label>
                   </div>
