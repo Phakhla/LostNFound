@@ -192,20 +192,85 @@ input[type="radio"].radiobtn {
   outline: 4px solid var(--color-primary);
 }
 
-// Modal close post
-.modal {
-  position: fixed;
-  top: 0;
-  left: -100px;
-  z-index: 1055;
-  display: none;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: 0;
+// Modal delete post
+.delete-btn {
+  position: absolute;
+  right: 50px;
+  top: 40px;
+  font-size: 16px;
 }
 
+.delete-post-modal {
+  .modal-content {
+    border-radius: 2rem;
+    outline: 0;
+    border-color: black;
+    height: 400px;
+    width: 690px;
+    margin-left: -100px;
+
+    .modal-header {
+      border-bottom: none;
+      padding: unset;
+      margin-top: 100px;
+      margin-bottom: -80px;
+      justify-content: center;
+      font-size: 30px;
+
+      .modal-title {
+        font-size: 30px;
+        font-weight: bold;
+      }
+    }
+
+    .modal-body {
+      position: relative;
+      flex: 1 1 auto;
+      padding: unset;
+      margin-left: 150px;
+      margin-right: 150px;
+
+
+      .modal-text {
+        font-size: 16px;
+        width: 400px;
+        height: auto;
+        margin-top: 110px;
+
+        .mb {
+          margin-bottom: 20px;
+          font-weight: bold;
+        }
+
+        p {
+          margin-bottom: 14px;
+        }
+      }
+    }
+
+    .modal-footer {
+      border-top: none;
+      padding: unset;
+
+      button {
+        margin-right: 16px;
+        margin-top: 60px;
+        margin-bottom: 70px;
+      }
+    }
+
+    .modal-btn {
+      display: flex;
+
+
+      .btn-close {
+        padding: 1.5rem;
+      }
+    }
+  }
+}
+
+// Modal close post
 .close-btn {
   position: absolute;
   right: 50px;
@@ -220,6 +285,7 @@ input[type="radio"].radiobtn {
     border-color: black;
     width: auto;
     height: auto;
+    margin-left: -100px;
 
     .modal-header {
       border-bottom: none;
@@ -245,7 +311,6 @@ input[type="radio"].radiobtn {
       .modal-text {
         font-size: 16px;
         width: 500px;
-        height: auto;
 
         .mb {
           margin-bottom: 24px;
@@ -290,7 +355,6 @@ input[type="radio"].radiobtn {
       }
     }
   }
-
 }
 
 // eye icon in password field
