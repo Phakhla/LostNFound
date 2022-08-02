@@ -101,7 +101,7 @@ class PostsController < ApplicationController
   def load_posts_with_filter(category)
     status = @filter.dig(category, :status)
     posts = status.present? ? @posts.send(status.to_sym) : @posts
-    posts.where(category:).latest.page(params[:page]).per(10)
+    posts.where(category:).latest.page(params[:page]).per(12)
   end
 
   def sort_by_coordinates
