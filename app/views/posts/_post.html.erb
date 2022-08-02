@@ -35,16 +35,16 @@
           </div>
           <div class="col text-end">
             <% if post.active? %>
-              <p class="card-text p-2 text-center status-tag active-status">
-                <span class="dot-white"></span>
-                กำลังตามหา
-              </p>
+              <div class="status-tag active-status">
+                <div class="dot-white"></div>
+                <div class="status-text font-weight600">กำลังตามหา</div>
+              </div>
             <% else %>
-              <p class="card-text p-2 text-center status-tag inactive-status">
-                ปิดโพสต์
-              </p>
+              <div class="status-tag inactive-status">
+                <div class="status-text font-weight600">ปิดโพสต์</div>
+              </div>
             <% end %>
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end mt-3">
               <p class="fw-bold">วันที่โพสต์ :&nbsp;</p>
               <p data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></p>
           </div>
@@ -74,13 +74,13 @@
 
           <div class="col-5 post-detail">
             <% if post.lost_item? %>
-              <p class="card-text text-center category-tag lost-tag">
-                โพสต์หาของหาย
-              </p>
+              <div class="category-tag lost-tag">
+                <div class="category-text font-weight700">โพสต์หาของหาย</div>
+              </div>
             <% else %>
-              <p class="card-text text-center category-tag found-tag">
-                โพสต์หาเจ้าของ
-              </p>
+              <div class="card-text text-center category-tag found-tag">
+                <div class="category-text font-weight700">โพสต์หาเจ้าของ</div>
+              </div>
             <% end %>
             <p class="card-text"><%= post.detail %></p>
             <p class="card-text fw-bold text-subtitle pt-5">รายละเอียด</p>
@@ -183,11 +183,11 @@
             </div>
           </div>
           <div class="col d-flex justify-content-end">
-            <p class="card-text d-flex align-items-center">แชร์โพสต์นี้ :
+            <p class="d-flex align-items-center font-weight500">แชร์โพสต์นี้ :
               <%= link_to("https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, :target => :popup, style: 'padding: 10px; text-decoration: none;')  do %>
                 <i class="fa-brands fa-facebook-square" style="font-size: 30px; color: #4267B2;"></i>
               <% end %>
-              <%= button_tag 'Copy link', class: 'btn btn--primary', style: '', data: { controller: 'clipboard', action: 'clipboard#copyToClipboard' } %>
+              <%= button_tag 'Copy link', class: 'btn--primary copy-btn', data: { controller: 'clipboard', action: 'clipboard#copyToClipboard' } %>
             </p>
           </div>
         </div>
