@@ -90,23 +90,6 @@ textarea.form-control.is-invalid {
   }
 }
 
-.has-search {
-  .form-control {
-    padding-left: 36px;
-  }
-
-  .form-control-feedback {
-    color: var(--color-black);
-    display: block;
-    font-size: 16px;
-    margin-left: 10px;
-    margin-top: 14px;
-    pointer-events: none;
-    position: absolute;
-    z-index: 2;
-  }
-}
-
 input[type="date"]{
   display: inline-block;
   position: relative;
@@ -130,6 +113,29 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   right: 0;
   top: 0;
   width: auto;
+}
+
+.has-search {
+  .form-control {
+    padding-left: 60px;
+    font-weight: 300;
+    font-size: 25px;
+  }
+
+  .form-control-feedback {
+    color: var(--color-black);
+    display: block;
+    font-size: 20px;
+    margin-left: 24px;
+    margin-top: 14px;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+  }
+}
+
+input[type=search]::placeholder {
+  color: #B3B3B3;
 }
 
 .fa-eye {
