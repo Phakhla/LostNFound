@@ -33,7 +33,7 @@ export default class extends Controller {
 
   preview() {
     if (!this.valid()) {
-      this.formTarget.submit();
+      $('#secondaryButton').trigger('click');
       return;
     }
 

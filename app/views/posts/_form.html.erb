@@ -91,9 +91,12 @@
         ยกเลิก
       <% end %>
       <%= f.button :button, "สร้างโพสต์", type: 'button', class: "btn btn--primary-weight",
-      data: {
+        id:"primaryButton",data: {
         action: 'click->post-preview#preview'
       } %>
+
+      <%= f.button :submit, class: "d-none",
+        id: "secondaryButton" %>
     <% end %>
     <%= render 'preview_modal', f: %>
   </div>
