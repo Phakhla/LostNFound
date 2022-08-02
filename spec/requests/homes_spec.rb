@@ -16,7 +16,7 @@ RSpec.describe 'Homes', type: :request do
       get root_path, params: { filter: { lost_item: { status: 'in_active' } } }
 
       expect(response.body).to include(lost.name)
-      expect(response.body).to include('ปิดโพสต์ตามหา')
+      expect(response.body).to include('ปิดโพสต์')
     end
 
     it 'gets found_item with filter' do

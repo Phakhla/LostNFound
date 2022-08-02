@@ -51,7 +51,7 @@
       <%= hidden_field_tag 'tab', @tab %>
       <div>
         <%= render 'post_content', posts: @losts, category: 'lost_item', tab: @tab, filter: @filter, f: %>
-        <br><br><hr class="style"><br><br>
+        <br><br><hr class="style"><br>
         <%= render 'post_content', posts: @founds, category: 'found_item', tab: @tab, filter: @filter, f: %>
         <br><br><br>
       </div>
