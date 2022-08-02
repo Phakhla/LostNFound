@@ -11,9 +11,9 @@
 <% end %>
 
 <div id="<%= dom_id @post %>">
-  <div class="row">
-    <div class="col text-start text-subtitle">
-      <%= link_to(root_path, class: 'text-decoration-none') do %>
+  <div class="row manage-bar">
+    <div class="col back-link">
+      <%= link_to(root_path) do %>
           <i class="fa-solid fa-arrow-left"></i>
           ย้อนกลับ
       <% end %>
