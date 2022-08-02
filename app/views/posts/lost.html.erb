@@ -9,10 +9,14 @@
             <%= link_to "สร้างโพสต์", category_selects_posts_path %>
           </div>
         </div>
-        <div class="col-md-5  btn-group" >
-          <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary" %>
-          <%= link_to 'รายการของฉัน', lost_posts_path(tab: 'my_post'), class: "btn btn--secondary" %>
-        </div>
+        <ul class="col-md-5 tabs" >
+          <li class="tab-item">
+            <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary tab-link" %>
+          </li>
+          <li class="tab-item">
+            <%= link_to 'รายการของฉัน', lost_posts_path(tab: 'my_post'), class: "btn btn--secondary tab-link" %>
+          </li>
+        </ul>
       <% end %>
     </div>
     <% if params[:q].present? %>

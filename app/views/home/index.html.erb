@@ -38,15 +38,23 @@
             </div>
           </a>
         </div>
-        <div class="col-md-5  btn-group" >
+        <ul class="col-md-5 tabs" >
           <% if @tab == 'my_post' %>
-            <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary" %>
-            <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--secondary" %>
+            <li class="tab-item">
+              <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary tab-link" %>
+            </li>
+            <li class="tab-item">
+              <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--secondary tab-link" %>
+            </li>
           <% else %>
-            <%= link_to 'รายการทั้งหมด', root_path, class: "btn btn--secondary" %>
-            <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--outline-secondary" %>
+            <li class="tab-item">
+              <%= link_to 'รายการทั้งหมด', root_path, class: "btn btn--secondary tab-link" %>
+            </li>
+            <li class="tab-item">
+              <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--outline-secondary tab-link" %>
+            </li>
           <% end %>
-        </div>
+        </ul>
       </div>
     <% end %>
     <%= form_with(url: root_path, method: :get, id: 'homeFilter') do |f| %>
@@ -60,3 +68,4 @@
     <% end %>
   </div>
 </div>
+

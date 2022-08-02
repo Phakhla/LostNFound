@@ -8,7 +8,7 @@
             <%= search_form_for @q do |f| %>
               <%= f.hidden_field :tab, value: 'unread' %>
               <%= f.hidden_field :read_at_null, value: 1 %>
-              <div class="btn-group tabs" role="group">
+              <div class="btn-group nav-tabs" role="group">
                 <%= link_to 'ทั้งหมด', notifications_path , class: "btn #{@tab == 'all' ? 'btn btn--secondary' : 'btn--outline-secondary'}"%>
                 <%= f.button 'ยังไม่ได้อ่าน', type: 'submit', class: "btn #{@tab == 'unread' ? 'btn btn--secondary' : 'btn--outline-secondary'}"%>
               </div>
