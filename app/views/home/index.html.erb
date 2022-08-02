@@ -15,13 +15,15 @@
       </div>
     <% end %>
     <% if params[:q].present? && params[:q][:name_cont].present? %>
-      <div class="row justify-content-start align-items-center mb-5">
+      <div class="row justify-content-start align-items-center">
         <div class="col">
-          <p class="text-subtitle">ผลลัพธ์การค้นหา (<%= @posts.count %> รายการ)</p>
-          <hr class="style">
-          <div class="d-flex align-items-center layout-05">
-            <p class="text-body">ค้นหา :</p>
-              <div class="mb-3 ms-3 px-4 py-2 rounded-pill bg-color--primary200"> <%= params[:q][:name_cont] %></div>
+          <div class="text-result-search">ผลลัพธ์การค้นหา
+            <p>(<%= @posts.count %> รายการ)</p>
+          </div>
+          <hr class="m-0">
+          <div class="search-value">
+            <p class="text-body font-weight600">ค้นหา :</p>
+            <div class="result-tag bg-color--primary200"> <%= params[:q][:name_cont] %></div>
           </div>
         </div>
       </div>

@@ -77,24 +77,63 @@
   cursor: pointer;
 }
 
+// normal search
+.text-result-search {
+  font-size: var(--text-subtitle);
+  font-weight: 600;
+  display: flex;
+  justify-items: center;
+  margin-bottom: 16px;
+
+  p {
+    font-weight: 400;
+    font-size: var(--text-subtitle);
+    margin-bottom: 0;
+    margin-left: 10px;
+  }
+}
+
+.search-value {
+  display: flex;
+  align-items: center;
+  margin-top: var(--layout-05);
+
+  p {
+    margin-bottom: 0;
+    margin-right: 16px;
+  }
+}
+
+.result-tag {
+  border-radius: 16px;
+  padding: 8px 15px;
+}
+
+.empty-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 200px 0;
+}
+
 // bell-item
 .bell-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10px;
-  width: 321px;
+  width: 259px;
 
   i {
-    color: var(--color-primary-300);
-    font-size: 76px;
-    margin: 5px;
+    color: var(--color-primary-200);
+    font-size: 96px;
+    margin-bottom: 40px;
   }
 
   p {
-    margin-top: var(--layout-04);
-    color: var(--color-gray1);
+    margin: 0;
+    font-size: 36px;
+    color: #A3A4AD;
   }
 }
 

@@ -56,7 +56,7 @@ RSpec.describe 'Homes', type: :request do
 
     it 'not found search' do
       get root_path, params: { q: { name_cont: 'test' } }
-      expect(response.body).to include('<p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>')
+      expect(response.body).to include('<p class="text-result">ไม่มีรายการแสดง</p>')
     end
   end
 end

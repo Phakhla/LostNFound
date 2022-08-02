@@ -24,10 +24,9 @@
       <%= render 'filter', f:, filter:, category: %>
     <% end %>
     </div>
-    <p class="d-flex justify-content-between align-items-center mb-3 mt-5 mt-md-0">
-      <span class="text-primary"></span>
-      <span><%= link_to 'ดูรายการทั้งหมด', link_posts %>&nbsp;<i class="fa-solid fa-angles-right"></i></span>
-    </p>
+    <div class="d-flex justify-content-between align-items-center mb-3 mt-5 mt-md-0">
+      <span><%= link_to('ดูรายการทั้งหมด', link_posts, class: 'font-weight500 me-2') %><i class="fa-solid fa-angles-right"></i></span>
+    </div>
   </div>
 </div><br>
 <% if posts.present? %>
@@ -58,10 +57,10 @@
     <% end %>
   </div>
 <% else %>
-  <div class="d-flex justify-content-center align-items-center">
+  <div class="empty-result">
     <div class="bell-item">
       <i class="fa-regular fa-bell-on"></i>
-      <p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>
+      <p class="text-result">ไม่มีรายการแสดง</p>
     </div>
   </div>
 <% end %>

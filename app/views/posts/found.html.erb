@@ -18,11 +18,13 @@
     <% if params[:q].present? %>
       <div class="row justify-content-start align-items-center mb-5">
         <div class="col">
-          <p class="text-subtitle">ผลลัพธ์การค้นหา (<%= @posts.count %> รายการ)</p>
+          <div class="text-result-search">ผลลัพธ์การค้นหา
+            <p>(<%= @posts.count %> รายการ)</p>
+          </div>
           <hr class="style">
-          <div class="d-flex align-items-center layout-05">
-            <p class="text-body">ค้นหา :</p>
-              <div class="mb-3 ms-3 px-4 py-2 rounded-pill bg-color--primary200"> <%= params[:q][:name_cont] %></div>
+          <div class="search-value">
+            <p class="text-body font-weight600">ค้นหา :</p>
+            <div class="result-tag bg-color--primary200"> <%= params[:q][:name_cont] %></div>
           </div>
         </div>
       </div>
@@ -46,10 +48,10 @@
             <%= render 'posts/card_content', posts: @founds, category: 'found_item', tab: @tab, filter: @filter, f:  %>
           </div>
         <% else %>
-          <div class="d-flex justify-content-center align-items-center">
+          <div class="empty-result">
             <div class="bell-item">
               <i class="fa-regular fa-bell-on"></i>
-              <p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>
+              <p class="text-result">ไม่มีรายการแสดง</p>
             </div>
           </div>
         <% end %>
