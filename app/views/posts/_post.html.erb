@@ -11,14 +11,14 @@
 <% end %>
 
 <div id="<%= dom_id @post %>">
-  <div class="row manage-bar">
-    <div class="col d-flex align-items-center text-subtitle">
+  <div class="row">
+    <div class="col text-start text-subtitle">
       <%= link_to(root_path, class: 'text-decoration-none') do %>
           <i class="fa-solid fa-arrow-left"></i>
           ย้อนกลับ
       <% end %>
     </div>
-    <div class="col-8 text-end ">
+    <div class="col-sm-8 text-end ">
       <% if user_signed_in? && post.owner?(current_user) && post.active? %>
         <button type="button" class="btn bg-color--primary100-weight" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
         <button type="button" class="btn btn--outline-primary-width" data-bs-toggle="modal" data-bs-target="#closePostModal">ปิดโพสต์นี้</button>
@@ -26,7 +26,7 @@
       <% end %>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-4">
     <div class="card p-5 border-dark" style="border-radius: 15px">
       <div class="card-body">
         <div class="row m-2">
@@ -45,7 +45,7 @@
               </p>
             <% end %>
             <div class="d-flex justify-content-end">
-              <p class="fw-bold">วันที่ประกาศ :&nbsp;</p>
+              <p class="fw-bold">วันที่โพสต์ :&nbsp;</p>
               <p data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></p>
           </div>
           </div>
@@ -199,17 +199,23 @@
 <!-- Modal delete post -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel"></h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body justify-content-center" style="text-align: center; padding: 110px 0;">
-        คุณต้องการลบโพสนี้ใช่ไหม ?
-      </div>
-      <div class="modal-footer justify-content-center">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-        <%= button_to "ยืนยัน", post, method: :delete , class: 'btn'%>
+    <div class="delete-post-modal">
+      <div class="modal-content">
+        <div class="close-btn">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-header">
+          <p class="modal-title" id="myModalLabel">คุณแน่ใจใช่ไหม?</p>
+        </div>
+        <div class="modal-body justify-content-center">
+          <div class="modal-text" style="text-align: center;">
+            คุณต้องการลบโพสต์นี้ออกจากรายการใช่หรือไม่
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn--outline-primary" data-bs-dismiss="modal">ยกเลิก</button>
+            <%= button_to "ยืนยัน", post, method: :delete , class: 'btn btn--primary'%>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -224,7 +230,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-header">
-               <p class="modal-title" id="closePostModalLabel">คุณต้องการปิดโพสนี้ใช่ไหม?</p>
+               <p class="modal-title" id="closePostModalLabel">คุณต้องการปิดโพสต์นี้ใช่ไหม?</p>
             </div>
             <div class="modal-body justify-content-center">
               <div class="modal-text">
@@ -245,7 +251,7 @@
                       <%= radio_button 'status', '', nil, data: { radio_selection_target: "otherRadioButton" } %> อื่นๆ โปรดระบุ
                       <%= text_field_tag :other_reason, nil, data: { radio_selection_target: "textInput", action: "keyup->radio-selection#checkOther" },  class:'form-control', id: 'SelectionAlert', required: true %>
                       <div class="invalid-feedback inother">
-                        โปรดระบุข้อความ
+                        กรุณาระบุเหตุผล
                       </div>
                     </label>
                   </div>

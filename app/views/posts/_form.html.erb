@@ -23,7 +23,7 @@
       <% elsif post.category == 'found_item' %>
         <%= f.label "วันที่พบ", class: 'text-bold mb-3' %>
       <% end %>
-      <%= f.input :date, as: :date, html5: true, input_html: { data: { post_preview_target: 'dateInput', live_validate_target: 'date', action: "input->live-validate#checkDate" }, id: 'date' }, error: false, label: false %>
+      <%= f.input :date, as: :date, html5: true, input_html: { max: Date.today, data: { post_preview_target: 'dateInput', live_validate_target: 'date', action: "input->live-validate#checkDate" }, id: 'date' }, error: false, label: false%>
       <% if post.errors.key?(:date) %>
       <p class="text-small text-danger pt-1" id="datetext">กรุณาเลือกวันที่</p>
       <% end %>

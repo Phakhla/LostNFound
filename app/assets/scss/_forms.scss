@@ -107,6 +107,31 @@ textarea.form-control.is-invalid {
   }
 }
 
+input[type="date"]{
+  display: inline-block;
+  position: relative;
+}
+
+input[type="date"]::after {
+  font-family: FontAwesome, sans-serif;
+  font-size: 20px;
+  content: "\f073";
+  padding: 0 5px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
 .fa-eye {
   color: var(--color-black);
   font-size: 16px;
