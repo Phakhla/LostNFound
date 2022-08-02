@@ -52,3 +52,6 @@ application.register("search-posts", SearchPostsController)
 import ShowMapController from "./show_map_controller.js"
 application.register("show-map", ShowMapController)
 
+import DelayRedirectController from "./delay_redirect_controller.js"
+application.register("delay-redirect", DelayRedirectController)
+

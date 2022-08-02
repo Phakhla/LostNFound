@@ -1,4 +1,4 @@
-<%= simple_form_for :post, { url: post_posters_path(), method: "get", data: { controller: 'maps detail-length' } } do |f| %>
+<%= simple_form_for :post, { url: post_posters_path(@post, format: :pdf), method: "get", data: { controller: 'maps detail-length delay-redirect' } } do |f| %>
   <div class = "container pb-5" >
     <div class="col text-start mb-5" style="font-size: 20px;">
       <%= link_to(root_path, style: 'text-decoration: none;') do %>
@@ -48,7 +48,11 @@
       </div>
 
       <div class="col-md-3">
-        <label class='font-weight600'>วันที่</label>
+        <% if @post.category == 'lost_item' %>
+          <label class='font-weight600'>วันที่หาย</label>
+        <% elsif @post.category == 'found_item' %>
+          <label class='font-weight600'>วันที่พบ</label>
+        <% end %>
         <%= f.input :date, label: false, as: :date, html5: true, input_html: {}, :disabled => true %>
       </div>
 
@@ -69,10 +73,11 @@
     <hr>
     <div class="d-flex justify-content-end mt-5">
       <div class="pe-5">
-        <%= link_to "ยกเลิก", "/posts/#{@post.id}", class: "btn btn--outline-primary"%>
+        <%= link_to "ยกเลิก", "/posts/#{@post.id}", class: "btn btn--outline-primary poster" , id: 'secondaryButton'%>
       </div>
       <div>
-        <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn--primary"%>
+        <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn--primary poster", id: 'primaryButton', data: {action: "click->delay-redirect#link"} %>
+
       </div>
     </div>
   <% end %>

@@ -19,18 +19,4 @@ RSpec.describe 'Posters', type: :request do
       expect(response).to have_http_status(:ok)
     end
   end
-
-  describe 'GET /posts/show_poster' do
-    it 'show poster' do
-      post = {
-        name: 'test',
-        date: '2022-06-30T00:00',
-        image: 'http://127.0.0.1:3000/rails/active_storage/blobs/redirect/eyJfce/sts1.jpg',
-        detail: 'datail',
-        location: 'location'
-      }
-      get post_posters_path(my_post.id), params: { post: }
-      expect(response).to have_http_status(:ok)
-    end
-  end
 end
