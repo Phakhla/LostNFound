@@ -60,7 +60,7 @@
                 <% if post.images.attached? %>
                   <% post.images.each_with_index do |image, i| %>
                     <div class="gallery-item">
-                      <input type="radio" id="img-<%= i %>" checked name="gallery" class="gallery-selector"/>
+                        <input type="radio" id="img-<%= i %>" <%= %(checked) if i==0 %> name="gallery" class="gallery-selector"/>
                       <%= image_tag(image, class: 'gallery-img', alt: '') %>
                       <label for="img-<%= i %>" class="gallery-thumb"><%= image_tag(image, alt: '') %></label>
                     </div>
