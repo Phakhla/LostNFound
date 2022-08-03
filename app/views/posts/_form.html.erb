@@ -15,7 +15,7 @@
   <div class="row g-5 ">
     <div class="col-sm-3 ">
       <%= f.label "ประเภท", class: 'text-bold mb-3' %>
-      <%= f.input :type_id, label: false, :collection => Type.all.map{ |l| [l.type_name, l.id] }, error: "กรุณาเลือกประเภท", include_blank: 'เลือก', input_html: { data: { live_validate_target: 'types', action: "input->live-validate#checkTypes" }, id: 'types' } %>
+      <%= f.input :type_id, label: false, :collection => Type.all.map{ |l| [l.type_name, l.id] }, error: "กรุณาเลือกประเภท", include_blank: 'เลือก', input_html: { data: { live_validate_target: 'types', action: "input->live-validate#checkTypes" }, id: 'types', class: 'form-select cursor-pointer' } %>
     </div>
     <div class="col-sm-3">
       <% if post.category == 'lost_item' %>
