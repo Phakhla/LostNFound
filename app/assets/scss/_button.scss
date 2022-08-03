@@ -175,6 +175,26 @@
   }
 }
 
+.btn--primary-posts {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  color: var(--color-black);
+  width: 250px;
+
+  &:visited {
+    color: var(--color-white);
+  }
+
+  &:hover {
+    background-color: var(--color-primary-400);
+    border: 1px solid var(--color-primary);
+  }
+
+  &:active {
+    background-color: var(--btn-primary);
+  }
+}
+
 .btn--primary-weight {
   background-color: var(--color-primary);
   border: 1px solid var(--color-primary);
