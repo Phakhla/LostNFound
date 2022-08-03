@@ -150,12 +150,12 @@
                 <p class="card-text">ติดต่อ :
                   <%# Show tel %>
                   <% if post.user.tel? %>
-                    <i class="fa-solid fa-phone" style="font-size: 20px;"></i> <%= phone_to post.user.tel, class: 'phone-contact' %>
+                    <i class="fa-solid fa-phone text-body"></i> <%= phone_to post.user.tel, class: 'text-decoration-none' %>
                   <% end %>
                   <%# Show facebook link %>
                   <% if post.user.fblink? %>
-                    <%= link_to(post.user.fblink, style: 'text-decoration: none;', target: 'blank') do %>
-                      <i class="fa-brands fa-facebook-square text-subtitle"></i>
+                    <%= link_to(post.user.fblink, class: 'text-decoration-none', target: 'blank') do %>
+                      <i class="fa-brands fa-facebook-square text-body ms-3"></i>
                       <% if post.user.facebook? %>
                         <%= post.user.facebook %>
                       <% else %>
@@ -164,7 +164,7 @@
                     <% end %>
                   <% else %>
                     <% if post.user.facebook? %>
-                      <i class="fa-brands fa-facebook-square text-subtitle"></i>
+                      <i class="fa-brands fa-facebook-square text-body ms-3"></i>
                       <%= post.user.facebook %>
                     <% end %>
                   <% end %>
