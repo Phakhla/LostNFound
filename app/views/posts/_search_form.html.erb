@@ -43,17 +43,17 @@
             <hr>
             <div class="alert alert-danger d-none" id="categoriesAlert">กรุณาเลือกประเภท</div>
             <div class="row mt-5">
-              <div class="col-lg-2 d-flex align-items-center">
+              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
                 <p class="mb-0">ประเภท :</p>
               </div>
-              <div class="col-md-6 col-lg-5 col-xl-3">
+              <div class="col-md-auto">
                 <label class="cursor-pointer">
                   <div class="checkboxitem d-flex align-items-center">
                     <%= check_box_tag('q[category_eq_any][]', 1, @q.category_eq_any&.include?(1) || false, data: { search_form_target: 'lostCheckbox' }) %> โพสต์หาของหาย
                   </div>
                 </label>
               </div>
-              <div class="col-md-6 col-lg-5 col-xl-3 mt-5 mt-md-0">
+              <div class="col-md-auto mt-5 mt-md-0">
                 <label class="cursor-pointer">
                   <div class="checkboxitem d-flex align-items-center">
                     <%= check_box_tag('q[category_eq_any][]', 0, @q.category_eq_any&.include?(0)  || false, data: { search_form_target: 'foundCheckbox' }) %> โพสต์ตามหาเจ้าของ
@@ -63,7 +63,7 @@
             </div>
             <div class="mt-5 alert alert-danger d-none" id="nameAndTypeAlert">กรุณาระบุคำค้นหาหรือหมวดหมู่</div>
             <div class="row mt-5">
-              <div class="col-lg-2 d-flex align-items-center">
+              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
                 <%= f.label "ค้นหา :" %>
               </div>
               <div class="col-lg-10 col-xl-6">
@@ -72,7 +72,7 @@
               </div>
             </div>
             <div class="row mt-5">
-              <div class="col-lg-2 d-flex align-items-center">
+              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
                 <%= f.label "หมวดหมู่ :" %>
               </div>
               <div class="col-lg-6 col-xl-3">
@@ -80,23 +80,23 @@
               </div>
             </div>
             <div class="row mt-5">
-              <div class="col-lg-2 d-flex align-items-center">
+              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
                 <%= f.label "วันที่เริ่มต้น :"%>
               </div>
-              <div class="col-lg-5 col-xl-3">
+              <div class="col-lg-3">
                 <%= f.date_field :date_gteq, class: 'form-control' %>
               </div>
               <div class="col-auto d-flex align-items-center mt-5 mt-lg-0">
                 <%= f.label "ถึงวันที่สิ้นสุด :" %>
               </div>
-              <div class="col-lg-5 col-xl-3">
+              <div class="col-lg-3">
                 <%= f.date_field :date_lteq, class: 'form-control'  %>
               </div>
             </div>
 
             <div class="mt-5 alert alert-danger d-none" id="mapAlert">กรุณาระบุสถานที่</div>
             <div class="row mt-5">
-              <div class="col-lg-2 d-flex align-items-center">
+              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
                 <%= f.label "สถานที่ :" %>
               </div>
               <div class="col-lg-10 col-xl-6">

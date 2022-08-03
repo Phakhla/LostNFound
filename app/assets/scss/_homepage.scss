@@ -19,40 +19,42 @@ hr.style {
 }
 
 .grid {
-  align-items: stretch;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
-
   article {
     background-color: #f8f8f8;
     border: #fff;
     border-radius: 1.25rem;
-    height: fit-content;
-    width: 290px;
+    min-height: 555px;
 
     img {
       border-top-left-radius: 1.25rem;
       border-top-right-radius: 1.25rem;
       height: 200px;
       object-fit: cover;
-      width: 290px;
+      width: 100%;
     }
   }
 
   .text {
+    display: flex;
+    flex-direction: column;
+    height: 335px;
     padding: 20px;
+  }
+
+  b {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
 .b {
   font-size: 22px;
   font-weight: bolder;
-  white-space: nowrap;
-  width: 22rem;
+  margin-bottom: 1rem;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 1rem;
+  white-space: nowrap;
 
   .text {
     padding: 20px;

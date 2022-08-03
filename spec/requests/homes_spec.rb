@@ -36,11 +36,9 @@ RSpec.describe 'Homes', type: :request do
 
       get root_path
       expect(response.body).to include(found.name.to_s)
-      expect(response.body).to include(found.date.strftime('%d/%m/%y').to_s)
       expect(response.body).to include(found.location.to_s)
 
       expect(response.body).to include(lost.name.to_s)
-      expect(response.body).to include(lost.date.strftime('%d/%m/%y').to_s)
       expect(response.body).to include(lost.location.to_s)
     end
   end

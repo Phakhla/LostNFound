@@ -30,9 +30,9 @@
   </div>
 </div><br>
 <% if posts.present? %>
-  <div class="d-flex justify-content-around">
+  <div class="row">
     <% posts.each do |post| %>
-      <div class="grid">
+      <div class="col-md-6 col-lg-3 grid mb-5">
         <article>
           <% if post.images.attached? %>
               <%= image_tag(post.images.order(created_at: :desc).first) %>
@@ -41,7 +41,9 @@
           <% end %>
           <div class="text">
             <div class="b"><%= post.name %></div>
-            <p><%= date_label %> : <%= post.date.strftime("%d/%m/%y") %></p>
+            <div class="col-md-12">
+              <%= date_label %> : <span data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD/MM/YYYY' data-datetime-target="output"></span>
+            </div>
             <b><i class='fas fa-map-marker-alt' style='font-size:20px'></i>&nbsp;<%= post.location %></b><br>
             <% if post.active? %>
               <b style="color: #8bb72f ; font-size: 10;"> &bull; กำลังตามหา</b>
@@ -49,7 +51,7 @@
               <b style="color: red; font-size: 10;">ปิดโพสต์</b>
             <% end %>
             <br><br>
-            <i style="font-size:14px; color: gray;">โพสต์เมื่อวันที่:<%= post.created_at.localtime.strftime("%d/%m/%y") %></i>
+            <i style="font-size:14px; color: gray;">โพสต์เมื่อวันที่ : <span data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD/MM/YYYY' data-datetime-target="output"></span></i>
             <%= link_to "ดูรายละเอียด", post_path(post), class: "btn btn--outline-secondary btn-lg btn-block mt-3" ,style:"width: 100%; border-width: unset;" %>
           </div>
         </article>
