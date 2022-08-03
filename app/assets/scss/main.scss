@@ -469,3 +469,12 @@ input[type]:disabled {
     color: var(--color-primary);
   }
 }
+
+// contact
+.phone-contact {
+  text-decoration: none;
+
+  &:hover {
+    color: #101010;
+  }
+}
