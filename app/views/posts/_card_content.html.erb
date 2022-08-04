@@ -16,7 +16,7 @@
   <div class="grid">
     <article>
       <% if post.images.attached? %>
-        <%= image_tag(post.images.order(created_at: :desc).first) %>
+        <%= image_tag(post.images[0]) %>
       <% else %>
         <img alt="image" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
       <% end %>
