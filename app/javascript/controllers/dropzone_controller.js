@@ -22,6 +22,7 @@ function createDropZone(controller) {
     thumbnailWidth: '551.5',
     thumbnailHeight: '551.5',
     previewsContainer: '#dropzone-container',
+
   });
 }
 
