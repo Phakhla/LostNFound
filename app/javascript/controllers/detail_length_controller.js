@@ -9,7 +9,7 @@ export default class extends Controller {
 
   checkLength() {
     const $limit = 500;
-    const $detail = $('#detail');
+    const $detail = $('#poster-detail-input');
     const $button = $('button[type=submit]');
     if (this.detailTarget.value.length > $limit) {
       $detail.addClass('is-invalid');
