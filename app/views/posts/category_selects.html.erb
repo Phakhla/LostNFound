@@ -7,7 +7,7 @@
 
   <% if user_signed_in? %>
     <div class="row justify-content-center spacing-06 mb-5">
-      <div class="col-lg-3 text-center">
+      <div class="col-lg-3 text-center" id="lost-category-btn">
         <a href="<%= new_post_path(category: 'lost_item') %>" class="none-underline">
           <div class="card-menu">
             <div class="item-menu">
@@ -17,7 +17,7 @@
           </div>
         </a>
       </div>
-      <div class="col-lg-3 text-center">
+      <div class="col-lg-3 text-center" id="found-category-btn">
         <a href="<%= new_post_path(category: 'found_item') %>" class="none-underline">
           <div class="card-menu">
             <div class="item-menu">
@@ -32,7 +32,7 @@
 
   <% if !user_signed_in? %>
     <div class="row justify-content-center spacing-06 mb-5">
-      <div class="col-lg-3 text-center">
+      <div class="col-lg-3 text-center" id="lost-category-btn">
         <a href="<%= new_user_session_path %>" class="none-underline">
           <div class="card-menu">
             <div class="item-menu">
@@ -42,7 +42,7 @@
           </div>
         </a>
       </div>
-      <div class="col-lg-3 text-center">
+      <div class="col-lg-3 text-center" id="found-category-btn">
         <a href="<%= new_user_session_path %>" class="none-underline">
           <div class="card-menu">
             <div class="item-menu">
