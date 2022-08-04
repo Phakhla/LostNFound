@@ -66,6 +66,11 @@ hr.style {
 }
 
 .result-search {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  position: absolute;
+  z-index: 200;
+
   ul {
     border: 1px solid var(--color-secondary);
     border-radius: 8px;
@@ -89,6 +94,10 @@ hr.style {
 
   .text {
     padding: 20px;
+  }
+
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    width: 480px;
   }
 }
 

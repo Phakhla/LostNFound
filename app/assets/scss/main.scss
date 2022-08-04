@@ -7,6 +7,29 @@ div.target>hr:first-child {
   display: none;
 }
 
+.dropzone-custom {
+  padding: 0;
+  width: 210px;
+  height: 210px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  border-color: var(--color-primary);
+  border-width: 3px;
+  border-style: dashed;
+  background-color: #fef7dd;
+}
+
+.box {
+  min-height: 150px;
+  border-radius: 2rem;
+  padding: 0;
+
+}
+
 .qr-code {
   img {
     height: 90px;

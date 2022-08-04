@@ -124,6 +124,10 @@ a {
   margin: 86px;
   font-size: 4rem;
   color: #efbd05;
+
+  @media (max-width: 767.98px) {
+    margin: 0;
+  }
 }
 
 .text-underline {
