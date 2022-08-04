@@ -1,63 +1,145 @@
-<div id="preview_modal" class="modal fade" tabindex="-1" aria-hidden="true">
+<div id="preview_modal" class="modal-pre fade" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-6">
-            <h5 class="modal-title" data-post-preview-target="category">category</h5>
+    <div class="preview-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h4 class="title" id="preview-title">เนื้อหานี้เป็นตัวอย่างโพสต์ของคุณ</h4>
           </div>
-          <div class="col-6">
-            <p class="text-end">วันที่โพสต์: <span data-post-preview-target="today">dd/mm/yyyy</span></p>
+          <div>
+            <%= f.button :button, "ยกเลิก", type: "button", class: "btn btn--outline-primary style", data: { bs_dismiss: 'modal' }, id: "close-modal-preview" %>
+            <%= f.button :button, "สร้างโพสต์", type: 'submit', class: "btn btn--primary", id: "submit-preview" %>
           </div>
         </div>
 
-        <div class="row">
-          <h4 data-post-preview-target="name">Name</h4>
-        </div>
+        <div class="modal-body" id="preview-body">
+          <div class="row">
+            <div class="card p-5 border-dark" style="border-radius: 15px">
+              <div class="card-body">
+                <div class="row m-2">
+                  <div class="col-8">
+                    <h3 data-post-preview-target="name" id="preview-name">Name</h3>
+                  </div>
+                  <div class="col-4 text-end">
+                    <p class="card-text p-2 text-center status-tag active-status" id="preview-status">
+                      <span class="dot-white"></span>
+                      กำลังตามหา
+                    </p>
+                    <div class="d-flex justify-content-end" id="preview-today">
+                      <p class="fw-bold">วันที่ประกาศ :&nbsp;</p>
+                      <p data-post-preview-target="today" data-post-preview-format-value="DD MMMM YYYY">DD MM YYYY</p>
+                    </div>
+                  </div>
+                </div>
 
-        <div class="row">
-          <div class="col-6">
-            <div id="postImageIndicators" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-indicators" id="imgIndicator">
-              </div>
+                <hr style="height: 2px; background-color:black;">
 
-              <div class="carousel-inner" id="imgPreview">
-                <div class="carousel-item active">
+                <div class="row post-body mt-5">
+
+                  <!-- Gallery image -->
+                  <div class="col-7 post-image">
+                    <section class="gallery">
+                      <div class="gallery-scroll" id="imgPreview">
+                      </div>
+                    </section>
+                  </div>
+
+                  <div class="col-5 post-detail">
+                    <div data-post-preview-target="category" id="preview-category">category</div>
+                    <p class="card-text" data-post-preview-target="detail" id="preview-detail">detail</p>
+                    <p class="card-text fw-bold text-subtitle pt-5">รายละเอียด</p>
+                    <div class="card-detail">
+                      <div class="row detail-text-pre">
+                        <div class="col-3">
+                          <p class="font-weight500">ประเภท</p>
+                        </div>
+                        <div class="col">
+                          <p data-post-preview-target="type" id="preview-type">type</p>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row detail-text-pre">
+                        <div class="col-3" data-post-preview-target="category">
+                          <p class="font-weight500">วันที่พบ</p>
+                        </div>
+                        <div class="col">
+                          <p data-post-preview-target="date" data-post-preview-format-value="DD MMMM YYYY"id="preview-date">DD MM YYYY</p>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row detail-text-pre">
+                        <div class="col-3">
+                          <p class="font-weight500">สถานที่</p>
+                        </div>
+                        <div class="col">
+                          <p data-post-preview-target="fieldPreview" id="preview-address">value</p>
+                        </div>
+                      </div>
+                      <hr>
+                    </div>
+
+                    <%= content_tag :div, nil, data: { post_preview_target: "map" }, class: 'map mb-5', id: "preview-map" %>
+
+                  </div>
                 </div>
               </div>
 
-              <button class="carousel-control-prev" type="button" data-bs-target="#postImageIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#postImageIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+              <hr style="height: 2px; background-color:black;">
+
+              <div class="row">
+                <div class="col-12 d-flex align-items-center" id="preview-user-info">
+                  <div class="user-avatar pe-5">
+                    <% if current_user.avatar.present? %>
+                      <%= image_tag(current_user.avatar, class: 'avatar') %>
+                    <% else %>
+                      <img alt="image" class="avatar" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
+                    <% end %>
+                  </div>
+                  <div class="user-info">
+                    <p class="card-text fw-bold">
+                      <%= current_user.username %>
+                    </p>
+                    <%# Info %>
+                    <% if current_user.tel? or current_user.fblink? or current_user.facebook? %>
+                      <p class="card-text">ติดต่อ :
+                        <%# Show tel %>
+                        <% if current_user.tel? %>
+                          <i class="fa-solid fa-phone" style="font-size: 20px;"></i> <%= phone_to current_user.tel, style: 'text-decoration: none;' %>
+                        <% end %>
+                        <%# Show facebook link %>
+                        <% if current_user.fblink? %>
+                          <%= link_to(current_user.fblink, style: 'text-decoration: none;', target: 'blank') do %>
+                            <i class="fa-brands fa-facebook-square text-subtitle"></i>
+                            <% if current_user.facebook? %>
+                              <%= current_user.facebook %>
+                            <% else %>
+                              Facebook
+                            <% end %>
+                          <% end %>
+                        <% else %>
+                          <% if current_user.facebook? %>
+                            <i class="fa-brands fa-facebook-square text-subtitle"></i>
+                            <%= current_user.facebook %>
+                          <% end %>
+                        <% end %>
+                      </p>
+                    <% else %>
+                      <p class="card-text"> ไม่มีข้อมูลการติดต่อ </p>
+                    <% end %>
+                    <%# Address %>
+                    <% if current_user.address? %>
+                        <% if !current_user.not_show_address %>
+                          <p class="card-text">ที่อยู่ : <%= current_user.address %></p>
+                        <% end %>
+                      <% else %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div class="col-6">
-            <h5 data-post-preview-target="date">วันที่เจอ: dd/mm/yyyy</h5>
-            <h5 data-post-preview-target="fieldPreview">สถานที่เจอ: value</h5>
-
-            <div>
-              <%= content_tag :div, nil, data: { post_preview_target: "map" }, class: 'map mb-5' %>
-            </div>
-
-            <h5>รายละเอียดเพิ่มเติม:</h5>
-            <p data-post-preview-target="detail">detail</p>
           </div>
         </div>
-      </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-        <%= f.button :button, "สร้างโพสต์", type: 'submit', class: "btn-primary" %>
       </div>
     </div>
   </div>
