@@ -7,59 +7,10 @@ div.target>hr:first-child {
   display: none;
 }
 
-.dropzone-custom {
-  padding: 0;
-  width: 210px;
-  height: 210px;
-  border-radius: 20px;
-  margin-top: 22px;
-  margin-bottom: 22px;
-  margin-left: 24px;
-  display: inline-block;
-  border-color: var(--color-primary);
-  border-width: 3px;
-  border-style: dashed;
-  background-color: #fef7dd;
-
-}
-
-.box {
-  min-height: 150px;
-  border-radius: 2rem;
-  padding: 0;
-
-}
-
 .qr-code {
   img {
     height: 90px;
     width: 90px;
-  }
-}
-
-.dropzone-box {
-  .dz-preview {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    min-height: 100px;
-
-  }
-
-  .dz-image-preview {
-    background: rgb(255 255 255);
-    margin-top: 22px;
-    margin-bottom: 22px;
-  }
-
-  .dz-image {
-    width: 210px !important;
-    height: 210px !important;
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
   }
 }
 
@@ -348,45 +299,6 @@ input[type="radio"].radiobtn {
 .map-size {
   height: 450px;
   width: 100%;
-}
-
-// Edit upload
-.edit-upload {
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  min-height: 100px;
-  margin-top: 22px;
-  margin-left: 14px;
-  margin-right: 14px;
-  margin-bottom: 22px;
-
-  .edit-image {
-    border-radius: 20px;
-    overflow: hidden;
-    width: 210px;
-    height: 210px;
-    position: relative;
-    display: block;
-    z-index: 10;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-  }
-
-  .edit-remove {
-    font-size: 14px;
-    text-align: center;
-    display: block;
-    cursor: pointer;
-    border: none;
-    text-decoration: underline;
-  }
-
 }
 
 // change bgcolor of disabled field
