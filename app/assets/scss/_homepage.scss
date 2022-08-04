@@ -23,7 +23,6 @@ hr.style {
     background-color: #f8f8f8;
     border: #fff;
     border-radius: 1.25rem;
-    min-height: 555px;
 
     img {
       border-top-left-radius: 1.25rem;
@@ -37,7 +36,7 @@ hr.style {
   .text {
     display: flex;
     flex-direction: column;
-    height: 335px;
+    height: 315px;
     padding: 20px;
   }
 
@@ -77,5 +76,14 @@ hr.style {
 
 .ps-md-5 {
   padding-left: 5rem !important;
+}
+
+.result-search {
+  ul {
+    border: 1px solid var(--color-secondary);
+    border-radius: 8px;
+    list-style-type: none;
+    padding: 20px;
+  }
 }
 

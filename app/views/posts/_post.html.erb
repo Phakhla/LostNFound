@@ -18,11 +18,13 @@
           ย้อนกลับ
       <% end %>
     </div>
-    <div class="col-sm-8 text-end ">
+    <div class="col-md-10 text-end">
       <% if user_signed_in? && post.owner?(current_user) && post.active? %>
-        <button type="button" class="btn bg-color--primary100-weight" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
-        <button type="button" class="btn btn--outline-primary-width" data-bs-toggle="modal" data-bs-target="#closePostModal">ปิดโพสต์นี้</button>
-        <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn--primary-black' %>
+      <div class="d-md-flex justify-content-end btn-right">
+        <button type="button" class="btn bg-color--primary100-weight mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
+        <button type="button" class="btn btn--outline-primary-width ms-0 ms-md-3 mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#closePostModal">ปิดโพสต์นี้</button>
+        <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn--primary-black ms-0 ms-md-3 mt-3 mt-md-0' %>
+      </div>
       <% end %>
     </div>
   </div>
@@ -30,7 +32,7 @@
     <div class="card p-5 border-dark" style="border-radius: 15px">
       <div class="card-body">
         <div class="row m-2">
-          <div class="col-9">
+          <div class="col-md-8">
             <h3 class="card-title"><%= post.name %></h3>
           </div>
           <div class="col text-end">
@@ -54,7 +56,7 @@
         <div class="row post-body mt-5">
 
           <!-- Gallery image -->
-          <div class="col post-image">
+          <div class="col-lg-6 post-image">
             <section class="gallery" data-controller="post-image">
               <div class="gallery-scroll" id="gallery-scroll">
                 <% if post.images.attached? %>
@@ -72,7 +74,7 @@
             </section>
           </div>
 
-          <div class="col-5 post-detail">
+          <div class="col-lg-6 post-detail mt-5 mt-xl-0">
             <% if post.lost_item? %>
               <div class="category-tag lost-tag">
                 <div class="category-text font-weight700">โพสต์หาของหาย</div>
@@ -84,34 +86,36 @@
             <% end %>
             <p class="card-text"><%= post.detail %></p>
             <p class="card-text fw-bold text-subtitle pt-5">รายละเอียด</p>
-            <div class="card-detail">
-              <div class="detail-text">
-                <div class="text-content"><p class="font-weight500">ประเภท</p></div>
-                <%= Type.find(post.type_id).type_name %>
-              </div>
-              <hr>
-              <div class="detail-text">
-                <div class="text-content"><p class="font-weight500"><%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%></p></div>
-                <div data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
-              </div>
-              <hr>
-              <div class="detail-text">
-                <div class="text-content"><p class="font-weight500">สถานที่</p></div>
-                <%= post.location %>
-              </div>
-              <hr>
-              <% if !post.active? %>
+            <div class="row card-detail">
+              <div class="col-md-9">
                 <div class="detail-text">
-                  <div class="text-content"><p class="font-weight500">วันที่ปิดโพสต์</p></div>
-                  <div data-controller="datetime" data-datetime-date-value="<%= post.updated_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
+                  <div class="text-content"><p class="font-weight500">ประเภท</p></div>
+                  <%= Type.find(post.type_id).type_name %>
                 </div>
                 <hr>
                 <div class="detail-text">
-                  <div class="text-content"><p class="font-weight500">เหตุผล</p></div>
-                  <%= post.reason %>
+                  <div class="text-content"><p class="font-weight500"><%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%></p></div>
+                  <div data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
                 </div>
                 <hr>
-              <% end %>
+                <div class="detail-text">
+                  <div class="text-content"><p class="font-weight500">สถานที่</p></div>
+                  <%= post.location %>
+                </div>
+                <hr>
+                <% if !post.active? %>
+                  <div class="detail-text">
+                    <div class="text-content"><p class="font-weight500">วันที่ปิดโพสต์</p></div>
+                    <div data-controller="datetime" data-datetime-date-value="<%= post.updated_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
+                  </div>
+                  <hr>
+                  <div class="detail-text">
+                    <div class="text-content"><p class="font-weight500">เหตุผล</p></div>
+                    <%= post.reason %>
+                  </div>
+                  <hr>
+                <% end %>
+              </div>
             </div>
 
             <!-- Location -->
@@ -133,7 +137,7 @@
         </div>
         <hr style="height: 2px; background-color:black;">
         <div class="row mt-5">
-          <div class="col-9 d-flex align-items-center">
+          <div class="col d-flex align-items-center">
             <div class="user-avatar pe-5">
               <% if post.user.avatar.present? %>
                 <%= image_tag(post.user.avatar, class: 'avatar') %>
