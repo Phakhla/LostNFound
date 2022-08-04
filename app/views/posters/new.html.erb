@@ -30,9 +30,9 @@
       <% if @post.images.attached? %>
       <p class = "font-weight600">เลือกรูปภาพ*</p>
       <div class = "imglist">
-        <% @post.images.each do |image| %>
+         <% @post.images.each_with_index do |image, i| %>
           <label class = "space">
-            <div class = "radio"><%= f.radio_button :image, polymorphic_url(image), :checked => true, class: 'radiobtn' %></div>
+            <div class = "radio"><%= f.radio_button :images, polymorphic_url(image), checked: i==0,  class: 'radiobtn' %></div>
             <div class = "chooseimg"><%= image_tag(image, class: 'imgsize') %></div>
           </label>
         <% end %>
