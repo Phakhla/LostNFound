@@ -40,19 +40,25 @@
             <img alt="image" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
           <% end %>
           <div class="text">
-            <div class="b"><%= post.name %></div>
-            <div class="col-md-12">
+            <div class="post-name font-weight700"><%= post.name %></div>
+            <div class="post-date">
               <%= date_label %> : <span data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD/MM/YYYY' data-datetime-target="output"></span>
             </div>
-            <b><i class='fas fa-map-marker-alt' style='font-size:20px'></i>&nbsp;<%= post.location %></b><br>
+            <div class="post-location font-weight500"><i class="fa-solid fa-location-dot"></i> <%= post.location %></div>
             <% if post.active? %>
-              <b style="color: #8bb72f ; font-size: 10;"> &bull; กำลังตามหา</b>
+              <div class="post-status-active">
+                <div class="circle-green"></div>
+                <p class="mb-0 ms-3 text-small font-weight600">กำลังตามหา</p>
+              </div>
             <% else %>
-              <b style="color: red; font-size: 10;">ปิดโพสต์</b>
+              <div class="post-status-inactive">
+                <p class="text-small font-weight600 mb-0">ปิดโพสต์</p>
+              </div>
             <% end %>
-            <br><br>
-            <i style="font-size:14px; color: gray;">โพสต์เมื่อวันที่ : <span data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD/MM/YYYY' data-datetime-target="output"></span></i>
-            <%= link_to "ดูรายละเอียด", post_path(post), class: "btn btn--outline-secondary btn-lg btn-block mt-3" ,style:"width: 100%; border-width: unset;" %>
+            <div class="fst-italic text-small color--secondary300">โพสต์เมื่อวันที่ : <span data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD/MM/YYYY' data-datetime-target="output"></span></div>
+            <div class="d-grid">
+              <%= link_to "ดูรายละเอียด", post_path(post), class: "see-other-btn btn btn--outline-secondary" %>
+            </div>
           </div>
         </article>
       </div>

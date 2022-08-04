@@ -47,19 +47,6 @@ hr.style {
   }
 }
 
-.b {
-  font-size: 22px;
-  font-weight: bolder;
-  margin-bottom: 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  .text {
-    padding: 20px;
-  }
-}
-
 .mt-14 {
   margin-top: 14rem;
 }
@@ -83,7 +70,54 @@ hr.style {
     border: 1px solid var(--color-secondary);
     border-radius: 8px;
     list-style-type: none;
+  }
+}
+
+.see-other-btn {
+  margin-top: var(--layout-04);
+  border: 2px solid #101010;
+  font-weight: 700;
+}
+
+// card-post
+.post-name {
+  font-size: 20px;
+  margin-bottom: var(--layout-04);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  .text {
     padding: 20px;
   }
 }
 
+.post-date {
+  margin-bottom: var(--layout-02);
+}
+
+.post-location {
+  margin-bottom: var(--layout-02);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.post-status-active {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--layout-07);
+
+  p {
+    color: var(--color-green);
+  }
+}
+
+.post-status-inactive {
+  align-items: center;
+  margin-bottom: var(--layout-07);
+
+  p {
+    color: var(--color-red);
+  }
+}
