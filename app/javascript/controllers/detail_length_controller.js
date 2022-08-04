@@ -4,8 +4,7 @@ export default class extends Controller {
   static targets = ['detail'];
 
   connect() {
-    const $detail = $('#detail');
-    $detail.removeClass('is-invalid');
+    this.checkLength();
   }
 
   checkLength() {
