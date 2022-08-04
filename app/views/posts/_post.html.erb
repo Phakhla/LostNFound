@@ -2,9 +2,9 @@
   <meta property="og:url" content="<%= request.original_url %>" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="<%= post.name %>" />
-  <meta property="og:description" content="<%= post.detail || "more detail" %>" />
+  <meta property="og:description" content="<%= post.detail? ? post.detail : "ดูรายละเอียดเพิ่มเติมได้ที่นี่" %>" />
   <% if post.images.attached? %>
-    <meta property="og:image" content="<%= polymorphic_url(post.images.first) %>" />
+    <meta property="og:image" content="<%= polymorphic_url(post.images.order(created_at: :desc).first) %>" />
   <% else %>
     <meta property="og:image" content="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" />
   <% end %>
@@ -183,7 +183,6 @@
                   <% end %>
                 <% else %>
               <% end %>
-
             </div>
           </div>
           <div class="col d-flex justify-content-end">
