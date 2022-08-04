@@ -11,38 +11,94 @@
     <script src="https://unpkg.com/dayjs@1.8.21/locale/th.js"></script>
 
     <style>
-
-      .printhead {
-        width: 100%;
-        text-align: center;
-        background-color: red;
-        height: 150px;
-
-      }
-
       .printable {
         font-family: 'Prompt';
         background-color: white;
       }
 
-      .qr-code {
-        svg {
-          width: 90px;
-          height: 90px;
-        }
+      .printhead {
+        width: 100%;
+        text-align: center;
+        background-color: #D10026;
+        height: 150px;
+      }
 
+      .printbody {
+        padding: 30px;
+        height: 262mm;
+
+      }
+
+      .printfoot {
+        padding: 0 50px;
+        width: 90%;
+        margin: auto;
+
+      }
+
+      .hrcontact {
+        padding-top: 2px;
+        border: none;
+        background-color: black;
+        margin-top: 50px;
+        margin-left: 50px;
+        margin-right: 160px;
+
+      }
+
+      .extra {
+        z-index: 10;
+        position: absolute;
+        margin-top: -175px;
+        width: 100%;
+        height: 200px ;
+      }
+
+      .qr-code {
+        z-index: 10;
+        position: fixed;
+        margin-left: 830px;
+        margin-top: 40px;
+        svg {
+          width: 120px;
+          height: 120px;
+        }
+      }
+
+      .scan {
+        z-index: 20;
+        position: fixed;
+        margin-top: 155px;
+        margin-left: 865px;
+      }
+
+      .title{
+        font-size: 100px;
+        color: white;
+        text-align: center;
       }
 
       .name {
         text-align: center;
         font-size: 40px;
-        text-decoration: underline;
+        margin-bottom: 0;
+
       }
 
       .data {
         font-size: 20px;
         text-align: center;
         word-wrap: break-word;
+      }
+
+      .address{
+        word-wrap: break-word;
+      }
+
+      .posterimg {
+        background-size: cover;
+        width: 100%;
+        height:550px;
       }
 
     </style>

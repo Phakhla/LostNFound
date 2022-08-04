@@ -14,7 +14,7 @@ module PostersHelper
       module_px_size: 6,
       resize_exactly_to: false,
       resize_gte_to: false,
-      size: 90
+      size: 130
     )
   end
 end
