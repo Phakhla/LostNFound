@@ -110,10 +110,15 @@
 .btn--primary-black {
   background-color: var(--color-primary);
   border: 1px solid var(--color-primary);
-  color: var(--color-black);
+  color: #363636;
   width: 158px;
   margin-left: 16px;
   font-weight: 700;
+
+
+  &:visited {
+    color: #363636;
+  }
 
   &:hover {
     background-color: var(--color-primary-400);
@@ -123,11 +128,13 @@
   &:active {
     background-color: var(--btn-primary);
   }
+
+
 }
 
 .btn--outline-primary-width {
   background-color: inherit;
-  border: 2px solid var(--color-primary);
+  border: 1.5px solid var(--color-primary);
   color: var(--color-primary);
   width: 158px;
   margin-left: 16px;
@@ -158,19 +165,19 @@
 
   &:visited {
     background-color: inherit;
-    border: 1px solid var(--color-primary);
+    border: 1.5px solid var(--color-primary);
     color: var(--color-primary);
   }
 
   &:hover {
     background-color: inherit;
-    border: 1px solid var(--color-primary);
+    border: 1.5px solid var(--color-primary);
     color: var(--color-primary);
   }
 
   &:active {
     background-color: inherit;
-    border: 1px solid var(--color-primary);
+    border: 1.5px solid var(--color-primary);
     color: var(--color-primary);
   }
 }
@@ -198,7 +205,7 @@
 .btn--primary-weight {
   background-color: var(--color-primary);
   border: 1px solid var(--color-primary);
-  color: var(--color-black);
+  color: #363636;
   font-weight: 700;
   width: 155px;
 
