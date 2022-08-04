@@ -10,10 +10,10 @@
       </div>
     </div>
     <br>
-    <div class="p-5 mb-4 bg-body card-form">
-      <div class="container-fluid  py-5">
-        <h4 class="border-bottom pb-4 mb-0">แก้ไขโพสต์<%= @post.lost_item? ? 'ตามหาของ' : 'ตามหาเจ้าของ' %></h4>
-        <br>
+    <div class="mb-4 bg-body card-form">
+      <div class="container-fluid">
+        <h4 class="mb-0">แก้ไขโพสต์<%= @post.lost_item? ? 'ตามหาของ' : 'ตามหาเจ้าของ' %></h4>
+        <hr>
         <%= render 'form', post: @post %>
       </div>
     </div>

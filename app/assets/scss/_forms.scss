@@ -45,6 +45,19 @@ textarea.form-control.is-invalid {
 .card-form {
   border-radius: 15px;
   border: 1px solid;
+
+  .container-fluid {
+    padding: var(--layout-07);
+  }
+
+  h4 {
+    padding-bottom: var(--layout-07);
+  }
+
+  hr {
+    margin-top: 0;
+    margin-bottom: var(--layout-07);
+  }
 }
 
 .form-textarea {
