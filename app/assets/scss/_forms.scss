@@ -138,6 +138,10 @@ input[type=search]::placeholder {
   color: #B3B3B3;
 }
 
+input[type=search]::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
 .fa-eye {
   color: var(--color-black);
   font-size: 16px;
