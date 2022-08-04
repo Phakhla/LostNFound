@@ -1,21 +1,34 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-  static targets = ['foundRadioButton', 'hopelessRadioButton', 'hiddenRadioButton', 'textInput', 'reasonInput', 'statusInput'];
+  static targets = [
+    'foundRadioButton',
+    'hopelessRadioButton',
+    'hiddenRadioButton',
+    'textInput',
+    'reasonInput',
+    'statusInput',
+    'submit',
+    'otherRadioButton'];
 
   connect() { }
 
-  checkOption(e) {
+  checkOption() {
     if (this.foundRadioButtonTarget.checked) {
       this.reasonInputTarget.value = this.foundRadioButtonTarget.value;
       this.statusInputTarget.value = 'found';
+      this.submitTarget.disabled = false;
     } else if (this.hopelessRadioButtonTarget.checked) {
       this.reasonInputTarget.value = this.hopelessRadioButtonTarget.value;
       this.statusInputTarget.value = 'closed';
-    } else if (this.textInputTarget.value) {
-      this.reasonInputTarget.value = this.textInputTarget.value;
-      this.statusInputTarget.value = 'closed';
-    } else {
+      this.submitTarget.disabled = false;
+    } else if (this.otherRadioButtonTarget.checked) {
+      this.submitTarget.disabled = false;
+    }
+  }
+
+  checkSubmit(e) {
+    if (this.otherRadioButtonTarget.checked && this.textInputTarget.value === '') {
       $('#SelectionAlert').addClass('is-invalid');
       e.preventDefault();
     }
@@ -26,5 +39,10 @@ export default class extends Controller {
     if (this.textInputTarget.value !== '') {
       $textInput.removeClass('is-invalid');
     }
+  }
+
+  checkReset() {
+    const $textInput = $('#SelectionAlert');
+    $textInput.removeClass('is-invalid');
   }
 }
