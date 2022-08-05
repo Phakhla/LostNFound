@@ -324,15 +324,6 @@ input[type="radio"].radiobtn {
   width: 100%;
 }
 
-// change bgcolor of disabled field
-input[type]:disabled {
-  background-color: var(--color-white);
-}
-
-.form-control.select.required.disabled {
-  background-color: var(--color-white);
-}
-
 .bg-color--primary100-weight {
   background-color: var(--color-primary-100);
   font-weight: 700;
