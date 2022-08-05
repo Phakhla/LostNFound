@@ -1,0 +1,22 @@
+trigger:
+- uat # prevent trigger when commit
+
+jobs:
+- job: continuous_delivery
+  pool: ruby-rbenv
+  steps:
+
+  - script: |
+      export PATH="/root/.rbenv/bin:$PATH"
+      eval "$(rbenv init -)"
+      rbenv install 3.1.2 --skip-existing
+      rbenv rehash
+      rbenv global 3.1.2
+      gem install bundler -v 2.2.9 --force
+    displayName: 'Install ruby and bundler'
+
+  - script: bundle install
+    displayName: 'Install dependencies'
+
+  - script: BRANCH=$(DEPLOY_BRANCH) bundle exec cap uat deploy
+    displayName: 'Deploy to uat'
