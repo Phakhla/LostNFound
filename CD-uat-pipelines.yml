@@ -1,5 +1,5 @@
 trigger:
-- main # prevent trigger when commit
+- uat # prevent trigger when commit
 
 jobs:
 - job: continuous_delivery
