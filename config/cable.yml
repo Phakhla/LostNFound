@@ -15,7 +15,7 @@ staging:
   url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
   channel_prefix: lost_item_develop
 
-staging:
+uat:
   adapter: redis
   url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
   channel_prefix: lost_item_uat
