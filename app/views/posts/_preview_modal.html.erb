@@ -1,14 +1,14 @@
-<div id="preview_modal" class="modal-pre fade" tabindex="-1" aria-hidden="true">
+<div id="preview_modal" class="modal modal-pre fade" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="preview-modal">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header preview">
           <div>
-            <h4 class="title" id="preview-title">เนื้อหานี้เป็นตัวอย่างโพสต์ของคุณ</h4>
+            <h4 class="title preview" id="preview-title">เนื้อหานี้เป็นตัวอย่างโพสต์ของคุณ</h4>
           </div>
           <div>
-            <%= f.button :button, "ยกเลิก", type: "button", class: "btn btn--outline-primary style", data: { bs_dismiss: 'modal' }, id: "close-modal-preview" %>
-            <%= f.button :button, "สร้างโพสต์", type: 'submit', class: "btn btn--primary", id: "submit-preview" %>
+            <%= f.button :button, "กลับไปแก้ไข", type: "button", class: "btn btn--outline-primary preview", data: { bs_dismiss: 'modal' }, id: "close-modal-preview" %>
+            <%= f.button :button, "สร้างโพสต์เลย", type: 'submit', class: "btn btn--primary preview", id: "submit-preview" %>
           </div>
         </div>
 
