@@ -254,6 +254,15 @@
   align-items: center;
 }
 
+.post-image {
+  padding-right: 0;
+  max-width: 695px;
+}
+
+.post-detail {
+  padding-left: var(--layout-07) !important;
+}
+
 // gallery
 .gallery {
   display: flex;
