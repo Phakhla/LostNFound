@@ -45,7 +45,7 @@ export default class extends Controller {
 
   preview() {
     if (!this.valid()) {
-      $('#secondaryButton').trigger('click');
+      $('#create-form-hidden-button').trigger('click');
       return;
     }
 

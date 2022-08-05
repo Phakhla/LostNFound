@@ -11,6 +11,7 @@ export default class extends Controller {
     const $limit = 500;
     const $detail = $('#poster-detail-input');
     const $button = $('button[type=submit]');
+
     if (this.detailTarget.value.length > $limit) {
       $detail.addClass('is-invalid');
       $button.prop('disabled', true);

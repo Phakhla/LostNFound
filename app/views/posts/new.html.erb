@@ -3,7 +3,7 @@
     <div class="row ">
       <div class="row justify-content-md">
         <div class="fs-2 col col-lg-2">
-          <%= link_to(category_selects_posts_path, class: 'text-decoration-none') do %>
+          <%= link_to(category_selects_posts_path, class: 'text-decoration-none', id: 'back-category-link') do %>
             <i class="fa-solid fa-arrow-left"></i> ย้อนกลับ
           <% end %>
         </div>
@@ -12,7 +12,7 @@
     <br>
     <div class="mb-4 bg-body card-form">
       <div class="container-fluid">
-        <h4 class=" mb-0">สร้างโพสต์<%= @post.lost_item? ? 'ตามหาของหาย' : 'ตามหาเจ้าของ' %></h4>
+        <h4 class="mb-0" id="form-create-tile">สร้างโพสต์<%= @post.lost_item? ? 'ตามหาของหาย' : 'ตามหาเจ้าของ' %></h4>
         <hr>
         <%= render 'form', post: @post %>
       </div>
