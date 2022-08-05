@@ -38,7 +38,7 @@
     <div class = "row" style = "display: -webkit-box; display: -webkit-flex; display: flex;" >
       <div style = "margin-right: 5%; padding-top: 20px;">
         <% avatar_url = @post.user.avatar.attached? ? polymorphic_url(@post.user.avatar) : 'https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=' %>
-        <p class="text-start"><%= image_tag(avatar_url, style:"width: 40px; height: 40px; object-fit: cover; border-radius: 50%;")  %></p>
+        <p class="text-start"><%= image_tag(avatar_url, style:"width: 41px; height: 41px; object-fit: cover; border-radius: 50%;")  %></p>
       </div>
       <div style = "padding-top: 20px;">
         <b><%= @post.user.username %></b>
@@ -46,35 +46,37 @@
         <% if @post.user.tel? or @post.user.facebook? %>
           <% if @post.user.facebook? and @post.user.tel? %>
             <div class = "col" style = "display: -webkit-box; display: -webkit-flex; display: flex;">
-              <div style = "width: 200px; margin-right: 5%;">
-                <strong>ติดต่อ : </strong><i class="fa-solid fa-phone" style="font-size: 20px;"></i> <%= @post.user.tel %>
+              <div style = "margin-right: 5%;">
+                ติดต่อ : <i class="fa-solid fa-phone" style="font-size: 12px;"></i> <%= @post.user.tel %>
               </div>
-              <div style = "width: 500px;">
-                <i class="fa-brands fa-facebook-square" style="font-size: 25px;"></i> <%= @post.user.facebook %>
+              <div>
+                <i class="fa-brands fa-facebook-square" style="font-size: 12px;"></i> <%= @post.user.facebook %>
               </div>
             </div>
           <% elsif @post.user.tel? %>
             <div class = "col" style = "display: -webkit-box; display: -webkit-flex; display: flex;">
-              <div style = "width: 200px; margin-right: 5%;">
-                <strong>ติดต่อ : </strong><i class="fa-solid fa-phone" style="font-size: 20px;"></i> <%= @post.user.tel %>
+              <div style = "margin-right: 5px;">
+                ติดต่อ : <i class="fa-solid fa-phone" style="font-size: 12px;"></i>
               </div>
-              <div style = "width: 500px;"></div>
+              <div><%= @post.user.tel %></div>
+
             </div>
           <% elsif @post.user.facebook? %>
             <div class = "col" style = "display: -webkit-box; display: -webkit-flex; display: flex;">
-              <div style = "width: 200px; margin-right: 5%;">
-                <strong>ติดต่อ : </strong><i class="fa-brands fa-facebook-square" style="font-size: 25px;"></i> <%= @post.user.facebook %>
+              <div style = "margin-right: 5px;">
+                ติดต่อ : <i class="fa-brands fa-facebook-square" style="font-size: 12px;"></i>
               </div>
-              <div style = "width: 500px;"></div>
+              <div><%= @post.user.facebook %></div>
+
             </div>
           <% end %>
 
         <% else %>
           <div class = "col" style = "display: -webkit-box; display: -webkit-flex; display: flex;">
-            <div style = "width: 200px; margin-right: 5%;">
+            <div style = "margin-right: 5%;">
               <p class="card-text"> ไม่มีข้อมูลการติดต่อ </p>
             </div>
-            <div style = "width: 500px;"></div>
+
           </div>
         <% end %>
 
@@ -90,6 +92,9 @@
               <div style = "height: 50px;">
               </div>
             <% end %>
+        <% else%>
+          <div style = "height: 50px;">
+          </div>
         <% end %>
 
       </div>
