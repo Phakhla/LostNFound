@@ -91,7 +91,7 @@ export default class extends Controller {
   }
 
   prepareMap() {
-    $(this.fieldPreviewTarget).html(`สถานที่เจอ ${this.addressTarget.value}`);
+    $(this.fieldPreviewTarget).html(`${this.addressTarget.value}`);
 
     this.setMap();
     this.setMarker();
