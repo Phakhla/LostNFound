@@ -5,7 +5,8 @@
   font-weight: 700;
   padding: var(--spacing-02) var(--spacing-05);
   transition: .2s;
-
+  margin-left: -2px;
+  
   &:active {
     transition: none;
   }
