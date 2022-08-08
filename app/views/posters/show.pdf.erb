@@ -4,8 +4,10 @@
     <b><p class="title"><%= @post.lost_item? ? 'โพสต์ตามหา': 'โพสต์ตามหาเจ้าของ' %></p></b>
   </div>
 
+  <div class = "borderhead"></div>
+
   <div class = "printbody">
-    <%= image_tag(@p["images"], class:"posterimg") %>
+    <div class="image"></div>
 
     <div class="row">
       <b><p class="name"><%= @post.name %></p></b>
