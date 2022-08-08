@@ -52,7 +52,7 @@
           </div>
           </div>
         </div>
-        <hr style="height: 2px; background-color:black;">
+        <hr class="underline-title">
         <div class="row post-body mt-5">
 
           <!-- Gallery image -->
@@ -92,28 +92,28 @@
                   <div class="text-content"><p class="font-weight500">ประเภท</p></div>
                   <%= Type.find(post.type_id).type_name %>
                 </div>
-                <hr>
+                <hr class="underline-detail">
                 <div class="detail-text" id="date-time-details">
                   <div class="text-content"><p class="font-weight500"><%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%></p></div>
                   <div data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
                 </div>
-                <hr>
+                <hr class="underline-detail">
                 <div class="detail-text" id="location">
                   <div class="text-content"><p class="font-weight500">สถานที่</p></div>
                   <%= post.location %>
                 </div>
-                <hr>
+                <hr class="underline-detail">
                 <% if !post.active? %>
                   <div class="detail-text">
                     <div class="text-content"><p class="font-weight500">วันที่ปิดโพสต์</p></div>
                     <div data-controller="datetime" data-datetime-date-value="<%= post.updated_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
                   </div>
-                  <hr>
+                  <hr class="underline-detail">
                   <div class="detail-text">
                     <div class="text-content"><p class="font-weight500">เหตุผล</p></div>
                     <%= post.reason %>
                   </div>
-                  <hr>
+                  <hr class="underline-detail">
                 <% end %>
               </div>
             </div>
