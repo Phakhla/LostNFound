@@ -50,7 +50,7 @@
                 ติดต่อ : <i class="fa-solid fa-phone" style="font-size: 12px;"></i> <%= @post.user.tel %>
               </div>
               <div>
-                <i class="fa-brands fa-facebook-square" style="font-size: 12px;"></i> <%= @post.user.facebook %>
+                <i class="fa-brands fa-facebook-square" style="font-size: 14px;"></i> <%= @post.user.facebook %>
               </div>
             </div>
           <% elsif @post.user.tel? %>
@@ -64,7 +64,7 @@
           <% elsif @post.user.facebook? %>
             <div class = "col" style = "display: -webkit-box; display: -webkit-flex; display: flex;">
               <div style = "margin-right: 5px;">
-                ติดต่อ : <i class="fa-brands fa-facebook-square" style="font-size: 12px;"></i>
+                ติดต่อ : <i class="fa-brands fa-facebook-square" style="font-size: 14px;"></i>
               </div>
               <div><%= @post.user.facebook %></div>
 
@@ -73,7 +73,7 @@
 
         <% else %>
           <div class = "col" style = "display: -webkit-box; display: -webkit-flex; display: flex;">
-            <div style = "margin-right: 5%;">
+            <div style = "width: 300px; margin-right: 5%;">
               <p class="card-text"> ไม่มีข้อมูลการติดต่อ </p>
             </div>
 
