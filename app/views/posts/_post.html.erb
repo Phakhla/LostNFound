@@ -23,7 +23,7 @@
       <div class="d-md-flex justify-content-end btn-right">
         <button type="button" class="btn bg-color--primary100-weight mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#deletePostModal" id="delete-post-modal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
         <button type="button" data-controller="radio-selection" data-action="click->radio-selection#checkReset" class="btn btn--outline-primary-width ms-0 ms-md-3 mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#closePostModal" id="close-post-modal">ปิดโพสต์นี้</button>
-        <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn--primary-black ms-0 ms-md-3 mt-3 mt-md-0' %>
+        <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn--primary-black ms-0 ms-md-3 mt-3 mt-md-0', id: 'edit-button-post' %>
       </div>
       <% end %>
     </div>
