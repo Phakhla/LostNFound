@@ -123,7 +123,7 @@
               <%= f.hidden_field :lat, data: { show_map_target: "latitude" } %>
               <%= f.hidden_field :lng, data: { show_map_target: "longitude"} %>
               <%= f.hidden_field :location, data: { show_map_target: "address"} %>
-              <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->show-map#showMap', show_map_target: "map" }, class: 'map mb-5 mt-5' %>
+              <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->show-map#showMap click->live-validate#checkPlace', show_map_target: "map", live_validate_target: 'place' }, class: 'map mb-5 mt-5' %>
             <% end %>
 
             <div class="create-poster mb-5" id="create-poster-button">
