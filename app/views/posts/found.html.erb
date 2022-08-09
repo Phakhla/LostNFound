@@ -3,26 +3,30 @@
   <div class="container pt-5">
     <div class="row justify-content-between align-items-center mb-5">
       <% if @tab == 'my_post' %>
-        <div class="col-md-7 order-md-last">
+        <div class="col-md-auto order-md-last mb-5 mb-md-0">
           <div class="btn btn--primary" >
             <i class='fas fa-plus-circle'></i>
             <%= link_to "สร้างโพสต์", category_selects_posts_path %>
           </div>
         </div>
-        <div class="col-md-5  btn-group" >
-          <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary" %>
-          <%= link_to 'รายการของฉัน', found_posts_path(tab: 'my_post'), class: "btn btn--secondary" %>
-        </div>
+        <ul class="col-md-5 tabs" >
+          <li class="tab-item">
+            <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary tab-link" %>
+          </li>
+          <li class="tab-item">
+            <%= link_to 'รายการของฉัน', found_posts_path(tab: 'my_post'), class: "btn btn--secondary tab-link" %>
+          </li>
+        </ul>
       <% end %>
     </div>
     <% if params[:q].present? %>
       <div class="row justify-content-start align-items-center mb-5">
         <div class="col">
-          <p class="text-subtitle">ผลลัพธ์การค้นหา (<%= @posts.count %> รายการ)</p>
+          <div class="text-result-search">ผลลัพธ์การค้นหา</div>
           <hr class="style">
-          <div class="d-flex align-items-center layout-05">
-            <p class="text-body">ค้นหา :</p>
-              <div class="mb-3 ms-3 px-4 py-2 rounded-pill bg-color--primary200"> <%= params[:q][:name_cont] %></div>
+          <div class="search-value">
+            <p class="text-body font-weight600">ค้นหา :</p>
+            <div class="result-tag bg-color--primary200"> <%= params[:q][:name_cont] %></div>
           </div>
         </div>
       </div>
@@ -32,7 +36,7 @@
         <%= hidden_field_tag 'tab', @tab %>
         <div class="row justify-content-md border-bottom pb-4 mb-0">
           <div class="col-lg-4">
-            <h4>รายการโพสต์ตามหาเจ้าทั้งหมด(<%= @posts.total_count %>)</h4>
+            <h4>รายการโพสต์ตามหาเจ้าของทั้งหมด(<%= @posts.total_count %>)</h4>
           </div>
           <div class="col-md-auto">
             <% if @tab == 'my_post' %>
@@ -46,10 +50,10 @@
             <%= render 'posts/card_content', posts: @founds, category: 'found_item', tab: @tab, filter: @filter, f:  %>
           </div>
         <% else %>
-          <div class="d-flex justify-content-center align-items-center">
+          <div class="empty-result">
             <div class="bell-item">
               <i class="fa-regular fa-bell-on"></i>
-              <p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>
+              <p class="text-result">ไม่มีรายการแสดง</p>
             </div>
           </div>
         <% end %>

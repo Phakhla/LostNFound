@@ -1,14 +1,12 @@
 <%= paginator.render do %>
-  <nav aria-label="Page navigation example">
+  <nav aria-label="Page navigation example" data-controller="Paginate">
     <ul class="pagination justify-content-center">
         <div class="pagination-item <%= 'true' unless current_page.first? %>" >
           <%= first_page_tag  %>
         </div>
-        &nbsp;&nbsp;
         <div class="pagination-item <%= 'true' unless current_page.first? %>" >
           <%= prev_page_tag  %>
         </div>
-        &nbsp;
         <% each_page do |page| %>
           <% if page.left_outer? || page.right_outer? || page.inside_window? %>
             <%= page_tag page %>
@@ -16,12 +14,10 @@
             <%= gap_tag %>
           <% end %>
         <% end %>
-        &nbsp;
         <% unless current_page.out_of_range? %>
           <div class="pagination-item <%= 'true' unless current_page.last? %>">
             <%= next_page_tag%>
           </div>
-          &nbsp;&nbsp;
           <div class="pagination-item <%= 'true' unless current_page.last? %>">
             <%= last_page_tag%>
           </div>

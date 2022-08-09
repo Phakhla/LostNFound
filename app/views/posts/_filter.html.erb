@@ -1,32 +1,28 @@
-<div class="container">
-  <div class="row">
-    <div class="col" data-controller="my-posts">
-      <%= f.hidden_field "filter[#{category}][status]", value: filter.dig(category.to_sym, :status),
-        data: { 'my-posts-target': 'statusInput' } %>
+<div data-controller="my-posts">
+  <%= f.hidden_field "filter[#{category}][status]", value: filter.dig(category.to_sym, :status),
+    data: { 'my-posts-target': 'statusInput' } %>
 
-      <div class="form-check form-check-inline">
-        <label class="t">
-          <%= check_box_tag '', 'active', filter.dig(category.to_sym, :status) == 'active', {
-            data: {
-              action: 'input->my-posts#checkboxChange',
-              'my-posts-target': 'activeCheckbox'
-            }
+  <div class="form-check form-check-inline ps-0 ps-md-5">
+    <label class="t">
+      <%= check_box_tag '', 'active', filter.dig(category.to_sym, :status) == 'active', {
+        data: {
+          action: 'input->my-posts#checkboxChange',
+          'my-posts-target': 'activeCheckbox'
+        }
+      } %> กำลังตามหา
+    </label>
+  </div>
 
-          } %>กำลังตามหา
-        </label>
-      </div>
-
-      <div class="form-check form-check-inline">
-        <label class="t">
-          <%= check_box_tag '', 'in_active', filter.dig(category.to_sym, :status) == 'in_active', {
-            data: {
-              action: 'input->my-posts#checkboxChange',
-              'my-posts-target': 'inActiveCheckbox'
-            }
-
-          } %> ปิดโพสต์
-        </label>
-      </div>
-    </div>
+  <div class="form-check form-check-inline">
+    <label class="t">
+      <%= check_box_tag '', 'in_active', filter.dig(category.to_sym, :status) == 'in_active', {
+        data: {
+          action: 'input->my-posts#checkboxChange',
+          'my-posts-target': 'inActiveCheckbox'
+        }
+      } %> ปิดโพสต์
+    </label>
   </div>
 </div>
+
+

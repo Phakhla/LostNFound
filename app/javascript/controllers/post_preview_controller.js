@@ -1,6 +1,7 @@
 import { Controller } from '@hotwired/stimulus';
 import { Modal } from 'bootstrap';
 import dayjs from 'dayjs';
+import 'dayjs/locale/th';
 
 export default class extends Controller {
   static targets = [
@@ -20,7 +21,11 @@ export default class extends Controller {
     'address',
     'fieldPreview',
     'form',
+    'type',
+    'typeInput',
   ];
+
+  static values = { format: String };
 
   get latLng() {
     return {
@@ -29,22 +34,30 @@ export default class extends Controller {
     };
   }
 
+  get format() {
+    if (this.formatValue === '') {
+      return 'DD MMMM YYYY';
+    }
+    return this.formatValue;
+  }
+
   connect() {}
 
   preview() {
     if (!this.valid()) {
-      this.formTarget.submit();
+      $('#create-form-hidden-button').trigger('click');
       return;
     }
 
     const category = this.categoryInputTarget.value;
-    const date = dayjs(this.dateInputTarget.value).format('DD/MM/YYYY');
+    const date = dayjs(this.dateInputTarget.value).locale('th').format(this.format);
 
     this.categoryTarget.innerHTML = this.displayCategory(category);
-    this.todayTarget.innerHTML = dayjs().format('DD/MM/YYYY');
+    this.todayTarget.innerHTML = dayjs().locale('th').format(this.format);
     this.nameTarget.innerHTML = this.nameInputTarget.value;
     this.dateTarget.innerHTML = this.displayDate(category, date);
     this.detailTarget.innerHTML = this.detailInputTarget.value;
+    this.typeTarget.innerHTML = this.displayType();
 
     this.prepareImages();
     this.prepareMap();
@@ -64,7 +77,7 @@ export default class extends Controller {
     }
 
     $imgs.each((index, elem) => {
-      const $item = this.buildCarouselItem(elem);
+      const $item = this.buildCarouselItem(elem, index);
       const $indicator = this.buildIndicator(index);
 
       if (index === 0) {
@@ -78,7 +91,7 @@ export default class extends Controller {
   }
 
   prepareMap() {
-    $(this.fieldPreviewTarget).html(`สถานที่เจอ ${this.addressTarget.value}`);
+    $(this.fieldPreviewTarget).html(`${this.addressTarget.value}`);
 
     this.setMap();
     this.setMarker();
@@ -135,21 +148,46 @@ export default class extends Controller {
 
   displayDate(category, date) {
     return {
-      lost_item: `วันที่หาย: ${date}`,
-      found_item: `วันที่เจอ: ${date}`,
+      lost_item: `${date}`,
+      found_item: `${date}`,
     }[category];
   }
 
-  buildCarouselItem(img) {
-    return $('<div class="carousel-item"></div>').append(
-      $(`<img class="d-block w-100" src='${$(img).attr('src')}'/>`),
-    );
+  displayType() {
+    return $(this.typeInputTarget).find(':selected').text();
+  }
+
+  buildCarouselItem(img, index) {
+    return $('<div class="gallery-item"></div>').append(
+      [
+        $(`<input type="radio" id="img-${index}" checked name="gallery" class="gallery-selector"/>`),
+        $(`<img class="gallery-img" src='${$(img).attr('src')}'/>`),
+        $(`<label for="img-${index}" class="gallery-thumb"><img src='${$(img).attr('src')}'/></label>`),
+      ],
+    ).append([$('<a class="prev" data-action="click->post-preview#slideLeft"><i class="fa-regular fa-chevron-left"></i></a>'),
+      $('<a class="next" data-action="click->post-preview#slideRight"><i class="fa-regular fa-chevron-right"></i></a>')]);
   }
 
   buildIndicator(idx) {
     return $('<button type="button"></button>').attr({
       'data-bs-target': '#postImageIndicators',
       'data-bs-slide-to': idx,
+    });
+  }
+
+  slideLeft() {
+    document.getElementById('imgPreview').scrollBy({
+      top: 0,
+      left: -180,
+      behavior: 'smooth',
+    });
+  }
+
+  slideRight() {
+    document.getElementById('imgPreview').scrollBy({
+      top: 0,
+      left: +180,
+      behavior: 'smooth',
     });
   }
 }

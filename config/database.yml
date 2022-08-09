@@ -22,3 +22,7 @@ production:
 staging:
   <<: *default
   database: lost_item_develop
+
+uat:
+  <<: *default
+  database: lost_item_uat

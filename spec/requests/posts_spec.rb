@@ -54,7 +54,7 @@ RSpec.describe 'Posts', type: :request do
 
     it 'not found search' do
       get lost_posts_path, params: { q: { name_cont: 'test' } }
-      expect(response.body).to include('<p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>')
+      expect(response.body).to include('<p class="text-result">ไม่มีรายการแสดง</p>')
     end
 
     it 'gets lost with filter' do
@@ -71,7 +71,7 @@ RSpec.describe 'Posts', type: :request do
     it 'gets found page' do
       get found_posts_path, params: { filter: { found_item: { status: 'active' } } }
 
-      expect(response.body).to include('<h4>รายการโพสต์ตามหาเจ้าทั้งหมด(1)</h4>')
+      expect(response.body).to include('<h4>รายการโพสต์ตามหาเจ้าของทั้งหมด(1)</h4>')
       expect(response).to have_http_status(:ok)
     end
 
@@ -86,7 +86,7 @@ RSpec.describe 'Posts', type: :request do
 
     it 'not found search' do
       get found_posts_path, params: { q: { name_cont: 'test' } }
-      expect(response.body).to include('<p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>')
+      expect(response.body).to include('<p class="text-result">ไม่มีรายการแสดง</p>')
     end
 
     it 'gets found with filter' do

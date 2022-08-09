@@ -21,6 +21,7 @@ export default class extends Controller {
       center: this.latLng,
       zoom: 17,
     });
+
     return this.map;
   }
 
@@ -34,6 +35,10 @@ export default class extends Controller {
 
     this.marker.setPosition(this.latLng);
     this.marker.setVisible(true);
+
+    google.maps.event.addListener(this.marker, 'click', () => {
+      window.open(`https://maps.google.com/?q=${this.latitudeTarget.value},${this.longitudeTarget.value}`);
+    });
 
     return this.marker;
   }

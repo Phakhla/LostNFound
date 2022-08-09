@@ -11,16 +11,111 @@
     <script src="https://unpkg.com/dayjs@1.8.21/locale/th.js"></script>
 
     <style>
-      .printable{
+      .printable {
         font-family: 'Prompt';
+        background-color: white;
+      }
+
+      .printhead {
+        width: 100%;
+        text-align: center;
+        background-color: #D10026;
+        height: 150px;
+        padding: 0;
+        margin:0;
+      }
+
+      .borderhead {
+        position: absolute;
+        background-color: #D10026;
+        width: 100%;
+        height: 150px;
+        top: 0;
+        z-index: -1;
+        left: 0;
+      }
+
+      .printbody {
+        padding: 30px;
+        height: 262mm;
+
+      }
+
+      .printfoot {
+        padding: 0 50px;
+        width: 90%;
+        margin: auto;
+
+      }
+
+      .hrcontact {
+        padding-top: 2px;
+        border: none;
+        background-color: black;
+        margin-top: 50px;
+        margin-left: 50px;
+        margin-right: 160px;
+
+      }
+
+      .extra {
+        z-index: 10;
+        position: absolute;
+        margin-top: -175px;
+        width: 100%;
+        height: 200px ;
       }
 
       .qr-code {
+        z-index: 10;
+        position: fixed;
+        margin-left: 830px;
+        margin-top: 40px;
         svg {
-          width: 90px;
-          height: 90px;
+          width: 120px;
+          height: 120px;
         }
       }
+
+      .scan {
+        z-index: 20;
+        position: fixed;
+        margin-top: 155px;
+        margin-left: 865px;
+      }
+
+      .title{
+        font-size: 100px;
+        color: white;
+        text-align: center;
+      }
+
+      .name {
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 0;
+
+      }
+
+      .data {
+        font-size: 20px;
+        text-align: center;
+        word-wrap: break-word;
+      }
+
+      .address{
+        word-wrap: break-word;
+      }
+
+      .image {
+        width: 100%;
+        height:550px;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-image: url('<%= @p["images"] %>');
+      }
+
     </style>
 
     <script>

@@ -4,14 +4,14 @@ export default class extends Controller {
   static targets = ['detail'];
 
   connect() {
-    const $detail = $('#detail');
-    $detail.removeClass('is-invalid');
+    this.checkLength();
   }
 
   checkLength() {
     const $limit = 500;
-    const $detail = $('#detail');
+    const $detail = $('#poster-detail-input');
     const $button = $('button[type=submit]');
+
     if (this.detailTarget.value.length > $limit) {
       $detail.addClass('is-invalid');
       $button.prop('disabled', true);

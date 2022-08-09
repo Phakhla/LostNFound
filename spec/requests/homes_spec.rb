@@ -16,7 +16,7 @@ RSpec.describe 'Homes', type: :request do
       get root_path, params: { filter: { lost_item: { status: 'in_active' } } }
 
       expect(response.body).to include(lost.name)
-      expect(response.body).to include('ปิดโพสต์ตามหา')
+      expect(response.body).to include('ปิดโพสต์')
     end
 
     it 'gets found_item with filter' do
@@ -36,11 +36,9 @@ RSpec.describe 'Homes', type: :request do
 
       get root_path
       expect(response.body).to include(found.name.to_s)
-      expect(response.body).to include(found.date.strftime('%d/%m/%y').to_s)
       expect(response.body).to include(found.location.to_s)
 
       expect(response.body).to include(lost.name.to_s)
-      expect(response.body).to include(lost.date.strftime('%d/%m/%y').to_s)
       expect(response.body).to include(lost.location.to_s)
     end
   end
@@ -56,7 +54,7 @@ RSpec.describe 'Homes', type: :request do
 
     it 'not found search' do
       get root_path, params: { q: { name_cont: 'test' } }
-      expect(response.body).to include('<p class="text-subtitle font-weight600">ไม่มีรายการแสดง</p>')
+      expect(response.body).to include('<p class="text-result">ไม่มีรายการแสดง</p>')
     end
   end
 end

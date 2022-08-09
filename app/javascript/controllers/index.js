@@ -10,6 +10,9 @@ application.register("clipboard", ClipboardController)
 import DatetimeController from "./datetime_controller.js"
 application.register("datetime", DatetimeController)
 
+import DetailLengthController from "./detail_length_controller.js"
+application.register("detail-length", DetailLengthController)
+
 import DropzoneController from "./dropzone_controller.js"
 application.register("dropzone", DropzoneController)
 
@@ -18,6 +21,9 @@ application.register("file-image", FileImageController)
 
 import ForgotPasswordController from "./forgot_password_controller.js"
 application.register("forgot-password", ForgotPasswordController)
+
+import LiveValidateController from "./live_validate_controller.js"
+application.register("live-validate", LiveValidateController)
 
 import MapsController from "./maps_controller.js"
 application.register("maps", MapsController)
@@ -46,9 +52,6 @@ application.register("search-posts", SearchPostsController)
 import ShowMapController from "./show_map_controller.js"
 application.register("show-map", ShowMapController)
 
-import LiveValidateController from "./live_validate_controller.js"
-application.register("live-validate", LiveValidateController)
-
-import DetailLengthController from "./detail_length_controller.js"
-application.register("detail-length", DetailLengthController)
+import DelayRedirectController from "./delay_redirect_controller.js"
+application.register("delay-redirect", DelayRedirectController)
 

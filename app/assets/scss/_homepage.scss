@@ -9,6 +9,21 @@
   padding: 15px;
 }
 
+.profile-navbar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.padding-12 {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+.mr-30{
+  margin-right: 30px;
+}
+
 // home page landing
 hr.style {
   border: black;
@@ -19,43 +34,31 @@ hr.style {
 }
 
 .grid {
-  align-items: stretch;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
-
   article {
     background-color: #f8f8f8;
     border: #fff;
     border-radius: 1.25rem;
-    height: fit-content;
-    width: 260px;
 
     img {
       border-top-left-radius: 1.25rem;
       border-top-right-radius: 1.25rem;
       height: 200px;
       object-fit: cover;
-      width: 260px;
+      width: 100%;
     }
   }
 
   .text {
+    display: flex;
+    flex-direction: column;
+    height: 315px;
     padding: 20px;
   }
-}
 
-.b {
-  font-size: 22px;
-  font-weight: bolder;
-  white-space: nowrap;
-  width: 22rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 1rem;
-
-  .text {
-    padding: 20px;
+  b {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
@@ -77,3 +80,68 @@ hr.style {
   padding-left: 5rem !important;
 }
 
+.result-search {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  position: absolute;
+  z-index: 200;
+
+  ul {
+    border: 1px solid var(--color-secondary);
+    border-radius: 8px;
+    list-style-type: none;
+  }
+}
+
+.see-other-btn {
+  margin-top: var(--layout-04);
+  border: 2px solid #101010;
+  font-weight: 700;
+}
+
+// card-post
+.post-name {
+  font-size: 20px;
+  margin-bottom: var(--layout-04);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  .text {
+    padding: 20px;
+  }
+
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    width: 480px;
+  }
+}
+
+.post-date {
+  margin-bottom: var(--layout-02);
+}
+
+.post-location {
+  margin-bottom: var(--layout-02);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.post-status-active {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--layout-07);
+
+  p {
+    color: var(--color-green);
+  }
+}
+
+.post-status-inactive {
+  align-items: center;
+  margin-bottom: var(--layout-07);
+
+  p {
+    color: var(--color-red);
+  }
+}
