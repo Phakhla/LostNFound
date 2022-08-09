@@ -10,7 +10,7 @@ MAPS_API_KEY: maps_api_key
 
 AWS_KEY: aws_key
 AWS_ACCESS_KEY: aws_access_key
-AWS_S3_BUCKET: lost-n-found-intern
+AWS_S3_BUCKET: aws_s3_bucket_name
 
 SENDGRID_USERNAME: sendgrid_username
 SENDGRID_API_KEY: sendgrid_api_key
