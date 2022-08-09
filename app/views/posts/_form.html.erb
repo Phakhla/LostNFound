@@ -20,7 +20,7 @@
           live_validate_target: 'types',
           action: "input->live-validate#checkTypes",
           post_preview_target: 'typeInput'
-          }, id: 'post-types-input',
+          }, id: 'types',
           class: 'form-select cursor-pointer'  } %>
     </div>
     <div class="col-md-6 col-lg-3">
@@ -104,6 +104,6 @@
       <%= f.button :submit, class: "d-none",
         id: "create-form-hidden-button" %>
     <% end %>
-    <%= render 'preview_modal', f: %>
+    <%= render 'preview_modal', post: %>
   </div>
 <% end %>
