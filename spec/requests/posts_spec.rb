@@ -161,6 +161,13 @@ RSpec.describe 'Posts', type: :request do
 
       expect(user.notifications.unread.count).to eq(0)
     end
+
+    it 'render not found error' do
+      get post_path(10)
+
+      expect(response).to have_http_status(:not_found)
+      expect(response.body).to include('<p class="text-result">ไม่พบรายการ</p>')
+    end
   end
 
   describe 'GET /posts/id/edit' do
