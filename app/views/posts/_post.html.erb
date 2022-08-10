@@ -137,7 +137,7 @@
         </div>
         <hr style="height: 2px; background-color:black;">
         <div class="row mt-5">
-          <div class="col d-flex align-items-center">
+          <div class="col-7 d-flex align-items-center">
             <div class="user-avatar pe-5" id="user-avatar">
               <% if post.user.avatar.present? %>
                 <%= image_tag(post.user.avatar, class: 'avatar') %>
@@ -145,44 +145,60 @@
                 <img alt="image" class="avatar" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
               <% end %>
             </div>
-            <div class="user-info" id="user-detail">
+            <div clss="user-info" id="user-detail">
               <p class="card-text fw-bold">
                 <%= post.user.username %>
               </p>
               <%# Info %>
-              <% if post.user.tel? or post.user.fblink? or post.user.facebook? %>
-                <p class="card-text">ติดต่อ :
-                  <%# Show tel %>
-                  <% if post.user.tel? %>
-                    <i class="fa-solid fa-phone text-body"></i> <%= phone_to post.user.tel, class: 'phone-contact' %>
-                  <% end %>
-                  <%# Show facebook link %>
-                  <% if post.user.fblink? %>
-                    <%= link_to(post.user.fblink, class: 'text-decoration-none', target: 'blank') do %>
-                      <i class="fa-brands fa-facebook-square text-body ms-3"></i>
-                      <% if post.user.facebook? %>
-                        <%= post.user.facebook %>
-                      <% else %>
-                        Facebook
+              <div class="info-description">
+                <div class="contact-content d-flex">
+                  <% if post.user.tel? or post.user.fblink? or post.user.facebook? %>
+                    <div class="contact-title"><p>ติดต่อ</p></div>
+                    <%# Show tel %>
+                    <div class="contact-detail">
+                      <% if post.user.tel? %>
+                        <div class="contact-tel d-flex">
+                          <div class="tel-icon p-0"><i class="fa-solid fa-phone text-body me-2"></i></div>
+                          <div class="tel-detail"><%= phone_to post.user.tel, class: 'phone-contact' %></div>
+                        </div>
                       <% end %>
-                    <% end %>
+                      <%# Show facebook link %>
+                      <% if post.user.fblink? %>
+                        <div class="contact-facebook d-flex align-items-start">
+                          <%= link_to(post.user.fblink, class: 'text-decoration-none d-flex p-0', target: 'blank') do %>
+                            <div class="facebook-icon"><i class="fa-brands fa-facebook-square text-body me-2"></i></div>
+                            <% if post.user.facebook? %>
+                              <div class="facebook-detail"><%= post.user.facebook %></div>
+                            <% else %>
+                              <div class="facebook-detail">Facebook</div>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      <% else %>
+                        <% if post.user.facebook? %>
+                          <div class="contact-facebook d-flex align-items-start">
+                            <div class="facebook-icon"><i class="fa-brands fa-facebook-square text-body me-2"></i></div>
+                            <div class="facebook-detail"><%= post.user.facebook %></div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
                   <% else %>
-                    <% if post.user.facebook? %>
-                      <i class="fa-brands fa-facebook-square text-body ms-3"></i>
-                      <%= post.user.facebook %>
-                    <% end %>
+                    <div class="col">
+                      <p class="card-text"> ไม่มีข้อมูลการติดต่อ </p>
+                    </div>
                   <% end %>
-                </p>
-              <% else %>
-                <p class="card-text"> ไม่มีข้อมูลการติดต่อ </p>
-              <% end %>
-              <%# Address %>
-              <% if post.user.address? %>
+                </div>
+                <%# Address %>
+                <% if post.user.address? %>
                   <% if !post.user.not_show_address %>
-                    <p class="card-text">ที่อยู่ : <%= post.user.address %></p>
+                    <div class="address-content d-flex">
+                      <div class="address-title"><p>ที่อยู่</p></div>
+                      <div class="address-detail"><%= post.user.address %></div>
+                    </div>
                   <% end %>
-                <% else %>
-              <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
           <div class="col d-flex justify-content-end">
