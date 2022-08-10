@@ -33,7 +33,7 @@ export default class extends Controller {
   checkDetail() {
     const $limit = 500;
     const $detail = $('#post-detail-input');
-    const $detailText = $('#form-image-warning-text');
+    const $detailText = $('#form-detail-warning-text');
 
     if (this.detailTarget.value.length > $limit) {
       $detail.addClass('is-invalid');

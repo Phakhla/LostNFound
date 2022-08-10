@@ -63,7 +63,7 @@
     <%= f.label :detail, "รายละเอียดเพิ่มเติม", class: 'form-label mt-5 text-bold mb-3', id: 'form-deatil-label' %>
     <%= f.input :detail, as: :text, error: false, input_html: { class: 'form-textarea', rows: 5,
       data: { post_preview_target: 'detailInput', live_validate_target: 'detail', action: 'input->live-validate#checkDetail' }, id: 'post-detail-input' }, label: false %>
-    <p class="text-small text-danger d-none" id="form-image-warning-text">สามารถใส่ข้อความได้สูงสุดไม่เกิน 500 ตัวอักษร</p>
+    <p class="text-small text-danger d-none" id="form-detail-warning-text">สามารถใส่ข้อความได้สูงสุดไม่เกิน 500 ตัวอักษร</p>
   </div>
   <br>
   <div class="mt-3">
