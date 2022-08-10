@@ -1,16 +1,49 @@
-<h2>Resend confirmation instructions</h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+<div class="container forgot-password-field mb-5">
+  <div class="row text-center">
+    <div class="col-lg-12 layout-05">
+      <h4>ส่งอีเมล์ยืนยันบัญชีอีกครั้ง</h4>
+    </div>
+    <div class="col-lg-12 layout-05">
+      <p>กรอกอีเมลของคุณ และคุณจะได้รับอีเมลยืนยันบัญชีอีกครั้งจากเรา</p>
+    </div>
   </div>
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name),
+               data: { turbo: "false" }, method: :post) do |f| %>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
+  <div class="row layout-05">
+    <div class="d-flex justify-content-center">
+      <div class="col-12 field">
+        <label class = "pb-2">อีเมล</label>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control" %>
+        <% if resource.errors.full_messages_for(:email).first == "Email can't be blank" %>
+          <p class="text-danger">กรุณากรอกอีเมล</p>
+        <% elsif resource.errors.full_messages_for(:email).first == "Email not found" %>
+          <p class="text-danger">ไม่มีอีเมลนี้ในระบบ</p>
+        <% elsif resource.errors.full_messages_for(:email).first == "Email was already confirmed, please try signing in" %>
+          <p class="text-danger">อีเมลนี้ยืนยันเรียบร้อยแล้ว กรุณาลองเข้าสู่ระบบ</p>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-12 mt-5 d-flex justify-content-center">
+      <div class="actions">
+        <%= f.submit "ดำเนินการต่อ", class: "btn btn--secondary" %>
+      </div>
+    </div>
   </div>
-<% end %>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+
+  <%- if controller_name != 'sessions' %>
+    <div class="row pt-5">
+      <div class = "d-flex justify-content-center mt-5">
+        <p style="padding-right: 5px;">กลับไปที่</p>
+        <b><%= link_to "เข้าสู่ระบบ", new_session_path(resource_name) %></b>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= render 'devise/registrations/modal_email_confirm' %>
+
+

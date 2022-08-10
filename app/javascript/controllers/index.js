@@ -55,3 +55,6 @@ application.register("show-map", ShowMapController)
 import DelayRedirectController from "./delay_redirect_controller.js"
 application.register("delay-redirect", DelayRedirectController)
 
+import ConfirmEmailController from "./confirm_email_controller.js"
+application.register("confirm-email", ConfirmEmailController)
+

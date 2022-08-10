@@ -4,7 +4,7 @@
 
     <div class="card p-4 mt-4 mb-5" style="width:380px; height:auto; margin:auto; border: 0; padding: 20px;">
 
-    <a class="navbar-brand" href="#" style="text-align:center; margin-top: 15px;">
+    <a class="navbar-brand" href="/" style="text-align:center; margin-top: 15px;">
       <%= image_tag 'logo-color.svg', alt: '' %>
     </a>
     <p style="text-align:center; padding-top: 30px; font-size:20px; font-weight: bold;">สร้างบัญชีผู้ใช้</p>
@@ -17,29 +17,40 @@
       <p style="width: 100%; border-bottom: 1px solid #000; line-height: 0.5em; margin: 10px 0 20px; padding-top:20px;"><span style="background:#fff; padding:0 20px;">หรือ</span></p>
     </div>
 
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {controller: "confirm-email live-validate", turbo: false}) do |f| %>
       <div class='pb-4 pt-2'>
-        <%= f.input :username, label: "ชื่อผู้ใช้",input_html: {class: "signup"}, label_html: {class: 'pb-3'}, error: false %>
+        <label class='pb-3'>ชื่อผู้ใช้</label>
+        <%= f.input :username, label: false, error: false,
+            input_html: { data: {
+            live_validate_target: 'username',
+            action: "input->live-validate#checkUsername"
+            }, id: 'signup-username-input', class: "signup"} %>
+
         <%if resource.errors.full_messages_for(:username).first == "Username can't be blank" %>
-          <p class="text-danger pt-3">กรุณากรอกชื่อผู้ใช้</p>
+          <p class="text-danger pt-3" id="signup-username-error">กรุณากรอกชื่อผู้ใช้</p>
         <% end %>
         <%if resource.errors.full_messages_for(:username).first == "Username has already been taken" %>
-          <p class="text-danger pt-3">ชื่อผู้ใช้นี้ถูกใช้งานแล้ว</p>
+          <p class="text-danger pt-3" id="signup-username-error">ชื่อผู้ใช้นี้ถูกใช้งานแล้ว</p>
         <% end %>
       </div>
       <div class='pb-3'>
-        <%= f.input :email, label: "อีเมล", input_html: {class: "signup"}, label_html: {class: 'pb-3'}, error: false %>
+        <label class='pb-3'>อีเมล</label>
+        <%= f.input :email, label: false, error: false,
+            input_html: { data: {
+            live_validate_target: 'email',
+            action: "input->live-validate#checkEmail"
+            }, id: 'signup-email-input', class: "signup"} %>
+
         <% if resource.errors.key?(:email)%>
             <%if resource.errors.full_messages_for(:email).first == "Email can't be blank" %>
-              <p class="text-danger pt-3">กรุณากรอกอีเมล</p>
+              <p class="text-danger pt-3" id="signup-email-error">กรุณากรอกอีเมล</p>
             <% end %>
             <%if resource.errors.full_messages_for(:email).first == "Email has already been taken" %>
-              <p class="text-danger pt-3">อีเมลนี้ถูกใช้งานแล้ว</p>
+              <p class="text-danger pt-3" id="signup-email-error">อีเมลนี้ถูกใช้งานแล้ว</p>
             <% end %>
             <%if resource.errors.full_messages_for(:email).first == "Email is invalid" %>
-              <p class="text-danger pt-3">อีเมลไม่ถูกต้อง</p>
+              <p class="text-danger pt-3" id="signup-email-error">อีเมลไม่ถูกต้อง</p>
             <% end %>
-          <input type='hidden' value='อีเมลนี้ถูกใช้งานแล้ว' id='emailerror'>
         <% end %>
       </div>
 
@@ -48,21 +59,32 @@
         <div class="tool"><i class="fas fa-info-circle"></i>
           <span class="tooltiptext">ใช้อักขระ <%= @minimum_password_length %> ตัวขึ้นไป</span>
         </div>
-        <%= f.input :password, autocomplete: "new-password", input_html: { class: "signup", id:"password" }, label_html: {class: 'pb-3'}, error: false, label: false %>
+        <%= f.input :password, autocomplete: "new-password", label_html: {class: 'pb-3'}, error: false, label: false,
+            input_html: { data: {
+            live_validate_target: 'password',
+            action: "input->live-validate#checkPassword"
+            }, id:"password", class: "signup"} %>
+
         <i class="fas fa-eye signup" id="eye" data-action="click->password-toggle#password"></i>
       </div>
 
       <% if resource.errors.key?(:password)%>
-        <p class="text-danger">กรุณาตั้งรหัสด้วยอักขระ 8 ตัวขึ้นไป</p>
+        <p class="text-danger" id="signup-password-error">กรุณาตั้งรหัสด้วยอักขระ 8 ตัวขึ้นไป</p>
         <input type='hidden' value='กรุณาตั้งรหัสด้วยอักขระ 8 ตัวขึ้นไป' id='passerror'>
       <% end %>
 
       <div class="actions justify-content-center py-5" >
-        <%= f.submit "สร้างบัญชี", class: "btn" , style: "background-color:black; color:#FBD034FF; width:100%;" %>
+        <%= f.submit "สร้างบัญชี", class: "btn" , style: "background-color:black; color:#FBD034FF; width:100%;", data: {action: "click->confirm-email#click"} %>
       </div>
 
     <% end %>
-      <%= render "devise/shared/links" %>
+      <%= render 'modal_email_confirm' %>
+
+      <%- if controller_name != 'sessions' %>
+        <div class = "d-flex justify-content-center"><p style="padding-right: 5px;">มีบัญชีผู้ใช้อยู่แล้ว?<p><b><%= link_to "เข้าสู่ระบบ", new_session_path(resource_name) %></b></div><br />
+      <% end %>
     </div>
   </div>
 </div>
+
+

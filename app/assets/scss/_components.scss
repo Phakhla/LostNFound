@@ -562,6 +562,17 @@
   margin: auto;
 }
 
+// modal size for confirm email
+.confirm-email-modal {
+  width: 800px;
+  height: 400px;
+  padding: var(--spacing-02) var(--spacing-05);
+  background-color: var(--color-white);
+  border-radius: 15px;
+  border: 1px solid var(--color-secondary);
+  margin: auto;
+}
+
 .btn--send-again {
   background-color: inherit;
   color: var(--color-secondary);

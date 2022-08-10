@@ -7,7 +7,7 @@
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+  <div class = "d-flex justify-content-center"><p style="padding-right: 5px;">ยังไม่ได้รับอีเมล์ยืนยันบัญชี?<p><b><%= link_to "ส่งอีเมล์อีกครั้ง", new_confirmation_path(resource_name) %></b></div><br />
 <% end %>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
