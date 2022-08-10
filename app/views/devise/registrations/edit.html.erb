@@ -1,6 +1,6 @@
-<div style="margin:30px; padding:20px; border:20px">
+<div>
   <div class="container">
-    <div class="p-5 mb-4 bg-body rounded-5" style="border: 1px solid;">
+    <div class="user-profile mb-4 bg-body rounded-5" style="border: 1px solid;">
       <h4 class="border-bottom pb-4 mb-0">แก้ไขโปรไฟล์</h4>
       <br>
       <div class="row">
@@ -9,68 +9,70 @@
             <div class="row">
               <div class="col-md-5 col-lg-3 text-center" data-controller="file-image">
                 <% if current_user.avatar.present? %>
-                  <%= image_tag(current_user.avatar, data:{ file_image_target: "image" }, class: "card-img-top") %>
+                  <%= image_tag(current_user.avatar, data:{ file_image_target: "image" }, class: "card-img-top w-100") %>
                 <% else %>
-                  <img , data-file-image-target="image"  alt="image" class="card-img-top" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
+                  <img , data-file-image-target="image"  alt="image" class="card-img-top w-100" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
                 <% end %>
                 <br>
                 <br>
                 <div class="image-upload">
                   <label for="file-input">
-                    <span class="btn btn--secondary px-5 px-md-auto">อัพเดตรูปโปรไฟล์</span>
+                    <span class="btn btn--secondary px-12 px-md-auto">อัพเดตรูปโปรไฟล์</span>
                   </label>
                   <%= f.file_field :avatar, id: "file-input", style: "display: none;", data:{ action: "change->file-image#previewImage", file_image_target: "input" } %>
                 </div>
                 <p class="mt-3 color--red text-small"  >*ขนาดไฟล์รูปไม่เกิน 500 KB</p>
               </div>
-              <div class="col">
-                <div class="row g-5">
-                  <div class="col-md-6 col-lg-4">
+              <div class="col ms-lg-5">
+                <div class="row">
+                  <div class="col-lg-4">
                     <div class="field">
                       <%= f.label :username, "ชื่อผู้ใช้" %><br />
-                      <%= f.text_field :username, autofocus: true, style: "width: 100%; border-radius: 4px;", required: true, class: "form-control" %>
+                      <%= f.text_field :username, autofocus: true, style: "width: 100%; border-radius: 8px;", required: true, class: "form-control" %>
                     </div>
                   </div>
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-lg-4">
                     <div class="field">
                       <%= f.label :email, "อีเมล" %><br />
-                      <%= f.email_field :email, autofocus: true, autocomplete: "email" , disabled: true, style: "width: 100%; border-radius: 4px;", class: "form-control" %>
+                      <%= f.email_field :email, autofocus: true, autocomplete: "email" , disabled: true, style: "width: 100%; border-radius: 8px;", class: "form-control" %>
                     </div>
                     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
                     <% end %>
                   </div>
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-lg-4">
                     <div class="field">
                       <%= f.label :tel, "เบอร์ติดต่อ" %><br />
-                      <%= f.text_field :tel, autofocus: true, style: "width: 100%; border-radius: 4px;", class: "form-control"%>
+                      <%= f.text_field :tel, autofocus: true, style: "width: 100%; border-radius: 8x;", class: "form-control"%>
                     </div>
                   </div>
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-lg-4">
                     <div class="field">
                       <%= f.label :facebook, "ชื่อ facebook" %><br />
-                      <%= f.text_field :facebook, autofocus: true, style: "width: 100%; border-radius: 4px;", class: "form-control" %>
+                      <%= f.text_field :facebook, autofocus: true, style: "width: 100%; border-radius: 8px;", class: "form-control" %>
                     </div>
                   </div>
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-lg-4">
                     <div class="field">
                       <%= f.label :fblink, "ลิงค์ facebook" %><br />
-                      <%= f.text_field :fblink, autofocus: true, style: "width: 100%; border-radius: 4px;", class: "form-control" %>
+                      <%= f.text_field :fblink, autofocus: true, style: "width: 100%; border-radius: 8px;", class: "form-control" %>
                     </div>
                   </div>
-                  <div class="col-md-6 col-lg-4">
-                    <%= f.label :password, "รหัสผ่าน" %><br />
-                    <%= link_to 'เปลี่ยนรหัสผ่าน', password_edit_users_settings_path, class: 'btn btn-dark px-4 px-lg-auto w-100', style: 'color:#FFCC00;' %>
+                  <div class="col-lg-4">
+                    <div class="field">
+                      <%= f.label :password, "รหัสผ่าน" %><br />
+                      <%= link_to 'เปลี่ยนรหัสผ่าน', password_edit_users_settings_path, class: 'btn btn--secondary-mini btn--w-100 px-4 px-lg-6' %>
+                    </div>
                   </div>
-                  <div class="col-12 col-lg-4">
+                  <div class="col-12 col-lg-8">
                     <div class="field">
                       <%= f.label :address, "ที่อยู่" %><br />
-                      <%= f.text_area :address, autofocus: true, class: "col-lg-11", style: "width: 100%; border-radius: 4px; height: 70px;", class: "form-control" %>
+                      <%= f.text_area :address, autofocus: true, class: "col-lg-11", style: "border-radius: 8px; height: 70px;", class: "form-control" %>
                     </div>
                   </div>
-                  <div class="col-lg-4 d-flex align-items-end">
-                    <div class="form-check ps-0">
-                      <%= f.check_box :not_show_address, style: 'accent-color: black;' %>
+                  <div class="col-lg-3 mt-lg-5">
+                    <div class="form-check-address">
+                      <%= f.check_box :not_show_address %>
                       <%= f.label 'ไม่แสดงที่อยู่ของฉัน' %>
                     </div>
                   </div>
@@ -81,8 +83,8 @@
           <br>
           <div class="actions">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <%= link_to "ยกเลิก", root_path, class: "btn btn-outline-warning"%>
-              <%= f.submit "บันทึก",  class: "btn btn-warning mt-3 mt-md-0" %>
+              <%= link_to "ยกเลิก", root_path, class: "btn btn--outline-primary-hover btn--w-100"%>
+              <%= f.submit "บันทึก",  class: "btn btn--primary-weight mt-3 mt-md-0 btn--w-100" %>
             </div>
           </div>
         <% end %>

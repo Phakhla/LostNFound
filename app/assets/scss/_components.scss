@@ -739,3 +739,29 @@
     }
   }
 }
+
+// card-image
+.card-img-top {
+  border-radius: 16px;
+  width: 310px;
+  height: 310px;
+}
+
+// checkbox-address
+.form-check-address {
+  display: block;
+  margin-bottom: 4.125rem;
+}
+
+.user-profile {
+  padding: var(--layout-03);
+
+  .field {
+    margin-bottom: 24px;
+  }
+
+  @media (min-width: 1400px) {
+    padding: var(--layout-07);
+  }
+}
+
