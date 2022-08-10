@@ -1,4 +1,4 @@
-<div class="card p-3 mt-4 mb-5 border-dark" style="border-radius: 15px;">
+<div class="card p-3 mt-4 border-dark" style="border-radius: 15px;">
   <%= simple_form_for [@post, @post.comments.build] do |f| %>
     <div class="d-flex justify-content-around">
       <%= f.text_field :content, placeholder: 'แสดงความคิดเห็น', class: 'form-control', style: "border: 0;" %>

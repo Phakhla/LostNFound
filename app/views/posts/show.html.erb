@@ -12,7 +12,9 @@
   <% @comments.each do |comment| %>
     <%= render 'comments/comment', post: @post, comment: comment %>
   <% end %>
-  <% if @post.active? %>
-    <%= render 'comments/form', post: @post %>
-  <% end %>
+  <div class="mb-5">
+    <% if user_signed_in? && @post.active? %>
+      <%= render 'comments/form', post: @post %>
+    <% end %>
+  </div>
 </div>
