@@ -38,9 +38,9 @@
   <div class = "printfoot">
 
     <div class = "row" style = "display: -webkit-box; display: -webkit-flex; display: flex;" >
-      <div style = "margin-right: 5%; padding-top: 20px;">
+      <div style = "margin-right: 3%; padding-top: 5px;">
         <% avatar_url = @post.user.avatar.attached? ? polymorphic_url(@post.user.avatar) : 'https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=' %>
-        <p class="text-start"><%= image_tag(avatar_url, style:"width: 41px; height: 41px; object-fit: cover; border-radius: 50%;")  %></p>
+        <p class="text-start"><%= image_tag(avatar_url, style:"width: 50px; height: 50px; object-fit: cover; border-radius: 50%;")  %></p>
       </div>
       <div style = "padding-top: 20px;">
         <b><%= @post.user.username %></b>
