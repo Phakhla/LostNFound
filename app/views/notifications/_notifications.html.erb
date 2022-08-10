@@ -7,7 +7,7 @@
       <b class="text-subtitle" >การแจ้งเตือน</b>
     </div>
   </div>
-    <ul class="nav tab-noti layout-03 " role="tab" id="radio">
+    <ul class="nav tab-noti" role="tab" id="radio">
       <li class="nav-item" role="presentation">
         <button class="btn tab active" id="radio-1" type="radio" role="tab"
           data-bs-toggle="tab" data-bs-target="#all-noti-tab" >
@@ -21,7 +21,7 @@
         </button>
       </li>
     </ul>
-  <div class="tab-content">
+  <div class="tab-content" id="noti">
     <div id="all-noti-tab" class="tab-pane fade show active target" role="tabpanel" aria-labelledby="all-noti-tab" tabindex="0">
       <% if notifications.count == 0 %>
         <div class="card-unread">
@@ -32,7 +32,7 @@
         </div>
       <% end %>
       <% notifications.each do |notification| %>
-          <hr>
+          <hr class="margin">
           <%= render 'notifications/notification', notification: %>
       <% end %>
     </div>
@@ -46,7 +46,7 @@
         </div>
       <% end %>
       <% unread_notifications.each do |notification| %>
-          <hr>
+          <hr class="margin">
           <%= render 'notifications/notification', notification: %>
       <% end %>
     </div>

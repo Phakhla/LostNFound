@@ -3,10 +3,6 @@
 @import 'dropzone/src/dropzone';
 @import 'custom';
 
-div.target>hr:first-child {
-  display: none;
-}
-
 .qr-code {
   img {
     height: 90px;

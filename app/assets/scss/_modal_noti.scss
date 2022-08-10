@@ -1,3 +1,20 @@
+div.target>hr:first-child {
+  display: none;
+}
+
+div.comment-body-modal-noti {
+  width: 300px;
+
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  p.margin-zero {
+    margin-bottom: 0;
+  }
+}
+
 .dropdown-menu.dropdown-menu-end::after {
   right: 0.95rem;
   left: auto;
@@ -12,7 +29,7 @@
   background: #fff;
   background: inherit;
   top: -8px;
-  left: 296px;
+  left: 371px;
   transform: rotate(45deg);
   border-radius: 0.125rem;
   border-width: 1px 0 0 1px;
@@ -26,12 +43,18 @@
 }
 
 .dropdown-size {
-  right: -11.9rem;
+  right: -3.9rem;
   margin-left: auto;
   border-radius: 2rem;
   border-color: black;
   margin-top: 8px !important;
   width: max-content;
+}
+
+hr.margin {
+  margin-top: 16px;
+  margin-bottom: 16px;
+
 }
 
 .tab-noti {
@@ -42,6 +65,8 @@
   width: fit-content;
   border-radius: 18px;
   padding: 0;
+  margin-top: 16px;
+  margin-bottom: 16px;
 
   * {
     z-index: 2;
@@ -71,16 +96,6 @@ input[type="radio"] {
     border-color: black;
 
   }
-
-}
-
-#radio {
-  &:checked {
-    &+label {
-      color: var(--color-primary);
-      font-weight: 700;
-    }
-  }
 }
 
 .glider {
@@ -93,25 +108,34 @@ input[type="radio"] {
   transition: 0.5s ease-out;
 }
 
-
-#radio-1{
-  &.checked {
-    &~.glider {
-      transform: translateX(0);
-    }
-  }
-}
-
-#radio-2{
-  &.checked {
-    &~.glider {
-      transform: translateX(100%);
-    }
-  }
-}
-
 @media (max-width: 700px) {
   .tabs {
     transform: scale(0.6);
   }
+}
+
+.btn:focus {
+  border: 0;
+}
+
+.count--badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  border-radius: 50%;
+  background-color: #D10026;
+  color: white;
+  width: 16px;
+  height: 16px;
+}
+
+.user--avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.badge-dot {
+  margin-left: -20px;
+  margin-top: 6px;
 }

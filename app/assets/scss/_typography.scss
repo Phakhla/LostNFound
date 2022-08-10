@@ -75,6 +75,10 @@ p {
   font-size: var(--text-small);
 }
 
+.text-body {
+  font-size: var(--text-body);
+}
+
 a {
   color: var(--color-black);
 
@@ -147,3 +151,4 @@ a {
   color: #919191;
   font-weight: 300;
 }
+
