@@ -3,10 +3,6 @@
 @import 'dropzone/src/dropzone';
 @import 'custom';
 
-div.target>hr:first-child {
-  display: none;
-}
-
 .qr-code {
   img {
     height: 90px;
@@ -374,23 +370,38 @@ input[type="radio"].radiobtn {
 }
 
 // design on preview post
+.row.card-detail.preview {
+  margin-top: 16px;
+  margin-bottom: 19px;
+}
+
 .btn--primary.preview {
   width: 138px;
+  height: 48px;
   padding: var(--spacing-02) 0;
 }
 
 .btn--outline-primary.preview {
   width: 138px;
+  height: 48px;
   padding: var(--spacing-02) 0;
 }
 
 .title.preview {
- padding: 0;
- margin: 0;
+  padding: 0;
+  margin: 0;
+  font-weight: 400 !important;
+  font-size: 20px !important;
 }
 
 .modal-header.preview {
  padding: 25px 38px !important;
+}
+
+.hrpreview {
+  height: 2px !important;
+  background-color:black;
+  margin: 0 !important;
 }
 
 // contact
@@ -400,4 +411,12 @@ input[type="radio"].radiobtn {
   &:hover {
     color: #101010;
   }
+}
+
+.text-content.preview {
+  width: 120px;
+}
+
+.text-value.preview {
+  width: 260px;
 }

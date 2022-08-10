@@ -7,8 +7,8 @@
             <h4 class="title preview" id="preview-title">เนื้อหานี้เป็นตัวอย่างโพสต์ของคุณ</h4>
           </div>
           <div>
-            <%= f.button :button, "กลับไปแก้ไข", type: "button", class: "btn btn--outline-primary preview", data: { bs_dismiss: 'modal' }, id: "close-modal-preview" %>
-            <%= f.button :button, "สร้างโพสต์เลย", type: 'submit', class: "btn btn--primary preview", id: "submit-preview" %>
+            <button type="button" class="btn btn--outline-primary preview" data-bs-dismiss="modal" id="close-modal-preview">กลับไปแก้ไข</button>
+            <button type="submit" class="btn btn--primary preview"  id="submit-preview">สร้างโพสต์เลย</button>
           </div>
         </div>
 
@@ -26,7 +26,7 @@
                       กำลังตามหา
                     </p>
                     <div class="d-flex justify-content-end" id="preview-today">
-                      <p class="fw-bold">วันที่ประกาศ :&nbsp;</p>
+                      <p class="fw-bold">วันที่โพสต์ :&nbsp;</p>
                       <p data-post-preview-target="today" data-post-preview-format-value="DD MMMM YYYY">DD MM YYYY</p>
                     </div>
                   </div>
@@ -45,44 +45,42 @@
                   </div>
 
                   <div class="col-5 post-detail">
-                    <div data-post-preview-target="category" id="preview-category">category</div>
+                    <% if post.lost_item? %>
+                      <div class="category-tag lost-tag">
+                        <div class="category-text font-weight700" id="lost-post-title">โพสต์หาของหาย</div>
+                      </div>
+                    <% else %>
+                      <div class="card-text text-center category-tag found-tag">
+                        <div class="category-text font-weight700" id="found-post-title">โพสต์หาเจ้าของ</div>
+                      </div>
+                    <% end %>
                     <p class="card-text" data-post-preview-target="detail" id="preview-detail">detail</p>
                     <p class="card-text fw-bold text-subtitle pt-5">รายละเอียด</p>
-                    <div class="card-detail">
-                      <div class="row detail-text-pre">
-                        <div class="col-3">
-                          <p class="font-weight500">ประเภท</p>
+                    <div class="row card-detail preview">
+                      <div class="col-md-9">
+                        <div class="detail-text">
+                          <div class="text-content preview"><p class="font-weight500">ประเภท</p></div>
+                          <p data-post-preview-target="type" id="preview-type" class="text-value preview">type</p>
                         </div>
-                        <div class="col">
-                          <p data-post-preview-target="type" id="preview-type">type</p>
                         </div>
+                        <hr class = "hrpreview">
+                        <div class="detail-text">
+                          <div class="d-none" data-post-preview-target="category"></div>
+                          <div class="text-content preview"><p class="font-weight500"><%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%></p></div>
+                          <p data-post-preview-target="date" data-post-preview-format-value="DD MMMM YYYY"id="preview-date" class="text-value preview">DD MM YYYY</p>
+                        </div>
+                        <hr class = "hrpreview">
+                        <div class="detail-text">
+                          <div class="text-content preview"><p class="font-weight500">สถานที่</p></div>
+                          <p data-post-preview-target="fieldPreview" id="preview-address" class="text-value preview">value</p>
+                        </div>
+                        <hr class = "hrpreview">
                       </div>
-                      <hr>
-                      <div class="row detail-text-pre">
-                        <div class="col-3" data-post-preview-target="category">
-                          <p class="font-weight500">วันที่พบ</p>
-                        </div>
-                        <div class="col">
-                          <p data-post-preview-target="date" data-post-preview-format-value="DD MMMM YYYY"id="preview-date">DD MM YYYY</p>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row detail-text-pre">
-                        <div class="col-3">
-                          <p class="font-weight500">สถานที่</p>
-                        </div>
-                        <div class="col">
-                          <p data-post-preview-target="fieldPreview" id="preview-address">value</p>
-                        </div>
-                      </div>
-                      <hr>
-                    </div>
-
                     <%= content_tag :div, nil, data: { post_preview_target: "map" }, class: 'map mb-5', id: "preview-map" %>
-
+                    </div>
                   </div>
                 </div>
-              </div>
+
 
               <hr style="height: 2px; background-color:black;">
 
@@ -136,6 +134,7 @@
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </div>
