@@ -14,9 +14,9 @@
       </p>
     </div>
     <div class="col-md-2 mt-5 px-0" id="footer-link">
-      <%= link_to root_path, class: 'nav-link text-underline', id: 'footer-root-path-link' do %> Home <% end %>
-      <%= link_to lost_posts_path, class: 'nav-link text-underline', id: 'footer-lost-posts-path-link' do %> โพสต์ตามหาของหาย <% end %>
-      <%= link_to found_posts_path, class: 'nav-link text-underline', id: 'footer-found-posts-path-link' do %> โพสต์ตามหาเจ้าของ <% end %>
+      <%= link_to root_path, class: 'nav-link text-underline', id: 'footer-root-path-link' do %> หน้าแรก <% end %>
+      <%= link_to lost_posts_path, class: 'nav-link text-underline', id: 'footer-lost-posts-path-link' do %> รายการตามหาของหาย <% end %>
+      <%= link_to found_posts_path, class: 'nav-link text-underline', id: 'footer-found-posts-path-link' do %> รายการตามหาเจ้าของ <% end %>
       <% if !user_signed_in? %><%= link_to new_user_session_path, class: 'nav-link text-underline', id: 'footer-login-link' do %> Login <% end %><% end %>
     </div>
     <div class="col-md-4 mt-5">
