@@ -9,6 +9,12 @@ u3 = User.create_with(password: 'password').find_or_create_by!(username: 'user3'
 u4 = User.create_with(password: 'password').find_or_create_by!(username: 'user4', email: 'user4@bananacoding.com')
 u5 = User.create_with(password: 'password').find_or_create_by!(username: 'user5', email: 'user5@bananacoding.com')
 
+u1.confirm
+u2.confirm
+u3.confirm
+u4.confirm
+u5.confirm
+
 t1 = Type.find_or_create_by(type_name: 'โทรศัพท์มือถือ')
 t2 = Type.find_or_create_by(type_name: 'เครื่องใช้ไฟฟ้า')
 t3 = Type.find_or_create_by(type_name: 'สัตว์เลี้ยง')
