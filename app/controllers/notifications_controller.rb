@@ -7,7 +7,7 @@ class NotificationsController < ApplicationController
   layout 'nav_white'
 
   def index
-    @q = Notification.ransack(params[:q])
+    @q = Notification.where(recipient_id: current_user).ransack(params[:q])
     result = @q.result
     @notifications = result.order(created_at: :desc).page(params[:page]).per(10)
   end

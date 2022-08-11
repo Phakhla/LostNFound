@@ -139,3 +139,32 @@ input[type="radio"] {
   margin-left: -20px;
   margin-top: 6px;
 }
+
+div.comment-body-noti {
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  p.margin-zero {
+    margin-bottom: 0;
+  }
+}
+
+.gutter-x {
+  --bs-gutter-x: -2.5rem;
+}
+
+.padding-15 {
+  padding: 15px;
+}
+
+.notification-box {
+  margin: 30px;
+  padding: 20px;
+  border: 20px;
+}
+
+.noti-border {
+  border: 1px solid;
+}
