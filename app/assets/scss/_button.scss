@@ -111,26 +111,19 @@
 .btn--primary-black {
   background-color: var(--color-primary);
   border: 1px solid var(--color-primary);
-  color: #363636;
+  color: var(--color-black);
   width: 158px;
   margin-left: 16px;
   font-weight: 700;
 
-
-  &:visited {
-    color: #363636;
-  }
-
   &:hover {
     background-color: var(--color-primary-400);
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--color-primary) !important;
   }
 
   &:active {
     background-color: var(--btn-primary);
   }
-
-
 }
 
 .btn--outline-primary-width {
@@ -153,6 +146,10 @@
   &:active {
     background-color: var(--color-primary-50);
     color: var(--color-primary);
+  }
+
+  &:focus {
+    border: 1.5px solid var(--color-primary) !important;
   }
 }
 
