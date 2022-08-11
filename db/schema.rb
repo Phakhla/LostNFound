@@ -113,6 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_08_080801) do
     t.text "address"
     t.string "facebook"
     t.boolean "not_show_address", default: false
+    t.boolean "is_admin", default: false
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

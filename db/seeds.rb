@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-User.create_with(password: 'password').find_or_create_by!(username: 'admin', email: 'admin@bananacoding.com')
+User.create_with(password: 'password').find_or_create_by!(username: 'admin', email: 'admin@bananacoding.com',
+                                                          is_admin: true)
 
 u1 = User.create_with(password: 'password').find_or_create_by!(username: 'user1', email: 'user1@bananacoding.com')
 u2 = User.create_with(password: 'password').find_or_create_by!(username: 'user2', email: 'user2@bananacoding.com')
