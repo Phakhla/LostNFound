@@ -453,4 +453,27 @@ input[type="radio"].radiobtn {
   width: 260px;
 }
 
+// for modal and container in forgot password page
+.btn--secondary.forgot {
+  justify-content: center;
+  width: 348px;
+}
 
+.form-control.forgot {
+  width: 348px;
+}
+
+.send-again-font {
+  font-weight: 600 !important;
+}
+
+.forgot-title{
+  font-size: 31.25px;
+}
+
+.btn--primary.forgot {
+  width: 154px;
+  height: 48px;
+  color: #000000;
+  font-weight: 700 !important;
+}
