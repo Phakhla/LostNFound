@@ -81,7 +81,8 @@ hr.style {
 }
 
 .result-search {
-  border-radius: 8px;
+  padding-top: 4px;
+  position: relative;
   z-index: 200;
 
   ul {
@@ -93,15 +94,16 @@ hr.style {
     max-height: 300px;
     overflow-y: scroll;
     position: absolute;
-    width: 98.5%;
+    width: 100%;
+  }
 
-    @media (min-width : 320px) and (max-width: 767.98px) {
-      width: 95.25%;
-    }
+  ul::-webkit-scrollbar {
+    width: 5px;
+  }
 
-    @media (min-width: 768px) and (max-width: 1024px)  {
-      width: 97%;
-    }
+  ul::-webkit-scrollbar-thumb {
+    background: #919191FF;
+    border-radius: 10px;
   }
 
   .list-group:empty {
@@ -125,6 +127,7 @@ hr.style {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
 }
 
 .see-other-btn {
