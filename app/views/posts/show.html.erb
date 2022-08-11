@@ -1,9 +1,9 @@
 <div class="container">
   <%= render 'posts/post', post: @post %>
 </div>
-<div class="container mt-5">
+<div class="container mt-5 p-0">
   <p style="font-size: 20px;">
-    <% if @post.active? && @comments.count == 0 %>
+    <% if user_signed_in? && @post.active? && @comments.count == 0 %>
       ความคิดเห็น
     <% elsif @comments.count != 0 %>
       ความคิดเห็น(<%= @comments.count %>)
