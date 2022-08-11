@@ -17,9 +17,13 @@
       <% if flash[:alert].present? %>
         <div class = 'alert alert-danger'>
           <% if flash[:alert] == 'You have to confirm your email address before continuing.'%>
-          <i class="fas fa-exclamation-circle pt-2"></i>&emsp;โปรดยืนยันอีเมลของท่านก่อนเข้าสู่ระบบ
+            <i class="fas fa-exclamation-circle pt-2"></i>&emsp;โปรดยืนยันอีเมลของท่านก่อนเข้าสู่ระบบ
           <% elsif flash[:alert] == 'Invalid Email or password.'%>
-          <i class="fas fa-exclamation-circle pt-2"></i>&emsp;อีเมลหรือรหัสผ่านของคุณไม่ถูกต้อง
+            <% if @user[:encrypted_password].present? %>
+              <i class="fas fa-exclamation-circle pt-2"></i>&emsp;อีเมลหรือรหัสผ่านของคุณไม่ถูกต้อง
+            <% else %>
+              <i class="fas fa-exclamation-circle pt-2"></i>&emsp;โปรดระบุรหัสผ่าน
+            <% end %>
           <% end %>
         </div>
       <% end %>
@@ -36,7 +40,7 @@
 
         <div class="field" style = "padding: 10px;">
           <%= f.label "อีเมล", class: "pb-3" %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "border-color: black;", :required => true %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "border-color: black;", required: true %>
         </div>
 
         <div class="field" style = "padding: 10px;" data-controller="password-toggle">
