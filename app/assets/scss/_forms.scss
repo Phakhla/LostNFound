@@ -80,6 +80,9 @@ textarea.form-control.is-invalid {
 }
 
 .box-search-item {
+  display: inline-block;
+  position: relative;
+  
   .form-control {
     border-radius: 8px;
     font-size: 16px;
