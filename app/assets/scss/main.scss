@@ -124,16 +124,16 @@ input[type="radio"].radiobtn {
 
 .address-content,
 .contact-content {
+  margin-bottom: 10px;
+  
   p {
     margin: 0 !important;
     width: 56px !important;
   }
 }
 
-.contact-tel,
-.contact-facebook {
+.contact-tel {
   margin-right: 16px;
-  margin-bottom: 10px;
 }
 
 
@@ -340,7 +340,6 @@ input[type="radio"].radiobtn {
   text-align: center;
   word-wrap: break-word;
 }
-
 
 // back link text
 .back-link {

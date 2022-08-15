@@ -137,7 +137,7 @@
         </div>
         <hr style="height: 2px; background-color:black;">
         <div class="row mt-5">
-          <div class="col-7 d-flex align-items-center">
+          <div class="col-7 d-flex align-items-start">
             <div class="user-avatar pe-5" id="user-avatar">
               <% if post.user.avatar.present? %>
                 <%= image_tag(post.user.avatar, class: 'avatar') %>
@@ -184,8 +184,8 @@
                       <% end %>
                     </div>
                   <% else %>
-                    <div class="col">
-                      <p class="card-text"> ไม่มีข้อมูลการติดต่อ </p>
+                    <div class="no-contact">
+                       ไม่มีข้อมูลการติดต่อ
                     </div>
                   <% end %>
                 </div>
