@@ -67,10 +67,8 @@ export default class extends Controller {
   prepareImages() {
     const $imgs = $('.dz-preview .dz-image img');
     const $imgContainer = $('#imgPreview');
-    const $indicatorContainer = $('#imgIndicator');
 
     $imgContainer.html('');
-    $indicatorContainer.html('');
 
     if ($imgs.length === 0) {
       return;
@@ -78,15 +76,12 @@ export default class extends Controller {
 
     $imgs.each((index, elem) => {
       const $item = this.buildCarouselItem(elem, index);
-      const $indicator = this.buildIndicator(index);
 
       if (index === 0) {
         $item.addClass('active');
-        $indicator.addClass('active');
       }
 
       $imgContainer.append($item);
-      $indicatorContainer.append($indicator);
     });
   }
 
@@ -158,21 +153,23 @@ export default class extends Controller {
   }
 
   buildCarouselItem(img, index) {
-    return $('<div class="gallery-item"></div>').append(
-      [
+    const gallery = $('<div class="gallery-item"></div>');
+    if (index === 0) {
+      gallery.append(
         $(`<input type="radio" id="img-${index}" checked name="gallery" class="gallery-selector"/>`),
+      );
+    } else {
+      gallery.append(
+        $(`<input type="radio" id="img-${index}" name="gallery" class="gallery-selector"/>`),
+      );
+    }
+    gallery.append(
+      [
         $(`<img class="gallery-img" src='${$(img).attr('src')}'/>`),
         $(`<label for="img-${index}" class="gallery-thumb"><img src='${$(img).attr('src')}'/></label>`),
       ],
-    ).append([$('<a class="prev" data-action="click->post-preview#slideLeft"><i class="fa-regular fa-chevron-left"></i></a>'),
-      $('<a class="next" data-action="click->post-preview#slideRight"><i class="fa-regular fa-chevron-right"></i></a>')]);
-  }
-
-  buildIndicator(idx) {
-    return $('<button type="button"></button>').attr({
-      'data-bs-target': '#postImageIndicators',
-      'data-bs-slide-to': idx,
-    });
+    );
+    return gallery;
   }
 
   slideLeft() {
