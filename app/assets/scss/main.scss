@@ -407,9 +407,9 @@ input[type="radio"].radiobtn {
 }
 
 .btn--primary.preview {
-  width: 138px;
-  height: 48px;
+  font-size: 16px;
   padding: var(--spacing-02) 0;
+  width: 138px;
 
   &:hover {
     background-color: var(--color-primary-400);
@@ -418,9 +418,9 @@ input[type="radio"].radiobtn {
 }
 
 .btn--outline-primary.preview {
-  width: 138px;
-  height: 48px;
+  font-size: 16px;
   padding: var(--spacing-02) 0;
+  width: 138px;
 }
 
 .title.preview {
@@ -435,8 +435,8 @@ input[type="radio"].radiobtn {
 }
 
 .hrpreview {
-  height: 2px !important;
-  background-color:black;
+  height: 1.5px !important;
+  background-color: #D1D1D1;
   margin: 0 !important;
 }
 

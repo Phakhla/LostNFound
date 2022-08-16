@@ -11,9 +11,11 @@
   --text-header1: 61.04px;
   --text-header2: 48.83px;
   --text-header3: 39.06px;
+  --text-header4: 31.25px;
   --text-pertitle: 10px;
   --text-small: 14px;
   --text-subtitle: 25px;
+  --text-subtitle-2: 20px;
 }
 
 h1 {
@@ -150,4 +152,16 @@ a {
 .text--gray {
   color: #919191;
   font-weight: 300;
+}
+
+.text-header4 {
+  font-size: 24px;
+
+  @media (min-width: 768px) {
+    font-size: var(--text-header4);
+  }
+}
+
+.text-subtitle-2 {
+  font-size: var(--text-subtitle-2);
 }

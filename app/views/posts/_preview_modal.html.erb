@@ -2,25 +2,25 @@
   <div class="modal-dialog modal-xl">
     <div class="preview-modal">
       <div class="modal-content">
-        <div class="modal-header preview">
-          <div>
-            <h4 class="title preview" id="preview-title">เนื้อหานี้เป็นตัวอย่างโพสต์ของคุณ</h4>
-          </div>
-          <div>
-            <button type="button" class="btn btn--outline-primary preview" data-bs-dismiss="modal" id="close-modal-preview">กลับไปแก้ไข</button>
-            <button type="submit" class="btn btn--primary preview"  id="submit-preview">สร้างโพสต์เลย</button>
+        <div class="header preview">
+          <div class="d-md-flex justify-content-between align-items-center">
+            <div class="preview" id="preview-title" >เนื้อหานี้เป็นตัวอย่างโพสต์ของคุณ</div>
+            <div class="mt-4 mt-md-0">
+              <button type="button" class="btn btn--outline-primary preview" data-bs-dismiss="modal" id="close-modal-preview">กลับไปแก้ไข</button>
+              <button type="submit" class="btn btn--primary preview"  id="submit-preview">สร้างโพสต์เลย</button>
+            </div>
           </div>
         </div>
 
         <div class="modal-body" id="preview-body">
           <div class="row">
-            <div class="card p-5 border-dark" style="border-radius: 15px">
+            <div class="card p-3 p-md-5 border-dark" style="border-radius: 15px">
               <div class="card-body">
                 <div class="row m-2">
-                  <div class="col-8">
-                    <h3 data-post-preview-target="name" id="preview-name">Name</h3>
+                  <div class="col-lg-8">
+                    <h3 class="text-header4 " data-post-preview-target="name" id="preview-name">Name</h3>
                   </div>
-                  <div class="col-4 text-end">
+                  <div class="col-lg-4 text-end">
                     <p class="card-text p-2 text-center status-tag active-status" id="preview-status">
                       <span class="dot-white"></span>
                       กำลังตามหา
@@ -35,9 +35,8 @@
                 <hr style="height: 2px; background-color:black;">
 
                 <div class="row post-body mt-5">
-
                   <!-- Gallery image -->
-                  <div class="col-7 post-image" controller="post-preview">
+                  <div class="col-lg-7 post-image" controller="post-preview">
                     <section class="gallery">
                       <div class="gallery-scroll" id="imgPreview">
                       </div>
@@ -46,7 +45,7 @@
                     </section>
                   </div>
 
-                  <div class="col-5 post-detail">
+                  <div class="col-lg-5 mt-5 mt-lg-0">
                     <% if post.lost_item? %>
                       <div class="category-tag lost-tag">
                         <div class="category-text font-weight700" id="lost-post-title">โพสต์หาของหาย</div>
@@ -57,24 +56,24 @@
                       </div>
                     <% end %>
                     <p class="card-text" data-post-preview-target="detail" id="preview-detail">detail</p>
-                    <p class="card-text fw-bold text-subtitle pt-5">รายละเอียด</p>
+                    <p class="card-text fw-bold text-subtitle-2 pt-5">รายละเอียด</p>
                     <div class="row card-detail preview">
                       <div class="col-md-9">
                         <div class="detail-text">
-                          <div class="text-content preview"><p class="font-weight500">ประเภท</p></div>
-                          <p data-post-preview-target="type" id="preview-type" class="text-value preview">type</p>
+                          <div class="text-content preview"><p>ประเภท</p></div>
+                          <p data-post-preview-target="type" id="preview-type" class="text-value preview font-weight500">type</p>
                         </div>
                         </div>
                         <hr class = "hrpreview">
                         <div class="detail-text">
                           <div class="d-none" data-post-preview-target="category"></div>
-                          <div class="text-content preview"><p class="font-weight500"><%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%></p></div>
-                          <p data-post-preview-target="date" data-post-preview-format-value="DD MMMM YYYY"id="preview-date" class="text-value preview">DD MM YYYY</p>
+                          <div class="text-content preview"><p><%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%></p></div>
+                          <p data-post-preview-target="date" data-post-preview-format-value="DD MMMM YYYY"id="preview-date" class="text-value preview font-weight500">DD MM YYYY</p>
                         </div>
                         <hr class = "hrpreview">
                         <div class="detail-text">
-                          <div class="text-content preview"><p class="font-weight500">สถานที่</p></div>
-                          <p data-post-preview-target="fieldPreview" id="preview-address" class="text-value preview">value</p>
+                          <div class="text-content preview"><p>สถานที่</p></div>
+                          <p data-post-preview-target="fieldPreview" id="preview-address" class="text-value preview font-weight500">value</p>
                         </div>
                         <hr class = "hrpreview">
                       </div>

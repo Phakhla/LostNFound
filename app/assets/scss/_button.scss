@@ -255,3 +255,29 @@
     width: 100%;
   }
 }
+
+.btn--cancel {
+  background-color: var(--color-primary-50);
+  border: 1.5px solid var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 700;
+  width: 158px;
+
+  &:visited {
+    background-color: inherit;
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  &:hover {
+    background-color: inherit;
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  &:active {
+    background-color: inherit;
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary);
+  }
+}

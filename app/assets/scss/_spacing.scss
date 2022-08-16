@@ -90,7 +90,11 @@
 }
 
 .spacing-09 {
-  margin-top: var(--spacing-09);
+  margin-top: var(--spacing-06);
+
+  @media (min-width: 992px) {
+    margin-top: var(--spacing-09);
+  }
 }
 
 .layout-mt-04 {
