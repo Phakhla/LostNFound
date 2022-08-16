@@ -229,8 +229,8 @@
             คุณต้องการลบโพสต์นี้ออกจากรายการใช่หรือไม่
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="button" class="btn btn--outline-primary-hover" data-bs-dismiss="modal">ยกเลิก</button>
-            <%= button_to "ยืนยัน", post, method: :delete , class: 'btn btn--primary'%>
+            <button type="button" class="btn btn--outline-primary-hover font-weight700" data-bs-dismiss="modal">ยกเลิก</button>
+            <%= button_to "ยืนยัน", post, method: :delete , class: 'btn btn--primary font-weight700', id: 'submitDeletePost' %>
           </div>
         </div>
       </div>
@@ -280,8 +280,8 @@
               </div>
             </div>
             <div class="modal-footer justify-content-center">
-              <%= f.button :button, "ยกเลิก", type: "reset", class: "btn btn--outline-primary style", data: { bs_dismiss: 'modal' } %>
-              <%= f.button :button, "ยืนยัน", class: "btn btn--primary", disabled: true, data: { radio_selection_target: "submit", action: "click->radio-selection#checkSubmit" } %>
+              <%= f.button :button, "ยกเลิก", type: "reset", class: "btn btn--outline-primary font-weight700 btn-w-155", id: 'cancelClosePostButton', data: { bs_dismiss: 'modal' } %>
+              <%= f.button :button, "ยืนยัน", class: "btn btn--primary font-weight700 btn-w-155", id: 'closePostButton', disabled: true, data: { radio_selection_target: "submit", action: "click->radio-selection#checkSubmit" } %>
             </div>
           </div>
         </div>
