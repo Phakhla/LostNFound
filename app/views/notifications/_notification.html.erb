@@ -29,15 +29,15 @@
       </div>
       <div class="comment-body-modal-noti">
         <span class="user-comment text-body">
-          <b>
+          <b class="me-2">
             <%= noti.params[:comment].user.username %>
           </b>
-            &nbspได้แสดงความคิดเห็น :
-          <p>
+            ได้แสดงความคิดเห็น :
+          <div class="comment-modal-content">
             "<%= noti.params[:comment].content %>"
-          </p>
+          </div>
         </span>
-        <p class="text-small margin-zero" data-controller="datetime" data-datetime-date-value="<%= noti.params[:comment].created_at %>" data-datetime-target="output"></p>
+        <p class="text-small margin-zero mt-3" data-controller="datetime" data-datetime-date-value="<%= noti.params[:comment].created_at %>" data-datetime-target="output"></p>
       </div>
     </div>
   </div>
