@@ -2,9 +2,9 @@
   <div class="container">
     <div class="fs-2"><br></div>
     <br>
-    <div class="user-profile mb-4 bg-body rounded-5 noti-border">
-      <h4 class="border-bottom pb-4 mb-0">แก้ไขโปรไฟล์</h4>
-      <br>
+    <div class="user-profile bg-body card-form padding-box mb-4">
+      <div class="edit-profile-title text-header4 font-weight600 mb-0">แก้ไขโปรไฟล์</div>
+      <hr class="underline-title">
       <div class="row">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
