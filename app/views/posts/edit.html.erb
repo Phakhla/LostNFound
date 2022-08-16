@@ -12,7 +12,7 @@
     <br>
     <div class="mb-4 bg-body card-form padding-box">
       <h4 class="mb-0" id="form-edit-title">แก้ไขโพสต์<%= @post.lost_item? ? 'ตามหาของ' : 'ตามหาเจ้าของ' %></h4>
-      <hr>
+      <hr class="underline-title">
       <%= render 'form', post: @post %>
     </div>
   </div>
