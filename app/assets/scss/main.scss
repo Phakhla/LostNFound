@@ -125,7 +125,7 @@ input[type="radio"].radiobtn {
 .address-content,
 .contact-content {
   margin-bottom: 10px;
-  
+
   p {
     margin: 0 !important;
     width: 56px !important;
@@ -480,4 +480,18 @@ input[type="radio"].radiobtn {
   height: 48px;
   color: #000000;
   font-weight: 700 !important;
+}
+
+// for location field
+.fa-search.form-control-feedback.location {
+  position: absolute;
+  margin-top: -30px;
+  padding-left: 15px;
+}
+
+.form-invalid.location,
+.form-control.location {
+  padding-left: 45px;
+  background-color: #F2F2F2;
+  border: none;
 }

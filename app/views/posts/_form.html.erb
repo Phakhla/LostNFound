@@ -75,13 +75,14 @@
   </div>
 
   <div class="form-group mb-3 col-7">
-
-    <%= f.input :search, required: true, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit", live_validate_target: 'place', action: "input->live-validate#checkPlace" }, id: 'form-place-input', value: post.location, class: post.errors.key?(:lat) || post.errors.key?(:lng) ? 'form-invalid' : 'form-control' }, label: false %>
+    <%= f.input :search, placeholder: "Search", required: true, input_html: { data: { maps_target: "field", action: "keydown->maps#preventSubmit", live_validate_target: 'place', action: "input->live-validate#checkPlace" }, id: 'form-place-input', value: post.location, class: post.errors.key?(:lat) || post.errors.key?(:lng) ? 'form-invalid location' : 'form-control location' }, label: false %>
+    <i class="fa fa-search form-control-feedback location"></i>
 
     <% if post.errors.key?(:lat) || post.errors.key?(:lng) %>
       <p class="text-small text-danger" id="form-place-warning-text">กรุณากรอกข้อมูล</p>
     <% end %>
   </div>
+  <br>
   <div class="col-sm-10">
     <%= content_tag :div, nil, data: { maps_target: "map", live_validate_target: 'place', action: 'google-maps-callback@window->maps#initializeMap click->live-validate#checkPlace' }, class: 'map map-size mb-5', id: 'form-map-display' %>
   </div>
