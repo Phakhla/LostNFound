@@ -1,7 +1,19 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-  static targets = ['name', 'date', 'detail', 'types', 'place', 'images', 'username', 'email', 'password'];
+  static targets = [
+    'name',
+    'date',
+    'detail',
+    'types',
+    'place',
+    'images',
+    'username',
+    'email',
+    'password',
+    'address',
+    'latitude',
+    'longitude'];
 
   connect() {
     this.checkDetail();
@@ -84,6 +96,14 @@ export default class extends Controller {
     if (this.passwordTarget !== '') {
       $password.removeClass('is-invalid');
       $passworderror.addClass('d-none');
+    }
+  }
+
+  checkLocationField() {
+    if (this.placeTarget.value === '') {
+      this.latitudeTarget.value = '';
+      this.longitudeTarget.value = '';
+      this.addressTarget.value = '';
     }
   }
 }

@@ -142,6 +142,12 @@ export default class extends Controller {
     return this.marker;
   }
 
+  removeMarker() {
+    if (this.latitudeTarget.value === '' && this.longitudeTarget.value === '' && this.addressTarget.value === '') {
+      this.marker.setVisible(false);
+    }
+  }
+
   setAutocomplete() {
     if (this.autocomplete === undefined) {
       this.autocomplete = new google.maps.places.Autocomplete(this.fieldTarget);
