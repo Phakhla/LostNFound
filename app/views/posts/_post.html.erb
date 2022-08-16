@@ -18,7 +18,7 @@
           ย้อนกลับ
       <% end %>
     </div>
-    <div class="col-md-10 text-end">
+    <div class="col-md-10 text-end manage-button">
       <% if user_signed_in? && post.owner?(current_user) && post.active? %>
       <div class="d-md-flex justify-content-end btn-right">
         <button type="button" class="btn bg-color--primary100-weight mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#deletePostModal" id="delete-post-modal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
@@ -28,6 +28,7 @@
       <% end %>
     </div>
   </div>
+
   <div class="mt-4">
     <div class="bg-body card-form padding-box">
       <div class="row m-2">
@@ -184,7 +185,7 @@
                   </div>
                 <% else %>
                   <div class="no-contact">
-                      ไม่มีข้อมูลการติดต่อ
+                    ไม่มีข้อมูลการติดต่อ
                   </div>
                 <% end %>
               </div>
@@ -211,6 +212,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 <!-- Modal delete post -->
@@ -289,7 +291,7 @@
 	</div>
 </div>
 
-<!-- ตัวอย่าง modal 
+<!-- ตัวอย่าง modal
 
 <div class="modal fade" id="closePostModal" tabindex="-1" aria-labelledby="closePostModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal--close-post modal-lg">
