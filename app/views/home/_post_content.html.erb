@@ -37,7 +37,7 @@
           <% if post.images.attached? %>
               <%= image_tag(post.images[0]) %>
           <% else %>
-            <img alt="image" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
+              <%= image_tag 'no-image-available.png', alt: 'image'%>
           <% end %>
           <div class="text">
             <div class="post-name font-weight700"><%= post.name %></div>
