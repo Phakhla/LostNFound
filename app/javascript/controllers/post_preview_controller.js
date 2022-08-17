@@ -43,38 +43,43 @@ export default class extends Controller {
 
   connect() {}
 
-  preview() {
+  preview(e) {
     if (!this.valid()) {
-      $('#create-form-hidden-button').trigger('click');
       return;
     }
 
-    const category = this.categoryInputTarget.value;
-    const date = dayjs(this.dateInputTarget.value).locale('th').format(this.format);
+    if (!$('#preview_modal').hasClass('show')) {
+      const category = this.categoryInputTarget.value;
+      const date = dayjs(this.dateInputTarget.value).locale('th').format(this.format);
 
-    this.categoryTarget.innerHTML = this.displayCategory(category);
-    this.todayTarget.innerHTML = dayjs().locale('th').format(this.format);
-    this.nameTarget.innerHTML = this.nameInputTarget.value;
-    this.dateTarget.innerHTML = this.displayDate(category, date);
-    this.detailTarget.innerHTML = this.detailInputTarget.value;
-    this.typeTarget.innerHTML = this.displayType();
+      this.categoryTarget.innerHTML = this.displayCategory(category);
+      this.todayTarget.innerHTML = dayjs().locale('th').format(this.format);
+      this.nameTarget.innerHTML = this.nameInputTarget.value;
+      this.dateTarget.innerHTML = this.displayDate(category, date);
+      this.detailTarget.innerHTML = this.detailInputTarget.value;
+      this.typeTarget.innerHTML = this.displayType();
 
-    this.prepareImages();
-    this.prepareMap();
-    this.openModal();
+      this.prepareImages();
+      this.prepareMap();
+      this.openModal();
+
+      e.preventDefault();
+    }
   }
 
   prepareImages() {
     const $imgs = $('.dz-preview .dz-image img');
+    const $imgInput = $('.edit-upload .edit-image img');
+    const $imgPreview = $imgs.add($imgInput);
     const $imgContainer = $('#imgPreview');
 
     $imgContainer.html('');
 
-    if ($imgs.length === 0) {
+    if ($imgPreview.length === 0) {
       return;
     }
 
-    $imgs.each((index, elem) => {
+    $imgPreview.each((index, elem) => {
       const $item = this.buildCarouselItem(elem, index);
 
       if (index === 0) {
@@ -101,7 +106,8 @@ export default class extends Controller {
     return (
       this.nameInputTarget.value
       && this.dateInputTarget.value
-      && $('.dz-preview .dz-image img').length
+      && this.typeInputTarget.value
+      && ($('.dz-preview .dz-image img').length || $('.edit-upload .edit-image img').length)
       && this.latitudeTarget.value
       && this.longitudeTarget.value
     );

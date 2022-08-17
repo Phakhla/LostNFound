@@ -83,63 +83,62 @@
                 </div>
 
 
-              <hr style="height: 2px; background-color:black;">
+                <hr style="height: 2px; background-color:black;">
 
-              <div class="row pt-4">
-                <div class="col-12 d-flex" id="preview-user-info">
-                  <div class="user-avatar pe-5">
-                    <% if current_user.avatar.present? %>
-                      <%= image_tag(current_user.avatar, class: 'avatar') %>
-                    <% else %>
-                      <img alt="image" class="avatar" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
-                    <% end %>
-                  </div>
-                  <div class="user-info">
-                    <p class="card-text fw-bold">
-                      <%= current_user.username %>
-                    </p>
-                    <%# Info %>
-                    <% if current_user.tel? or current_user.fblink? or current_user.facebook? %>
-                      <p class="card-text">ติดต่อ :
-                        <%# Show tel %>
-                        <% if current_user.tel? %>
-                          <i class="fa-solid fa-phone text-body"></i> <%= phone_to current_user.tel, class: 'phone-contact' %>
-                        <% end %>
-                        <%# Show facebook link %>
-                        <% if current_user.fblink? %>
-                          <%= link_to(current_user.fblink, style: 'text-decoration: none;', target: 'blank') do %>
-                            <i class="fa-brands fa-facebook-square text-body ps-4"></i>
+                <div class="row">
+                  <div class="col-12 d-flex align-items-center" id="preview-user-info">
+                    <div class="user-avatar pe-5">
+                      <% if current_user.avatar.present? %>
+                        <%= image_tag(current_user.avatar, class: 'avatar') %>
+                      <% else %>
+                        <img alt="image" class="avatar" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
+                      <% end %>
+                    </div>
+                    <div class="user-info">
+                      <p class="card-text fw-bold">
+                        <%= current_user.username %>
+                      </p>
+                      <%# Info %>
+                      <% if current_user.tel? or current_user.fblink? or current_user.facebook? %>
+                        <p class="card-text">ติดต่อ :
+                          <%# Show tel %>
+                          <% if current_user.tel? %>
+                            <i class="fa-solid fa-phone" style="font-size: 20px;"></i> <%= phone_to current_user.tel, style: 'text-decoration: none;' %>
+                          <% end %>
+                          <%# Show facebook link %>
+                          <% if current_user.fblink? %>
+                            <%= link_to(current_user.fblink, style: 'text-decoration: none;', target: 'blank') do %>
+                              <i class="fa-brands fa-facebook-square text-subtitle"></i>
+                              <% if current_user.facebook? %>
+                                <%= current_user.facebook %>
+                              <% else %>
+                                Facebook
+                              <% end %>
+                            <% end %>
+                          <% else %>
                             <% if current_user.facebook? %>
+                              <i class="fa-brands fa-facebook-square text-subtitle"></i>
                               <%= current_user.facebook %>
-                            <% else %>
-                              Facebook
                             <% end %>
                           <% end %>
-                        <% else %>
-                          <% if current_user.facebook? %>
-                            <i class="fa-brands fa-facebook-square text-body ps-4"></i>
-                            <%= current_user.facebook %>
-                          <% end %>
-                        <% end %>
-                      </p>
-                    <% else %>
-                      <p class="card-text"> ไม่มีข้อมูลการติดต่อ </p>
-                    <% end %>
-                    <%# Address %>
-                    <% if current_user.address? %>
-                        <% if !current_user.not_show_address %>
-                          <p class="card-text">ที่อยู่ : <%= current_user.address %></p>
-                        <% end %>
+                        </p>
                       <% else %>
-                    <% end %>
+                        <p class="card-text"> ไม่มีข้อมูลการติดต่อ </p>
+                      <% end %>
+                      <%# Address %>
+                      <% if current_user.address? %>
+                          <% if !current_user.not_show_address %>
+                            <p class="card-text">ที่อยู่ : <%= current_user.address %></p>
+                          <% end %>
+                        <% else %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>

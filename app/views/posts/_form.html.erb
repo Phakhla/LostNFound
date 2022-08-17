@@ -1,4 +1,9 @@
-<%= simple_form_for post, { data: { controller: 'maps post-preview live-validate', post_preview_target: 'form'} } do |f| %>
+<%= simple_form_for post, {
+  data: {
+    controller: 'maps post-preview live-validate',
+    post_preview_target: 'form',
+    action: 'submit->post-preview#preview'
+  }} do |f| %>
 
   <%= f.hidden_field :status, value: 'active', id: 'form-status-hidden-field' %>
   <%= f.hidden_field :category, data: { post_preview_target: 'categoryInput' }, id: 'form-category-hidden-field' %>
@@ -46,7 +51,7 @@
     </div>
     <% if post.images.attached? %>
       <% post.images.each do |image| %>
-        <div class="edit-upload text-center " data-controller="post-image" data-post-image-target="image">
+        <div class="edit-upload text-center" data-controller="post-image" data-post-image-target="image">
           <%= f.hidden_field :images, multiple: true, value: image.signed_id, id: 'form-image-hidden-field' %>
           <div class="edit-image">
             <%= image_tag(image, id: 'form-image-display')%>
@@ -57,7 +62,7 @@
     <% end %>
   </div>
   <% if post.errors.key?(:images) %>
-      <p class="text-small text-danger" id="form-image-warning-text">กรุณาอัพโหลดรูป</p>
+    <p class="text-small text-danger" id="form-image-warning-text">กรุณาอัพโหลดรูป</p>
   <% end %>
   <div class="col-sm-9">
     <%= f.label :detail, "รายละเอียดเพิ่มเติม", class: 'form-label mt-5 text-bold mb-3', id: 'form-deatil-label' %>
@@ -97,13 +102,8 @@
       <%= link_to category_selects_posts_path, type: "reset", class: "btn btn--outline-primary-hover", id: 'cancel-create-form-button'  do %>
         ยกเลิก
       <% end %>
-      <%= f.button :button, "สร้างโพสต์", type: 'button', class: "btn btn--primary-weight",
-        id:"create-form-button", data: {
-        action: 'click->post-preview#preview'
-      } %>
-
-      <%= f.button :submit, class: "d-none",
-        id: "create-form-hidden-button" %>
+      <%= f.button :button, "สร้างโพสต์", type: 'submit', class: "btn btn--primary-weight",
+        id:"create-form-button" %>
     <% end %>
     <%= render 'preview_modal', post: %>
   </div>
