@@ -67,6 +67,7 @@ hr.margin {
   padding: 0;
   margin-top: 16px;
   margin-bottom: 16px;
+  height: 43px;
 
   * {
     z-index: 2;
@@ -89,12 +90,12 @@ input[type="radio"] {
   font-weight: 400;
   border-radius: 16px;
   cursor: pointer;
+  height: 42px;
 
   &.active {
     background-color: var(--color-secondary);
     color: var(--color-primary);
     border-color: black;
-
   }
 }
 
