@@ -817,3 +817,18 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.card-comment {
+  border: 1px solid var(--color-black);
+  border-radius: 15px;
+
+  .comment-content {
+    display: flex;
+    align-items: flex-start;
+    margin: var(--layout-05) var(--layout-07);
+  }
+
+  .text-small {
+    margin: 0;
+  }
+}

@@ -190,3 +190,21 @@ footer {
   color: var(--color-white);
   padding: 57px 40px;
 }
+
+// form comment
+.form-comment {
+  border: 0 !important;
+  font-size: 20px !important;
+  padding: 0;
+
+  &::placeholder {
+    color: #ADADADFF;
+  }
+}
+
+.form-comment-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 46px;
+}
