@@ -2,6 +2,7 @@
 
 set :application, 'lostitem_uat'
 server '172.104.175.170', user: 'deploy', roles: %w[app db web]
+set :stage, :uat
 set :branch, ENV['BRANCH'] || 'uat'
 set :nginx_server_name, 'lostandfound-uat.onbananacoding.com'
 set :deploy_to, '/srv/www/apps/lostitem-uat'
