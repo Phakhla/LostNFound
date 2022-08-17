@@ -758,6 +758,26 @@
   }
 }
 
+// change-password
+.change-password {
+  margin: -19px;
+  right: 915px;
+
+  @media (min-width: 1400px) {
+    padding: var(--layout-07);
+  }
+}
+
+.change-password-confirmation {
+  margin: -43px;
+  left: 484px;
+
+  @media (min-width: 1400px) {
+    padding: var(--layout-07);
+  }
+}
+
+
 // card-image
 .card-img-top {
   border-radius: 16px;

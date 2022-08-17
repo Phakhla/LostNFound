@@ -34,5 +34,13 @@ RSpec.describe 'Users::Settings', type: :request do
 
       expect(response).to have_http_status(:unprocessable_entity)
     end
+
+    it 'current_password duplicates password' do
+      params = { user: { current_password: 'password', password: 'password' } }
+
+      put password_users_settings_path, params: params
+
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
   end
 end
