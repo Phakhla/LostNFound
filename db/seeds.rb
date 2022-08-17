@@ -1,12 +1,20 @@
 # frozen_string_literal: true
 
-User.create_with(password: 'password').find_or_create_by!(username: 'admin', email: 'admin@bananacoding.com')
+admin = User.create_with(password: 'password', is_admin: true).find_or_create_by!(username: 'admin',
+                                                                                  email: 'admin@bananacoding.com')
 
 u1 = User.create_with(password: 'password').find_or_create_by!(username: 'user1', email: 'user1@bananacoding.com')
 u2 = User.create_with(password: 'password').find_or_create_by!(username: 'user2', email: 'user2@bananacoding.com')
 u3 = User.create_with(password: 'password').find_or_create_by!(username: 'user3', email: 'user3@bananacoding.com')
 u4 = User.create_with(password: 'password').find_or_create_by!(username: 'user4', email: 'user4@bananacoding.com')
 u5 = User.create_with(password: 'password').find_or_create_by!(username: 'user5', email: 'user5@bananacoding.com')
+
+admin.confirm
+u1.confirm
+u2.confirm
+u3.confirm
+u4.confirm
+u5.confirm
 
 t1 = Type.find_or_create_by(type_name: 'โทรศัพท์มือถือ')
 t2 = Type.find_or_create_by(type_name: 'เครื่องใช้ไฟฟ้า')

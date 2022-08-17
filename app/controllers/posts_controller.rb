@@ -66,7 +66,11 @@ class PostsController < ApplicationController
   private
 
   def load_post
-    @post = Post.find(params[:id])
+    if Post.find_by(id: params[:id]).present?
+      @post = Post.find_by(id: params[:id])
+    else
+      render 'errors/not_found', status: :not_found
+    end
   end
 
   def load_posts

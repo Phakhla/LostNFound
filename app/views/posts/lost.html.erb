@@ -4,19 +4,21 @@
     <div class="row justify-content-between align-items-center mb-5">
       <% if @tab == 'my_post' %>
         <div class="col-md-auto order-md-last">
-          <div class="btn btn--primary" >
+          <div class="btn btn--primary btn--w-100" >
             <i class='fas fa-plus-circle'></i>
             <%= link_to "สร้างโพสต์", category_selects_posts_path %>
           </div>
         </div>
-        <ul class="col-md-5 tabs" >
-          <li class="tab-item">
-            <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary tab-link" %>
-          </li>
-          <li class="tab-item">
-            <%= link_to 'รายการของฉัน', lost_posts_path(tab: 'my_post'), class: "btn btn--secondary tab-link" %>
-          </li>
-        </ul>
+        <div class="col-md-5">
+          <ul class="tabs btn--w-100" >
+            <li class="tab-item">
+              <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary tab-link" %>
+            </li>
+            <li class="tab-item">
+              <%= link_to 'รายการของฉัน', lost_posts_path(tab: 'my_post'), class: "btn btn--secondary tab-link" %>
+            </li>
+          </ul>
+        </div>
       <% end %>
     </div>
     <% if params[:q].present? %>

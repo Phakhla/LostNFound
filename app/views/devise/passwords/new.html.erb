@@ -1,7 +1,7 @@
 <div class="container forgot-password-field mb-5">
   <div class="row text-center">
     <div class="col-lg-12 layout-05">
-      <h4>ลืมรหัสผ่าน?</h4>
+      <h4 class="font-weight600">ลืมรหัสผ่าน?</h4>
     </div>
     <div class="col-lg-12 layout-05">
       <p>กรอกอีเมลของคุณ และคุณจะได้รับวิธีการเปลี่ยนรหัสผ่านจากเรา</p>
@@ -11,22 +11,18 @@
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), class: "needs-validation",
                data: { turbo: "false" }, method: :post) do |f| %>
 
-  <div class="row layout-05">
-    <div class="d-flex justify-content-center">
-      <div class="col-12 field">
-        <%= f.label :email, "อีเมล", class: "form-label" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-        <div class="invalid-feedback">
-          กรุณากรอกอีเมล
-        </div>
+    <div class="layout-05"></div>
+    <div class="justify-content-center">
+      <label class = "pb-2 font-weight500">อีเมล</label>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control forgot" %>
+      <div class="invalid-feedback">
+        กรุณากรอกอีเมล
       </div>
     </div>
-    <div class="col-lg-12 mt-5 d-flex justify-content-center">
-      <div class="actions">
-        <%= f.submit "ดำเนินการต่อ", class: "btn btn--secondary" %>
-      </div>
+
+    <div class=" mt-5 justify-content-center">
+      <%= f.submit "ดำเนินการต่อ", class: "btn btn--secondary forgot" %>
     </div>
-  </div>
   <% end %>
 
   <%= render 'modal' %>

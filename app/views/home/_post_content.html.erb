@@ -17,14 +17,14 @@
 
 %>
 <div class="row mt-5">
-  <div class="d-md-flex">
+  <div class="d-flex align-self-center">
     <h4 class="mb-3"><%= header %></h4>
     <div class="flex-grow-1 mt-2">
       <% if tab == 'my_post' %>
       <%= render 'filter', f:, filter:, category: %>
     <% end %>
     </div>
-    <div class="d-flex justify-content-between align-items-center mb-3 mt-5 mt-md-0">
+    <div class="d-flex justify-content-between">
       <span><%= link_to('ดูรายการทั้งหมด', link_posts, class: 'font-weight500 me-2') %><i class="fa-solid fa-angles-right"></i></span>
     </div>
   </div>
@@ -37,7 +37,7 @@
           <% if post.images.attached? %>
               <%= image_tag(post.images[0]) %>
           <% else %>
-            <img alt="image" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" >
+              <%= image_tag 'no-image-available.png', alt: 'image'%>
           <% end %>
           <div class="text">
             <div class="post-name font-weight700"><%= post.name %></div>

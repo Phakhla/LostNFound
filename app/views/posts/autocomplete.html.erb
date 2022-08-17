@@ -1,3 +1,6 @@
 <% @search_results.each do |result| %>
-  <li calss="list-group-item" role="option"><%= result %></li>
+  <li calss="list-group-item" role="option">
+    <i class="fa fa-search"></i>
+    <div class="result-autocomplete"><%= result %></div>
+  </li>
 <% end %>

@@ -106,6 +106,37 @@ input[type="radio"].radiobtn {
   outline: 4px solid var(--color-primary);
 }
 
+// Contact post
+.contact {
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.contact-content {
+  margin: 0;
+}
+
+.contact-detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.address-content,
+.contact-content {
+  margin-bottom: 10px;
+
+  p {
+    margin: 0 !important;
+    width: 56px !important;
+  }
+}
+
+.contact-tel {
+  margin-right: 16px;
+}
+
+
 // Modal delete post
 .delete-btn {
   position: absolute;
@@ -289,6 +320,7 @@ input[type="radio"].radiobtn {
   font-size: 20px;
   color: var(--color-black);
   cursor: pointer;
+  z-index: 1;
 }
 
 // Map-size
@@ -308,7 +340,6 @@ input[type="radio"].radiobtn {
   text-align: center;
   word-wrap: break-word;
 }
-
 
 // back link text
 .back-link {
@@ -376,15 +407,20 @@ input[type="radio"].radiobtn {
 }
 
 .btn--primary.preview {
-  width: 138px;
-  height: 48px;
+  font-size: 16px;
   padding: var(--spacing-02) 0;
+  width: 138px;
+
+  &:hover {
+    background-color: var(--color-primary-400);
+    border: 1px solid var(--color-primary);
+  }
 }
 
 .btn--outline-primary.preview {
-  width: 138px;
-  height: 48px;
+  font-size: 16px;
   padding: var(--spacing-02) 0;
+  width: 138px;
 }
 
 .title.preview {
@@ -399,8 +435,8 @@ input[type="radio"].radiobtn {
 }
 
 .hrpreview {
-  height: 2px !important;
-  background-color:black;
+  height: 1.5px !important;
+  background-color: #D1D1D1;
   margin: 0 !important;
 }
 
@@ -419,4 +455,51 @@ input[type="radio"].radiobtn {
 
 .text-value.preview {
   width: 260px;
+}
+
+// for modal and container in forgot password page
+.btn--secondary.forgot {
+  justify-content: center;
+  width: 348px;
+}
+
+.form-control.forgot {
+  width: 348px;
+}
+
+.send-again-font {
+  font-weight: 600 !important;
+}
+
+.forgot-title{
+  font-size: 31.25px;
+}
+
+.btn--primary.forgot {
+  width: 154px;
+  height: 48px;
+  color: #000000;
+  font-weight: 700 !important;
+}
+
+// for location field
+.fa-search.form-control-feedback.location {
+  position: absolute;
+  margin-top: -30px;
+  padding-left: 15px;
+}
+
+.form-invalid.location,
+.form-control.location {
+  padding-left: 45px;
+  background-color: #F2F2F2;
+  border: none;
+}
+
+.border-radius-8 {
+  border-radius: 8px;
+}
+
+.h-70 {
+  height: 70px;
 }

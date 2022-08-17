@@ -12,7 +12,6 @@ RSpec.describe 'Users', type: :request do
   describe 'Register' do
     it 'GET /sign_up' do
       get new_user_registration_path
-
       expect(response).to have_http_status(:ok)
     end
 
@@ -24,7 +23,7 @@ RSpec.describe 'Users', type: :request do
         password_confirmation: 'password'
       }
       post user_registration_path, params: { user: }
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to('http://www.example.com/users/sign_up?email=signup%40gmail.com&success=true')
     end
   end
 
@@ -106,6 +105,21 @@ RSpec.describe 'Users', type: :request do
       }
       patch user_registration_path, params: { user: }
       expect(response).to redirect_to(user_session_path)
+    end
+  end
+
+  describe 'Confirm email' do
+    it 'get resend email page' do
+      get new_user_confirmation_path
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'post resend email' do
+      email = user.email
+      post user_confirmation_path, params: { user: { email: } }
+
+      expect(response).to have_http_status(:ok)
     end
   end
 end

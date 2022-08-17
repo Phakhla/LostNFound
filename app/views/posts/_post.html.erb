@@ -18,7 +18,7 @@
           ย้อนกลับ
       <% end %>
     </div>
-    <div class="col-md-10 text-end">
+    <div class="col-md-10 text-end manage-button">
       <% if user_signed_in? && post.owner?(current_user) && post.active? %>
       <div class="d-md-flex justify-content-end btn-right">
         <button type="button" class="btn bg-color--primary100-weight mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#deletePostModal" id="delete-post-modal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
@@ -28,175 +28,191 @@
       <% end %>
     </div>
   </div>
-  <div class="row mt-4">
-    <div class="bg-body card-form p-0">
-      <div class="container-fluid">
-        <div class="row m-2">
-          <div class="col-md-8 p-0">
-            <h3 class="card-title" id="post-name"><%= post.name %></h3>
-          </div>
-          <div class="col text-end">
-            <% if post.active? %>
-              <div class="status-tag active-status">
-                <div class="dot-white"></div>
-                <div class="status-text font-weight600" id="follow-status">กำลังตามหา</div>
-              </div>
-            <% else %>
-              <div class="status-tag inactive-status">
-                <div class="status-text font-weight600" id="close-status">ปิดโพสต์</div>
-              </div>
-            <% end %>
-            <div class="d-flex justify-content-end mt-3">
-              <p class="fw-bold" id="date-times">วันที่โพสต์ :&nbsp;</p>
-              <p data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></p>
-          </div>
-          </div>
+
+  <div class="mt-4">
+    <div class="bg-body card-form padding-box">
+      <div class="row m-2">
+        <div class="col-md-8 p-0">
+          <h3 class="card-title" id="post-name"><%= post.name %></h3>
         </div>
-        <hr class="underline-title">
-        <div class="row post-body mt-5">
-
-          <!-- Gallery image -->
-          <div class="col-lg-8 post-image">
-            <section class="gallery" data-controller="post-image">
-              <div class="gallery-scroll" id="gallery-scroll">
-                <% if post.images.attached? %>
-                  <% post.images.each_with_index do |image, i| %>
-                    <div class="gallery-item" id="main-image">
-                      <input type="radio" id="img-<%= i %>" <%= %(checked) if i==0 %> name="gallery" class="gallery-selector"/>
-                      <%= image_tag(image, class: 'gallery-img', alt: '') %>
-                      <label for="img-<%= i %>" class="gallery-thumb"><%= image_tag(image, alt: '') %></label>
-                    </div>
-                  <% end %>
-                <% end %>
-                <a class="prev" data-action="click->post-image#slideLeft"><i class="fa-regular fa-chevron-left"></i></a>
-                <a class="next" data-action="click->post-image#slideRight"><i class="fa-regular fa-chevron-right"></i></a>
-              </div>
-            </section>
-          </div>
-
-          <div class="col-lg-5 p-0 post-detail mt-5 mt-xl-0">
-            <% if post.lost_item? %>
-              <div class="category-tag lost-tag">
-                <div class="category-text font-weight700" id="lost-post-title">โพสต์หาของหาย</div>
-              </div>
-            <% else %>
-              <div class="card-text text-center category-tag found-tag">
-                <div class="category-text font-weight700" id="found-post-title">โพสต์หาเจ้าของ</div>
-              </div>
-            <% end %>
-            <p class="card-text"><%= post.detail %></p>
-            <p class="card-text fw-bold text-subtitle pt-5">รายละเอียด</p>
-            <div class="row card-detail">
-              <div class="col-md-9">
-                <div class="detail-text" id="category">
-                  <div class="text-content"><p class="font-weight500">ประเภท</p></div>
-                  <%= Type.find(post.type_id).type_name %>
-                </div>
-                <hr class="underline-detail">
-                <div class="detail-text" id="date-time-details">
-                  <div class="text-content"><p class="font-weight500"><%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%></p></div>
-                  <div data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
-                </div>
-                <hr class="underline-detail">
-                <div class="detail-text" id="location">
-                  <div class="text-content"><p class="font-weight500">สถานที่</p></div>
-                  <%= post.location %>
-                </div>
-                <hr class="underline-detail">
-                <% if !post.active? %>
-                  <div class="detail-text">
-                    <div class="text-content"><p class="font-weight500">วันที่ปิดโพสต์</p></div>
-                    <div data-controller="datetime" data-datetime-date-value="<%= post.updated_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
-                  </div>
-                  <hr class="underline-detail">
-                  <div class="detail-text">
-                    <div class="text-content"><p class="font-weight500">เหตุผล</p></div>
-                    <%= post.reason %>
-                  </div>
-                  <hr class="underline-detail">
-                <% end %>
-              </div>
+        <div class="col text-end">
+          <% if post.active? %>
+            <div class="status-tag active-status">
+              <div class="dot-white"></div>
+              <div class="status-text font-weight600" id="follow-status">กำลังตามหา</div>
             </div>
+          <% else %>
+            <div class="status-tag inactive-status">
+              <div class="status-text font-weight600" id="close-status">ปิดโพสต์</div>
+            </div>
+          <% end %>
+          <div class="d-flex justify-content-end mt-3">
+            <p class="fw-bold" id="date-times">วันที่โพสต์ :&nbsp;</p>
+            <p data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></p>
+        </div>
+        </div>
+      </div>
+      <hr class="underline-title">
+      <div class="row post-body mt-5">
 
-            <!-- Location -->
-            <%= simple_form_for post, { data: { controller: 'show-map'} } do |f| %>
-              <%= f.hidden_field :lat, data: { show_map_target: "latitude" } %>
-              <%= f.hidden_field :lng, data: { show_map_target: "longitude"} %>
-              <%= f.hidden_field :location, data: { show_map_target: "address"} %>
-              <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->show-map#showMap click->live-validate#checkPlace', show_map_target: "map", live_validate_target: 'place' }, class: 'map mb-5 mt-5' %>
-            <% end %>
-
-            <div class="create-poster mb-5" id="create-poster-button">
-              <% if user_signed_in? && post.owner?(current_user) && post.active? %>
-                <%= link_to(new_post_poster_path(post), class: 'btn btn--secondary p-3 w-100' ) do %>
-                  <i class="fa-solid fa-wand-magic-sparkles"></i> สร้างโปสเตอร์
+        <!-- Gallery image -->
+        <div class="col-lg-7 post-image">
+          <section class="gallery" data-controller="post-image">
+            <div class="gallery-scroll" id="gallery-scroll">
+              <% if post.images.attached? %>
+                <% post.images.each_with_index do |image, i| %>
+                  <div class="gallery-item" id="main-image">
+                    <input type="radio" id="img-<%= i %>" <%= %(checked) if i==0 %> name="gallery" class="gallery-selector"/>
+                    <%= image_tag(image, class: 'gallery-img', alt: '') %>
+                    <label for="img-<%= i %>" class="gallery-thumb"><%= image_tag(image, alt: '') %></label>
+                  </div>
                 <% end %>
+              <% end %>
+              <a class="prev" data-action="click->post-image#slideLeft"><i class="fa-regular fa-chevron-left"></i></a>
+              <a class="next" data-action="click->post-image#slideRight"><i class="fa-regular fa-chevron-right"></i></a>
+            </div>
+          </section>
+        </div>
+
+        <div class="col-lg-5 p-0 post-detail mt-5 mt-xl-0">
+          <% if post.lost_item? %>
+            <div class="category-tag lost-tag">
+              <div class="category-text font-weight700" id="lost-post-title">โพสต์หาของหาย</div>
+            </div>
+          <% else %>
+            <div class="card-text text-center category-tag found-tag">
+              <div class="category-text font-weight700" id="found-post-title">โพสต์หาเจ้าของ</div>
+            </div>
+          <% end %>
+          <p class="card-text"><%= post.detail %></p>
+          <p class="card-text fw-bold text-subtitle-2 pt-5">รายละเอียด</p>
+          <div class="row card-detail">
+            <div class="col-md-9">
+              <div class="detail-text" id="category">
+                <div class="text-content"><p class="font-weight500">ประเภท</p></div>
+                <%= Type.find(post.type_id).type_name %>
+              </div>
+              <hr class="underline-detail">
+              <div class="detail-text" id="date-time-details">
+                <div class="text-content"><p class="font-weight500"><%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%></p></div>
+                <div data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
+              </div>
+              <hr class="underline-detail">
+              <div class="detail-text" id="location">
+                <div class="text-content"><p class="font-weight500">สถานที่</p></div>
+                <%= post.location %>
+              </div>
+              <hr class="underline-detail">
+              <% if !post.active? %>
+                <div class="detail-text">
+                  <div class="text-content"><p class="font-weight500">วันที่ปิดโพสต์</p></div>
+                  <div data-controller="datetime" data-datetime-date-value="<%= post.updated_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></div>
+                </div>
+                <hr class="underline-detail">
+                <div class="detail-text">
+                  <div class="text-content"><p class="font-weight500">เหตุผล</p></div>
+                  <%= post.reason %>
+                </div>
+                <hr class="underline-detail">
               <% end %>
             </div>
           </div>
-        </div>
-        <hr style="height: 2px; background-color:black;">
-        <div class="row mt-5">
-          <div class="col d-flex align-items-center">
-            <div class="user-avatar pe-5" id="user-avatar">
-              <% if post.user.avatar.present? %>
-                <%= image_tag(post.user.avatar, class: 'avatar') %>
-              <% else %>
-                <img alt="image" class="avatar" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
+
+          <!-- Location -->
+          <%= simple_form_for post, { data: { controller: 'show-map'} } do |f| %>
+            <%= f.hidden_field :lat, data: { show_map_target: "latitude" } %>
+            <%= f.hidden_field :lng, data: { show_map_target: "longitude"} %>
+            <%= f.hidden_field :location, data: { show_map_target: "address"} %>
+            <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->show-map#showMap click->live-validate#checkPlace', show_map_target: "map", live_validate_target: 'place' }, class: 'map mb-5 mt-5' %>
+          <% end %>
+
+          <div class="create-poster mb-5" id="create-poster-button">
+            <% if user_signed_in? && post.owner?(current_user) && post.active? %>
+              <%= link_to(new_post_poster_path(post), class: 'btn btn--secondary p-3 w-100' ) do %>
+                <i class="fa-solid fa-wand-magic-sparkles"></i> สร้างโปสเตอร์
               <% end %>
-            </div>
-            <div class="user-info" id="user-detail">
-              <p class="card-text fw-bold">
-                <%= post.user.username %>
-              </p>
-              <%# Info %>
-              <% if post.user.tel? or post.user.fblink? or post.user.facebook? %>
-                <p class="card-text">ติดต่อ :
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <hr style="height: 2px; background-color:black;">
+      <div class="row mt-5">
+        <div class="col-7 d-flex align-items-start">
+          <div class="user-avatar pe-5" id="user-avatar">
+            <% if post.user.avatar.present? %>
+              <%= image_tag(post.user.avatar, class: 'avatar') %>
+            <% else %>
+              <img alt="image" class="avatar" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
+            <% end %>
+          </div>
+          <div clss="user-info" id="user-detail">
+            <p class="card-text fw-bold">
+              <%= post.user.username %>
+            </p>
+            <%# Info %>
+            <div class="info-description">
+              <div class="contact-content d-flex">
+                <% if post.user.tel? or post.user.fblink? or post.user.facebook? %>
+                  <div class="contact-title"><p>ติดต่อ</p></div>
                   <%# Show tel %>
-                  <% if post.user.tel? %>
-                    <i class="fa-solid fa-phone text-body"></i> <%= phone_to post.user.tel, class: 'phone-contact' %>
-                  <% end %>
-                  <%# Show facebook link %>
-                  <% if post.user.fblink? %>
-                    <%= link_to(post.user.fblink, class: 'text-decoration-none', target: 'blank') do %>
-                      <i class="fa-brands fa-facebook-square text-body ms-3"></i>
+                  <div class="contact-detail">
+                    <% if post.user.tel? %>
+                      <div class="contact-tel d-flex">
+                        <div class="tel-icon p-0"><i class="fa-solid fa-phone text-body me-2"></i></div>
+                        <div class="tel-detail"><%= phone_to post.user.tel, class: 'phone-contact' %></div>
+                      </div>
+                    <% end %>
+                    <%# Show facebook link %>
+                    <% if post.user.fblink? %>
+                      <div class="contact-facebook d-flex align-items-start">
+                        <%= link_to(post.user.fblink, class: 'text-decoration-none d-flex p-0', target: 'blank') do %>
+                          <div class="facebook-icon"><i class="fa-brands fa-facebook-square text-body me-2"></i></div>
+                          <% if post.user.facebook? %>
+                            <div class="facebook-detail"><%= post.user.facebook %></div>
+                          <% else %>
+                            <div class="facebook-detail">Facebook</div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    <% else %>
                       <% if post.user.facebook? %>
-                        <%= post.user.facebook %>
-                      <% else %>
-                        Facebook
+                        <div class="contact-facebook d-flex align-items-start">
+                          <div class="facebook-icon"><i class="fa-brands fa-facebook-square text-body me-2"></i></div>
+                          <div class="facebook-detail"><%= post.user.facebook %></div>
+                        </div>
                       <% end %>
                     <% end %>
-                  <% else %>
-                    <% if post.user.facebook? %>
-                      <i class="fa-brands fa-facebook-square text-body ms-3"></i>
-                      <%= post.user.facebook %>
-                    <% end %>
-                  <% end %>
-                </p>
-              <% else %>
-                <p class="card-text"> ไม่มีข้อมูลการติดต่อ </p>
-              <% end %>
+                  </div>
+                <% else %>
+                  <div class="no-contact">
+                    ไม่มีข้อมูลการติดต่อ
+                  </div>
+                <% end %>
+              </div>
               <%# Address %>
               <% if post.user.address? %>
-                  <% if !post.user.not_show_address %>
-                    <p class="card-text">ที่อยู่ : <%= post.user.address %></p>
-                  <% end %>
-                <% else %>
+                <% if !post.user.not_show_address %>
+                  <div class="address-content d-flex">
+                    <div class="address-title"><p>ที่อยู่</p></div>
+                    <div class="address-detail"><%= post.user.address %></div>
+                  </div>
+                <% end %>
               <% end %>
             </div>
           </div>
-          <div class="col d-flex justify-content-end">
-            <p class="d-flex align-items-center font-weight500">แชร์โพสต์นี้ :
-              <%= link_to("https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, :target => :popup, id: 'share-to-facebook-button', style: 'padding: 10px; text-decoration: none;' )  do %>
-                <i class="fa-brands fa-facebook-square" style="font-size: 30px; color: #4267B2;"></i>
-              <% end %>
-              <%= button_tag 'Copy link', class: 'btn--primary copy-btn', id: 'copy-link-button', data: { controller: 'clipboard', action: 'clipboard#copyToClipboard' } %>
-            </p>
-          </div>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <p class="d-flex align-items-center font-weight500">แชร์โพสต์นี้ :
+            <%= link_to("https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, :target => :popup, id: 'share-to-facebook-button', style: 'padding: 10px; text-decoration: none;' )  do %>
+              <i class="fa-brands fa-facebook-square" style="font-size: 30px; color: #4267B2;"></i>
+            <% end %>
+            <%= button_tag 'Copy link', class: 'btn--primary copy-btn', id: 'copy-link-button', data: { controller: 'clipboard', action: 'clipboard#copyToClipboard' } %>
+          </p>
         </div>
       </div>
     </div>
   </div>
+
 </div>
 
 <!-- Modal delete post -->
@@ -215,8 +231,8 @@
             คุณต้องการลบโพสต์นี้ออกจากรายการใช่หรือไม่
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="button" class="btn btn--outline-primary-hover" data-bs-dismiss="modal">ยกเลิก</button>
-            <%= button_to "ยืนยัน", post, method: :delete , class: 'btn btn--primary'%>
+            <button type="button" class="btn btn--outline-primary-hover font-weight700" data-bs-dismiss="modal">ยกเลิก</button>
+            <%= button_to "ยืนยัน", post, method: :delete , class: 'btn btn--primary font-weight700', id: 'submitDeletePost' %>
           </div>
         </div>
       </div>
@@ -266,8 +282,8 @@
               </div>
             </div>
             <div class="modal-footer justify-content-center">
-              <%= f.button :button, "ยกเลิก", type: "reset", class: "btn btn--outline-primary style", data: { bs_dismiss: 'modal' } %>
-              <%= f.button :button, "ยืนยัน", class: "btn btn--primary", disabled: true, data: { radio_selection_target: "submit", action: "click->radio-selection#checkSubmit" } %>
+              <%= f.button :button, "ยกเลิก", type: "reset", class: "btn btn--outline-primary font-weight700 btn-w-155", id: 'cancelClosePostButton', data: { bs_dismiss: 'modal' } %>
+              <%= f.button :button, "ยืนยัน", class: "btn btn--primary font-weight700 btn-w-155", id: 'closePostButton', disabled: true, data: { radio_selection_target: "submit", action: "click->radio-selection#checkSubmit" } %>
             </div>
           </div>
         </div>
@@ -275,3 +291,54 @@
 	</div>
 </div>
 
+<!-- ตัวอย่าง modal
+
+<div class="modal fade" id="closePostModal" tabindex="-1" aria-labelledby="closePostModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal--close-post modal-lg">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-end">
+        <i class="fa-solid fa-xmark text-subtitle" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></i>
+      </div>
+      <div class="modal-body">
+        <div class="m-body">
+          <div class="text-header4 font-weight600 text-center">คุณต้องการปิดโพสต์นี้ใช่ไหม?</div>
+          <p class="font-weight600 mt-5">กรุณาเลือกเหตุผล</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Default radio
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+              Default checked radio
+            </label>
+          </div>
+          <div class="row align-items-center">
+            <div class="col-lg-3">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Default checked radio
+                </label>
+              </div>
+            </div>
+            <div class="col-lg-9">
+              <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+            </div>
+          </div>
+          <div class="row justify-content-md-center spacing-09">
+            <div class="col-md-auto mt-3 mt-md-0">
+              <a href="" class="btn btn--cancel btn--w-100">ยกเลิก</a>
+            </div>
+            <div class="col-md-auto mt-3 mt-md-0">
+              <a href="" class="btn btn--primary-black btn--w-100 ms-0 ms-md-2">ยืนยัน</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ -->

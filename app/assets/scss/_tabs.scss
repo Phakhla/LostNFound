@@ -5,7 +5,7 @@
   border-radius: 1.5rem;
   position: relative;
   overflow: hidden;
-  width: 330px;
+  width: 100%;
   border: 1px solid;
   padding: 0;
 
@@ -34,9 +34,17 @@
         transition: all ease-in-out 0.35s;
       }
     }
+
+    @media (max-width: 767.98px) {
+      width: 175px;
+    }
   }
 
   .btn:focus {
     border-color: var(--color-secondary);
+  }
+
+  @media (min-width: 768px) {
+    width: 330px;
   }
 }

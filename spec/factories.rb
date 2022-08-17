@@ -6,6 +6,7 @@ FactoryBot.define do
     password { 'password' }
     sequence(:username) { |n| "user_#{n}" }
     sequence(:tel) { |n| "+6600000000#{n}" }
+    after(:create, &:confirm)
   end
 
   factory :post do
