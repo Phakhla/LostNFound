@@ -41,7 +41,10 @@
     </div>
   </div>
   <br>
-  <%= f.label :images, "อัปโหลดรูป*", class: 'text-bold mb-3', id: 'form-image-condition-label' %><span class="text--gray"> (ต้องมีอย่างน้อย 1 รูป และสามารถอัพโหลดได้สูงสุดไม่เกิน 10 รูป)</span>
+  <div class="upload-title">
+    <%= f.label :images, "อัปโหลดรูป*", class: 'text-bold', id: 'form-image-condition-label' %>
+    <span class="text--gray"> (ต้องมีอย่างน้อย 1 รูป และสามารถอัพโหลดได้สูงสุดไม่เกิน 10 รูป)</span>
+  </div>
   <div class="box dropzone dropzone-box <%= 'form-invalid' if post.errors.key?(:images) %>" id="dropzone-container" >
     <div class="dropzone dropzone-custom dz-clickable" id="dropzone" data-controller="dropzone" data-dropzone-max-files="<%= 10-post.images.count %>" data-action = "click->live-validate#checkImages">
       <%= f.file_field :images, multiple: true, direct_upload: true, data: { dropzone_target: 'input'}, id: 'post-image-input' %>
@@ -79,8 +82,14 @@
     <% end %>
   </div>
 
-  <div class="form-group mb-3 col-7">
-    <%= f.input :search, placeholder: "Search", required: true, input_html: { data: { maps_target: "field", live_validate_target: 'place', action: "keydown->maps#preventSubmit input->live-validate#checkPlace input->live-validate#checkLocationField input->maps#removeMarker" }, id: 'form-place-input', value: post.location, class: post.errors.key?(:lat) || post.errors.key?(:lng) ? 'form-invalid location' : 'form-control location' }, label: false %>
+  <div class="form-group mb-3">
+    <%= f.input :search, placeholder: "Search", required: true,
+    input_html: {
+      data: {
+        maps_target: "field",
+        live_validate_target: 'place',
+        action: "keydown->maps#preventSubmit input->live-validate#checkPlace input->live-validate#checkLocationField input->maps#removeMarker"
+      }, id: 'form-place-input', value: post.location, class: post.errors.key?(:lat) || post.errors.key?(:lng) ? 'form-invalid location' : 'form-control location' }, label: false %>
     <i class="fa fa-search form-control-feedback location"></i>
 
     <% if post.errors.key?(:lat) || post.errors.key?(:lng) %>
@@ -104,7 +113,7 @@
       <% end %>
       <%= f.button :button, "สร้างโพสต์", type: 'submit', class: "btn btn--primary-weight",
         id:"create-form-button" %>
+      <%= render 'preview_modal', post: %>
     <% end %>
-    <%= render 'preview_modal', post: %>
   </div>
 <% end %>
