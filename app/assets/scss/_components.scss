@@ -477,6 +477,21 @@
   }
 }
 
+// navbar link
+.nav-link {
+  &:hover {
+    color: inherit;
+  }
+
+  &:visited {
+    color: inherit;
+  }
+
+  &:active {
+    color: inherit;
+  }
+}
+
 // navbar-white
 .nav-white {
   box-shadow: var(--color-gray) 0.2px 0.2px 5.5px;
