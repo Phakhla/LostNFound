@@ -20,11 +20,22 @@ class Post < ApplicationRecord
   validates :lng, numericality: true
 
   scope :in_active, -> { where(status: %w[found closed]) }
+
   validates :images,
             presence: true,
             attached: true,
             content_type: { in: %w[image/jpeg image/png], message: 'must be jpeg or png.' },
             limit: { max: 10, message: 'over limited(10 files)' }
+
+  rails_admin do
+    include_all_fields
+    exclude_fields :type
+    field :type_id, :enum do
+      enum do
+        Type.all.collect { |l| [l.type_name, l.id] }
+      end
+    end
+  end
 
   def self.order_nearest(lat, lng)
     sql = sanitize_sql_array(
