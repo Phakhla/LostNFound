@@ -24,8 +24,8 @@
             <% else %>
               <i class="fas fa-exclamation-circle pt-2"></i>&emsp;โปรดระบุรหัสผ่าน
             <% end %>
-          <% elsif flash[:alert] == 'You need to sign in or sign up before continuing.'%>
-            <i class="fas fa-exclamation-circle pt-2"></i>&emsp;กรุณาเข้าสู่ระบบ
+          <% else %>
+            <i class="fas fa-exclamation-circle pt-2"></i>&emsp;กรุณาเข้าสู่ระบบก่อนดำเนินการ
           <% end %>
         </div>
       <% end %>
