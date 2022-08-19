@@ -112,3 +112,9 @@
 .mr-2 {
   margin-right: var(--layout-05);
 }
+
+.mb-5-mobile {
+  @media screen and (max-width: 576px) {
+    margin-bottom: 3rem;
+  }
+}

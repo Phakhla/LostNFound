@@ -100,8 +100,8 @@
   <div class="col-sm-10">
     <%= content_tag :div, nil, data: { maps_target: "map", live_validate_target: 'place', action: 'google-maps-callback@window->maps#initializeMap click->live-validate#checkPlace' }, class: 'map map-size mb-5', id: 'form-map-display' %>
   </div>
-  <hr><br>
-  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <hr>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end layout-05">
     <% if post.persisted? %>
       <%= link_to post, type: "reset", class: "btn btn--outline-primary-hover", id: 'cancel-edit-form-button'  do %>
         ยกเลิก

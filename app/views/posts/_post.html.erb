@@ -32,10 +32,8 @@
   <div class="mt-4">
     <div class="bg-body card-form padding-box">
       <div class="row m-2">
-        <div class="col-md-8 p-0">
-          <h3 class="card-title" id="post-name"><%= post.name %></h3>
-        </div>
-        <div class="col text-end">
+        <h3 class="card-title col-md-7 p-0" id="post-name"><%= post.name %></h3>
+        <div class="col text-status">
           <% if post.active? %>
             <div class="status-tag active-status">
               <div class="dot-white"></div>
@@ -46,10 +44,10 @@
               <div class="status-text font-weight600" id="close-status">ปิดโพสต์</div>
             </div>
           <% end %>
-          <div class="d-flex justify-content-end mt-3">
+          <div class="d-flex justify-content-md-end mt-3">
             <p class="fw-bold" id="date-times">วันที่โพสต์ :&nbsp;</p>
             <p data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD MMMM YYYY' data-datetime-target="output"></p>
-        </div>
+          </div>
         </div>
       </div>
       <hr class="underline-title">

@@ -37,9 +37,7 @@
       <%= form_with(url: lost_posts_path, method: :get, id: 'homeFilter') do |f| %>
         <%= hidden_field_tag 'tab', @tab %>
         <div class="row justify-content-md border-bottom pb-4 mb-0">
-          <div class="col-lg-4">
-            <h4>รายการโพสต์ตามหาของทั้งหมด(<%= @posts.total_count %>)</h4>
-          </div>
+          <h4>รายการโพสต์ตามหาของทั้งหมด(<%= @posts.total_count %>)</h4>
           <div class="col-md-auto">
             <% if @tab == 'my_post' %>
               <%= render 'filter', f:, filter: @filter, category: 'lost_item' %>

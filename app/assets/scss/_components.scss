@@ -170,10 +170,13 @@
   font-size: 14px;
   height: 37px;
   justify-content: center;
-  margin-left: auto;
   margin-right: 0;
   width: 128px;
   user-select: none;
+
+  @media screen and (min-width: 768px){
+    margin-left: auto;
+  }
 }
 
 .active-status {
