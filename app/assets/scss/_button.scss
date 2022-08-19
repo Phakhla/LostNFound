@@ -138,6 +138,10 @@
   &:active {
     background-color: var(--btn-primary);
   }
+
+  @media (max-width: 767.98px) {
+    width: 100%;
+  }
 }
 
 .btn--outline-primary-width {
@@ -276,14 +280,6 @@
   }
 }
 
-.btn--w-100 {
-  width: auto;
-
-  @media (max-width: 767.98px) {
-    width: 100%;
-  }
-}
-
 .btn--cancel {
   background-color: var(--color-primary-50);
   border: 1.5px solid var(--color-primary);
@@ -308,7 +304,12 @@
     border: 1.5px solid var(--color-primary);
     color: var(--color-primary);
   }
+
+  @media (max-width: 767.98px) {
+    width: 100%;
+  }
 }
+
 
 .btn-w-155 {
   width: 155px;

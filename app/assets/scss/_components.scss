@@ -834,6 +834,10 @@
     }
   }
 
+  input[type=radio] {
+    display: inline;
+  }
+
   .modal-header {
     border-bottom: none;
   }
@@ -879,4 +883,12 @@
 
 .edit-profile-title {
   margin-bottom: 36px !important;
+}
+
+.form-check {
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 1.5em;
+  margin-bottom: 0.125rem;
+  margin-left: -25px;
 }
