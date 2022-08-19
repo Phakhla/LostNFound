@@ -215,4 +215,8 @@ footer {
   align-items: center;
   justify-content: space-around;
   padding: 10px 46px;
+
+  @media (max-width: 768px){
+    padding: 10px var(--layout-05);
+  }
 }
