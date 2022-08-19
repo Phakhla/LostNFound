@@ -805,6 +805,10 @@
 .form-check-address {
   display: block;
   margin-bottom: 4.125rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+  }
 }
 
 .user-profile {
