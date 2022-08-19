@@ -137,7 +137,7 @@
       </div>
       <hr style="height: 2px; background-color:black;">
       <div class="row mt-5">
-        <div class="col-7 d-flex align-items-start">
+        <div class="col-lg-7 d-flex align-items-start">
           <div class="user-avatar pe-5" id="user-avatar">
             <% if post.user.avatar.present? %>
               <%= image_tag(post.user.avatar, class: 'avatar') %>
@@ -151,9 +151,9 @@
             </p>
             <%# Info %>
             <div class="info-description">
-              <div class="contact-content d-flex">
+              <div class="contact-content">
                 <% if post.user.tel? or post.user.fblink? or post.user.facebook? %>
-                  <div class="contact-title"><p>ติดต่อ</p></div>
+                  <div class="contact-title font-weight500"><p>ติดต่อ :</p></div>
                   <%# Show tel %>
                   <div class="contact-detail">
                     <% if post.user.tel? %>
@@ -193,7 +193,7 @@
               <% if post.user.address? %>
                 <% if !post.user.not_show_address %>
                   <div class="address-content d-flex">
-                    <div class="address-title"><p>ที่อยู่</p></div>
+                    <div class="address-title font-weight500"><p>ที่อยู่ :</p></div>
                     <div class="address-detail"><%= post.user.address %></div>
                   </div>
                 <% end %>
@@ -201,7 +201,7 @@
             </div>
           </div>
         </div>
-        <div class="col d-flex justify-content-end">
+        <div class="col share-content">
           <p class="d-flex align-items-center font-weight500">แชร์โพสต์นี้ :
             <%= link_to("https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, :target => :popup, id: 'share-to-facebook-button', style: 'padding: 10px; text-decoration: none;' )  do %>
               <i class="fa-brands fa-facebook-square" style="font-size: 30px; color: #4267B2;"></i>
