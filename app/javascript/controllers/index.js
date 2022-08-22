@@ -7,8 +7,14 @@ import { application } from "./application"
 import ClipboardController from "./clipboard_controller.js"
 application.register("clipboard", ClipboardController)
 
+import ConfirmEmailController from "./confirm_email_controller.js"
+application.register("confirm-email", ConfirmEmailController)
+
 import DatetimeController from "./datetime_controller.js"
 application.register("datetime", DatetimeController)
+
+import DelayRedirectController from "./delay_redirect_controller.js"
+application.register("delay-redirect", DelayRedirectController)
 
 import DetailLengthController from "./detail_length_controller.js"
 application.register("detail-length", DetailLengthController)
@@ -43,6 +49,9 @@ application.register("post-preview", PostPreviewController)
 import RadioSelectionController from "./radio_selection_controller.js"
 application.register("radio-selection", RadioSelectionController)
 
+import ResetPasswordController from "./reset_password_controller.js"
+application.register("reset-password", ResetPasswordController)
+
 import SearchFormController from "./search_form_controller.js"
 application.register("search-form", SearchFormController)
 
@@ -51,10 +60,3 @@ application.register("search-posts", SearchPostsController)
 
 import ShowMapController from "./show_map_controller.js"
 application.register("show-map", ShowMapController)
-
-import DelayRedirectController from "./delay_redirect_controller.js"
-application.register("delay-redirect", DelayRedirectController)
-
-import ConfirmEmailController from "./confirm_email_controller.js"
-application.register("confirm-email", ConfirmEmailController)
-

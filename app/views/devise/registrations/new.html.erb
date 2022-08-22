@@ -62,10 +62,11 @@
         <%= f.input :password, autocomplete: "new-password", label_html: {class: 'pb-3'}, error: false, label: false,
             input_html: { data: {
             live_validate_target: 'password',
+            password_toggle_target: 'password',
             action: "input->live-validate#checkPassword"
             }, id:"password", class: "signup"} %>
 
-        <i class="fas fa-eye signup" id="eye" data-action="click->password-toggle#password"></i>
+        <i class="fas fa-eye signup" id="eye" data-action="click->password-toggle#password" data-password-toggle-target="eye" ></i>
       </div>
 
       <% if resource.errors.key?(:password)%>

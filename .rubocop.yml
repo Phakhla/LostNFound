@@ -62,3 +62,6 @@ Lint/UselessMethodDefinition:
   Enabled: true
   Exclude:
    - 'app/graphql/new_pastel_schema.rb'
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false

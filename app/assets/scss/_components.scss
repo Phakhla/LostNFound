@@ -856,6 +856,7 @@
   .modal-footer {
     border-top: none;
   }
+
 }
 
 @media (min-width: 1400px) {
@@ -902,4 +903,45 @@
   padding-left: 1.5em;
   margin-bottom: 0.125rem;
   margin-left: -25px;
+}
+
+.password-field {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 700px;
+  height: 488px;
+  padding: var(--spacing-02) var(--spacing-05);
+  background-color: white;
+  border-radius: 16px;
+  margin: auto;
+}
+
+.password-modal {
+  height: 436px;
+  padding: var(--spacing-02) var(--spacing-05);
+  background-color: var(--color-white);
+  border-radius: 15px;
+  border: 1px solid var(--color-secondary);
+  margin: auto;
+}
+
+.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu),
+.input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3) {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  width: 348px;
+}
+
+.modal.show {
+  z-index: 20000;
+}
+
+// modal-reset-password
+.modal-content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

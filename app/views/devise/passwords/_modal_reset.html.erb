@@ -1,0 +1,29 @@
+<% if params[:success] == 'true' %>
+  <div class="modal fade" id="reset-password" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"
+    data-controller="reset-password" data-reset-password-target="modal">
+    <div class="modal-dialog modal-dialog-centered modal--close-post modal-lg">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-end">
+          <%= link_to "", new_session_path(resource_name), class: "btn-close" %>
+        </div>
+        <div class="modal-body">
+          <div class="m-body">
+            <div class="row layout-05">
+              <div class="text-header4 font-weight600 text-center">รหัสผ่านได้ถูกเปลี่ยนแล้ว</div>
+              <p class="mt-5 text-center">เราได้ทำการเปลี่ยนรหัสผ่านบัญชีผู้ใช้ของคุณเรียบร้อยแล้ว</p>
+            </div>
+            <br/>
+            <div class="row justify-content-md-center spacing-09">
+              <div class="col-md-auto mt-3 mt-md-0">
+                <%= link_to "ปิด", new_session_path(resource_name), class: "btn btn--primary-black btn--w-100 ms-0 ms-md-2" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
