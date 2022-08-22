@@ -17,15 +17,14 @@
 
 %>
 <div class="row mt-5">
-  <div class="d-flex align-self-center">
-    <h4 class="mb-3"><%= header %></h4>
-    <div class="flex-grow-1 mt-2">
+  <h4 class="col-auto order-1"><%= header %></h4>
+      <div class="col-md-5 order-3 order-md-2">
       <% if tab == 'my_post' %>
       <%= render 'filter', f:, filter:, category: %>
     <% end %>
     </div>
-    <div class="d-flex justify-content-between">
-      <span><%= link_to('ดูรายการทั้งหมด', link_posts, class: 'font-weight500 me-2') %><i class="fa-solid fa-angles-right"></i></span>
+     <div class="col order-2 order-md-3 d-md-flex justify-content-end align-items-center" style="margin-bottom: 1rem; margin-left: 3rem;">
+       <%= link_to('ดูรายการทั้งหมด', link_posts, class: 'font-weight500 me-2') %><i class="fa-solid fa-angles-right"></i>
     </div>
   </div>
 </div><br>

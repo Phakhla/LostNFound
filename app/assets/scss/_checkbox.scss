@@ -117,4 +117,10 @@ input[type='checkbox'] {
   font-size: 20px;
   cursor: pointer;
 
+  @media (max-width: 768px) {
+      width: 100%;
+  }
+
 }
+
+
