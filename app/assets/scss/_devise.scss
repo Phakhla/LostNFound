@@ -1,0 +1,146 @@
+// Sign in
+.container-sign-in {
+  width: 580px;
+  height: 100%;
+  background-color: white;
+  border-radius: 15px;
+  margin-bottom: 60px;
+
+  .card-sign-in {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    margin: auto;
+    border: 0;
+    padding: 20px;
+
+    .logo-sign-in {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    p.text-sign-in {
+      text-align: center;
+      padding-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    p.choice {
+      width: 100%;
+      border-bottom: 1px solid #000;
+      line-height: 0.5em;
+      margin: 10px 0 20px;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    span.choice {
+      background: #fff;
+      padding: 0 20px;
+    }
+
+    .password-sign-in {
+      color: #FBD034FF;
+      font-size: 25px;
+      border-radius: 10px;
+    }
+
+    .actions {
+      text-align: center;
+      padding: 20px 10px
+    }
+
+    .btn-sign-in {
+      background-color: black;
+      color: #FBD034;
+      width: 100%;
+    }
+  }
+}
+
+// Responsive sign in
+@media screen and (max-width: 600px) {
+  .container-sign-in {
+    width: 100%;
+    max-width: 580px;
+    min-width: 375px;
+    margin-top: -90px;
+  }
+}
+
+// Register
+.container-register {
+  width: 580px;
+  height: 100%;
+  background-color: white;
+  border-radius: 15px;
+  margin-bottom: 80px;
+
+  .card-register {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    margin: auto;
+    border: 0;
+    padding: 20px;
+
+    .logo-register {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    p.text-register {
+      text-align: center;
+      padding-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    p.choice {
+      width: 100%;
+      border-bottom: 1px solid #000;
+      line-height: 0.5em;
+      margin: 10px 0 20px;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    span.choice {
+      background: #fff;
+      padding: 0 20px;
+    }
+
+    .password-register {
+      color: #FBD034FF;
+      font-size: 25px;
+      border-radius: 10px;
+    }
+
+    .actions {
+      text-align: center;
+      padding: 20px 10px
+    }
+
+    .btn-register {
+      background-color: black;
+      color: #FBD034;
+      width: 100%;
+    }
+  }
+}
+
+// Responsive register
+@media screen and (max-width: 600px) {
+  .container-register {
+    width: 100%;
+    max-width: 580px;
+    min-width: 375px;
+    margin-top: -110px;
+  }
+}
+
+// Padding
+.pe-10 {
+  padding-right: 10px;
+}
