@@ -251,17 +251,17 @@
           <div class="m-body">
             <div class="text-header4 font-weight600 text-center">คุณต้องการปิดโพสต์นี้ใช่ไหม?</div>
             <p class="font-weight600 mt-5">กรุณาเลือกเหตุผล</p>
-            <div class="form-check">
+            <div class="form-check layout-04">
               <label class="cursor-pointer">
                 <%= radio_button 'status', '', 'พบเจอของ/เจ้าของแล้ว', checked: false ,data: { radio_selection_target: "foundRadioButton", action: "click->radio-selection#checkOption" } %> พบเจอของ/เจ้าของแล้ว
               </label>
             </div>
-            <div class="form-check">
+            <div class="form-check layout-04">
               <label class="cursor-pointer">
                 <%= radio_button 'status', '', 'ไม่ต้องการค้นหาอีกต่อไป', checked: false ,data: { radio_selection_target: "hopelessRadioButton", action: "click->radio-selection#checkOption" } %> ไม่ต้องการค้นหาอีกต่อไป
               </label>
             </div>
-            <div class="row align-items-center">
+            <div class="row layout-04">
               <div class="col-auto">
                 <div class="form-check">
                   <label class="cursor-pointer">
@@ -269,7 +269,7 @@
                   </label>
                 </div>
               </div>
-              <div class="col-lg-7">
+              <div class="col-lg-8">
                 <%= text_field_tag :other_reason, nil, data: { radio_selection_target: "textInput", action: "keyup->radio-selection#checkOther" }, class:'form-control', id: 'SelectionAlert', required: true %>
                 <div class="invalid-feedback">
                   กรุณาระบุเหตุผล
