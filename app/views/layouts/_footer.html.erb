@@ -6,11 +6,8 @@
     <div class="col-md-4 col-lg-5 mt-5 mt-md-0">
       <h4>Lost n Found</h4>
       <p class="mt-4">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged.
+        เว็ปไซต์ที่เราจะช่วยคุณเพิ่มช่องทางในการตามหาสิ่งของที่คุณทำหาย
+        <br>และตามหาเจ้าของ เพื่อสร้างสังคมที่ดีขึ้น  ถ้าคุณหาของไม่เจอ ให้เราช่วยหา
       </p>
     </div>
     <div class="col-md-2 mt-5 px-0" id="footer-link">
@@ -22,22 +19,26 @@
     <div class="col-md-4 mt-5">
       <div class="row">
         <div class="col-lg-6">
-          <div>
-            <i class="fa-brands fa-facebook fa-xl"></i> Lost n Found <br> <div class="my-3"></div>
-            <i class="fa-brands fa-instagram-square fa-xl mt-4"></i> Lost.n.Found
+          <div class="d-flex mb-3">
+            <div class="me-2"><i class="fa-brands fa-facebook fa-xl"></i></div>
+            <div><%= link_to 'Lost n Found', '', class: 'nav-link p-0' %> </div>
+          </div>
+          <div class="d-flex mb-3">
+            <div class="me-2"><i class="fa-solid fa-envelope fa-xl"></i></div>
+            <div><%= mail_to 'lostnfound@bananacoding.com', 'lostnfound@bananacoding.com', class: 'nav-link p-0' %></div>
+          </div>
+          <div class="d-flex">
+            <div class="me-2"><i class="fa-solid fa-phone fa-xl mt-4"></i></div>
+            <%= phone_to '053-020078', class: 'nav-link p-0 mt-2' %>
           </div>
         </div>
         <div class="col-lg-6 mt-4 mt-lg-0">
-          <div>
-            <i class="fa-solid fa-envelope fa-xl"></i> info@lostnfound.com <br> <div class="my-3"></div>
-            <i class="fa-solid fa-phone fa-xl mt-4"></i> 090 001 0000
-          </div>
         </div>
       </div>
     </div>
     <hr class="mt-5">
     <div class="text-center">
-      <p>@ lostnfound All right reserved</p>
+      <p>@ lostnfound All right reserved | v. <%= File.read("VERSION") %></p>
     </div>
   </div>
 </div>
