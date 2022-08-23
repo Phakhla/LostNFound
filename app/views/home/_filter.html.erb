@@ -7,18 +7,17 @@
       <%= check_box_tag '', 'active', filter.dig(category.to_sym, :status) == 'active', {
         data: {
           action: 'input->my-posts#checkboxChange',
-          'my-posts-target': 'activeCheckbox'
+          my_posts_target: "activeCheckbox"
         }
       } %> กำลังตามหา
     </label>
   </div>
-
   <div class="form-check-inline">
     <label class="t">
       <%= check_box_tag '', 'in_active', filter.dig(category.to_sym, :status) == 'in_active', {
         data: {
           action: 'input->my-posts#checkboxChange',
-          'my-posts-target': 'inActiveCheckbox'
+          my_posts_target: "inActiveCheckbox"
         }
       } %> ปิดโพสต์
     </label>

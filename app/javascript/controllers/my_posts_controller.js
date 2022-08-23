@@ -4,7 +4,9 @@ import { Controller } from '@hotwired/stimulus';
 export default class extends Controller {
   static targets = ['activeCheckbox', 'inActiveCheckbox', 'statusInput'];
 
-  connect() { }
+  connect() {
+    this.scrollToContent();
+  }
 
   checkboxChange(e) {
     const form = document.getElementById('homeFilter');
@@ -27,5 +29,18 @@ export default class extends Controller {
     }
 
     form.submit();
+  }
+
+  scrollToContent() {
+    $(() => {
+      $('#post-content-found_item').on('click', () => {
+        sessionStorage.scrollPosition = $(window).scrollTop();
+      });
+      $('#post-content-lost_item').on('click', () => {
+        sessionStorage.scrollPosition = $(window).scrollTop();
+      });
+      $(window).scrollTop(sessionStorage.scrollPosition);
+      sessionStorage.clear();
+    });
   }
 }
