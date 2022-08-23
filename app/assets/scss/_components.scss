@@ -772,6 +772,17 @@
   }
 }
 
+.comment-modal-content {
+  font-size: 16px;
+
+  p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
 .preview-modal {
   .modal-content {
     border-radius: 2rem;
@@ -889,15 +900,6 @@
   .m-body {
     padding: 44px 50px;
   }
-}
-
-.comment-modal-content {
-  font-size: 16px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .card-comment {

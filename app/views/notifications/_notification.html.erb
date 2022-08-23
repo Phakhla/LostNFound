@@ -34,10 +34,12 @@
           </b>
             ได้แสดงความคิดเห็น :
           <div class="comment-modal-content">
-            "<%= noti.params[:comment].content %>"
+            <p>
+              "<%= noti.params[:comment].content %>"
+            </p>
           </div>
         </span>
-        <p class="text-small margin-zero mt-3" data-controller="datetime" data-datetime-date-value="<%= noti.params[:comment].created_at %>" data-datetime-target="output"></p>
+        <p class="text-small margin-zero" data-controller="datetime" data-datetime-date-value="<%= noti.params[:comment].created_at %>" data-datetime-target="output"></p>
       </div>
     </div>
   </div>

@@ -1,18 +1,18 @@
 <% noti = notification.to_notification %>
 <%= link_to noti.url, class: "nav-link-padding" do %>
-  <div class="row gutter-x">
+  <div class="row">
     <div class="d-flex flex-start align-items-start">
-      <div class="user-avatar">
+      <div class="user-avatar me-4">
         <% if noti.params[:comment].user.avatar.present? %>
           <div class="d-inline-flex position-relative light">
-              <div class="d-inline-flex position-relative">
-                <% if noti.unread? %>
-                  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle badge-dot">
-                    <span class="visually-hidden">New alerts</span>
-                  </span>
-                <% end %>
-                <%= image_tag(noti.params[:comment].user.avatar, class: "rounded-circle shadow-1-strong me-4 user--avatar") %>
-              </div>
+            <div class="d-inline-flex position-relative">
+              <% if noti.unread? %>
+                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle badge-dot">
+                  <span class="visually-hidden">New alerts</span>
+                </span>
+              <% end %>
+              <%= image_tag(noti.params[:comment].user.avatar, class: "rounded-circle shadow-1-strong user--avatar") %>
+            </div>
           </div>
         <% else %>
           <div class="d-inline-flex position-relative light">
@@ -22,21 +22,15 @@
                   <span class="visually-hidden">New alerts</span>
                 </span>
               <% end %>
-              <img alt="image" class="rounded-circle shadow-1-strong me-3 user--avatar" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
+              <img alt="image" class="rounded-circle shadow-1-strong user--avatar" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
             </div>
           </div>
         <% end %>
       </div>
-      <div class="comment-body-noti col-10">
-        <span class="user-comment text-body">
-          <b>
-            <%= noti.params[:comment].user.username %>
-          </b>
-            &nbspได้แสดงความคิดเห็น :
-          <p>
-            "<%= noti.params[:comment].content %>"
-          </p>
-        </span>
+      <div class="comment-body-noti">
+        <div class="user-comment text-body">
+          <p><b><%= noti.params[:comment].user.username %></b> &nbspได้แสดงความคิดเห็น : "<%= noti.params[:comment].content %>"</p>
+        </div>
         <p class="text-small margin-zero" data-controller="datetime" data-datetime-date-value="<%= noti.params[:comment].created_at %>" data-datetime-target="output"></p>
       </div>
     </div>
