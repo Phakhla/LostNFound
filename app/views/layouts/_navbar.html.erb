@@ -1,83 +1,69 @@
-<button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<button class="btn navbar-mobile" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
   <i class="fa-solid fa-bars fa-2xl"></i>
 </button>
 
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-lg-center">
-    <li class="nav-item ms-lg-3 mt-4 mt-xl-0">
-      <%= link_to 'หน้าแรก', root_path, class: 'nav-link color--secondary', id: 'nav-root-path-link'%>
-    </li>
-
-    <li class="nav-item ms-lg-3 mt-4 mt-xl-0">
-      <%= link_to 'รายการตามหาของหาย', lost_posts_path, class: 'nav-link color--secondary', id: 'nav-lost-posts-path-link' %>
-    </li>
-
-    <li class="nav-item ms-lg-3 mt-4 mt-xl-0">
-      <%= link_to 'รายการตามหาเจ้าของ', found_posts_path, class: 'nav-link color--secondary', id: 'nav-found-posts-path-link' %>
-    </li>
-
-    <% if  user_signed_in? %>
-      <li class="nav-item ms-lg-3 mt-4 mt-xl-0 mr-30">
-        <div class="dropdown" id="dropdown-nav" >
-          <a class="nav-link link-dark border border-1 border-dark rounded-5 padding-12" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              <% if current_user.avatar.attached? %>
-                <div class="d-flex">
-                  <%= image_tag(current_user.avatar, class: "rounded-circle profile-navbar mr-1") %>
-                  <div class="flex-grow-1 align-self-center mr-2">
-                    <%= current_user.username %>
-                  </div>
-                  <div class="align-self-center"><i class='fas fa-chevron-down'></i></div>
-                </div>
-              <% else %>
-                <div class="d-flex">
-                  <img alt="image" class="rounded-circle profile-navbar mr-1" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0="
-                >
-                  <div class="flex-grow-1 align-self-center mr-2">
-                    <%= current_user.username %>
-                  </div>
-                  <div class="align-self-center"><i class='fas fa-chevron-down'></i></div>
-                </div>
-              <% end %>
-          </a>
-          <ul class="dropdown-menu dropdown-min-width-1 border border-1 border-dark rounded-5 " aria-labelledby="dropdownMenuLink">
-            <li>
-              <%= link_to 'โปรไฟล์ของฉัน', edit_user_registration_path, class: 'dropdown-item', id: 'nav-edit-profile-link' %>
-            </li>
-            <li>
-              <%= link_to 'ออกจากระบบ', destroy_user_session_path, method: :delete, class: 'dropdown-item', id: 'nav-logout-link' %>
-            </li>
-          </ul>
-        </div>
-      </li>
-
-      <li class="nav-item mt-4 mt-xl-0">
-        <%= render 'layouts/notification', id: 'nav-dropdown-notification' %>
-      </li>
-    <% else %>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel"></h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-lg-center">
       <li class="nav-item ms-lg-3 mt-4 mt-xl-0">
-        <%= link_to 'เข้าสู่ระบบ', new_user_session_path, class: 'btn btn--outline-secondary', id: 'nav-login-link' %>
+        <%= link_to 'หน้าแรก', root_path, class: 'nav-link color--secondary', id: 'nav-root-path-link'%>
       </li>
-      <!--<li class="nav-item ms-lg-3 mt-4 mt-xl-0 mt-3 mt-md-0">
-        <button class="btn btn--outline-primary">
-          <%= link_to new_user_registration_path, class: 'nav-link p-0' do %> สมัครสมาชิก <% end %>
-        </button>
-      </li>-->
-    <% end %>
 
-    <!--
-    <li class="nav-item dropdown ms-lg-3 mt-4 mt-xl-0">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <%= image_tag 'Thai.png', alt: '', class: 'icon-l' %>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-        <li class="p-3">
-          <%= image_tag 'Thai.png', alt: '', class: 'icon-l' %> Thai
+      <li class="nav-item ms-lg-3 mt-4 mt-xl-0">
+        <%= link_to 'รายการตามหาของหาย', lost_posts_path, class: 'nav-link color--secondary', id: 'nav-lost-posts-path-link' %>
+      </li>
+
+      <li class="nav-item ms-lg-3 mt-4 mt-xl-0">
+        <%= link_to 'รายการตามหาเจ้าของ', found_posts_path, class: 'nav-link color--secondary', id: 'nav-found-posts-path-link' %>
+      </li>
+
+      <% if  user_signed_in? %>
+        <li class="nav-item ms-lg-3 mt-4 mt-xl-0 mr-30">
+          <div class="dropdown" id="dropdown-nav" >
+            <a class="nav-link link-dark border border-1 border-dark rounded-5 padding-12" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <% if current_user.avatar.attached? %>
+                  <div class="d-flex">
+                    <%= image_tag(current_user.avatar, class: "rounded-circle profile-navbar mr-1") %>
+                    <div class="flex-grow-1 align-self-center mr-2">
+                      <%= current_user.username %>
+                    </div>
+                    <div class="align-self-center"><i class='fas fa-chevron-down'></i></div>
+                  </div>
+                <% else %>
+                  <div class="d-flex">
+                    <img alt="image" class="rounded-circle profile-navbar mr-1" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0="
+                  >
+                    <div class="flex-grow-1 align-self-center mr-2">
+                      <%= current_user.username %>
+                    </div>
+                    <div class="align-self-center"><i class='fas fa-chevron-down'></i></div>
+                  </div>
+                <% end %>
+            </a>
+            <ul class="dropdown-menu dropdown-min-width-1 border border-1 border-dark rounded-5 " aria-labelledby="dropdownMenuLink">
+              <li>
+                <%= link_to 'โปรไฟล์ของฉัน', edit_user_registration_path, class: 'dropdown-item', id: 'nav-edit-profile-link' %>
+              </li>
+              <li>
+                <%= link_to 'ออกจากระบบ', destroy_user_session_path, method: :delete, class: 'dropdown-item', id: 'nav-logout-link' %>
+              </li>
+            </ul>
+          </div>
         </li>
-        <li class="p-3">
-          <%= image_tag 'Eng.png', alt: '', class: 'icon-l' %> English
+
+        <li class="nav-item mt-4 mt-xl-0">
+          <%= render 'layouts/notification', id: 'nav-dropdown-notification' %>
+          <%= link_to 'ดูการแจ้งเตือนทั้งหมด', notifications_path, class: 'nav-link color--secondary', id: 'nav-noti-path-link' %>
         </li>
-      </ul>
-    </li>
-    -->
-  </ul>
+      <% else %>
+        <li class="nav-item ms-lg-3 mt-4 mt-xl-0">
+          <%= link_to 'เข้าสู่ระบบ', new_user_session_path, class: 'btn btn--outline-secondary', id: 'nav-login-link' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
