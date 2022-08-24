@@ -23,7 +23,7 @@
       <%= render 'filter', f:, filter:, category: %>
     <% end %>
     </div>
-     <div class="col order-2 order-md-3 d-md-flex justify-content-end align-items-center" style="margin-bottom: 1rem; margin-left: 3rem;">
+     <div class="col order-2 order-md-3 d-md-flex justify-content-end align-items-center" style="margin-bottom: 1rem; margin-left: 3rem;" id="button-all-post">
        <%= link_to('ดูรายการทั้งหมด', link_posts, class: 'font-weight500 me-2') %><i class="fa-solid fa-angles-right"></i>
     </div>
   </div><br>
@@ -54,7 +54,7 @@
                 </div>
               <% end %>
               <div class="fst-italic text-small color--secondary300">โพสต์เมื่อวันที่ : <span data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD/MM/YYYY' data-datetime-target="output"></span></div>
-              <div class="d-grid">
+              <div class="d-grid" id="detail-post">
                 <%= link_to "ดูรายละเอียด", post_path(post), class: "see-other-btn btn btn--outline-secondary" %>
               </div>
             </div>

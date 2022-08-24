@@ -72,7 +72,7 @@
     <span class="text--gray"> (สามารถใส่ข้อความได้สูงสุดไม่เกิน 500 ตัวอักษร)</span>
     <%= f.input :detail, as: :text, error: false, input_html: { :rows => 7 , :style => 'height: 100%',
       data: {detail_length_target: "detail", controller: 'detail-length', post_preview_target: 'detailInput', live_validate_target: 'detail', action: 'input->live-validate#checkDetail input->detail-length#checkLength' }, id: 'post-detail-input' },
-      label: false, error: 'สามารถใส่ข้อความได้สูงสุดไม่เกิน 500 ตัวอักษร' %>
+      label: false %>
     <p class="text-small text-danger d-none" id="form-detail-warning-text">สามารถใส่ข้อความได้สูงสุดไม่เกิน 500 ตัวอักษร</p>
   </div>
   <br>

@@ -225,10 +225,10 @@
             <div class="text-header4 font-weight600 text-center" id="deletePostModalLabel">คุณแน่ใจใช่ไหม?</div>
             <p class="text-center layout-07">คุณต้องการลบโพสต์นี้ออกจากรายการของคุณใช่หรือไหม่</p>
             <div class="row justify-content-md-center layout-10">
-              <div class="col-md-auto mt-3 mt-md-0">
+              <div class="col-md-auto mt-3 mt-md-0" id="cancel-button">
                 <button class="btn btn--cancel btn--w-100" data-bs-dismiss="modal">ยกเลิก</button>
               </div>
-              <div class="col-md-auto mt-3 mt-md-0">
+              <div class="col-md-auto mt-3 mt-md-0" id="confirm-button">
                 <%= button_to "ยืนยัน", post, method: :delete , class: 'btn btn--primary-black btn--w-100 ms-0 ms-md-2'%>
               </div>
             </div>
@@ -253,12 +253,12 @@
             <p class="font-weight600 mt-5">กรุณาเลือกเหตุผล</p>
             <div class="form-check layout-04">
               <label class="cursor-pointer">
-                <%= radio_button 'status', '', 'พบเจอของ/เจ้าของแล้ว', checked: false ,data: { radio_selection_target: "foundRadioButton", action: "click->radio-selection#checkOption" } %> พบเจอของ/เจ้าของแล้ว
+                <%= radio_button 'status', '', 'found', checked: false ,data: { radio_selection_target: "foundRadioButton", action: "click->radio-selection#checkOption" } %> พบเจอของ/เจ้าของแล้ว
               </label>
             </div>
             <div class="form-check layout-04">
               <label class="cursor-pointer">
-                <%= radio_button 'status', '', 'ไม่ต้องการค้นหาอีกต่อไป', checked: false ,data: { radio_selection_target: "hopelessRadioButton", action: "click->radio-selection#checkOption" } %> ไม่ต้องการค้นหาอีกต่อไป
+                <%= radio_button 'status', '', 'closed', checked: false ,data: { radio_selection_target: "hopelessRadioButton", action: "click->radio-selection#checkOption" } %> ไม่ต้องการค้นหาอีกต่อไป
               </label>
             </div>
             <div class="row layout-04">
