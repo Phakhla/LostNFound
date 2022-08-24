@@ -10,12 +10,26 @@
   }
 }
 
-// tooltip on signup page
+// tooltips
 .tool {
   position: relative;
   display: inline-block;
   margin-top: -50px;
   height: 0;
+}
+
+.tooltiptext.new-password {
+  display: flex;
+  width: 360px;
+  left: 30%;
+  margin-top: -30px;
+
+  @media (max-width: 767px) {
+    display: block;
+    margin-top: -54px;
+    width: 200px;
+    left: 64%;
+  }
 }
 
 .tooltiptext {
@@ -29,7 +43,7 @@
   margin-left: -60px;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px;
   position: relative;
   display: inline-block;
   margin-top: 50px;
@@ -124,16 +138,42 @@ input[type="radio"].radiobtn {
 
 .address-content,
 .contact-content {
-  margin-bottom: 10px;
+  display: flex !important;
 
   p {
     margin: 0 !important;
-    width: 56px !important;
+    width: 60px !important;
   }
+
+  @media (max-width: 767.98px) {
+    display: block !important;
+  }
+}
+
+.contact-tel,
+.contact-facebook {
+  margin-bottom: 10px;
 }
 
 .contact-tel {
   margin-right: 16px;
+}
+
+.share-content {
+  display: flex;
+  justify-content: flex-end;
+
+  @media (max-width: 767.98px) {
+    justify-content: center;
+    padding-left: 54px;
+  }
+
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1180px) {
+    justify-content: flex-start;
+    padding-left: 88px;
+  }
 }
 
 
@@ -232,7 +272,7 @@ input[type="radio"].radiobtn {
     border-color: black;
     width: auto;
     height: auto;
-    margin-left: -100px;
+    margin-left: -50px;
 
     .modal-header {
       border-bottom: none;
@@ -346,6 +386,11 @@ input[type="radio"].radiobtn {
   display: flex;
   align-items: center;
   font-size: 20px;
+  margin-bottom: 30px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
 
   a {
     text-decoration: none;
@@ -354,14 +399,18 @@ input[type="radio"].radiobtn {
 }
 
 // btn on poster page
-.btn--primary.poster{
+.btn--primary.poster {
   background-color: var(--color-primary);
   border: 1px solid var(--color-primary);
   color: var(--color-black);
-  font-weight: 700;
-  width: 154px;
-  height: 48px;
   padding: var(--spacing-02) 0;
+  font-weight: 700;
+  height: 48px;
+  width: 100%;
+
+  @media screen and (min-width: 576px) {
+    width: 155px;
+  }
 
   &:visited {
     color: var(--color-white);
@@ -382,8 +431,15 @@ input[type="radio"].radiobtn {
   border: 1px solid var(--color-primary);
   color: var(--color-primary);
   font-weight: 700;
-  width: 154px;
+  margin-right: 24px;
   height: 48px;
+  width: 100%;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: 576px) {
+    width: 155px;
+    margin-bottom: 0;
+  }
 
   &:visited {
     color: var(--color-primary);
@@ -431,7 +487,7 @@ input[type="radio"].radiobtn {
 }
 
 .modal-header.preview {
- padding: 25px 38px !important;
+  padding: 25px 38px !important;
 }
 
 .hrpreview {
@@ -471,7 +527,7 @@ input[type="radio"].radiobtn {
   font-weight: 600 !important;
 }
 
-.forgot-title{
+.forgot-title {
   font-size: 31.25px;
 }
 
@@ -494,6 +550,10 @@ input[type="radio"].radiobtn {
   padding-left: 45px;
   background-color: #F2F2F2;
   border: none;
+
+  @media screen and (min-width: 576px) {
+    width: 58%;
+  }
 }
 
 .border-radius-8 {
@@ -502,4 +562,9 @@ input[type="radio"].radiobtn {
 
 .h-70 {
   height: 70px;
+}
+
+.text-status {
+  text-align: right;
+  padding: 0;
 }

@@ -57,6 +57,10 @@
   margin-top: var(--layout-07);
 }
 
+.layout-10 {
+  margin-top: var(--layout-10);
+}
+
 .spacing-01 {
   margin-top: var(--spacing-01);
 }
@@ -108,3 +112,13 @@
 .mr-2 {
   margin-right: var(--layout-05);
 }
+
+.mb-5-mobile {
+  @media screen and (max-width: 576px) {
+    margin-bottom: 3rem;
+  }
+}
+
+.p-10 {
+  padding: 10px;
+ }

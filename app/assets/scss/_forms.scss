@@ -52,21 +52,28 @@ textarea.form-control.is-invalid {
   }
 
   h4 {
-    padding-bottom: var(--layout-07);
+    padding-bottom: 24px;
+
+    @media screen and (min-width: 768px) {
+      padding-bottom: var(--layout-07);
+    }
   }
 
   .underline-title {
     margin-top: 0;
-    margin-bottom: var(--layout-07);
-  }
+    margin-bottom: 24px;
 
+    @media screen and (min-width: 768px) {
+      margin-bottom: var(--layout-07);
+    }
+  }
 }
 
 .padding-box {
   padding: 24px 18px;
 
   @media (min-width: 768px) {
-    padding: 44px 48px;
+    padding: 44px 40px;
   }
 }
 
@@ -163,6 +170,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 input[type=search]::placeholder {
   color: #B3B3B3;
+  width: 58%;
 }
 
 input[type=search]::-webkit-search-cancel-button {
@@ -207,4 +215,8 @@ footer {
   align-items: center;
   justify-content: space-around;
   padding: 10px 46px;
+
+  @media (max-width: 768px){
+    padding: 10px var(--layout-05);
+  }
 }

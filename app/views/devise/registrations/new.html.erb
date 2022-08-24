@@ -1,21 +1,15 @@
-<div class="background">
-  <br>
-  <div class="container" style="width:580px; height:100%; background-color:white; border-radius: 15px;">
-
-    <div class="card p-4 mt-4 mb-5" style="width:380px; height:auto; margin:auto; border: 0; padding: 20px;">
-
-    <a class="navbar-brand" href="/" style="text-align:center; margin-top: 15px;">
+<div class="container container-register">
+  <div class="card card-register">
+    <a class="navbar-brand logo-register" href="/">
       <%= image_tag 'logo-color.svg', alt: '' %>
     </a>
-    <p style="text-align:center; padding-top: 30px; font-size:20px; font-weight: bold;">สร้างบัญชีผู้ใช้</p>
+    <p class="text-register">สร้างบัญชีผู้ใช้</p>
 
     <button type="button" class="btn btn-outline-dark">
         <i class="fab fa-google"></i> สร้างบัญชีด้วย Google
     </button>
 
-    <div class = "choice" style = "text-align: center;">
-      <p style="width: 100%; border-bottom: 1px solid #000; line-height: 0.5em; margin: 10px 0 20px; padding-top:20px;"><span style="background:#fff; padding:0 20px;">หรือ</span></p>
-    </div>
+    <p class= "choice"><span class= "choice">หรือ</span></p>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {controller: "confirm-email live-validate", turbo: false}) do |f| %>
       <div class='pb-4 pt-2'>
@@ -62,10 +56,11 @@
         <%= f.input :password, autocomplete: "new-password", label_html: {class: 'pb-3'}, error: false, label: false,
             input_html: { data: {
             live_validate_target: 'password',
+            password_toggle_target: 'password',
             action: "input->live-validate#checkPassword"
             }, id:"password", class: "signup"} %>
 
-        <i class="fas fa-eye signup" id="eye" data-action="click->password-toggle#password"></i>
+        <i class="fas fa-eye signup" id="eye" data-action="click->password-toggle#password" data-password-toggle-target="eye" ></i>
       </div>
 
       <% if resource.errors.key?(:password)%>
@@ -74,16 +69,15 @@
       <% end %>
 
       <div class="actions justify-content-center py-5" >
-        <%= f.submit "สร้างบัญชี", class: "btn" , style: "background-color:black; color:#FBD034FF; width:100%;", data: {action: "click->confirm-email#click"} %>
+        <%= f.submit "สร้างบัญชี", class: "btn btn-register",  data: {action: "click->confirm-email#click"} %>
       </div>
 
     <% end %>
       <%= render 'modal_email_confirm' %>
 
       <%- if controller_name != 'sessions' %>
-        <div class = "d-flex justify-content-center"><p style="padding-right: 5px;">มีบัญชีผู้ใช้อยู่แล้ว?<p><b><%= link_to "เข้าสู่ระบบ", new_session_path(resource_name) %></b></div><br />
+        <div class = "d-flex justify-content-center"><p class="pe-2">มีบัญชีผู้ใช้อยู่แล้ว?<p><b><%= link_to "เข้าสู่ระบบ", new_session_path(resource_name) %></b></div><br />
       <% end %>
-    </div>
   </div>
 </div>
 

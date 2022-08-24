@@ -5,9 +5,13 @@
   border-radius: 1.5rem;
   position: relative;
   overflow: hidden;
-  width: 100%;
+  width: 347px;
   border: 1px solid;
   padding: 0;
+
+  @media (max-width: 767.98px) {
+    width: 100%;
+  }
 
   .tab-item {
     display: inline-flex;
@@ -15,6 +19,7 @@
     width: 153px;
     position: relative;
     z-index: 2;
+    margin-right: 18px;
 
     .tab-link {
       border: none;
@@ -26,25 +31,38 @@
       flex-grow: 1;
       flex-shrink: 0;
       border-radius: 1.5rem;
+      width: 196.5px;
+      margin-left: -14px;
+
+      @media (max-width: 767.98px) {
+        width: 100%;
+      }
     }
 
     &.active {
       .tab-link {
         color: var( --color-primary);
         transition: all ease-in-out 0.35s;
+
+        @media (max-width: 767.98px) {
+          width: 100%;
+          margin-left: -10px;
+        }
       }
     }
 
     @media (max-width: 767.98px) {
-      width: 175px;
+      width: 100%;
+      margin-right: 0;
+      left: 10px;
     }
   }
 
   .btn:focus {
     border-color: var(--color-secondary);
-  }
 
-  @media (min-width: 768px) {
-    width: 330px;
+     @media (max-width: 767.98px) {
+      width: 100%;
+    }
   }
 }

@@ -8,6 +8,18 @@ class User < ApplicationRecord
   has_many :notifications, as: :recipient, dependent: :destroy
 
   has_one_attached :avatar
+  attr_accessor :remove_avatar
+
+  after_save { avatar.purge if remove_avatar == '1' }
+  rails_admin do
+    edit do
+      include_all_fields
+      field :avatar, :active_storage do
+        delete_method :remove_avatar
+      end
+    end
+  end
+
   validates :avatar,
             content_type: { in: %w[image/jpeg image/png], message: 'must be jpeg or png.' },
             size: { less_than_or_equal_to: 5.megabytes, message: 'oversize limited (5MB)' },

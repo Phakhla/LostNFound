@@ -1,6 +1,19 @@
+// Hr style
 div.target>hr:first-child {
   display: none;
 }
+
+hr.margin {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+hr.margin-24 {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+// Dropdown notifications
 
 div.comment-body-modal-noti {
   width: 300px;
@@ -8,6 +21,7 @@ div.comment-body-modal-noti {
   p {
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 12px;
   }
 
   p.margin-zero {
@@ -51,13 +65,7 @@ div.comment-body-modal-noti {
   width: max-content;
 }
 
-hr.margin {
-  margin-top: 16px;
-  margin-bottom: 16px;
-
-}
-
-.tab-noti {
+.tab-notifications {
   display: flex;
   position: relative;
   background-color: inherit;
@@ -72,11 +80,6 @@ hr.margin {
   * {
     z-index: 2;
   }
-}
-
-input[type="radio"] {
-  display: none;
-
 }
 
 .tab {
@@ -135,10 +138,95 @@ input[type="radio"] {
   margin-top: 6px;
 }
 
+// index notifications
+.tab-notifications-index {
+  list-style-type: none;
+  background-color: var(--color-white);
+  display: inline-flex;
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  width: 347px;
+  border: 1px solid;
+  padding: 0;
+  margin-top: 32px;
+  margin-bottom: 32px;
+
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
+
+ .tab-item {
+    display: inline-flex;
+    height: 48px;
+    width: 153px;
+    position: relative;
+    z-index: 2;
+    margin-right: 18px;
+
+    .tab-link {
+      border: none;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      flex-grow: 1;
+      flex-shrink: 0;
+      border-radius: 1.5rem;
+      width: 196.5px;
+      margin-left: -14px;
+
+      @media (max-width: 767.98px) {
+        width: 100%;
+      }
+    }
+
+    &.active {
+      .tab-link {
+        color: var( --color-primary);
+        transition: all ease-in-out 0.35s;
+
+        @media (max-width: 767.98px) {
+          width: 100%;
+          margin-left: -10px;
+        }
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  .btn:focus {
+    border-color: var(--color-secondary);
+
+     @media (max-width: 767.98px) {
+      width: 100%;
+    }
+  }
+}
+
 div.comment-body-noti {
+  flex: 0 0 auto;
+  width: 85%;
+
+  @media screen and (max-width: 576px) {
+    width: 80%;
+  }
+
   p {
     overflow: hidden;
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 12px;
+
+    @media screen and (max-width: 576px){
+      width: 88%;
+    }
   }
 
   p.margin-zero {
@@ -154,12 +242,19 @@ div.comment-body-noti {
   padding: 15px;
 }
 
-.notification-box {
-  margin: 30px;
-  padding: 20px;
+.notifications-box {
+  margin-bottom: 96px;
   border: 20px;
+
+  .notifications-body {
+    border: 1px solid;
+    padding: 48px;
+    padding-top: 40px;
+    width: 100%;
+
+    @media screen and (max-width: 576px) {
+      padding: 30px;
+    }
+  }
 }
 
-.noti-border {
-  border: 1px solid;
-}

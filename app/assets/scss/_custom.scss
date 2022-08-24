@@ -6,10 +6,11 @@
 @import 'components';
 @import 'forms';
 @import 'homepage';
-@import 'modal_noti';
+@import 'notifications';
 @import 'checkbox';
 @import 'tabs';
 @import 'dropzone';
+@import 'devise';
 
 .background {
   background-image: url('bg.jpg');
@@ -47,10 +48,10 @@ hr {
   }
 }
 
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1180px) 
-  and (orientation: landscape) 
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1180px)
+  and (orientation: landscape)
   and (min-resolution: 96dpi) {
     .modal-dialog {
       max-width: 970px;
@@ -63,20 +64,20 @@ hr {
     border: 1px solid #000000;
     border-radius: 16px;
     padding: 18px;
-    
+
     @media (min-width: 1400px) {
       padding: 38px;
     }
   }
-  
+
   .modal-header {
     border-bottom: none;
   }
-  
+
   .modal-footer {
     border-top: none;
   }
-} 
+}
 
 @media (min-width: 1400px) {
   .m-body {

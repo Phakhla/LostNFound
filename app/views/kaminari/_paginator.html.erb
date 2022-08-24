@@ -1,27 +1,27 @@
 <%= paginator.render do %>
   <nav aria-label="Page navigation example" data-controller="Paginate">
-    <ul class="pagination justify-content-center">
-        <div class="pagination-item <%= 'true' unless current_page.first? %>" >
-          <%= first_page_tag  %>
-        </div>
-        <div class="pagination-item <%= 'true' unless current_page.first? %>" >
-          <%= prev_page_tag  %>
-        </div>
-        <% each_page do |page| %>
-          <% if page.left_outer? || page.right_outer? || page.inside_window? %>
-            <%= page_tag page %>
-          <% elsif !page.was_truncated? -%>
-            <%= gap_tag %>
-          <% end %>
+    <ul class="pagination justify-content-center align-items-center">
+      <div class="page-icon <%= 'true' unless current_page.first? %>" >
+        <%= first_page_tag  %>
+      </div>
+      <div class="page-icon <%= 'true' unless current_page.first? %>">
+        <%= prev_page_tag %>
+      </div>
+      <% each_page do |page| %>
+        <% if page.left_outer? || page.right_outer? || page.inside_window? %>
+          <%= page_tag page %>
+        <% elsif !page.was_truncated? -%>
+          <%= gap_tag %>
         <% end %>
-        <% unless current_page.out_of_range? %>
-          <div class="pagination-item <%= 'true' unless current_page.last? %>">
-            <%= next_page_tag%>
-          </div>
-          <div class="pagination-item <%= 'true' unless current_page.last? %>">
-            <%= last_page_tag%>
-          </div>
-        <% end %>
+      <% end %>
+      <% unless current_page.out_of_range? %>
+        <div class="page-icon <%= 'true' unless current_page.last? %>">
+          <%= next_page_tag %>
+        </div>
+        <div class="page-icon <%= 'true' unless current_page.last? %>">
+          <%= last_page_tag %>
+        </div>
+      <% end %>
     </ul>
   </nav>
 <% end %>

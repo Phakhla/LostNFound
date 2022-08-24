@@ -48,7 +48,7 @@
       </div>
 
       <div class="row mb-5">
-        <div class="col-md-3">
+        <div class="col-md-3 mb-5-mobile">
           <label class='font-weight600' id="poster-types-text">ประเภท</label>
           <%= f.input :type_id, label: false, :collection => Type.all.map{ |l| [l.type_name, l.id] }, include_blank: 'เลือก', :disabled => true, id: "poster-types-select-disabled" %>
         </div>
@@ -77,15 +77,10 @@
           label: false, error: 'สามารถใส่ข้อความได้สูงสุดไม่เกิน 500 ตัวอักษร' %>
       </div>
       <hr>
-      <div class="d-flex justify-content-end mt-5">
-        <div class="pe-5">
-          <%= link_to "ยกเลิก", "/posts/#{@post.id}", class: "btn btn--outline-primary poster" , id: 'cancel-create-poster-button'%>
-        </div>
-        <div>
-          <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn--primary poster", id: 'create-poster-submit-button', data: {action: "click->delay-redirect#link"} %>
-        </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end layout-05">
+        <%= link_to "ยกเลิก", "/posts/#{@post.id}", class: "btn btn--outline-primary poster" , id: 'cancel-create-poster-button'%>
+        <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn--primary poster", id: 'create-poster-submit-button', data: {action: "click->delay-redirect#link"} %>
       </div>
-
     </div>
   </div>
   <% end %>

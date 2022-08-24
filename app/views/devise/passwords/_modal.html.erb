@@ -2,22 +2,21 @@
   <div class="modal fade" id="forgot-password" data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"
     data-controller="forgot-password" data-forgot-password-target="modal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content forgot-password-modal">
-        <div class="modal-body layout-03">
-          <div class="row d-flex justify-content-end">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="row layout-05">
-            <div class="mb-5 col-lg-12 d-flex justify-content-center">
-              <h4 class="font-weight600 forgot-title">ส่งอีเมลไม่สำเร็จ</h4>
-            </div>
+    <div class="modal-dialog modal-dialog-centered modal--close-post modal-lg">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-end">
+          <i class="fa-solid fa-xmark text-subtitle" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></i>
+        </div>
+        <div class="modal-body">
+          <div class="m-body">
+            <div class="text-header4 font-weight600 text-center">ส่งอีเมลไม่สำเร็จ</div>
             <div class="mt-3 col-lg-12 justify-content-center text-center">
               <p>ไม่สามารถส่งข้อความไปยังอีเมลตามที่คุณกรอกไว้</p><p>กรุณากรอกอีเมลใหม่อีกครั้ง</p>
             </div>
-          </div>
-          <div class="row d-flex justify-content-center">
-            <button type="button" class="btn btn--primary forgot spacing-09" data-bs-dismiss="modal">ปิด</button>
+
+              <div class="col-md-auto mt-3 mt-md-0">
+                <button type="button" class="btn btn--primary-black btn--w-100 ms-0 ms-md-2forgot spacing-09" data-bs-dismiss="modal" style="position: absolute; width: 154px; height: 48px;">ปิด</button>
+              </div>
           </div>
         </div>
       </div>
@@ -29,16 +28,14 @@
   <div class="modal fade" id="forgot-password" data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"
     data-controller="forgot-password" data-forgot-password-target="modal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content forgot-password-modal">
-        <div class="modal-body layout-03">
-          <div class="row d-flex justify-content-end">
-            <%= link_to "", new_session_path(resource_name), class: "btn-close" %>
-          </div>
-          <div class="row layout-05">
-            <div class="mb-5 col-lg-12 d-flex justify-content-center">
-              <h4 class="font-weight600 forgot-title">เช็คอีเมลในกล่องข้อความของคุณ</h4>
-            </div>
+    <div class="modal-dialog modal-dialog-centered modal--close-post modal-lg">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-end">
+          <%= link_to "", new_session_path(resource_name), class: "btn-close" %>
+        </div>
+        <div class="modal-body">
+          <div class="m-body">
+            <div class="text-header4 font-weight600 text-center">เช็คอีเมลในกล่องข้อความของคุณ</div>
             <div class="mt-3 justify-content-center text-center">
               <p>เราได้ทำการส่งอีเมลเพื่อเปลี่ยนรหัสผ่านผู้ใช้งานของคุณไปที่อีเมล</p>
               <p>กรุณาเช็คอีเมลในกล่องข้อความของคุณที่ <b class="font-weight700"><%= params[:email] %></b></p>
@@ -60,10 +57,10 @@
                 </div>
               <% end %>
             </div>
-          </div>
-          <div class="row layout-05 pt-3">
-            <div class="col-lg-12 d-flex justify-content-center">
-              <%= link_to "ปิด", new_session_path(resource_name), class: "btn btn--primary forgot" %>
+            <div class="row justify-content-md-center spacing-09">
+              <div class="col-md-auto mt-3 mt-md-0">
+                <%= link_to "ปิด", new_session_path(resource_name), class: "btn btn--primary-black btn--w-100 ms-0 ms-md-2" %>
+              </div>
             </div>
           </div>
         </div>
