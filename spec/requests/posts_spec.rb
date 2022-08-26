@@ -125,7 +125,6 @@ RSpec.describe 'Posts', type: :request do
       post posts_path, params: { post: }
 
       post = Post.last
-
       expect(response).to redirect_to(root_path)
       expect(post.images_attachments.size).to eq(1)
     end
@@ -204,6 +203,43 @@ RSpec.describe 'Posts', type: :request do
     it 'delete post' do
       delete "/posts/#{my_post.id}"
       expect(response).to redirect_to(root_path)
+    end
+  end
+
+  describe 'DELETE posts images' do
+    it 'delete images' do
+      # post with 2 images
+      post = {
+        name: 'test',
+        category: 'found_item',
+        status: 'active',
+        date: Time.zone.now,
+        time: Time.zone.now,
+        lat: 10.00000,
+        lng: 10.00000,
+        location: 'locationname',
+        detail: 'detailname',
+        type_id: type.id,
+        images: [fixture_file_upload(file_fixture('user-icon.png')),
+                 fixture_file_upload(file_fixture('default_image.png'))]
+      }
+
+      # #create
+      post posts_path, params: { post: }
+      post = Post.last
+      expect(post.images_attachments.count).to eq(2)
+
+      editpost = {
+        name: 'testedit',
+        remove_images: [post.images_attachments.first.id]
+      }
+
+      # edit
+      get edit_post_path(post)
+      # delete image
+      patch post_path, params: { post: editpost }
+      expect(post.images_attachments.count).to eq(1)
+      expect(response).to redirect_to(post_path)
     end
   end
 end

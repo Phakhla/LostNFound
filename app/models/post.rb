@@ -27,6 +27,10 @@ class Post < ApplicationRecord
             content_type: { in: %w[image/jpeg image/png], message: 'must be jpeg or png.' },
             limit: { max: 10, message: 'over limited(10 files)' }
 
+  attr_accessor :remove_images
+
+  after_save :purge_images, if: :remove_images
+
   rails_admin do
     include_all_fields
     exclude_fields :type
@@ -34,6 +38,17 @@ class Post < ApplicationRecord
       enum do
         Type.all.collect { |l| [l.type_name, l.id] }
       end
+    end
+    edit do
+      field :images, :multiple_active_storage do
+        delete_method :remove_images
+      end
+    end
+  end
+
+  def purge_images
+    Array(remove_images).each do |id|
+      ActiveStorage::Attachment.find_by(id:).try(:purge)
     end
   end
 

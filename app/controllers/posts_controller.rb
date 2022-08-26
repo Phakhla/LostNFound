@@ -123,7 +123,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :name, :category, :status, :date, :time,
       :location, :detail, :reward, :lat, :lng,
-      :type_id, :reason, images: []
+      :type_id, :reason, images: [], remove_images: []
     )
   end
 end
