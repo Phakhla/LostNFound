@@ -80,7 +80,7 @@ class PostsController < ApplicationController
   end
 
   def load_comments
-    @comments = @post.comments.order(created_at: :desc)
+    @comments = @post.comments.order(created_at: :asc)
   end
 
   def load_user
