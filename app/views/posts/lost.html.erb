@@ -1,8 +1,8 @@
 <%= render 'posts/search_form' %>
 <div class="listposts mt-14">
   <div class="container pt-5">
-    <div class="row justify-content-between align-items-center mb-5">
-      <% if @tab == 'my_post' %>
+    <% if @tab == 'my_post' %>
+      <div class="row justify-content-between align-items-center mb-5">
         <div class="col-md-auto order-md-last" style="margin-bottom: 25px;">
           <div class="btn btn--primary-posts btn--w-100" id="button-create-post" >
             <i class='fas fa-plus-circle'></i>
@@ -20,8 +20,8 @@
             </li>
           </ul>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     <% if params[:q].present? %>
       <div class="row justify-content-start align-items-center mb-5">
         <div class="col">
