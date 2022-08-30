@@ -52,17 +52,21 @@
         <h3 class="plus"><i class="fa fa-plus"></i></h3>
       </div>
     </div>
+
     <% if post.images.attached? %>
       <% post.images.each do |image| %>
-        <div class="edit-upload text-center" data-controller="post-image" data-post-image-target="image">
-          <%= f.hidden_field :images, multiple: true, value: image.signed_id, id: 'form-image-hidden-field' %>
-          <div class="edit-image">
-            <%= image_tag(image, id: 'form-image-display')%>
+        <div class="d-inline" data-controller="remove-image">
+          <div class="edit-upload text-center" data-controller="post-image" data-post-image-target="image">
+            <div class="edit-image">
+              <%= image_tag(image, id: 'form-image-display')%>
+            </div>
+            <%= f.label "remove file", type: 'submit', data: { action: 'click->remove-image#clickCheckbox click->post-image#removeImage'}, class: 'edit-remove', id: "delete-image-button" %>
           </div>
-          <%= f.label "remove file", type: 'submit', data: { action: 'click->post-image#removeImage' }, class: 'edit-remove', id: 'delete-image-button' %>
+          <%= check_box_tag 'post[remove_images][]', image.id, nil, data: { remove_image_target: 'checkbox'}, class: 'd-none', id: 'post_remove_images' %>
         </div>
       <% end %>
     <% end %>
+
   </div>
   <% if post.errors.key?(:images) %>
     <p class="text-small text-danger" id="form-image-warning-text">กรุณาอัพโหลดรูป</p>
@@ -72,7 +76,7 @@
     <span class="text--gray"> (สามารถใส่ข้อความได้สูงสุดไม่เกิน 500 ตัวอักษร)</span>
     <%= f.input :detail, as: :text, error: false, input_html: { :rows => 7 , :style => 'height: 100%',
       data: {detail_length_target: "detail", controller: 'detail-length', post_preview_target: 'detailInput', live_validate_target: 'detail', action: 'input->live-validate#checkDetail input->detail-length#checkLength' }, id: 'post-detail-input' },
-      label: false, error: 'สามารถใส่ข้อความได้สูงสุดไม่เกิน 500 ตัวอักษร' %>
+      label: false %>
     <p class="text-small text-danger d-none" id="form-detail-warning-text">สามารถใส่ข้อความได้สูงสุดไม่เกิน 500 ตัวอักษร</p>
   </div>
   <br>

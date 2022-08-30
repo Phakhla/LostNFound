@@ -103,7 +103,8 @@
                         <p class="card-text">ติดต่อ :
                           <%# Show tel %>
                           <% if current_user.tel? %>
-                            <i class="fa-solid fa-phone" style="font-size: 20px;"></i> <%= phone_to current_user.tel, style: 'text-decoration: none;' %>
+                            <i class="fa-solid fa-phone text-body me-2"></i>
+                            <%= phone_to current_user.tel, class: 'phone-contact' %>
                           <% end %>
                           <%# Show facebook link %>
                           <% if current_user.fblink? %>

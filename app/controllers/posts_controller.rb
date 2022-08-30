@@ -80,7 +80,7 @@ class PostsController < ApplicationController
   end
 
   def load_comments
-    @comments = @post.comments.order(created_at: :desc)
+    @comments = @post.comments.order(created_at: :asc)
   end
 
   def load_user
@@ -123,7 +123,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :name, :category, :status, :date, :time,
       :location, :detail, :reward, :lat, :lng,
-      :type_id, :reason, images: []
+      :type_id, :reason, images: [], remove_images: []
     )
   end
 end
