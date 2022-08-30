@@ -9,15 +9,18 @@
   </div>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), class: "needs-validation",
-               data: { turbo: "false" }, method: :post) do |f| %>
+               data: {turbo: "false" }, method: :post) do |f| %>
 
     <div class="layout-05"></div>
-    <div class="justify-content-center">
+    <div class="justify-content-center"  >
       <label class = "pb-2 font-weight500">อีเมล</label>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control forgot" %>
-      <div class="invalid-feedback">
-        กรุณากรอกอีเมล
-      </div>
+      <% if resource.errors.full_messages_for(:email).first == "Email can't be blank" %>
+        <p class="text-danger"style="font-size:16px">กรุณากรอกอีเมล</p>
+      <% end %>
+      <% if resource.errors.full_messages_for(:email).first == 'Email not found' %>
+        <p class="text-danger"style="font-size:16px">ไม่มีอีเมลนี้ในระบบ กรุณากรอกอีเมลใหม่อีกครั้ง</p>
+      <% end %>
     </div>
 
     <div class=" mt-5 justify-content-center">
