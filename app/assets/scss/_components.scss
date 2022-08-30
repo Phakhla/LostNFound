@@ -916,6 +916,11 @@
     }
   }
 
+  .comment-detail {
+    display: inline;
+    word-break: break-all;
+  }
+
   .text-small {
     margin: 0;
   }
