@@ -1,9 +1,9 @@
 <%= render 'posts/search_form' %>
 <div class="listposts mt-14">
   <div class="container pt-5">
-    <div class="row justify-content-between align-items-center mb-5">
-      <% if @tab == 'my_post' %>
-        <div class="col-md-auto order-md-last mb-5 mb-md-0">
+    <% if @tab == 'my_post' %>
+      <div class="row justify-content-between align-items-center mb-5">
+        <div class="col-md-auto order-md-last" style="margin-bottom: 25px;">
           <div class="btn btn--primary-posts btn--w-100" id="button-create-post" >
             <i class='fas fa-plus-circle'></i>
             <%= link_to "สร้างโพสต์", category_selects_posts_path %>
@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-md-5">
-          <ul class="tabs btn--w-100 mb-0">
+          <ul class="tabs btn--w-100" >
             <li class="tab-item">
               <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary tab-link" %>
             </li>
@@ -34,14 +34,16 @@
         </div>
       </div>
     <% end %>
-    <%= form_with(url: lost_posts_path, method: :get, id: 'homeFilter') do |f| %>
-      <div class="row mt-5">
+    <div class="row mt-5">
+      <%= form_with(url: lost_posts_path, method: :get, id: 'homeFilter') do |f| %>
         <%= hidden_field_tag 'tab', @tab %>
-        <h4 class="col-auto">รายการโพสต์ตามหาของทั้งหมด(<%= @posts.total_count %>)</h4>
-        <div class="col-md-5">
-          <% if @tab == 'my_post' %>
-            <%= render 'filter', f:, filter: @filter, category: 'lost_item' %>
-          <% end %>
+        <div class="row border-bottom pb-4 mb-0 d-md-flex">
+          <p class="col-auto order-1 header-post">รายการโพสต์ตามหาของทั้งหมด(<%= @posts.total_count %>)</h4>
+          <div class="col-md-5 order-3 order-md-2 d-md-flex">
+            <% if @tab == 'my_post' %>
+              <%= render 'filter', f:, filter: @filter, category: 'lost_item' %>
+            <% end %>
+          </div>
         </div>
         <br>
         <% if @posts.present? %>
@@ -56,8 +58,8 @@
             </div>
           </div>
         <% end %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
   <div style="margin-top: 4rem;">
     <%= paginate @posts %>
