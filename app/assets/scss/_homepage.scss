@@ -73,7 +73,13 @@ hr.style {
   }
 }
 
-.listposts {
+.landing-listposts {
+  margin-bottom: -18rem !important;
+  padding-bottom: 8rem;
+}
+
+.found-listposts,
+.lost-listposts {
   margin-bottom: -10rem !important;
 }
 

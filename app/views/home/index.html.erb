@@ -1,6 +1,6 @@
 <%= render 'posts/search_form' %>
 
-<div class="listposts mt-14">
+<div class="landing-listposts mt-14">
   <div class="container pt-5">
     <% if !user_signed_in? && (!params[:q].present? || !params[:q][:name_cont].present?) %>
       <div class="row justify-content-end align-items-center mb-5">
@@ -39,7 +39,7 @@
           </a>
         </div>
         <div class="col-md-5">
-          <ul class="tabs">
+          <ul class="tabs mb-0">
             <% if @tab == 'my_post' %>
               <li class="tab-item" id="tab-all-post">
                 <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary tab-link" %>
@@ -61,12 +61,10 @@
     <% end %>
     <%= form_with(url: root_path, method: :get, id: 'homeFilter') do |f| %>
       <%= hidden_field_tag 'tab', @tab %>
-      <div>
-        <%= render 'post_content', posts: @losts, category: 'lost_item', tab: @tab, filter: @filter, f: %>
-        <br><br><hr class="style"><br>
-        <%= render 'post_content', posts: @founds, category: 'found_item', tab: @tab, filter: @filter, f: %>
-        <br><br><br>
-      </div>
+      <%= render 'post_content', posts: @losts, category: 'lost_item', tab: @tab, filter: @filter, f: %>
+      <br><br><hr class="style"><br>
+      <%= render 'post_content', posts: @founds, category: 'found_item', tab: @tab, filter: @filter, f: %>
+      <br><br><br>
     <% end %>
   </div>
 </div>
