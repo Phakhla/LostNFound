@@ -15,7 +15,7 @@
       <% if flash[:alert].present? %>
         <div class = 'alert alert-danger'>
           <% if flash[:alert] == 'You have to confirm your email address before continuing.'%>
-            <i class="fas fa-exclamation-circle pt-2"></i>&emsp;โปรดยืนยันอีเมลของท่านก่อนเข้าสู่ระบบ
+            <i class="fas fa-exclamation-circle pt-2"></i>&emsp;ไม่ได้รับอีเมลยืนยันบัญชี? <b><%= link_to "ส่งอีเมลอีกครั้ง", new_confirmation_path(resource_name) %></b>
           <% elsif flash[:alert] == 'Invalid Email or password.'%>
             <% if @user[:encrypted_password].present? %>
               <i class="fas fa-exclamation-circle pt-2"></i>&emsp;อีเมลหรือรหัสผ่านของคุณไม่ถูกต้อง
