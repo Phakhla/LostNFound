@@ -22,12 +22,13 @@
             <% else %>
               <i class="fas fa-exclamation-circle pt-2"></i>&emsp;โปรดระบุรหัสผ่าน
             <% end %>
+          <% elsif flash[:alert] == 'Password token is invalid' %>
+            <i class="fas fa-exclamation-circle pt-2"></i>&emsp;อีเมลลืมรหัสผ่านหมดอายุ โปรดลองอีกครั้ง
           <% else %>
             <i class="fas fa-exclamation-circle pt-2"></i>&emsp;กรุณาเข้าสู่ระบบก่อนดำเนินการ
           <% end %>
         </div>
       <% end %>
-
       <button type="button" class="btn btn-outline-dark" disabled>
           <i class="fab fa-google"></i> เข้าสู่ระบบด้วย Google
       </button>
