@@ -15,6 +15,6 @@ export default class extends Controller {
   }
 
   connect() {
-    this.outputTarget.innerHTML = dayjs(this.dateValue).locale('th').format(this.format);
+    this.outputTarget.innerHTML = dayjs(this.dateValue.replace(/-/g, '/')).locale('th').format(this.format);
   }
 }

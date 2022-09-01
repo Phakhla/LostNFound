@@ -1,20 +1,20 @@
 <div class="comment-<%= comment.id %> mt-4">
   <div class="card-comment">
     <div class="comment-body">
-        <div class="comment-content">
-          <div class="user-avatar">
-            <% if comment.user.avatar.present? %>
-              <%= image_tag(comment.user.avatar, class: "avatar me-4") %>
-            <% else %>
-              <img alt="image" class="avatar me-4" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
-            <% end %>
-          </div>
-          <div class="comment-body">
-            <span class="user-comment fw-bold">
-              <%= comment.user.username %> :
-            </span>
-            <%= comment.content %>
-            <p class="text-small" data-controller="datetime" data-datetime-date-value="<%= comment.created_at %>" data-datetime-target="output"></p>
+      <div class="comment-content">
+        <div class="user-avatar">
+          <% if comment.user.avatar.present? %>
+            <%= image_tag(comment.user.avatar, class: "avatar me-4") %>
+          <% else %>
+            <img alt="image" class="avatar me-4" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
+          <% end %>
+        </div>
+        <div class="comment-body">
+          <span class="user-comment fw-bold">
+            <%= comment.user.username %> :
+          </span>
+          <p class="comment-detail"><%= comment.content %></p>
+          <p class="text-small" data-controller="datetime" data-datetime-date-value="<%= comment.created_at %>" data-datetime-target="output"></p>
         </div>
       </div>
     </div>

@@ -534,7 +534,9 @@
   }
 }
 
-.listposts {
+.landing-listposts,
+.found-listposts,
+.lost-listposts {
   background-color: var(--color-white);
 }
 
@@ -914,6 +916,11 @@
     @media (max-width: 767.98px) {
       margin: var(--layout-05);
     }
+  }
+
+  .comment-detail {
+    display: inline;
+    word-break: break-all;
   }
 
   .text-small {

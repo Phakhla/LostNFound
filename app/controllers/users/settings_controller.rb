@@ -10,6 +10,7 @@ class Users::SettingsController < ApplicationController
   def edit_password; end
 
   def password
+    params[:user][:password] = params[:user][:current_password] if params[:user][:password].blank?
     if @user.update_with_password(user_params)
       redirect_to root_path
     else
@@ -31,6 +32,6 @@ class Users::SettingsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:password, :password_confirmation, :current_password)
+    params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 end

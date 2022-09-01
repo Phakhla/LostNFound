@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import ChangePasswordController from "./change_password_controller.js"
+application.register("change-password", ChangePasswordController)
+
 import ClipboardController from "./clipboard_controller.js"
 application.register("clipboard", ClipboardController)
 
@@ -49,6 +52,9 @@ application.register("post-preview", PostPreviewController)
 import RadioSelectionController from "./radio_selection_controller.js"
 application.register("radio-selection", RadioSelectionController)
 
+import RemoveImageController from "./remove_image_controller.js"
+application.register("remove-image", RemoveImageController)
+
 import ResetPasswordController from "./reset_password_controller.js"
 application.register("reset-password", ResetPasswordController)
 
@@ -60,6 +66,3 @@ application.register("search-posts", SearchPostsController)
 
 import ShowMapController from "./show_map_controller.js"
 application.register("show-map", ShowMapController)
-
-import RemoveImageController from "./remove_image_controller.js"
-application.register("remove-image", RemoveImageController)
