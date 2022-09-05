@@ -63,11 +63,13 @@
         <i class="fas fa-eye signup" id="eye" data-action="click->password-toggle#password" data-password-toggle-target="eye" ></i>
       </div>
 
-      <% if resource.errors.key?(:password)%>
+     <% if resource.errors.full_messages_for(:password).first == "Password is too short (minimum is 8 characters)" %>
         <p class="text-danger" id="signup-password-error">กรุณาตั้งรหัสด้วยอักขระ 8 ตัวขึ้นไป</p>
         <input type='hidden' value='กรุณาตั้งรหัสด้วยอักขระ 8 ตัวขึ้นไป' id='passerror'>
       <% end %>
-
+      <% if resource.errors.full_messages_for(:password).first == "Password should not be in Thai" %>
+        <p class="text-danger" style="font-size:16px">รหัสผ่านไม่ควรเป็นภาษาไทย</p>
+      <% end %>
       <div class="actions justify-content-center py-5" >
         <%= f.submit "สร้างบัญชี", class: "btn btn-register",  data: {action: "click->confirm-email#click"} %>
       </div>

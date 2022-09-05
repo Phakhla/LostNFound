@@ -27,6 +27,8 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :username, uniqueness: true
   validates :email, presence: true
+  validates :password,
+            format: { without: /\A[ก-๛]+\z/, message: 'should not be in Thai' }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,

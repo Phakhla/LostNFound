@@ -50,6 +50,10 @@ div.comment-body-modal-noti {
   border-style: solid;
   border-color: var(--falcon-border-color);
   box-shadow: var(--falcon-box-shadow-sm);
+
+  @media screen and (max-width: 1040px){
+    left: 391px;
+  }
 }
 
 .dropdown-caret-bg::after {
@@ -63,6 +67,10 @@ div.comment-body-modal-noti {
   border-color: black;
   margin-top: 8px !important;
   width: max-content;
+
+  @media screen and (max-width: 1040px){
+    right: -2rem;
+  }
 }
 
 .tab-notifications {
