@@ -13,9 +13,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def update
+    if @user.update(user_params)
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity, layout: 'nav_white'
+    end
+  end
+
   protected
 
   def update_resource(resource, params)
     resource.update_without_password(params)
+  end
+
+  def user_params
+    params.require(:user).permit(
+      :username, :email, :avatar, :tel, :facebook,
+      :fblink, :address, :not_show_address
+    )
   end
 end
