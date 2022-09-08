@@ -9,7 +9,7 @@
           <div class="dot-typing"></div>
         </div>
       </div>
-      <div class="box-search">
+      <div class="box-search" data-controller="my-posts">
         <%= search_form_for @q, url: root_path, data: {controller: "autocomplete", autocomplete_url_value: autocomplete_posts_path } do |f| %>
           <div class="row">
             <div class="col box-search-item has-search">
@@ -19,7 +19,7 @@
                 <ul class="list-group" data-autocomplete-target="results"></ul>
               </div>
             </div>
-            <div class="col-12 col-md-auto mt-3 mt-md-0" id="button-serch">
+            <div class="col-12 col-md-auto mt-3 mt-md-0" id="button-search" >
               <%= f.submit 'ค้นหา', class: "btn btn--secondary w-100" %>
             </div>
           </div>
