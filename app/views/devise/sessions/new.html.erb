@@ -15,19 +15,20 @@
       <% if flash[:alert].present? %>
         <div class = 'alert alert-danger'>
           <% if flash[:alert] == 'You have to confirm your email address before continuing.'%>
-            <i class="fas fa-exclamation-circle pt-2"></i>&emsp;ไม่ได้รับอีเมลยืนยันบัญชี? <b><%= link_to "ส่งอีเมลอีกครั้ง", new_confirmation_path(resource_name) %></b>
+            <i class="fas fa-exclamation-circle pt-2"></i>&emsp;โปรดยืนยันอีเมลของท่านก่อนเข้าสู่ระบบ
           <% elsif flash[:alert] == 'Invalid Email or password.'%>
             <% if @user[:encrypted_password].present? %>
               <i class="fas fa-exclamation-circle pt-2"></i>&emsp;อีเมลหรือรหัสผ่านของคุณไม่ถูกต้อง
             <% else %>
               <i class="fas fa-exclamation-circle pt-2"></i>&emsp;โปรดระบุรหัสผ่าน
             <% end %>
+          <% elsif @email.blank? && params[:success].blank? %>
+              <i class="fas fa-exclamation-circle pt-2"></i>&emsp;อีเมลลืมรหัสผ่านหมดอายุ โปรดลองอีกครั้ง
           <% else %>
             <i class="fas fa-exclamation-circle pt-2"></i>&emsp;กรุณาเข้าสู่ระบบก่อนดำเนินการ
           <% end %>
         </div>
       <% end %>
-
       <button type="button" class="btn btn-outline-dark" disabled>
           <i class="fab fa-google"></i> เข้าสู่ระบบด้วย Google
       </button>

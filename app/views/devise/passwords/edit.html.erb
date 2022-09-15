@@ -22,9 +22,9 @@
         <% end %>
         <br>
         <% if resource.errors.full_messages_for(:password).first == "Password is too short (minimum is 8 characters)" %>
-          <p class="text-danger" style="font-size:16px">• ใช้อักขระ <%= @minimum_password_length %> ตัวขึ้นไป</p>
+          <p class="text-danger" style="font-size:16px">• ใช้อักขระ 8 ตัวขึ้นไป</p>
         <% else %>
-          <p style="font-size:16px">• ใช้อักขระ <%= @minimum_password_length %> ตัวขึ้นไป</p>
+          <p style="font-size:16px">• ใช้อักขระ 8 ตัวขึ้นไป</p>
         <% end %>
         <% if resource.errors.full_messages_for(:password).first == "Password should not be in Thai" %>
           <p class="text-danger" style="font-size:16px">• รหัสผ่านไม่ควรเป็นภาษาไทย</p>
