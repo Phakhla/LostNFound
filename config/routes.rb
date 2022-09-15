@@ -36,7 +36,7 @@ Rails.application.routes.draw do
       get :found
       get :category_selects
 
-      post :search
+      get :search
     end
   end
 

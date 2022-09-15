@@ -568,3 +568,33 @@ input[type="radio"].radiobtn {
   text-align: right;
   padding: 0;
 }
+
+// for location field in advance search
+.map.advance {
+  border-radius: 10px;
+  height: 403px;
+}
+
+.form-control.location-advance {
+  padding-left: 45px;
+  background-color: #F2F2F2;
+  border: none;
+}
+
+.form-advance-control {
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  font-size: 16px;
+  height: 100%;
+  min-height: 72px;
+  background-color: var(--color-primary-50);
+  padding: 24px;
+}
+
+.bs-gutter-x-0 {
+  --bs-gutter-x: 0;
+}
+
+.mapLabels {
+  text-shadow: -1px 1px 0 white, 1px 1px 0 white, 1px -1px 0 white, -1px -1px 0 white;
+}

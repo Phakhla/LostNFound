@@ -144,8 +144,16 @@ export default class extends Controller {
 
   removeMarker() {
     if (this.latitudeTarget.value === '' && this.longitudeTarget.value === '' && this.addressTarget.value === '') {
-      this.marker.setVisible(false);
+      const maker = this.marker;
+      if (maker !== undefined) {
+        maker.setVisible(false);
+      }
     }
+  }
+
+  removeMarkerOnClick() {
+    const maker = this.marker;
+    maker.setVisible(false);
   }
 
   setAutocomplete() {

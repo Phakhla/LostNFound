@@ -43,11 +43,12 @@ class PostsController < ApplicationController
   end
 
   def search
+    @location = params[:location]
     @q = Post.ransack(params[:q])
     @posts = @q.result
     @posts = sort_by_coordinates
 
-    @posts = @posts.page(params[:page]).per(4)
+    @posts = @posts.page(params[:page]).per(8)
   end
 
   def autocomplete

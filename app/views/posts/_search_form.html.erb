@@ -25,11 +25,10 @@
           </div>
         <% end %>
 
-        <!--Hide for a while
-        <p class="text-decoration-underline mt-4 pointer" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ค้นหาขั้นสูงและฟิลเตอร์</p>
+        <p class="text-decoration-underline mt-4 pointer mb-0" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" data-controller="search-form" data-action="click->search-form#checkReset">ค้นหาขั้นสูงและฟิลเตอร์</p>
 
-        <%= search_form_for @q|| Post.ransack, url: search_posts_path,
-          html: { id: 'searchForm', class: 'form-inline', method: :post },
+        <%= search_form_for @q || Post.ransack, url: search_posts_path,
+          html: { id: 'searchForm', class: 'form-inline', method: :get },
           data: {
             controller: "search-form autocomplete maps",
             autocomplete_url_value: autocomplete_posts_path
@@ -37,83 +36,118 @@
 
           <%= hidden_field_tag :lat, @lat, data: { maps_target: "latitude", search_form_target: 'latitude' } %>
           <%= hidden_field_tag :lng, @lng, data: { maps_target: "longitude", search_form_target: 'longitude' } %>
-          <%= hidden_field_tag :location, '', data: { maps_target: "address" } %>
+          <%= hidden_field_tag :location, @location, data: { maps_target: "address", search_form_target: 'address' } %>
 
-          <div class="collapse mt-5" id="collapseExample">
+          <div class="collapse" id="collapseExample">
+            <br>
             <hr>
             <div class="alert alert-danger d-none" id="categoriesAlert">กรุณาเลือกประเภท</div>
             <div class="row mt-5">
               <div class="col-lg-2 col-xl-1 d-flex align-items-center">
-                <p class="mb-0">ประเภท :</p>
+                <p class="mb-0 font-weight600">ประเภท :</p>
               </div>
-              <div class="col-md-auto">
-                <label class="cursor-pointer">
-                  <div class="checkboxitem d-flex align-items-center">
-                    <%= check_box_tag('q[category_eq_any][]', 1, @q.category_eq_any&.include?(1) || false, data: { search_form_target: 'lostCheckbox' }) %> โพสต์หาของหาย
+              <div class="col-md-auto col-lg-5 col-xl-3">
+                <label class="cursor-pointer w-100">
+                  <div class="checkboxitem" id="check-box-search-lost-category">
+                    <%= radio_button_tag('q[category_eq_any][]', 1, @q.category_eq_any&.include?(1) || false, class: 'checkmark-category', data: { search_form_target: 'lostCheckbox', action: 'click->search-form#addCheckboxColor' }, checked: 'checked') %>
+                    <i class="fa-solid fa-circle-dot"></i>
+                    <i class="fa-thin fa-circle"></i>
+                    โพสต์หาของหาย
                   </div>
                 </label>
               </div>
-              <div class="col-md-auto mt-5 mt-md-0">
-                <label class="cursor-pointer">
-                  <div class="checkboxitem d-flex align-items-center">
-                    <%= check_box_tag('q[category_eq_any][]', 0, @q.category_eq_any&.include?(0)  || false, data: { search_form_target: 'foundCheckbox' }) %> โพสต์ตามหาเจ้าของ
+              <div class="col-md-auto col-lg-5 col-xl-3 mt-5 mt-md-0">
+                <label class="cursor-pointer w-100">
+                  <div class="checkboxitem" id="check-box-search-found-category">
+                    <%= radio_button_tag('q[category_eq_any][]', 0, @q.category_eq_any&.include?(0)  || false, class: 'checkmark-category', data: { search_form_target: 'foundCheckbox', action: 'click->search-form#addCheckboxColor' }) %>
+                    <i class="fa-solid fa-circle-dot"></i>
+                    <i class="fa-thin fa-circle"></i>
+                     โพสต์ตามหาเจ้าของ
                   </div>
                 </label>
-              </div>
-            </div>
-            <div class="mt-5 alert alert-danger d-none" id="nameAndTypeAlert">กรุณาระบุคำค้นหาหรือหมวดหมู่</div>
-            <div class="row mt-5">
-              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
-                <%= f.label "ค้นหา :" %>
-              </div>
-              <div class="col-lg-10 col-xl-6">
-                <%= f.search_field :name_cont, data: {autocomplete_target: "input", search_form_target: 'searchInput' }, class: 'form-control ' %>
-                <ul data-autocomplete-target="results"></ul>
-              </div>
-            </div>
-            <div class="row mt-5">
-              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
-                <%= f.label "หมวดหมู่ :" %>
-              </div>
-              <div class="col-lg-6 col-xl-3">
-                <%= f.select :type_id_eq, Type.all.map{ |l| [l.type_name, l.id] }, {:include_blank => true}, class: 'form-control ', data: { search_form_target: 'typeSelect' } %>
-              </div>
-            </div>
-            <div class="row mt-5">
-              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
-                <%= f.label "วันที่เริ่มต้น :"%>
-              </div>
-              <div class="col-lg-3">
-                <%= f.date_field :date_gteq, class: 'form-control' %>
-              </div>
-              <div class="col-auto d-flex align-items-center mt-5 mt-lg-0">
-                <%= f.label "ถึงวันที่สิ้นสุด :" %>
-              </div>
-              <div class="col-lg-3">
-                <%= f.date_field :date_lteq, class: 'form-control'  %>
-              </div>
-            </div>
-
-            <div class="mt-5 alert alert-danger d-none" id="mapAlert">กรุณาระบุสถานที่</div>
-            <div class="row mt-5">
-              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
-                <%= f.label "สถานที่ :" %>
-              </div>
-              <div class="col-lg-10 col-xl-6">
-                <%= text_field :map, :field, class: 'form-control', data: { maps_target: "field", action: "keydown->maps#preventSubmit" } %>
               </div>
             </div>
 
             <div class="row mt-5">
-              <div class="col-12">
-                <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->maps#initializeMap', maps_target: "map" }, class: 'map' %>
+              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
+                <%= f.label "ค้นหา :", class: 'font-weight600'%>
+              </div>
+              <div class="col-lg-10 col-xl-9">
+                <%= f.search_field :name_cont, data: {autocomplete_target: "input", search_form_target: 'searchInput', action: 'keyup->search-form#checkSearchorType' }, class: 'form-control ', id: 'name-advance-search' %>
+                <div class="result-search">
+                  <ul class="list-group" data-autocomplete-target="results"></ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-2 col-xl-1 d-flex"></div>
+              <div class="col-lg-10 col-xl-9">
+                <p class="text-danger pt-2 d-none" id="name-error">กรุณากรอกข้อมูลคำค้นหา หรือ หมวดหมู่</p>
+              </div>
+            </div>
+
+            <div class="row mt-5">
+              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
+                <%= f.label "หมวดหมู่ :", class: 'font-weight600'%>
+              </div>
+              <div class="col-lg-4 col-xl-4">
+                <%= f.select :type_id_eq, Type.all.map{ |l| [l.type_name, l.id] }, {:include_blank => 'เลือก'}, class: 'form-control form-select cursor-pointer', id: 'category-advance-search', data: { search_form_target: 'typeSelect', action: 'input->search-form#checkSearchorType' } %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-2 col-xl-1 d-flex"></div>
+              <div class="col-lg-10 col-xl-9">
+                <p class="text-danger pt-2 d-none" id="category-error">กรุณากรอกข้อมูลคำค้นหา หรือ หมวดหมู่</p>
+              </div>
+            </div>
+
+            <div class="row mt-5">
+              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
+                <%= f.label "วันที่เริ่มต้น :", class: 'font-weight600'%>
+              </div>
+              <div class="col-lg-4">
+                <%= f.date_field :date_gteq, class: 'form-control', id: 'start_date' %>
+              </div>
+
+              <div class="col-auto d-flex mt-5 mt-lg-0 align-items-center">
+                <%= f.label "วันที่สิ้นสุด :", class: 'font-weight600'%>
+              </div>
+              <div class="col-lg-4">
+                <%= f.date_field :date_lteq, class: 'form-control', id: 'end_date' %>
+              </div>
+            </div>
+
+            <div class="row mt-5">
+              <div class="col-lg-2 col-xl-1 d-flex align-items-center">
+                <%= f.label "สถานที่ :", class: 'font-weight600'%>
+              </div>
+              <div class="col-lg-10 col-xl-9">
+                <%= text_field :map, :field, value: @location, placeholder: "Search", class: 'form-control location-advance',  id: 'location-advance-search', data: { maps_target: "field", search_form_target: 'place', action: "keydown->maps#preventSubmit input->search-form#checkLocationField input->maps#removeMarker input->search-form#checkLocation" } %>
+                <i class="fa fa-search form-control-feedback location"></i>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-2 col-xl-1 d-flex"></div>
+              <div class="col-lg-10 col-xl-9">
+                <p class="text-danger pt-2 d-none" id="location-error">กรุณาเลือกสถานที่</p>
+              </div>
+            </div>
+
+            <div class="row mt-5">
+              <div class="col-lg-2 col-xl-1 d-flex">
+              </div>
+              <div class="col-lg-10 col-xl-11">
+                <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->maps#initializeMap click->search-form#checkMarker', maps_target: "map", search_form_target: 'place'}, class: 'map advance' %>
               </div>
             </div>
 
             <div class="pt-5"></div>
             <div class="d-md-flex mt-5">
-              <div class="flex-grow-1 d-flex align-items-center">
-                <%= button_tag type: 'button', data: { action: 'search-form#clearForm' }, class: 'btn' do %>
+              <div class="flex-grow-1 d-flex">
+                <%= button_tag type: 'button', data: { action: 'click->search-form#clearForm click->maps#removeMarkerOnClick' }, class: 'btn' do %>
                   <i class="fa-solid fa-arrow-rotate-left me-3"></i> ล้างข้อมูล
                 <% end %>
                 </div>
@@ -121,8 +155,7 @@
               <div class="d-grid mt-5 mt-md-0"><%= f.submit "ตกลง", class: "btn btn--primary", data: { action: 'search-form#validateForm' } %></div>
             </div>
           </div>
-        <%end %>
-        -->
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,51 +1,98 @@
-<%= link_to root_path do %>
-  <i class="fa-solid fa-arrow-left"></i> Back
-<% end %>
-<div class="container">
-<hr>
-  <%= render 'posts/search_form' %>
-<hr>
-</div>
-<h1>ผลลัพธ์การค้นหา</h1>
-  <div class="col-md-12">
-    <% if @q.present? %>
-      <div class="row g-3 mt-2 ">
-        <hr>
-        <div class="searchfilter">
-          <p>ค้นหา: </p>
+<%= render 'posts/search_form' %>
+<div class="listposts">
+  <div class="container">
+    <div class="row justify-content-start align-items-center">
+      <div class="col">
+        <div class="text-result-search mt-5">
+          ผลลัพธ์การค้นหา
+          <p>(<%= @posts.total_count %> รายการ)</p>
+        </div>
+        <hr class="m-0">
+        <% if @q.category_eq_any.present? %>
+          <div class="search-value mt-5">
+            <div class="col-lg-2 col-xl-1 d-flex align-items-center">
+              <p class="mb-0 font-weight600">ประเภท :</p>
+            </div>
+            <div class="col-md-auto">
+              <p class="mb-0"><%= @q.category_eq_any == [1]? 'โพสต์ตามหาของหาย' : 'โพสต์ตามหาเจ้าของ' %></p>
+            </div>
+          </div>
+        <% end %>
+        <div class="search-value mt-5 align-items-center">
           <% if @q.name_cont.present? %>
-          <p>ชื่อ: <%= @q.name_cont %></p>
-          <% end %>
-          <% if @q.category_eq_any.present? %>
-            <% if @q.category_eq_any == [0] %>
-              <p>ประเภท: ตามหาเจ้าของ</p>
-            <% end %>
-            <% if @q.category_eq_any == [1] %>
-              <p>ประเภท: หาของหาย</p>
-            <% end %>
-            <% if @q.category_eq_any == [1,0] %>
-              <p>ประเภท: หาของหาย & ตามหาเจ้าของ</p>
-            <% end %>
+            <div class="col-lg-2 col-xl-1 d-flex align-items-center">
+              <p class="mb-0 font-weight600">ค้นหา :</p>
+            </div>
+            <div class="col-lg-4 me-4 advance-search-container">
+              <div class="tool">
+                <p class="result-tag advance-search-name bg-color--primary200 mb-0">
+                  <%= @q.name_cont %>
+                </p>
+                <span class="tooltiptext"><%= @q.name_cont %></span>
+              </div>
+            </div>
           <% end %>
           <% if @q.type_id_eq.present? %>
-            <p>หมวดหมู่: <%= Type.find(@q.type_id_eq).type_name %></p>
+            <div class="col-lg-1">
+              <p class="mb-0 font-weight600">หมวดหมู่ :</p>
+            </div>
+            <div class="col-lg-4">
+              <p class="mb-0"><%= Type.find(@q.type_id_eq).type_name %></p>
+            </div>
           <% end %>
+        </div>
+        <div class="search-value mt-0">
           <% if @q.date_gteq.present? %>
-          <p>ช่วงวันที่: <%= @q.date_gteq %></p>
+            <div class="col-lg-2 col-xl-1 d-flex align-items-center mt-5">
+              <p class="mb-0 me-0 font-weight600">ช่วงวันที่หาย :</p>
+            </div>
+            <div class="col-lg-1 ms-3 mt-5">
+              <p class="mb-0" data-controller="datetime"
+                data-datetime-date-value="<%= @q.date_gteq %>"
+                data-datetime-format-value='DD/MM/YYYY'
+                data-datetime-target="output">
+              </p>
+            </div>
           <% end %>
           <% if @q.date_lteq.present? %>
-          <p>ถึงวันที่: <%= @q.date_lteq %></p>
+            <div class="col-auto mt-5">
+              <p class="mb-0 font-weight600">ถึงวันที่ :</p>
+            </div>
+            <div class="col-lg-1 mt-5">
+              <p class="mb-0" data-controller="datetime"
+                data-datetime-date-value="<%= @q.date_lteq %>"
+                data-datetime-format-value='DD/MM/YYYY'
+                data-datetime-target="output">
+              </p>
+            </div>
           <% end %>
         </div>
       </div>
-    <% end %>
-  </div>
+      <div class="form-group mt-5 mb-5" id="map-result-advance-search">
+        <%= search_form_for @q || Post.ransack, url: search_posts_path,
+          html: { id: 'searchForm', class: 'form-inline', method: :post },
+          data: {
+            controller: "show-map"
+          } do |f| %>
 
-<div class="container">
-  <% if @q.result.empty? %>
-    <h2>No Posts were found.</h2>
-  <% else %>
+          <%= hidden_field_tag :lat, @lat, data: { show_map_target: "latitude" } %>
+          <%= hidden_field_tag :lng, @lng, data: { show_map_target: "longitude" } %>
+          <%= hidden_field_tag :location, @location, data: { show_map_target: "address" } %>
+
+          <div class="row bs-gutter-x-0">
+            <div class="col-lg-8 form-advance-control font-weight500">
+              <i class='fas fa-map-marker-alt color--red text-subtitle mr-1' ></i>
+              <span data-show-map-target="fieldPreview" id="advance-search-preview-address" ></span>
+            </div>
+          </div>
+
+          <div class="col-lg-12 mt-5">
+            <%= content_tag :div, nil, data: { action: 'google-maps-callback@window->show-map#showMap', show_map_target: "map" }, class: 'map advance' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <br>
     <%= render 'posts/card_result' %>
-  <% end %>
-
+  </div>
 </div>
