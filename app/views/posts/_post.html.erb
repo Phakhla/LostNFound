@@ -163,7 +163,9 @@
                     <%# Show facebook link %>
                     <% if post.user.fblink? %>
                       <div class="contact-facebook d-flex align-items-start">
-                        <%= link_to(post.user.fblink, class: 'text-decoration-none d-flex p-0', target: 'blank') do %>
+                        <%= link_to(post.user.fblink.match?(@https) ? post.user.fblink :
+                            post.user.fblink.match?(@fblink) ? 'https://www.' + post.user.fblink :
+                            'https://www.facebook.com' + post.user.fblink, class: 'text-decoration-none d-flex p-0', target: 'blank') do %>
                           <div class="facebook-icon"><i class="fa-brands fa-facebook-square text-body me-2"></i></div>
                           <% if post.user.facebook? %>
                             <div class="facebook-detail"><%= post.user.facebook %></div>
