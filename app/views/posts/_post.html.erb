@@ -255,12 +255,12 @@
             <p class="font-weight600 mt-5">กรุณาเลือกเหตุผล</p>
             <div class="form-check layout-04">
               <label class="cursor-pointer">
-                <%= radio_button 'status', '', 'found', checked: false ,data: { radio_selection_target: "foundRadioButton", action: "click->radio-selection#checkOption" } %> พบเจอของ/เจ้าของแล้ว
+                <%= radio_button 'status', '', 'พบเจอของ/เจ้าของแล้ว', checked: false ,data: { radio_selection_target: "foundRadioButton", action: "click->radio-selection#checkOption" } %> พบเจอของ/เจ้าของแล้ว
               </label>
             </div>
             <div class="form-check layout-04">
               <label class="cursor-pointer">
-                <%= radio_button 'status', '', 'closed', checked: false ,data: { radio_selection_target: "hopelessRadioButton", action: "click->radio-selection#checkOption" } %> ไม่ต้องการค้นหาอีกต่อไป
+                <%= radio_button 'status', '', 'ไม่ต้องการค้นหาอีกต่อไป', checked: false ,data: { radio_selection_target: "hopelessRadioButton", action: "click->radio-selection#checkOption" } %> ไม่ต้องการค้นหาอีกต่อไป
               </label>
             </div>
             <div class="row layout-04">
