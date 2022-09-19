@@ -39,8 +39,8 @@ export default class extends Controller {
       $('#post-content-lost_item').on('click', () => {
         sessionStorage.scrollPosition = $(window).scrollTop();
       });
-      $('#button-search').on('click', () => {
-        if (window.screen.availWidth <= 375) {
+      $('#button-search, #tabs-home-index, #nav-lost-posts-path-link, #nav-found-posts-path-link').on('click', () => {
+        if (window.screen.availWidth <= 576) {
           sessionStorage.scrollPosition = 660;
         } else {
           sessionStorage.scrollPosition = 620;
