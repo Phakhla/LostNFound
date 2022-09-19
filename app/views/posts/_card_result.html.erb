@@ -1,25 +1,45 @@
-<div class="row row-cols-1 row-cols-md-2 g-4">
-<% @posts.each do |post| %>
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
+<div class="row" id="content-result-search">
+<% if @posts.present? %>
+  <% @posts.each do |post| %>
+    <div class="col-md-6 col-lg-3 grid mb-5 content-result-search" data-item-detail="<%= PostHelper.item_detail(post) %>">
+      <article>
         <% if post.images.attached? %>
-          <% post.images.each do |img| %>
-            <%= image_tag(img, style:"width:150px; height:150px") %>
-          <% end %>
+            <%= image_tag(post.images[0]) %>
         <% else %>
-        <img alt="image" class="" src="https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg?im=Resize=(1230,900)" style = "width: 300px; height: 150px; object-fit: cover;">
+            <%= image_tag 'no-image-available.png', alt: 'image'%>
         <% end %>
-        <h5 class="card-title"><%= post.name %></h5>
-        <p class="card-text"><%= post.category %></p>
-        <p class="card-text"><%= post.status %></p>
-        <p class="card-text"><%= post.date %></p>
-        <%= button_to "ดูรายละเอียด", post, :id => "open-contacts-dialog-btn",
-        :class => "inbox-sf-add-btn tip", :method => :get %>
-      </div>
+        <div class="text">
+          <h4 class="post-name font-weight700">ตามหา <%= post.name %></h4>
+          <div class="post-date">
+            <%= post.lost_item? ? 'วันที่หาย ' : 'วันที่พบ '%> : <span data-controller="datetime" data-datetime-date-value="<%= post.date %>" data-datetime-format-value='DD/MM/YYYY' data-datetime-target="output"></span>
+          </div>
+          <div class="post-location font-weight500"><i class="fa-solid fa-location-dot"></i> <%= post.location %></div>
+          <% if post.active? %>
+            <div class="post-status-active">
+              <div class="circle-green"></div>
+              <p class="mb-0 ms-3 text-small font-weight600">กำลังตามหา</p>
+            </div>
+          <% else %>
+            <div class="post-status-inactive">
+              <p class="text-small font-weight600 mb-0">ปิดโพสต์</p>
+            </div>
+          <% end %>
+          <div class="fst-italic text-small color--secondary300">โพสต์เมื่อวันที่ : <span data-controller="datetime" data-datetime-date-value="<%= post.created_at %>" data-datetime-format-value='DD/MM/YYYY' data-datetime-target="output"></span></div>
+          <div class="d-grid" id="detail-post">
+            <%= link_to "ดูรายละเอียด", post_path(post), class: "see-other-btn btn btn--outline-secondary" %>
+          </div>
+        </div>
+      </article>
+    </div>
+  <% end %>
+<% else %>
+  <div class="empty-result">
+    <div class="bell-item">
+      <i class="fa-regular fa-bell-on"></i>
+      <p class="text-result">ไม่มีรายการแสดง</p>
     </div>
   </div>
 <% end %>
 </div>
-<br>
 <%= paginate @posts %>
+<br>

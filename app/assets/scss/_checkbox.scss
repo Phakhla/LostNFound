@@ -123,4 +123,47 @@ input[type='checkbox'] {
 
 }
 
+.checked-category {
+  border: 1px solid var(--color-primary);
+}
+
+.checkboxitem {
+  .checkmark-category {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .fa-circle-dot,
+  .fa-circle {
+    font-size: 16px;
+    margin-right: 12px;
+    margin-top: 2px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .fa-circle-dot {
+    display: none;
+  }
+
+  .fa-circle {
+    display: block;
+  }
+
+  .checkmark-category:checked {
+    ~ .fa-circle-dot {
+      border: 0;
+      color: var(--color-primary);
+      display: block;
+    }
+
+    ~ .fa-circle {
+      display: none;
+    }
+  }
+}
+
 

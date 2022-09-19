@@ -43,7 +43,9 @@ export default class extends Controller {
   }
 
   checkReset() {
+    const $button = $('button[type=submit]');
     const $textInput = $('#SelectionAlert');
     $textInput.removeClass('is-invalid');
+    $button.prop('disabled', true);
   }
 }

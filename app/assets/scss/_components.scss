@@ -84,14 +84,14 @@
 }
 
 .checkboxitem {
+  align-items: center;
   border: 1px solid var(--color-secondary);
   border-radius: 8px;
+  display: flex;
   height: 42px;
   padding: 0 16px;
-
-  &:focus {
-    border: 1px solid var(--color-primary);
-  }
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .search-form {
@@ -118,6 +118,7 @@
   }
 }
 
+// normal search + advance search
 .search-value {
   display: flex;
   align-items: center;
@@ -130,9 +131,51 @@
   }
 }
 
+// tag name search
 .result-tag {
   border-radius: 16px;
   padding: 8px 15px;
+}
+
+.advance-search-container {
+  width: 20%;
+
+  @media (max-width: 767.98px) {
+    width: 30%;
+  }
+
+  p {
+    min-width: 0;
+  }
+
+  .tool {
+    position: inherit;
+    display: block;
+    margin-top: -20px;
+  }
+
+  .tooltiptext {
+    max-width: 312px;
+    width: max-content;
+    bottom: 32px;
+    border: 2px solid #FBD034;
+    left: 20%;
+    margin-left: 0;
+    margin-top: -125px;
+    text-align: start;
+  }
+
+  .tooltiptext::after {
+    border-right: 0 !important;
+  }
+}
+
+.advance-search-name {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: fit-content;
 }
 
 .empty-result {

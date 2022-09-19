@@ -10,7 +10,10 @@ class PostsController < ApplicationController
   before_action :mark_all_comments_as_read, only: %i[show]
   before_action :authorize_owner, only: %i[edit update]
 
-  def show; end
+  def show
+    @https = 'https://www.'
+    @fblink = 'facebook.com'
+  end
 
   def new
     @post = Post.new(category: params[:category])
@@ -43,11 +46,12 @@ class PostsController < ApplicationController
   end
 
   def search
+    @location = params[:location]
     @q = Post.ransack(params[:q])
     @posts = @q.result
     @posts = sort_by_coordinates
 
-    @posts = @posts.page(params[:page]).per(4)
+    @posts = @posts.page(params[:page]).per(8)
   end
 
   def autocomplete

@@ -21,7 +21,7 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
-  describe 'POST /posts/search' do
+  describe 'GET /posts/search' do
     it 'show result search' do
       q = {
         category_eq_any: [Post.categories[my_post.category]],
@@ -29,9 +29,8 @@ RSpec.describe 'Posts', type: :request do
         type_id_eq: my_post.type_id
       }
 
-      post search_posts_path, params: { lat: my_post.lat, lng: my_post.lng, q: }
+      get search_posts_path, params: { lat: my_post.lat, lng: my_post.lng, q: }
 
-      expect(response).to have_http_status(:ok)
       expect(response.body).to include(my_post.name)
     end
   end

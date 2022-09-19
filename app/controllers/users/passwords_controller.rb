@@ -10,6 +10,14 @@ class Users::PasswordsController < Devise::PasswordsController
     end
   end
 
+  def edit
+    super
+    return unless @email.blank? && params[:success].blank?
+
+    redirect_to new_session_path(resource_name),
+                alert: 'Reset password token is invaild'
+  end
+
   protected
 
   def load_email

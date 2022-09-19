@@ -39,6 +39,13 @@ export default class extends Controller {
       $('#post-content-lost_item').on('click', () => {
         sessionStorage.scrollPosition = $(window).scrollTop();
       });
+      $('#button-search').on('click', () => {
+        if (window.screen.availWidth <= 375) {
+          sessionStorage.scrollPosition = 660;
+        } else {
+          sessionStorage.scrollPosition = 620;
+        }
+      });
       $(window).scrollTop(sessionStorage.scrollPosition);
       sessionStorage.clear();
     });
