@@ -36,8 +36,14 @@
       <% end %>
       <%= f.input :date, as: :date, html5: true, input_html: { max: Date.today, data: { post_preview_target: 'dateInput', live_validate_target: 'date', action: "input->live-validate#checkDate" }, id: 'post-date-input' }, error: false, label: false%>
       <% if post.errors.key?(:date) %>
-      <p class="text-small text-danger pt-1" id="form-date-warning-text">กรุณาเลือกวันที่</p>
+        <% if post.errors[:date] == ["can't be blank"] %>
+          <p class="text-small text-danger pt-1" id="form-date-warning-text">กรุณาเลือกวันที่</p>
+        <% end %>
+        <% if post.errors[:date] == ["must not exceed present date"] %>
+          <p class="text-small text-danger pt-1" id="form-date-warning-text">ไม่ควรเลือกวันที่เกินปัจจุบัน</p>
+        <% end %>
       <% end %>
+
     </div>
   </div>
   <br>

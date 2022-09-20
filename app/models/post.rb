@@ -13,6 +13,7 @@ class Post < ApplicationRecord
 
   validates :name, presence: true
   validates :date, presence: true
+  validate  :date_should_not_exceed_present
   validates :type_id, presence: true
   validates :detail, length: { maximum: 500 }, allow_blank: true
 
@@ -64,5 +65,11 @@ class Post < ApplicationRecord
 
   def owner?(user)
     user_id == user.id
+  end
+
+  def date_should_not_exceed_present
+    return if date.blank?
+
+    errors.add(:date, 'must not exceed present date') if date > Time.zone.today
   end
 end

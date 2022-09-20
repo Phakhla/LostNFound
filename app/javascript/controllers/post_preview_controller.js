@@ -103,8 +103,12 @@ export default class extends Controller {
   }
 
   valid() {
+    const dateInput = dayjs(this.dateInputTarget.value);
+    const datePresent = dayjs(Date.today);
+    const dateDiff = dateInput.diff(datePresent, 'day', true);
     return (
-      this.nameInputTarget.value
+      dateDiff < 0
+      && this.nameInputTarget.value
       && this.dateInputTarget.value
       && this.typeInputTarget.value
       && ($('.dz-preview .dz-image img').length || $('.edit-upload .edit-image img').length)
