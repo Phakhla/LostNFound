@@ -499,6 +499,7 @@ input[type="radio"].radiobtn {
 // contact
 .phone-contact {
   text-decoration: none;
+  word-break: break-all;
 
   &:hover {
     color: #101010;
