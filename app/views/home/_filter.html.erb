@@ -2,7 +2,7 @@
   <%= f.hidden_field "filter[#{category}][status]", value: filter.dig(category.to_sym, :status),
     data: { 'my-posts-target': 'statusInput' } %>
 
-  <div class="form-check-inline">
+  <div class="form-check-inline" id="active-checkbox">
     <label class="t">
       <%= check_box_tag '', 'active', filter.dig(category.to_sym, :status) == 'active', {
         data: {
@@ -12,7 +12,7 @@
       } %> กำลังตามหา
     </label>
   </div>
-  <div class="form-check-inline">
+  <div class="form-check-inline" id="in-active-checkbox">
     <label class="t">
       <%= check_box_tag '', 'in_active', filter.dig(category.to_sym, :status) == 'in_active', {
         data: {
