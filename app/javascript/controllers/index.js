@@ -52,6 +52,9 @@ application.register("post-preview", PostPreviewController)
 import RadioSelectionController from "./radio_selection_controller.js"
 application.register("radio-selection", RadioSelectionController)
 
+import RedirectHomeController from "./redirect_home_controller.js"
+application.register("redirect-home", RedirectHomeController)
+
 import RemoveImageController from "./remove_image_controller.js"
 application.register("remove-image", RemoveImageController)
 

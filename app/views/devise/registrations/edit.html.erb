@@ -1,4 +1,11 @@
-
+<div class="container" data-controller="redirect-home">
+  <%if flash[:notice] == 'Successful Update' %>
+    <div class="alert alert-success" id="Successful_Update">บันทึกข้อมูลโปรไฟล์สำเร็จ</div>
+  <% end %>
+  <%if flash[:notice] == 'Password Successful Update' %>
+    <div class="alert alert-success" id="Password_Successful_Update">เปลี่ยนรหัสผ่านสำเร็จ</div>
+  <% end %>
+</div>
 <div>
   <div class="container">
     <div class="fs-2"><br></div>
