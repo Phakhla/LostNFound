@@ -158,12 +158,26 @@
   .tooltiptext {
     max-width: 312px;
     width: max-content;
-    bottom: 32px;
+    bottom: -98px;
     border: 2px solid #FBD034;
     left: 20%;
     margin-left: 0;
     margin-top: -125px;
     text-align: start;
+    position: absolute;
+
+    @media (min-width: 375px) and (max-width: 667px) {
+      bottom: -192px;
+      max-width: 290px;
+    }
+
+    @media (min-width: 820px) and (max-width: 1179.98px) {
+      bottom: 363px;
+    }
+
+    @media (min-width: 1024px) and (max-width: 1366px) {
+      bottom: 545px;
+    }
   }
 
   .tooltiptext::after {
