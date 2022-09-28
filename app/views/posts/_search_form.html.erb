@@ -73,7 +73,7 @@
                 <%= f.label "ค้นหา :", class: 'font-weight600'%>
               </div>
               <div class="col-lg-10 col-xl-9">
-                <%= f.search_field :name_cont, data: {autocomplete_target: "input", search_form_target: 'searchInput', action: 'keyup->search-form#checkSearchorType' }, class: 'form-control ', id: 'name-advance-search' %>
+                <%= f.search_field :name_cont, data: {autocomplete_target: "input", search_form_target: 'searchInput', action: 'keyup->search-form#checkSearchorType' }, class: 'form-control ', id: 'name-advance-search', placeholder: 'ค้นหาที่นี่' %>
                 <div class="result-search">
                   <ul class="list-group" data-autocomplete-target="results"></ul>
                 </div>

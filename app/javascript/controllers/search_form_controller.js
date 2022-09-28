@@ -51,6 +51,10 @@ export default class extends Controller {
     $('#start_date').val('');
     $('#end_date').val('');
     $('#location-advance-search').val('');
+    this.lostCheckboxTarget.checked = true;
+    $('#check-box-search-lost-category').addClass('checked-category');
+    this.foundCheckboxTarget.checked = false;
+    $('#check-box-search-found-category').removeClass('checked-category');
   }
 
   addCheckboxColor() {
