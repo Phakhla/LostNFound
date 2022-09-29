@@ -14,7 +14,6 @@ function createDropZone(controller) {
   return new Dropzone(controller.element, {
     url: controller.url,
     headers: controller.headers,
-    maxFiles: controller.maxFiles,
     maxFilesize: controller.maxFileSize,
     acceptedFiles: '.jpeg, .jpg, .png',
     addRemoveLinks: controller.addRemoveLinks,

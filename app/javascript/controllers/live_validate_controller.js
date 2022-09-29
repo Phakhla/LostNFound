@@ -67,9 +67,9 @@ export default class extends Controller {
 
   checkImages() {
     const $images = $('#dropzone-container');
-    const $imgtext = $('#form-image-warning-text');
+    const $imgText = $('#form-image-warning-text');
     $images.removeClass('form-invalid');
-    $imgtext.addClass('d-none');
+    $imgText.addClass('d-none');
   }
 
   checkUsername() {
@@ -104,6 +104,18 @@ export default class extends Controller {
       this.latitudeTarget.value = '';
       this.longitudeTarget.value = '';
       this.addressTarget.value = '';
+    }
+  }
+
+  checkCountImages() {
+    const dzImages = $('.dz-preview .dz-image img').length;
+    const editImages = $('.edit-upload .edit-image img').length;
+    const totalImages = dzImages + editImages;
+    if (totalImages <= 11) {
+      const $images = $('#dropzone-container');
+      const $imgText = $('#form-image-over-limit-warning-text');
+      $images.removeClass('form-invalid');
+      $imgText.addClass('d-none');
     }
   }
 }
