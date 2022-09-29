@@ -596,4 +596,7 @@ input[type="radio"].radiobtn {
 
 .mapLabels {
   text-shadow: -1px 1px 0 white, 1px 1px 0 white, 1px -1px 0 white, -1px -1px 0 white;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 220px;
 }
