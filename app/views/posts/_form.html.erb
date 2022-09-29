@@ -124,10 +124,10 @@
       <% end %>
       <%= f.submit "บันทึก", class: "btn btn--primary-weight", id: 'save-form-button' %>
     <% else %>
-      <%= link_to category_selects_posts_path, type: "reset", class: "btn btn--outline-primary-hover", id: 'cancel-create-form-button'  do %>
+      <%= link_to category_selects_posts_path, type: "reset", class: "btn-size--md btn--outline-secondary me-md-3", id: 'cancel-create-form-button'  do %>
         ยกเลิก
       <% end %>
-      <%= f.button :button, "สร้างโพสต์", type: 'submit', class: "btn btn--primary-weight",
+      <%= f.button :button, "สร้างโพสต์", type: 'submit', class: "btn-size--md btn--primary",
         data: {controller: 'delay-redirect', action: "click->delay-redirect#link"},
         id:"create-form-button" %>
       <%= render 'preview_modal', post: %>
