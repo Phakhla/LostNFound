@@ -73,7 +73,7 @@ export default class extends Controller {
     this.foundCheckboxTarget.checked = false;
     $('#check-box-search-found-category').removeClass('checked-category');
     $('#end_date').attr('min', '');
-    $('#start_date').attr('max', '');
+    $('#start_date').attr('max', dayjs(Date.today).format('YYYY-MM-DD'));
   }
 
   addCheckboxColor() {
