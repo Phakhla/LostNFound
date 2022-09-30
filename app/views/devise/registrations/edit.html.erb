@@ -6,102 +6,93 @@
     <div class="alert alert-success" id="Password_Successful_Update">เปลี่ยนรหัสผ่านสำเร็จ</div>
   <% end %>
 </div>
-<div>
-  <div class="container">
-    <div class="fs-2"><br></div>
-    <br>
-    <div class="user-profile bg-body card-form padding-box mb-4">
-      <div class="edit-profile-title text-header4 font-weight600 mb-0">แก้ไขโปรไฟล์</div>
-      <hr class="underline-title">
-      <div class="row">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, data: {turbo: false}) do |f| %>
+<div class="container overflow-hidden layout-10 profile">
+  <div class="layout-06"></div>
+  <div class="bg-body card-form padding-box">
+    <h4 class="text-header4">แก้ไขโปรไฟล์</h4>
+    <div class="d-none d-md-block"></div>
+    <hr class="underline-title">
+    <div class="row">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, data: {turbo: false}) do |f| %>
           <div class="row">
-            <div class="col-md-5 col-lg-3 text-center" data-controller="file-image">
-              <% if current_user.avatar.present? %>
-                <%= image_tag(current_user.avatar, data:{ file_image_target: "image" }, class: "card-img-top w-100") %>
-              <% else %>
-                <img , data-file-image-target="image"  alt="image" class="card-img-top w-100" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
-              <% end %>
-              <br>
-              <br>
-              <div class="image-upload">
-                <label for="file-input">
-                  <span class="btn btn--secondary px-12 px-md-auto">อัพเดตรูปโปรไฟล์</span>
-                </label>
-                <%= f.file_field :avatar, id: "file-input", class: "d-none", data:{ action: "change->file-image#previewImage", file_image_target: "input" } %>
+            <div class="col-md-4 col-lg-auto layout-05 text-center" data-controller="file-image">
+              <div class="profile-image">
+                <% if current_user.avatar.present? %>
+                  <%= image_tag(current_user.avatar, data:{ file_image_target: "image" }, class: "card-img-top w-100") %>
+                <% else %>
+                  <img , data-file-image-target="image"  alt="image" class="card-img-top w-100" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
+                <% end %>
               </div>
-              <p class="mt-3 color--red text-small">*ขนาดไฟล์รูปไม่เกิน 500 KB</p>
-            </div>
-            <div class="col ms-lg-5">
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="field">
-                    <%= f.label :username, "ชื่อผู้ใช้" %>
-                    <%= f.text_field :username, autofocus: true, required: true, class: "form-control w-100" %>
-                    <%if resource.errors.full_messages_for(:username).first == "Username has already been taken" %>
-                      <p class="text-danger pt-3" id="username-error">ชื่อผู้ใช้นี้ถูกใช้งานแล้ว</p>
-                    <% end %>
-                  </div>
+              <label for="file-input" style="width: 100%;">
+                <div class="d-grid layout-05">
+                  <span class="btn-size--md btn--secondary px-3">อัพเดตรูปโปรไฟล์</span>
+                  <%= f.file_field :avatar, id: "file-input", class: "d-none", data:{ action: "change->file-image#previewImage", file_image_target: "input" } %>
                 </div>
-                <div class="col-lg-4">
-                  <div class="field">
-                    <%= f.label :email, "อีเมล" %><br />
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email" , disabled: true, class: "form-control w-100" %>
-                  </div>
+              </label>
+              <p class="text-body3 color--red layout-04">*ขนาดไฟล์รูปไม่เกิน 500 KB</p>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col-md-4 layout-05">
+                  <%= f.label :username, "ชื่อผู้ใช้" %>
+                  <%= f.text_field :username, autofocus: true, required: true, class: "form-control w-100" %>
+                  <%if resource.errors.full_messages_for(:username).first == "Username has already been taken" %>
+                    <p class="text-danger pt-3" id="username-error">ชื่อผู้ใช้นี้ถูกใช้งานแล้ว</p>
+                  <% end %>
+                </div>
+                <div class="col-md-4 layout-05">
+                  <%= f.label :email, "อีเมล" %>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email" , disabled: true, class: "form-control w-100" %>
                   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
                   <% end %>
                 </div>
-                <div class="col-lg-4">
-                  <div class="field">
-                    <%= f.label :tel, "เบอร์ติดต่อ" %><br />
-                    <%= f.text_field :tel, autofocus: true, class: "form-control w-100"%>
+                <div class="col-md-4 layout-05">
+                  <%= f.label :tel, "เบอร์ติดต่อ" %><br />
+                  <%= f.text_field :tel, autofocus: true, class: "form-control w-100"%>
+                </div>
+                <div class="col-md-4 layout-05">
+                  <%= f.label :facebook, "ชื่อ facebook" %><br />
+                  <%= f.text_field :facebook, autofocus: true, class: "form-control w-100" %>
+                </div>
+                <div class="col-md-4 layout-05">
+                  <%= f.label :fblink, "ลิงค์ facebook" %><br />
+                  <%= f.text_field :fblink, autofocus: true, class: "form-control w-100" %>
+                </div>
+                <div class="col-md-4 layout-05">
+                  <%= f.label :password, "รหัสผ่าน" %>
+                  <div class="d-grid">
+                    <%= link_to 'เปลี่ยนรหัสผ่าน', password_edit_users_settings_path, class: 'btn-size--sm btn--secondary px-2' %>
                   </div>
                 </div>
-                <div class="col-lg-4">
-                  <div class="field">
-                    <%= f.label :facebook, "ชื่อ facebook" %><br />
-                    <%= f.text_field :facebook, autofocus: true, class: "form-control w-100" %>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="field">
-                    <%= f.label :fblink, "ลิงค์ facebook" %><br />
-                    <%= f.text_field :fblink, autofocus: true, class: "form-control w-100" %>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="field">
-                    <%= f.label :password, "รหัสผ่าน" %><br />
-                    <%= link_to 'เปลี่ยนรหัสผ่าน', password_edit_users_settings_path, class: 'btn btn--secondary-mini btn--w-100 px-4 px-lg-6' %>
-                  </div>
-                </div>
-                <div class="col-12 col-lg-8">
-                  <div class="field">
+                <div class="row">
+                  <div class="col-lg-8 layout-05">
                     <%= f.label :address, "ที่อยู่" %><br />
-                    <%= f.text_area :address, autofocus: true, class: "col-lg-11 form-control h-70" %>
+                    <%= f.text_area :address, autofocus: true, class: "form-control form-textarea", rows: "5" %>
                   </div>
-                </div>
-                <div class="col-lg-4 mt-lg-5">
-                  <label class="pointer">
-                    <div class="form-check-address">
-                      <%= f.check_box :not_show_address %> ไม่แสดงที่อยู่ของฉัน
+                  <div class="col-lg-4 layout-05">
+                    <div class="form-check mt-1">
+                      <label class="pointer">
+                        <div class="form-check-address">
+                          <%= f.check_box :not_show_address %> ไม่แสดงที่อยู่ของฉัน
+                        </div>
+                      </label>
                     </div>
-                  </label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <br><hr>
-          <br>
+          <div class="layout-05"></div>
+          <hr class="hr-black">
+          <div class="layout-05"></div>
           <div class="actions">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <%= link_to "ยกเลิก", root_path, class: "btn btn--outline-primary-hover btn--w-100"%>
-              <%= f.submit "บันทึก",  class: "btn btn--primary-weight mt-3 mt-md-0 btn--w-100" %>
+              <%= link_to "ยกเลิก", root_path, class: "btn-size--md btn--outline-secondary me-md-3"%>
+              <%= f.submit "บันทึก",class: "btn-size--md btn--primary" %>
             </div>
           </div>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
