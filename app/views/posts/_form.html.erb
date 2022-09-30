@@ -62,7 +62,7 @@
       <% post.images.each do |image| %>
         <div class="d-inline" data-controller="remove-image">
           <div class="edit-upload text-center" data-controller="post-image" data-post-image-target="image">
-            <%= f.hidden_field :images, multiple: true, value: image.signed_id, id: 'form-image-hidden-field' %>
+            <%= f.hidden_field :images, multiple: true, value: image.signed_id, id: 'form-image-hidden-field' if !post.persisted? %>
             <div class="edit-image">
               <%= image_tag(image, id: 'form-image-display')%>
             </div>
