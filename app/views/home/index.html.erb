@@ -5,9 +5,9 @@
     <% if !user_signed_in? && (!params[:q].present? || !params[:q][:name_cont].present?) %>
       <div class="row justify-content-end align-items-center mb-5">
         <div class="col-md-auto order-md-last mb-5 mb-md-0">
-          <a href="<%= category_selects_posts_path %>" id="button-create-post">
-            <div class="btn btn--primary-posts btn--w-100" >
-              <i class='fas fa-plus-circle'></i>
+          <a href="<%= category_selects_posts_path %>" id="button-create-post" style="text-decoration: none;">
+            <div class="btn-fixed--bottom btn-size--md btn--primary btn--w-100 d-flex align-items-center justify-content-center" >
+              <i class='fas fa-plus-circle'></i>&nbsp
               <span class="text">สร้างโพสต์</span>
             </div>
           </a>
@@ -31,28 +31,28 @@
     <% if user_signed_in? && (!params[:q].present? || !params[:q][:name_cont].present?) %>
       <div class="row justify-content-between align-items-center mb-5">
         <div class="col-md-auto order-md-last mb-5 mb-md-0">
-          <a href="<%= category_selects_posts_path %>" id="button-create-post">
-            <div class="btn btn--primary-posts btn--w-100" >
-              <i class='fas fa-plus-circle'></i>
+          <a href="<%= category_selects_posts_path %>" id="button-create-post" style="text-decoration: none;">
+            <div class="btn-fixed--bottom btn-size--md btn--primary btn--w-100 d-flex align-items-center justify-content-center" >
+              <i class='fas fa-plus-circle'></i>&nbsp
               <span class="text">สร้างโพสต์</span>
             </div>
           </a>
         </div>
         <div class="col-md-5">
-          <ul class="tabs mb-0">
+          <ul class="tabs mb-0" id="tabs-home-index">
             <% if @tab == 'my_post' %>
               <li class="tab-item" id="tab-all-post">
-                <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary tab-link" %>
+                <%= link_to 'รายการทั้งหมด', root_path , class: "btn btn--outline-secondary-tab tab-link" %>
               </li>
               <li class="tab-item" id="tab-my-post">
-                <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--secondary tab-link" %>
+                <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--secondary-tab tab-link" %>
               </li>
             <% else %>
               <li class="tab-item" id="tab-all-post">
-                <%= link_to 'รายการทั้งหมด', root_path, class: "btn btn--secondary tab-link" %>
+                <%= link_to 'รายการทั้งหมด', root_path, class: "btn btn--secondary-tab tab-link" %>
               </li>
               <li class="tab-item" id="tab-my-post">
-                <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--outline-secondary tab-link" %>
+                <%= link_to 'รายการของฉัน', root_path(tab: 'my_post'), class: "btn btn--outline-secondary-tab tab-link" %>
               </li>
             <% end %>
           </ul>

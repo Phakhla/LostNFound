@@ -23,6 +23,7 @@ export default class extends Controller {
       this.statusInputTarget.value = 'closed';
       this.submitTarget.disabled = false;
     } else if (this.otherRadioButtonTarget.checked) {
+      this.reasonInputTarget.value = this.textInputTarget.value;
       this.statusInputTarget.value = 'closed';
       this.submitTarget.disabled = false;
     }
@@ -43,7 +44,7 @@ export default class extends Controller {
   }
 
   checkReset() {
-    const $button = $('button[type=submit]');
+    const $button = $('#closePostButton');
     const $textInput = $('#SelectionAlert');
     $textInput.removeClass('is-invalid');
     $button.prop('disabled', true);

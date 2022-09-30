@@ -103,11 +103,18 @@ export default class extends Controller {
   }
 
   valid() {
+    const dateInput = dayjs(this.dateInputTarget.value);
+    const datePresent = dayjs(Date.today);
+    const dateDiff = dateInput.diff(datePresent, 'day', true);
+    const dzImage = $('.dz-preview .dz-image img').length;
+    const editImage = $('.edit-upload .edit-image img').length;
     return (
-      this.nameInputTarget.value
+      dateDiff < 0
+      && this.nameInputTarget.value
       && this.dateInputTarget.value
       && this.typeInputTarget.value
-      && ($('.dz-preview .dz-image img').length || $('.edit-upload .edit-image img').length)
+      && (dzImage || editImage)
+      && (dzImage + editImage < 11)
       && this.latitudeTarget.value
       && this.longitudeTarget.value
     );

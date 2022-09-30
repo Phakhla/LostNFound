@@ -13,7 +13,7 @@ class Users::SettingsController < ApplicationController
     params[:user][:password] = params[:user][:current_password] if params[:user][:password].blank?
     if @user.update_with_password(user_params)
       sign_in(current_user, bypass: true)
-      redirect_to root_path
+      redirect_to edit_user_registration_path, notice: 'Password Successful Update'
     else
       render :edit_password, status: :unprocessable_entity
     end

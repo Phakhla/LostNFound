@@ -8,6 +8,7 @@ module PostHelper
       lat: data.lat,
       lng: data.lng,
       title: data.name,
+      path: Rails.application.routes.url_helpers.post_path(data),
       category: data.category.camelize(:lower)
     }.to_json
   end

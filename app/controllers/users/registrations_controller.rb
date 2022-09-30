@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     if @user.update(user_params)
-      redirect_to root_path
+      redirect_to edit_user_registration_path, notice: 'Successful Update'
     else
       render :edit, status: :unprocessable_entity, layout: 'nav_white'
     end

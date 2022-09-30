@@ -1,3 +1,4 @@
+/* stylelint-disable media-feature-name-no-vendor-prefix */
 .navbar-brand img {
   height: 58px;
   width: 66px;
@@ -157,12 +158,26 @@
   .tooltiptext {
     max-width: 312px;
     width: max-content;
-    bottom: 32px;
+    bottom: -98px;
     border: 2px solid #FBD034;
     left: 20%;
     margin-left: 0;
     margin-top: -125px;
     text-align: start;
+    position: absolute;
+
+    @media (min-width: 375px) and (max-width: 667px) {
+      bottom: -192px;
+      max-width: 290px;
+    }
+
+    @media (min-width: 820px) and (max-width: 1179.98px) {
+      bottom: 363px;
+    }
+
+    @media (min-width: 1024px) and (max-width: 1366px) {
+      bottom: 545px;
+    }
   }
 
   .tooltiptext::after {
@@ -339,6 +354,7 @@
   padding-top: 66.6667%;
   position: relative;
   margin: auto;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 600px) {
@@ -654,12 +670,6 @@
   max-width: 698px;
 }
 
-.btn--send-again {
-  background-color: inherit;
-  color: var(--color-secondary);
-  text-decoration: underline;
-}
-
 .login-form {
   background-color: var(--color-white);
   border-radius: 15px;
@@ -893,6 +903,32 @@
   height: 310px;
   object-fit: cover;
 }
+
+@media only screen
+  and (min-device-width: 820px)
+  and (max-device-width: 1180px)
+  and (orientation: landscape)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .card-img-top {
+      border-radius: 16px;
+      width: 310px;
+      height: 280px;
+      object-fit: cover;
+    }
+}
+
+@media only screen
+  and (min-device-width: 1024px)
+  and (max-device-width: 1366px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .card-img-top {
+      border-radius: 16px;
+      width: 310px;
+      height: 310px;
+      object-fit: cover;
+    }
+  }
 
 // checkbox-address
 .form-check-address {

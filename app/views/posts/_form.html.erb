@@ -36,7 +36,12 @@
       <% end %>
       <%= f.input :date, as: :date, html5: true, input_html: { max: Date.today, data: { post_preview_target: 'dateInput', live_validate_target: 'date', action: "input->live-validate#checkDate" }, id: 'post-date-input' }, error: false, label: false%>
       <% if post.errors.key?(:date) %>
-      <p class="text-small text-danger pt-1" id="form-date-warning-text">กรุณาเลือกวันที่</p>
+        <% if post.errors[:date] == ["can't be blank"] %>
+          <p class="text-small text-danger pt-1" id="form-date-warning-text">กรุณาเลือกวันที่</p>
+        <% end %>
+        <% if post.errors[:date] == ["must not exceed present date"] %>
+          <p class="text-small text-danger pt-1" id="form-date-warning-text">ไม่ควรเลือกวันที่เกินปัจจุบัน</p>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -46,7 +51,7 @@
     <span class="text--gray"> (ต้องมีอย่างน้อย 1 รูป และสามารถอัพโหลดได้สูงสุดไม่เกิน 10 รูป)</span>
   </div>
   <div class="box dropzone dropzone-box <%= 'form-invalid' if post.errors.key?(:images) %>" id="dropzone-container" >
-    <div class="dropzone dropzone-custom dz-clickable" id="dropzone" data-controller="dropzone" data-dropzone-max-files="<%= 10-post.images.count %>" data-action = "click->live-validate#checkImages">
+    <div class="dropzone dropzone-custom dz-clickable" id="dropzone" data-controller="dropzone" data-action = "click->live-validate#checkImages">
       <%= f.file_field :images, multiple: true, direct_upload: true, data: { dropzone_target: 'input'}, id: 'post-image-input' %>
       <div class="dropzone-msg dz-message ">
         <h3 class="plus"><i class="fa fa-plus"></i></h3>
@@ -57,20 +62,24 @@
       <% post.images.each do |image| %>
         <div class="d-inline" data-controller="remove-image">
           <div class="edit-upload text-center" data-controller="post-image" data-post-image-target="image">
-            <%= f.hidden_field :images, multiple: true, value: image.signed_id, id: 'form-image-hidden-field' %>
+            <%= f.hidden_field :images, multiple: true, value: image.signed_id, id: 'form-image-hidden-field' if !post.persisted? %>
             <div class="edit-image">
               <%= image_tag(image, id: 'form-image-display')%>
             </div>
-            <%= f.label "remove file", type: 'submit', data: { action: 'click->remove-image#clickCheckbox click->post-image#removeImage'}, class: 'edit-remove', id: "delete-image-button" %>
+            <%= f.label "remove file", type: 'submit', data: { action: 'click->live-validate#checkCountImages click->remove-image#clickCheckbox click->post-image#removeImage' }, class: 'edit-remove', id: "delete-image-button" %>
           </div>
           <%= check_box_tag 'post[remove_images][]', image.id, nil, data: { remove_image_target: 'checkbox'}, class: 'd-none', id: 'post_remove_images' %>
         </div>
       <% end %>
     <% end %>
-
   </div>
   <% if post.errors.key?(:images) %>
-    <p class="text-small text-danger" id="form-image-warning-text">กรุณาอัพโหลดรูป</p>
+    <% if post.errors[:images] == ["can't be blank"] %>
+      <p class="text-small text-danger pt-1" id="form-image-warning-text">กรุณาอัพโหลดรูป</p>
+    <% end %>
+    <% if post.errors[:images] == ["over limited(10 files)"] %>
+      <p class="text-small text-danger pt-1" id="form-image-over-limit-warning-text">สามารถอัพโหลดได้สูงสุดไม่เกิน 10 รูป</p>
+    <% end %>
   <% end %>
   <div class="col-sm-9">
     <%= f.label :detail, "รายละเอียดเพิ่มเติม", class: 'form-label mt-5 text-bold mb-3', id: 'form-deatil-label' %>
@@ -115,10 +124,10 @@
       <% end %>
       <%= f.submit "บันทึก", class: "btn btn--primary-weight", id: 'save-form-button' %>
     <% else %>
-      <%= link_to category_selects_posts_path, type: "reset", class: "btn btn--outline-primary-hover", id: 'cancel-create-form-button'  do %>
+      <%= link_to category_selects_posts_path, type: "reset", class: "btn-size--md btn--outline-secondary me-md-3", id: 'cancel-create-form-button'  do %>
         ยกเลิก
       <% end %>
-      <%= f.button :button, "สร้างโพสต์", type: 'submit', class: "btn btn--primary-weight",
+      <%= f.button :button, "สร้างโพสต์", type: 'submit', class: "btn-size--md btn--primary",
         data: {controller: 'delay-redirect', action: "click->delay-redirect#link"},
         id:"create-form-button" %>
       <%= render 'preview_modal', post: %>

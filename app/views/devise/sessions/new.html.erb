@@ -23,7 +23,7 @@
               <i class="fas fa-exclamation-circle pt-2"></i>&emsp;โปรดระบุรหัสผ่าน
             <% end %>
           <% elsif @email.blank? && params[:success].blank? %>
-              <i class="fas fa-exclamation-circle pt-2"></i>&emsp;อีเมลลืมรหัสผ่านหมดอายุ โปรดลองอีกครั้ง
+              <i class="fas fa-exclamation-circle pt-2" style="padding: 0.5rem;"></i>โปรดกดเปลี่ยนรหัสผ่านจากอีเมล์ฉบับล่าสุด 
           <% else %>
             <i class="fas fa-exclamation-circle pt-2"></i>&emsp;กรุณาเข้าสู่ระบบก่อนดำเนินการ
           <% end %>

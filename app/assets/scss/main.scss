@@ -164,15 +164,13 @@ input[type="radio"].radiobtn {
   justify-content: flex-end;
 
   @media (max-width: 767.98px) {
-    justify-content: center;
-    padding-left: 54px;
+    justify-content: flex-start;
   }
 
   @media only screen
   and (min-device-width: 768px)
   and (max-device-width: 1180px) {
     justify-content: flex-start;
-    padding-left: 88px;
   }
 }
 
@@ -499,6 +497,7 @@ input[type="radio"].radiobtn {
 // contact
 .phone-contact {
   text-decoration: none;
+  word-break: break-all;
 
   &:hover {
     color: #101010;
@@ -597,4 +596,7 @@ input[type="radio"].radiobtn {
 
 .mapLabels {
   text-shadow: -1px 1px 0 white, 1px 1px 0 white, 1px -1px 0 white, -1px -1px 0 white;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 220px;
 }

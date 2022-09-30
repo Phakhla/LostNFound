@@ -6,8 +6,8 @@
           <div class="d-md-flex justify-content-between align-items-center">
             <div class="preview" id="preview-title" >เนื้อหานี้เป็นตัวอย่างโพสต์ของคุณ</div>
             <div class="mt-4 mt-md-0">
-              <button type="button" class="btn btn--outline-primary preview" data-bs-dismiss="modal" id="close-modal-preview">กลับไปแก้ไข</button>
-              <button type="submit" class="btn btn--primary preview"  id="submit-preview">สร้างโพสต์เลย</button>
+              <button type="button" class="btn btn--secondary" data-bs-dismiss="modal" id="close-modal-preview">กลับไปแก้ไข</button>
+              <button type="submit" class="btn btn--primary"  id="submit-preview">สร้างโพสต์เลย</button>
             </div>
           </div>
         </div>
@@ -17,10 +17,10 @@
             <div class="card p-3 p-md-5 border-dark" style="border-radius: 15px">
               <div class="card-body">
                 <div class="row m-2">
-                  <div class="col-lg-8">
+                  <div class="col-lg-7">
                     <h3 class="text-header4 " data-post-preview-target="name" id="preview-name">Name</h3>
                   </div>
-                  <div class="col-lg-4 text-end">
+                  <div class="col-lg-5 d-flex align-items-end flex-column">
                     <p class="card-text p-2 text-center status-tag active-status" id="preview-status">
                       <span class="dot-white"></span>
                       กำลังตามหา
@@ -58,7 +58,7 @@
                     <p class="card-text" data-post-preview-target="detail" id="preview-detail">detail</p>
                     <p class="card-text fw-bold text-subtitle-2 pt-5">รายละเอียด</p>
                     <div class="row card-detail preview">
-                      <div class="col-md-9">
+                      <div class="col-md-12">
                         <div class="detail-text">
                           <div class="text-content preview"><p>ประเภท</p></div>
                           <p data-post-preview-target="type" id="preview-type" class="text-value preview font-weight500">type</p>
@@ -86,53 +86,69 @@
                 <hr style="height: 2px; background-color:black;">
 
                 <div class="row">
-                  <div class="col-12 d-flex align-items-center" id="preview-user-info">
-                    <div class="user-avatar pe-5">
+                  <div class="col-12 d-flex align-items-start" id="preview-user-info">
+                    <div class="user-avatar pe-5" id="user-avatar">
                       <% if current_user.avatar.present? %>
                         <%= image_tag(current_user.avatar, class: 'avatar') %>
                       <% else %>
                         <img alt="image" class="avatar" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
                       <% end %>
                     </div>
-                    <div class="user-info">
+                    <div class="user-info" id="user-detail" style="word-break: break-all;">
                       <p class="card-text fw-bold">
                         <%= current_user.username %>
                       </p>
                       <%# Info %>
-                      <% if current_user.tel? or current_user.fblink? or current_user.facebook? %>
-                        <p class="card-text">ติดต่อ :
-                          <%# Show tel %>
-                          <% if current_user.tel? %>
-                            <i class="fa-solid fa-phone text-body me-2"></i>
-                            <%= phone_to current_user.tel, class: 'phone-contact' %>
-                          <% end %>
-                          <%# Show facebook link %>
-                          <% if current_user.fblink? %>
-                            <%= link_to(current_user.fblink, style: 'text-decoration: none;', target: 'blank') do %>
-                              <i class="fa-brands fa-facebook-square text-subtitle"></i>
-                              <% if current_user.facebook? %>
-                                <%= current_user.facebook %>
-                              <% else %>
-                                Facebook
-                              <% end %>
-                            <% end %>
+                      <div class="info-description">
+                        <div class="contact-content">
+                          <% if current_user.tel? or current_user.fblink? or current_user.facebook? %>
+                            <div class="contact-title font-weight500"><p>ติดต่อ :</p></div>
+                              <%# Show tel %>
+                              <div class="contact-detail">
+                                <% if current_user.tel? %>
+                                  <div class="contact-tel d-flex">
+                                    <i class="fa-solid fa-phone text-body me-2"></i>
+                                    <%= phone_to current_user.tel, class: 'phone-contact' %>
+                                  </div>
+                                <% end %>
+                                <%# Show facebook link %>
+                                <% if current_user.fblink? %>
+                                  <div class="contact-facebook d-flex align-items-start">
+                                    <%= link_to(current_user.fblink, style: 'text-decoration: none;', target: 'blank') do %>
+                                      <i class="fa-brands fa-facebook-square text-subtitle"></i>
+                                      <% if current_user.facebook? %>
+                                        <%= current_user.facebook %>
+                                      <% else %>
+                                        Facebook
+                                      <% end %>
+                                    <% end %>
+                                  </div>
+                                <% else %>
+                                  <% if current_user.facebook? %>
+                                    <div class="contact-facebook d-flex align-items-start">
+                                      <i class="fa-brands fa-facebook-square text-subtitle"></i>
+                                      <%= current_user.facebook %>
+                                    </div>
+                                  <% end %>
+                                <% end %>
+                              </div>
                           <% else %>
-                            <% if current_user.facebook? %>
-                              <i class="fa-brands fa-facebook-square text-subtitle"></i>
-                              <%= current_user.facebook %>
-                            <% end %>
+                            <p class="card-text"> ไม่มีข้อมูลการติดต่อ </p>
                           <% end %>
-                        </p>
-                      <% else %>
-                        <p class="card-text"> ไม่มีข้อมูลการติดต่อ </p>
-                      <% end %>
-                      <%# Address %>
-                      <% if current_user.address? %>
-                          <% if !current_user.not_show_address %>
-                            <p class="card-text">ที่อยู่ : <%= current_user.address %></p>
+                        </div>
+                        <%# Address %>
+                        <div class="contact-content">
+                          <% if current_user.address? %>
+                              <% if !current_user.not_show_address %>
+                                <div class="address-title font-weight500"><p>ที่อยู่ :</p></div>
+                                <div class="contact-detail">
+                                  <div class="address-detail"><%= current_user.address %></div>
+                                </div>
+                              <% end %>
+                            <% else %>
                           <% end %>
-                        <% else %>
-                      <% end %>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -24,7 +24,7 @@ RSpec.describe 'Users::Settings', type: :request do
 
       put password_users_settings_path, params: params
 
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(edit_user_registration_path)
     end
 
     it 'cannot update incorrect password' do

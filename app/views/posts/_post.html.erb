@@ -21,9 +21,9 @@
     <div class="col-md-10 text-end manage-button">
       <% if user_signed_in? && post.owner?(current_user) && post.active? %>
       <div class="d-md-flex justify-content-end btn-right">
-        <button type="button" class="btn bg-color--primary100-weight mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#deletePostModal" id="delete-post-modal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
-        <button type="button" data-controller="radio-selection" data-action="click->radio-selection#checkReset" class="btn btn--outline-primary-width ms-0 ms-md-3 mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#closePostModal" id="close-post-modal">ปิดโพสต์นี้</button>
-        <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn--primary-black ms-0 ms-md-3 mt-3 mt-md-0', id: 'edit-button-post' %>
+        <button type="button" class="btn btn--danger mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#deletePostModal" id="delete-post-modal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
+        <button type="button" data-controller="radio-selection" data-action="click->radio-selection#checkReset" class="btn btn--secondary ms-0 ms-md-3" data-bs-toggle="modal" data-bs-target="#closePostModal" id="close-post-modal">ปิดโพสต์นี้</button>
+        <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn--primary ms-0 ms-md-3 mt-3 mt-md-0', id: 'edit-button-post', style: "width: 143px; font-weight: 700;" %>
       </div>
       <% end %>
     </div>
@@ -143,7 +143,7 @@
               <img alt="image" class="avatar" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=">
             <% end %>
           </div>
-          <div clss="user-info" id="user-detail">
+          <div class="user-info" id="user-detail">
             <p class="card-text fw-bold">
               <%= post.user.username %>
             </p>
@@ -255,12 +255,12 @@
             <p class="font-weight600 mt-5">กรุณาเลือกเหตุผล</p>
             <div class="form-check layout-04">
               <label class="cursor-pointer">
-                <%= radio_button 'status', '', 'found', checked: false ,data: { radio_selection_target: "foundRadioButton", action: "click->radio-selection#checkOption" } %> พบเจอของ/เจ้าของแล้ว
+                <%= radio_button 'status', '', 'พบเจอของ/เจ้าของแล้ว', checked: false ,data: { radio_selection_target: "foundRadioButton", action: "click->radio-selection#checkOption" } %> พบเจอของ/เจ้าของแล้ว
               </label>
             </div>
             <div class="form-check layout-04">
               <label class="cursor-pointer">
-                <%= radio_button 'status', '', 'closed', checked: false ,data: { radio_selection_target: "hopelessRadioButton", action: "click->radio-selection#checkOption" } %> ไม่ต้องการค้นหาอีกต่อไป
+                <%= radio_button 'status', '', 'ไม่ต้องการค้นหาอีกต่อไป', checked: false ,data: { radio_selection_target: "hopelessRadioButton", action: "click->radio-selection#checkOption" } %> ไม่ต้องการค้นหาอีกต่อไป
               </label>
             </div>
             <div class="row layout-04">
@@ -282,7 +282,7 @@
             <%= f.hidden_field :reason, data: { radio_selection_target: "reasonInput" } %>
             <div class="row justify-content-md-center spacing-09">
               <div class="col-md-auto mt-3 mt-md-0">
-                <%= f.button :button, "ยกเลิก", type: "reset", class: "btn btn--cancel btn--w-100", id: 'cancelClosePostButton', data: { bs_dismiss: 'modal' } %>
+                <%= f.button :button, "ยกเลิก", type: "reset", class: "btn btn--cancel btn--w-100", id: 'cancelClosePostButton', data: { bs_dismiss: 'modal'} %>
               </div>
               <div class="col-md-auto mt-3 mt-md-0">
                  <%= f.button :button, "ยืนยัน", class: "btn btn--primary-black btn--w-100 ms-0 ms-md-2", id: 'closePostButton', disabled: true, data: { radio_selection_target: "submit", action: "click->radio-selection#checkSubmit" } %>

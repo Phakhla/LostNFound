@@ -33,14 +33,18 @@ export default class extends Controller {
 
   scrollToContent() {
     $(() => {
-      $('#post-content-found_item').on('click', () => {
+      $('#active-checkbox, #in-active-checkbox').on('click', () => {
         sessionStorage.scrollPosition = $(window).scrollTop();
       });
-      $('#post-content-lost_item').on('click', () => {
-        sessionStorage.scrollPosition = $(window).scrollTop();
+      $('#button-all-post-lost_item, #button-all-post-found_item').on('click', () => {
+        if (window.screen.availWidth <= 576) {
+          sessionStorage.scrollPosition = 660;
+        } else {
+          sessionStorage.scrollPosition = 620;
+        }
       });
-      $('#button-search').on('click', () => {
-        if (window.screen.availWidth <= 375) {
+      $('#button-search, #tabs-home-index, #nav-lost-posts-path-link, #nav-found-posts-path-link').on('click', () => {
+        if (window.screen.availWidth <= 576) {
           sessionStorage.scrollPosition = 660;
         } else {
           sessionStorage.scrollPosition = 620;

@@ -61,14 +61,14 @@ export default class extends Controller {
           url: `${iconBase}Yellow-Marker.png`,
           labelOrigin: new google.maps.Point(10, 35),
         },
-        color: '#ffa500',
+        color: '#d66d00',
       },
       foundItem: {
         icon: {
           url: `${iconBase}Green-Marker.png`,
           labelOrigin: new google.maps.Point(10, 35),
         },
-        color: '#8BB72F',
+        color: '#188038',
       },
     };
     const mapPositions = [];
@@ -80,13 +80,14 @@ export default class extends Controller {
           label: {
             text: dataMap.title,
             fontFamily: 'Prompt',
-            fontSize: '16px',
+            fontSize: '20px',
             fontWeight: '500',
             color: markerStyleByType[dataMap.category].color,
             className: 'mapLabels',
           },
           lat: dataMap.lat,
           lng: dataMap.lng,
+          path: dataMap.path,
         },
       );
     });
@@ -101,7 +102,7 @@ export default class extends Controller {
       });
 
       google.maps.event.addListener(this.marker, 'click', () => {
-        window.open(`https://maps.google.com/?q=${mapPositions[i].lat},${mapPositions[i].lng}`);
+        window.open(window.location.origin + mapPositions[i].path);
       });
     }
   }

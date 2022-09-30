@@ -78,8 +78,8 @@
       </div>
       <hr>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end layout-05">
-        <%= link_to "ยกเลิก", "/posts/#{@post.id}", class: "btn btn--outline-primary poster" , id: 'cancel-create-poster-button'%>
-        <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn--primary poster", id: 'create-poster-submit-button', data: {action: "click->delay-redirect#link"} %>
+        <%= link_to "ยกเลิก", "/posts/#{@post.id}", class: "btn--outline-secondary me-md-3 btn-size--md" , id: 'cancel-create-poster-button'%>
+        <%= f.button :button, "สร้างโปสเตอร์", type: "submit", class: "btn-size--md btn--primary", id: 'create-poster-submit-button', data: {action: "click->delay-redirect#link"} %>
       </div>
     </div>
   </div>
