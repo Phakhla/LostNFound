@@ -109,14 +109,14 @@
               </div>
               <div class="col-lg-4 mb-2">
                 <%= f.date_field :date_gteq, class: 'form-control', id: 'start_date', data: { search_form_target: 'startDate', action: 'input->search-form#checkDateStart input->search-form#dateStartSelected' }, max: Date.today %>
-                <p class="text-danger t-floating pt-2" id="date-start-error" style="position: absolute; margin-top: 5px;">ไม่ควรเลือกวันที่เกินปัจจุบัน</p>
+                <p class="text-danger t-floating pt-2 d-none" id="date-start-error" style="position: absolute; margin-top: 5px;">ไม่ควรเลือกวันที่เกินปัจจุบัน</p>
               </div>
               <div class="col-auto d-flex mt-5 mt-lg-0 align-items-center">
                 <%= f.label "วันที่สิ้นสุด :", class: 'font-weight600'%>
               </div>
               <div class="col-lg-4 mb-2">
                 <%= f.date_field :date_lteq, class: 'form-control', id: 'end_date', data: { search_form_target: 'endDate', action: 'input->search-form#checkDateEnd input->search-form#dateEndSelected' }, max: Date.today %>
-                <p class="text-danger t-floating pt-2" id="date-end-error" style="position: absolute; margin-top: 5px;">ไม่ควรเลือกวันที่เกินปัจจุบัน</p>
+                <p class="text-danger t-floating pt-2 d-none" id="date-end-error" style="position: absolute; margin-top: 5px;">ไม่ควรเลือกวันที่เกินปัจจุบัน</p>
               </div>
             </div>
 
