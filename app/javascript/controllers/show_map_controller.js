@@ -58,15 +58,17 @@ export default class extends Controller {
     const markerStyleByType = {
       lostItem: {
         icon: {
-          url: `${iconBase}Yellow-Marker.png`,
+          url: `${iconBase}Lost-Marker.png`,
           labelOrigin: new google.maps.Point(10, 35),
+          scaledSize: new google.maps.Size(40, 40),
         },
         color: '#d66d00',
       },
       foundItem: {
         icon: {
-          url: `${iconBase}Green-Marker.png`,
+          url: `${iconBase}Found-Marker.png`,
           labelOrigin: new google.maps.Point(10, 35),
+          scaledSize: new google.maps.Size(40, 40),
         },
         color: '#188038',
       },

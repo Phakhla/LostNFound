@@ -119,10 +119,10 @@
   <hr>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end layout-05">
     <% if post.persisted? %>
-      <%= link_to post, type: "reset", class: "btn btn--outline-primary-hover", id: 'cancel-edit-form-button'  do %>
+      <%= link_to post, type: "reset", class: "btn-size--md btn--outline-secondary me-md-3", id: 'cancel-edit-form-button'  do %>
         ยกเลิก
       <% end %>
-      <%= f.submit "บันทึก", class: "btn btn--primary-weight", id: 'save-form-button' %>
+      <%= f.submit "บันทึก", class: "btn-size--md btn--primary", id: 'save-form-button' %>
     <% else %>
       <%= link_to category_selects_posts_path, type: "reset", class: "btn-size--md btn--outline-secondary me-md-3", id: 'cancel-create-form-button'  do %>
         ยกเลิก

@@ -228,10 +228,10 @@
             <p class="text-center layout-07">คุณต้องการลบโพสต์นี้ออกจากรายการของคุณใช่หรือไหม่</p>
             <div class="row justify-content-md-center layout-10">
               <div class="col-md-auto mt-3 mt-md-0" id="cancel-button">
-                <button class="btn btn--cancel btn--w-100" data-bs-dismiss="modal">ยกเลิก</button>
+                <button class="btn-size--md btn--outline-secondary" data-bs-dismiss="modal">ยกเลิก</button>
               </div>
               <div class="col-md-auto mt-3 mt-md-0" id="confirm-button">
-                <%= button_to "ยืนยัน", post, method: :delete , class: 'btn btn--primary-black btn--w-100 ms-0 ms-md-2'%>
+                <%= button_to "ยืนยัน", post, method: :delete , class: 'btn-size--md btn--primary ms-0 ms-md-2'%>
               </div>
             </div>
           </div>
@@ -282,10 +282,10 @@
             <%= f.hidden_field :reason, data: { radio_selection_target: "reasonInput" } %>
             <div class="row justify-content-md-center spacing-09">
               <div class="col-md-auto mt-3 mt-md-0">
-                <%= f.button :button, "ยกเลิก", type: "reset", class: "btn btn--cancel btn--w-100", id: 'cancelClosePostButton', data: { bs_dismiss: 'modal'} %>
+                <%= f.button :button, "ยกเลิก", type: "reset", class: "btn-size--md btn--outline-secondary", id: 'cancelClosePostButton', data: { bs_dismiss: 'modal'}, style: "width: 155px;" %>
               </div>
               <div class="col-md-auto mt-3 mt-md-0">
-                 <%= f.button :button, "ยืนยัน", class: "btn btn--primary-black btn--w-100 ms-0 ms-md-2", id: 'closePostButton', disabled: true, data: { radio_selection_target: "submit", action: "click->radio-selection#checkSubmit" } %>
+                 <%= f.button :button, "ยืนยัน", class: "btn-size--md btn--primary ms-0 ms-md-2", id: 'closePostButton', disabled: true, data: { radio_selection_target: "submit", action: "click->radio-selection#checkSubmit" }, style: "width: 155px;" %>
               </div>
             </div>
           </div>
