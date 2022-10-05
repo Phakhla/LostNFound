@@ -1068,3 +1068,35 @@
   font-size: 20px;
   font-weight: 600;
 }
+
+// tooltipText on result advance search results
+.tooltip-advance {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-advance .tooltipText {
+  visibility: hidden;
+  width: max-content;
+  max-width: 180%;
+  background-color: #FDE89AFF;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  overflow-wrap: break-word;
+  border-width: 2px;
+  border: 2px solid #FBD034;
+  left: 90%;
+  bottom: 80%;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip-advance:hover .tooltipText {
+  visibility: visible;
+  padding: 5px;
+}
+
