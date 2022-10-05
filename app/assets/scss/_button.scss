@@ -101,6 +101,26 @@ a.btn, a.btn-size--xl, a.btn-size--md, a.btn-size--sm {
   box-shadow: 3px 4px 5px rgba(0 0 0 / 20%) !important;
 }
 
+.btn--primary--edit {
+  background-color: var(--color-primary) !important;
+  border: 1px solid var(--color-primary) !important;
+  color: var(--color-black) !important;
+  width: 148px;
+}
+
+.btn--primary--edit:hover, .btn--primary--edit.hover {
+  background-color: var(--color-primary-400) !important;
+  border: 1px solid var(--color-primary-400) !important;
+  box-shadow: 3px 4px 5px rgba(0 0 0 / 10%) !important;
+}
+
+.btn--primary--edit:active, .btn--primary--edit.active {
+  background-color: var(--color-primary) !important;
+  border: 1px solid var(--color-primary) !important;
+  color: var(--color-black) !important;
+  box-shadow: 3px 4px 5px rgba(0 0 0 / 20%) !important;
+}
+
 .btn--danger {
   background-color: var(--color-red) !important;
   border: 1px solid var(--color-red) !important;
@@ -152,6 +172,21 @@ a.btn, a.btn-size--xl, a.btn-size--md, a.btn-size--sm {
   &:focus {
     border: 1px solid var(--color-primary) !important;
   }
+}
+
+.btn--primary.preview {
+  padding: var(--spacing-02) 0;
+  width: 138px;
+
+  &:hover {
+    background-color: var(--color-primary-400);
+    border: 1px solid var(--color-primary);
+  }
+}
+
+.btn--outline-primary.preview {
+  padding: var(--spacing-02) 0;
+  width: 138px;
 }
 
 .btn--secondary {

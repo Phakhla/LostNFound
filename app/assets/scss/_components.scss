@@ -850,13 +850,17 @@
       background-color: var(--color-secondary-600);
       border-bottom: none;
       color: var(--color-white);
-      padding: 34px;
+      padding: 4rem 1rem 4rem 1.1rem;
       border-radius: 2rem 2rem 0.1rem 0.1rem;
       font-size: 30px;
 
       .title {
         color: var(--color-white);
         font-size: 30px;
+      }
+
+      @media (min-width: 768px) {
+        padding:  4rem 1rem 4rem 2rem;
       }
     }
 

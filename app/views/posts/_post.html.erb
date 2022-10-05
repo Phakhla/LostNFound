@@ -22,8 +22,8 @@
       <% if user_signed_in? && post.owner?(current_user) && post.active? %>
       <div class="d-md-flex justify-content-end btn-right">
         <button type="button" class="btn btn--danger mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#deletePostModal" id="delete-post-modal"><i class="fa-solid fa-trash-can"></i>  ลบโพสต์</button>
-        <button type="button" data-controller="radio-selection" data-action="click->radio-selection#checkReset" class="btn btn--secondary ms-0 ms-md-3" data-bs-toggle="modal" data-bs-target="#closePostModal" id="close-post-modal">ปิดโพสต์นี้</button>
-        <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn--primary ms-0 ms-md-3 mt-3 mt-md-0', id: 'edit-button-post', style: "width: 143px; font-weight: 700;" %>
+        <button type="button" data-controller="radio-selection" data-action="click->radio-selection#checkReset" class="btn btn--secondary ms-0 ms-md-3 mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#closePostModal" id="close-post-modal">ปิดโพสต์นี้</button>
+        <%= link_to 'แก้ไข', edit_post_path(post) , class: 'btn btn--primary--edit  ms-0 ms-md-3 mt-3 mt-md-0', id: 'edit-button-post' %>
       </div>
       <% end %>
     </div>

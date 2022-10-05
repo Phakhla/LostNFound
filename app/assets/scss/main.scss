@@ -460,23 +460,6 @@ input[type="radio"].radiobtn {
   margin-bottom: 19px;
 }
 
-.btn--primary.preview {
-  font-size: 16px;
-  padding: var(--spacing-02) 0;
-  width: 138px;
-
-  &:hover {
-    background-color: var(--color-primary-400);
-    border: 1px solid var(--color-primary);
-  }
-}
-
-.btn--outline-primary.preview {
-  font-size: 16px;
-  padding: var(--spacing-02) 0;
-  width: 138px;
-}
-
 .title.preview {
   padding: 0;
   margin: 0;
