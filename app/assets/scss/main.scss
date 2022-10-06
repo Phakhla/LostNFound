@@ -21,14 +21,14 @@
 .tooltiptext.new-password {
   display: flex;
   width: 360px;
-  left: 30%;
   margin-top: -30px;
+  bottom: 6px;
 
   @media (max-width: 767px) {
     display: block;
     margin-top: -54px;
     width: 200px;
-    left: 64%;
+    left: 125%;
   }
 }
 

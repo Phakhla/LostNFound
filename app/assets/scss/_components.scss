@@ -138,53 +138,6 @@
   padding: 8px 15px;
 }
 
-.advance-search-container {
-  width: 20%;
-
-  @media (max-width: 767.98px) {
-    width: 30%;
-  }
-
-  p {
-    min-width: 0;
-  }
-
-  .tool {
-    position: inherit;
-    display: block;
-    margin-top: -20px;
-  }
-
-  .tooltiptext {
-    max-width: 312px;
-    width: max-content;
-    bottom: -98px;
-    border: 2px solid #FBD034;
-    left: 20%;
-    margin-left: 0;
-    margin-top: -125px;
-    text-align: start;
-    position: absolute;
-
-    @media (min-width: 375px) and (max-width: 667px) {
-      bottom: -192px;
-      max-width: 290px;
-    }
-
-    @media (min-width: 820px) and (max-width: 1179.98px) {
-      bottom: 363px;
-    }
-
-    @media (min-width: 1024px) and (max-width: 1366px) {
-      bottom: 545px;
-    }
-  }
-
-  .tooltiptext::after {
-    border-right: 0 !important;
-  }
-}
-
 .advance-search-name {
   max-width: 100%;
   overflow: hidden;
@@ -838,6 +791,56 @@
   }
 }
 
+// tooltipText on result advance search results
+.advance-search-container {
+  width: 20%;
+
+  @media (max-width: 767.98px) {
+    width: 30%;
+  }
+
+  p {
+    min-width: 0;
+  }
+
+  .tooltip-advance {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip-advance .tooltipText {
+    visibility: hidden;
+    width: max-content;
+    max-width: 180%;
+    background-color: #FDE89AFF;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    overflow-wrap: break-word;
+    border-width: 2px;
+    border: 2px solid #FBD034;
+    left: 90%;
+    bottom: 80%;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+
+    @media (min-width: 1200px) and (max-width: 1400px) {
+      left: 80%;
+    }
+
+    @media (min-width: 1400px)  {
+      left: 70%;
+    }
+  }
+
+  .tooltip-advance:hover .tooltipText {
+    visibility: visible;
+  }
+}
+
 .preview-modal {
   .modal-content {
     border-radius: 2rem;
@@ -1069,35 +1072,3 @@
   font-size: 20px;
   font-weight: 600;
 }
-
-// tooltipText on result advance search results
-.tooltip-advance {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip-advance .tooltipText {
-  visibility: hidden;
-  width: max-content;
-  max-width: 180%;
-  background-color: #FDE89AFF;
-  color: black;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  overflow-wrap: break-word;
-  border-width: 2px;
-  border: 2px solid #FBD034;
-  left: 90%;
-  bottom: 80%;
-
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-}
-
-.tooltip-advance:hover .tooltipText {
-  visibility: visible;
-  padding: 5px;
-}
-
